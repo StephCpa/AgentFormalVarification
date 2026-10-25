@@ -1,0 +1,244 @@
+[
+  {
+    "scenario": "lost-receipt",
+    "result": {
+      "workflow_digest": "sha256:7a02734a9654b2ffe9eb208ecaf3cb5a4c50e9aeaf4f375bf8c2112fdb126a76",
+      "run_id": "run",
+      "status": "Finished",
+      "steps": [
+        {
+          "command": "Prepare",
+          "node_id": "w0.0",
+          "operation_id": "op-80fd4446d4c2484297752b75c0d42d5f",
+          "result": "Prepared"
+        },
+        {
+          "command": "If",
+          "node_id": "w0.1",
+          "operation_id": null,
+          "result": "then"
+        },
+        {
+          "command": "Dispatch",
+          "node_id": "w0.1.then.0",
+          "operation_id": "op-80fd4446d4c2484297752b75c0d42d5f",
+          "result": "Admitted"
+        },
+        {
+          "command": "Send",
+          "node_id": "w0.1.then.1",
+          "operation_id": "op-80fd4446d4c2484297752b75c0d42d5f",
+          "result": "NoAuthoritativeReceipt"
+        },
+        {
+          "command": "Reconcile",
+          "node_id": "w0.1.then.2",
+          "operation_id": "op-80fd4446d4c2484297752b75c0d42d5f",
+          "result": "ReceiptObserved"
+        },
+        {
+          "command": "Join",
+          "node_id": "w0.1.join",
+          "operation_id": null,
+          "result": "AffineJoinApplied"
+        }
+      ],
+      "failed_node": null,
+      "error": null,
+      "operations": [
+        {
+          "id": "op-80fd4446d4c2484297752b75c0d42d5f",
+          "execution": "Confirmed",
+          "settlement": "Final",
+          "remaining": [
+            {
+              "account": "order:order:CNY",
+              "amount": "0"
+            },
+            {
+              "account": "tenant:CNY",
+              "amount": "0"
+            }
+          ]
+        }
+      ],
+      "scope": "Finished means the command program ended, not business completion or released budget"
+    },
+    "checkpoint": {
+      "pc": 6,
+      "revision": 8,
+      "status": "Finished"
+    },
+    "io_intents": [
+      {
+        "node_id": "w0.1.then.1",
+        "kind": "Send",
+        "status": "Uncertain",
+        "generation": 1
+      },
+      {
+        "node_id": "w0.1.then.2",
+        "kind": "Reconcile",
+        "status": "Recorded",
+        "generation": 1
+      }
+    ],
+    "send_invocations": 1,
+    "real_cost": 70,
+    "spent": 70,
+    "pending": 0
+  },
+  {
+    "scenario": "drop-permit",
+    "result": {
+      "workflow_digest": "sha256:7a02734a9654b2ffe9eb208ecaf3cb5a4c50e9aeaf4f375bf8c2112fdb126a76",
+      "run_id": "run",
+      "status": "Finished",
+      "steps": [
+        {
+          "command": "Prepare",
+          "node_id": "w0.0",
+          "operation_id": "op-2c7cae60731a49c2bad7ddb85902b74f",
+          "result": "Prepared"
+        },
+        {
+          "command": "If",
+          "node_id": "w0.1",
+          "operation_id": null,
+          "result": "otherwise"
+        },
+        {
+          "command": "Drop",
+          "node_id": "w0.1.else.0",
+          "operation_id": null,
+          "result": "VariableDropped"
+        },
+        {
+          "command": "Join",
+          "node_id": "w0.1.join",
+          "operation_id": null,
+          "result": "AffineJoinApplied"
+        }
+      ],
+      "failed_node": null,
+      "error": null,
+      "operations": [
+        {
+          "id": "op-2c7cae60731a49c2bad7ddb85902b74f",
+          "execution": "Prepared",
+          "settlement": "Unsettled",
+          "remaining": [
+            {
+              "account": "order:order:CNY",
+              "amount": "70"
+            },
+            {
+              "account": "tenant:CNY",
+              "amount": "70"
+            }
+          ]
+        }
+      ],
+      "scope": "Finished means the command program ended, not business completion or released budget"
+    },
+    "checkpoint": {
+      "pc": 4,
+      "revision": 4,
+      "status": "Finished"
+    },
+    "io_intents": [],
+    "send_invocations": 0,
+    "real_cost": 0,
+    "spent": 0,
+    "pending": 70
+  },
+  {
+    "scenario": "uncertain-send-recovery",
+    "result": {
+      "workflow_digest": "sha256:7a02734a9654b2ffe9eb208ecaf3cb5a4c50e9aeaf4f375bf8c2112fdb126a76",
+      "run_id": "run",
+      "status": "Finished",
+      "steps": [
+        {
+          "command": "Prepare",
+          "node_id": "w0.0",
+          "operation_id": "op-e66c538c33bf41e4af5d5c3807e7968b",
+          "result": "Prepared"
+        },
+        {
+          "command": "If",
+          "node_id": "w0.1",
+          "operation_id": null,
+          "result": "then"
+        },
+        {
+          "command": "Dispatch",
+          "node_id": "w0.1.then.0",
+          "operation_id": "op-e66c538c33bf41e4af5d5c3807e7968b",
+          "result": "Admitted"
+        },
+        {
+          "command": "Send",
+          "node_id": "w0.1.then.1",
+          "operation_id": "op-e66c538c33bf41e4af5d5c3807e7968b",
+          "result": "UncertainAfterWorkerLoss"
+        },
+        {
+          "command": "Reconcile",
+          "node_id": "w0.1.then.2",
+          "operation_id": "op-e66c538c33bf41e4af5d5c3807e7968b",
+          "result": "ReceiptObserved"
+        },
+        {
+          "command": "Join",
+          "node_id": "w0.1.join",
+          "operation_id": null,
+          "result": "AffineJoinApplied"
+        }
+      ],
+      "failed_node": null,
+      "error": null,
+      "operations": [
+        {
+          "id": "op-e66c538c33bf41e4af5d5c3807e7968b",
+          "execution": "Confirmed",
+          "settlement": "Final",
+          "remaining": [
+            {
+              "account": "order:order:CNY",
+              "amount": "0"
+            },
+            {
+              "account": "tenant:CNY",
+              "amount": "0"
+            }
+          ]
+        }
+      ],
+      "scope": "Finished means the command program ended, not business completion or released budget"
+    },
+    "checkpoint": {
+      "pc": 6,
+      "revision": 8,
+      "status": "Finished"
+    },
+    "io_intents": [
+      {
+        "node_id": "w0.1.then.1",
+        "kind": "Send",
+        "status": "Uncertain",
+        "generation": 2
+      },
+      {
+        "node_id": "w0.1.then.2",
+        "kind": "Reconcile",
+        "status": "Recorded",
+        "generation": 1
+      }
+    ],
+    "send_invocations": 1,
+    "real_cost": 70,
+    "spent": 70,
+    "pending": 0
+  }
+]

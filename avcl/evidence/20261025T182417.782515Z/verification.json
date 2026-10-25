@@ -1,0 +1,344 @@
+{
+  "schema": "avcl/verification/0.1",
+  "started_utc": "20261025T182417.782515Z",
+  "passed": false,
+  "scope": "reference semantics; bounded model; abstract Lean core; real PostgreSQL persistence and application process crash tests; no production guarantee",
+  "postgres_requested": true,
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "stages": [
+    {
+      "name": "tests",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-v"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 5.125,
+      "log": "tests.log"
+    },
+    {
+      "name": "bounded-model",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "models.budget_model"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.125,
+      "log": "bounded-model.log"
+    },
+    {
+      "name": "capacity-model",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "models.capacity_model"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.078,
+      "log": "capacity-model.log"
+    },
+    {
+      "name": "delegation-model",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "models.delegation_model"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.078,
+      "log": "delegation-model.log"
+    },
+    {
+      "name": "lean-version",
+      "command": [
+        "lean",
+        "--version"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.125,
+      "log": "lean-version.log"
+    },
+    {
+      "name": "lean-core",
+      "command": [
+        "lean",
+        "Core.lean"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 1.609,
+      "log": "lean-core.log"
+    },
+    {
+      "name": "refund-demo",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "examples/refund_demo.py"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.172,
+      "log": "refund-demo.log"
+    },
+    {
+      "name": "ir-pipeline",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "examples/ir_pipeline.py",
+        "E:\\KM\\Agent Formal Verification\\avcl\\evidence\\20261025T182417.782515Z\\ir-candidates"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.187,
+      "log": "ir-pipeline.log"
+    },
+    {
+      "name": "policy-lifecycle",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "examples/policy_lifecycle.py",
+        "E:\\KM\\Agent Formal Verification\\avcl\\evidence\\20261025T182417.782515Z\\policy-lifecycle"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.188,
+      "log": "policy-lifecycle.log"
+    },
+    {
+      "name": "workflow-demo",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "examples/workflow_demo.py",
+        "E:\\KM\\Agent Formal Verification\\avcl\\evidence\\20261025T182417.782515Z\\workflow-demo"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.187,
+      "log": "workflow-demo.log"
+    },
+    {
+      "name": "postgres-environment",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "scripts/postgres_environment.py"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.844,
+      "log": "postgres-environment.log"
+    },
+    {
+      "name": "postgres-integration",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "integration",
+        "-v"
+      ],
+      "exit_code": 1,
+      "passed": false,
+      "seconds": 446.844,
+      "log": "postgres-integration.log"
+    },
+    {
+      "name": "supervision-demo",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "examples/supervision_demo.py",
+        "E:\\KM\\Agent Formal Verification\\avcl\\evidence\\20261025T182417.782515Z\\supervision-demo"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 7.922,
+      "log": "supervision-demo.log"
+    },
+    {
+      "name": "durable-workflow-demo",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "examples/durable_workflow_demo.py",
+        "E:\\KM\\Agent Formal Verification\\avcl\\evidence\\20261025T182417.782515Z\\durable-workflow-demo"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 8.547,
+      "log": "durable-workflow-demo.log"
+    },
+    {
+      "name": "close-workflow-demo",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "examples/close_workflow_demo.py",
+        "E:\\KM\\Agent Formal Verification\\avcl\\evidence\\20261025T182417.782515Z\\close-workflow-demo"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 10.953,
+      "log": "close-workflow-demo.log"
+    },
+    {
+      "name": "delegation-demo",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "examples/delegation_demo.py",
+        "E:\\KM\\Agent Formal Verification\\avcl\\evidence\\20261025T182417.782515Z\\delegation-demo"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 3.75,
+      "log": "delegation-demo.log"
+    }
+  ],
+  "design_baselines": [
+    {
+      "path": "Agent形式化验证语言研究与设计.docx",
+      "sha256": "0543471efc21c36a0cbfcf210a1c0fe9be9c111bb894152d32cac00722b8e00a",
+      "expected_sha256": "0543471efc21c36a0cbfcf210a1c0fe9be9c111bb894152d32cac00722b8e00a",
+      "unchanged": true
+    },
+    {
+      "path": "AVCL形式化验证语言与执行系统详细设计_v0.1.docx",
+      "sha256": "8fa7491cb6c428ccab6158e95dce23ec222e9250e3ca518f90b7bc1227dc34fc",
+      "expected_sha256": "8fa7491cb6c428ccab6158e95dce23ec222e9250e3ca518f90b7bc1227dc34fc",
+      "unchanged": true
+    }
+  ],
+  "source_sha256": {
+    ".gitignore": "031dc29e2b3e4d64eaaa20a7dae90baedea18d7e9710d3c35d804b401ff612ad",
+    "README.md": "112d6c63eaed73a25e6ed67a5ac866c66f2462fb304649923f264d80856bb5e2",
+    "pyproject.toml": "4864f62a7f048bf27ed5324b7e852f1df5a30dade079cdf5fcb8a92aafaf35ac",
+    "requirements-postgres.txt": "0daf3b8e85377838c5a732a37e3ddcb11a4d7c0eafd2dd3913d48eeaa0300f21",
+    "verify.cmd": "4eab334294b8e017862f892a8c1b66e43119d627c6d00770ee93acd7dd146ac9",
+    "avcl/__init__.py": "f407872bd5382e051bb4ff52df1c7de71f77857be4df8e77a3bc2b2a462e0f73",
+    "avcl/canonical.py": "027443cfaf532ba6dd212d97aabe42cc80c4408c5bc0393edb749d9810c97f9a",
+    "avcl/capacity.py": "144f2e92b3d0fa4a2474c099cf5729699e71563948303d5f35575c1a3b49ff7f",
+    "avcl/checks.py": "671a29e596b7e1235103cbb986d97fa0973bedd7c53ef8c1255a5f326f08ca9a",
+    "avcl/contract.py": "11020dc7cab4ba1a83cb5cc2bd82a746c8ed36403c5a9e88e3edc691047d02f9",
+    "avcl/delegation.py": "0a9b033e34a9ebd9de2c088eb3a3905d8bff256b4287589d4ea6d639ec038845",
+    "avcl/gateway.py": "9af28274b00e92a13d712b7ceacc640a8369003b4de79cecc5680f88f233e6f2",
+    "avcl/http_gateway.py": "58c89e723e44c5696f9bf7a38afa29ae9eca2ea51dada4f56cad6de5b868ee32",
+    "avcl/ir.py": "cac1f497966eab7ba78b7bd5f9dd13d376b72e7b541774315b51b6af82f5d4a6",
+    "avcl/ir_types.py": "404be4104339d626fb6080d3b2e8b3bad4e109bdbeb5cb1846715d2cdde4204a",
+    "avcl/package.py": "34f248138635b26fec65b341ca49c39ab9f5255f86b035801069c7f8165ee1b2",
+    "avcl/policy.py": "50918f0898b250a3e5f1a2f9278ef9509deb346fb76f483bc36a0c791924ae7b",
+    "avcl/postgres.py": "c77dff7d162389396acb96d0005c026580cfef256bb7691aa74df4c15042a650",
+    "avcl/runtime.py": "e9a5a26b21af7cbd34f5744b052fea5b4a59f5abd0e84f83754f65806ef687dc",
+    "avcl/simulator.py": "8af2f4220d967e1abda2564ed0fff7b44922c622be11d245bb617971ac34b850",
+    "avcl/storage_codec.py": "44205576f66ed68f87971f4e56758779929d35c3bb61269cc0523e37f7c1a839",
+    "avcl/supervision.py": "f2efa916afa197ea959facc44c7c1e35453cc35769b9cb3ff006681f5923a8e6",
+    "avcl/tasks.py": "3b8e7263ee4316c4023c34c433ef8d07f05dc7de18dccdf65f7dc8696d0d9102",
+    "avcl/types.py": "a7ea9a8abee14c7612090c6aa7e7e787386428e4d66609f9c0980bca1e4d5583",
+    "avcl/validation.py": "d6f8be952975e105385ec23e4c43d7d7a02700df02ba67944eedb63dea1dafaa",
+    "avcl/verification.py": "ee5a7367c639379271744d725db67edbf76af455c15233b484a591ab5c1463d8",
+    "avcl/workflow.py": "f2bea762e86ee0d60d1284f29b5062c442d87f7817180b10a9995c25c98144dc",
+    "avcl/workflow_postgres.py": "430e6f0748e2b64eb388e5a24b1c29cd56e8a1f56c5e16c0f2ef80230276348f",
+    "avcl/workflow_runtime.py": "dcc7bea45cdfa624e7ee03a73d93423202885e47caff37776889d9599abd5ff8",
+    "examples/close_workflow_demo.py": "d3e50311a3f7d6513a19d0f87c40f9c8eddef9eb7c161de3c03be8df1ddd0a75",
+    "examples/delegation_demo.py": "d6aa200c136f44170d99754063f66fa30eb6a6aea290e4196d0fcfd247598904",
+    "examples/durable_workflow_demo.py": "66672520a6962329facab51c3c0334777e271ba35bf4b0fd4e408ffbba17a941",
+    "examples/ir_pipeline.py": "cd2dc7931c8b8504c5b53a9ebcb876c08a966825ddb4d8240f65b8f7b72b51a7",
+    "examples/policy_lifecycle.py": "d27c8936d893fab19b0c5c91639fb597ceb64e4dd54bbb3acf307dcc94b1ce72",
+    "examples/refund_demo.py": "c79af4360066b5132cfeae7d6e5030fbe0aa74b331c56ebeb82dfb3a9e46d658",
+    "examples/supervision_demo.py": "2a9eb22da841a00665567f4885d40eb833ee7070727dea6c6e14d2cf59c408c4",
+    "examples/workflow_demo.py": "04d6a5b63f16c05e7ec82830d85562861d546c387b32948fb2bcecfd53dc6cf1",
+    "formal/lean/Core.lean": "dc4b5918d2f2c51a5c2562d2b8f17af7f67c961836b826f126441f123979c98a",
+    "formal/lean/lean-toolchain": "b8861a22d770ed6ea042401cbbb74f38d435659a4be3d6faae561c0fe563a645",
+    "integration/crash_worker.py": "64c85ccee76c165c311064b02e118d6320d031aad5b59d3f2576d3fd9f1bef60",
+    "integration/test_capacity.py": "40e79d7291112453eb995ee8babee800de4ca3ba913e4bfbd6ca15b0c6514cd5",
+    "integration/test_delegation.py": "ea8e426e35041a8136a712955946d944c2e15efeea14c91fd32c9dcc18e1a421",
+    "integration/test_gateway.py": "430b9172aa138efec828e680e65132a7334c1fdb01516585db74f624bfa57db6",
+    "integration/test_postgres.py": "af39e736a9701312c9a56264b29a89a9e6220f70106c3f2cba1b35a72cb14d51",
+    "integration/test_tasks.py": "41b502760dddc8a4aa04b4d3863dfef0c014e2b4b2cdd9243c92f559892acb88",
+    "integration/test_validation.py": "07fee897e77e6228d45d4295662c28aafabeb0fb41cf2bdc739d0edc1637635c",
+    "integration/test_workflow_close.py": "bc5517a7287ae84a3b9101206dc877cdb420b7ff46eb8905868e0866bde66aa4",
+    "integration/test_workflow_postgres.py": "91704711e9fc24754872a3e89bf55db974c0b1a338d3f60c6726bfbcb1b99475",
+    "integration/test_workflow_validate.py": "1180b5f8186b807608c18b8b0ee2ce8e004609fefadcd35eff644261deeed34c",
+    "migrations/001_core.sql": "2507e2d601095935e1d25574c3f08a6f08226ba9dbf8335235d8bd94b6003d0b",
+    "migrations/002_supervision.sql": "6a39f57548cb3610c4aa8d4c9201915f9ac3711793a00b2bca012c6d4692fb34",
+    "migrations/003_workflow.sql": "2b60a8fda726d83d103c3f6f116bdfa3e2d172b9fc65c4071ef76cf53220359f",
+    "migrations/004_capacity.sql": "483a3f4bf75f8f3c5396fa384742ab2538b852a0b6f28e2022feb5cea9f35390",
+    "migrations/005_gateway.sql": "c4115651cb8ae35d477dd7d2b98a282ed395e9498a837f7914365dcf583509a3",
+    "migrations/006_validation.sql": "38490b93424623cf6bd881d9d29217fbe1da2bdbb1d013347d8ef21d9810b93f",
+    "migrations/007_task_close.sql": "2bdea9dad65bd3799c3539afeab2e592bc25a95ed7b18862cd5160113e6fbfe3",
+    "migrations/008_delegation.sql": "0197c6cab6180d515223f6d61533081eafce3cd8feaa09aba32543f691577699",
+    "models/__init__.py": "cec31c95db21711d73f44ccaea48e578fb1280e342a089ca1bffacfc0d8d3e4a",
+    "models/budget_model.py": "718853c57b17f6048c85afb4f28fe6d2310e1791020093f74697d7b5a9c1c4b9",
+    "models/capacity_model.py": "3f92524f0bd8bd14d0ba07aa48ab4880cc0d8e0c46b7fcdd71478fb8050ed673",
+    "models/delegation_model.py": "001434268fd18352c2fc7df1532fc07545c28b52c48ae6a2028ba1f09ea7c833",
+    "scripts/bootstrap_postgres.py": "689183a0da319e7abc03a77ea94044ea9e0af16a583c0ca1ff2e30acb3827c35",
+    "scripts/local_postgres.py": "57bc30faedbd98f8f8b94eb8aa40b2298116a1f74470731f5cec3ccf2b6e3498",
+    "scripts/postgres_environment.py": "f2607f6ca39bf97ed3e33352660ea6c4910dfb3140fc71fc2ac9957fc7386450",
+    "scripts/runtime_api.py": "793ebad3f5ef93b1b69bb00dfbe4c3340aa395b67021732a316b5ea47ac08cc8",
+    "scripts/verify.py": "a0ce964952f4e18237308fd1e3c3a2598cdda3ad6a0862b2f3ecdc3e116f1495",
+    "spec/candidate-validation-profile.md": "6f33d771bd9c46733f11b126eed3d9b55f9d52c529f773f6039a38ac9922361f",
+    "spec/capacity-profile.md": "6fbc30932b5ccb139090333dc61dde1130dbfbf39a546daa5ee5f70aae0ce24c",
+    "spec/contract-policy.md": "46e478412df1eafaac18ed4ecd2ed919f5b727f6722a42d0256903a565eeec0e",
+    "spec/delegation-profile.md": "0cdebeb16e78517361a1958f5faa495a783c6e495a3782575ebbffe57bacf552",
+    "spec/durable-workflow-profile.md": "667b40bee6e4f2660148145186d9585b37622ae57946e725b391e1f6be23d8ed",
+    "spec/gateway-profile.md": "5dddae83012602585c88922a89fbbbe639631559b4016ec210e1972b20b19c8a",
+    "spec/implementation-status.md": "a9617347b3a1b0c01860e7abdf6a8fffc9a7e2cecbb4013430fcca8063fe9175",
+    "spec/ir-profile.md": "7fdd5f52a6a4a695edc2efe24e3fdad9de82a56ced64bec958453ae669950305",
+    "spec/postgres-profile.md": "1364ecec8c90a9f72ff7d61a3f8741c727c01085ce480dda6e10e6539c9d10ce",
+    "spec/reference-decisions.md": "ac58f3dcf8f0cb11c4141e66190025ba5ed3112a821f91611d16d297c594ecaa",
+    "spec/supervision-profile.md": "29e93b46275335b4ffd2ddb9ed8918dc36433d5ec1c5c10eed37384a302624c2",
+    "spec/task-close-profile.md": "cdc0ed9a9f4db7892a82670b2ef009fbf2e0e18f2a2c618a1598fbf3d47de505",
+    "spec/workflow-profile.md": "0c6caa69b4c119bb209525c2996ff550b435378d948f11b3294b9d42e237328c",
+    "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tests/support.py": "12109865ce2d50f004c0b4733f8fe7946feaf8c4e834242421e6e5c38c693c5e",
+    "tests/test_contract_policy.py": "0e45d0bd392682caba286df2785366136148aaf1544a19e8c91705b36bd368c8",
+    "tests/test_delegation.py": "b1ef63d1ebbaab7ff2bba49bcbec288097cc8e4eb4b0fb42124c20a2856abb5f",
+    "tests/test_encoding_ir.py": "09a5c9b91e18296102fc3b0edb12bd9e12d6cc658fcd14e7d3e2a937a1a1beaa",
+    "tests/test_ir_pipeline.py": "eaf09d4a92ac45a1c6dbd504cd04af05ffacca281a42f77b03671749fc2367fe",
+    "tests/test_model.py": "a7fc9b3868dc27b23ba21c5a839964920f734b809c540eb8a35d2ccd12e72777",
+    "tests/test_package.py": "1f913c30fa9f90e9ec6599c9cf27adbb5430865d5ed16c77f06a1e9c09199d2b",
+    "tests/test_runtime.py": "f515958519e6605d746713cc519902901444fa9a01b314545c4cdd80cccb7ddd",
+    "tests/test_storage_codec.py": "eaa473ce70c2544213e10859f42d568d1faea5d6a3e76e02359cbb5c3f25e621",
+    "tests/test_workflow.py": "dae245413279daaf70d79c34192bb044574c2a9d1c6b0c8297e41b0e74aa497c",
+    "tests/test_workflow_close.py": "60335ca72327497b27a9be8e5a62e296484778b50d918cee401815350a81b2e1",
+    "tests/test_workflow_validate.py": "078f32ab1e5ae995651429c5be6757c23c7d1cc3024e34fbd444a592e8774f8f",
+    "tests/fixtures/README.md": "b492e767c61c938ec29ab388777ad92a9f25807fbadffe0d45fa3bb47c7f27d9",
+    "tests/fixtures/workflow-v04.ir.json": "c2649562d969f609cd3ded49797877474a977dae3db0cf8ba68b0a07618f1c7e",
+    "tests/fixtures/workflow-v05.ir.json": "039d4756b2ccc49a22c25940680b30f41e183affb5f36b795cc0d3de99bb2628"
+  }
+}

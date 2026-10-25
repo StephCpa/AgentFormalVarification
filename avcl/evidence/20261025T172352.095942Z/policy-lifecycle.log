@@ -1,0 +1,10 @@
+{
+  "old_contract_digest": "sha256:84a379229dd6e517a4f4fdd9819f02f624420af6974c2cee6fe7395b5e601a17",
+  "active_contract_digest": "sha256:8d1e1e70add006f47e33a7129ba69ab3074bb3df46bd276a81194bb64c741a12",
+  "old_permit_result": "STALE_PERMIT",
+  "new_refund_actual_cost": 60,
+  "budget_59_update": "POLICY_BUDGET_BELOW_COMMITMENT",
+  "failed_update_left_state_unchanged": true,
+  "active_epoch": 2,
+  "scope": "in-memory local HMAC authority; no durable publication guarantee"
+}

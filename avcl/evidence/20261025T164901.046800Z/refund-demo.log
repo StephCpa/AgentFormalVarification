@@ -1,0 +1,15 @@
+{
+  "scenario": "lost_receipt_after_remote_effect",
+  "budget": 100,
+  "unknown": {
+    "spent": 0,
+    "pending": 70,
+    "actual": 70
+  },
+  "second_request_60": "BUDGET_EXCEEDED",
+  "after_reconcile": {
+    "spent": 70,
+    "pending": 0
+  },
+  "remote_effect_count": 1
+}

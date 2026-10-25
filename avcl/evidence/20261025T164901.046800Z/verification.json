@@ -1,0 +1,216 @@
+{
+  "schema": "avcl/verification/0.1",
+  "started_utc": "20261025T164901.046800Z",
+  "passed": true,
+  "scope": "reference semantics; bounded model; abstract Lean core; real PostgreSQL persistence and application process crash tests; no production guarantee",
+  "postgres_requested": true,
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "stages": [
+    {
+      "name": "tests",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-v"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 4.859,
+      "log": "tests.log"
+    },
+    {
+      "name": "bounded-model",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "models.budget_model"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.125,
+      "log": "bounded-model.log"
+    },
+    {
+      "name": "lean-version",
+      "command": [
+        "lean",
+        "--version"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.125,
+      "log": "lean-version.log"
+    },
+    {
+      "name": "lean-core",
+      "command": [
+        "lean",
+        "Core.lean"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 1.5,
+      "log": "lean-core.log"
+    },
+    {
+      "name": "refund-demo",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "examples/refund_demo.py"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.172,
+      "log": "refund-demo.log"
+    },
+    {
+      "name": "ir-pipeline",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "examples/ir_pipeline.py",
+        "E:\\KM\\Agent Formal Verification\\avcl\\evidence\\20261025T164901.046800Z\\ir-candidates"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.203,
+      "log": "ir-pipeline.log"
+    },
+    {
+      "name": "policy-lifecycle",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "examples/policy_lifecycle.py",
+        "E:\\KM\\Agent Formal Verification\\avcl\\evidence\\20261025T164901.046800Z\\policy-lifecycle"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.172,
+      "log": "policy-lifecycle.log"
+    },
+    {
+      "name": "workflow-demo",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "examples/workflow_demo.py",
+        "E:\\KM\\Agent Formal Verification\\avcl\\evidence\\20261025T164901.046800Z\\workflow-demo"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.187,
+      "log": "workflow-demo.log"
+    },
+    {
+      "name": "postgres-environment",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "scripts/postgres_environment.py"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 12.657,
+      "log": "postgres-environment.log"
+    },
+    {
+      "name": "postgres-integration",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "integration",
+        "-v"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 34.734,
+      "log": "postgres-integration.log"
+    }
+  ],
+  "design_baselines": [
+    {
+      "path": "Agent形式化验证语言研究与设计.docx",
+      "sha256": "0543471efc21c36a0cbfcf210a1c0fe9be9c111bb894152d32cac00722b8e00a",
+      "expected_sha256": "0543471efc21c36a0cbfcf210a1c0fe9be9c111bb894152d32cac00722b8e00a",
+      "unchanged": true
+    },
+    {
+      "path": "AVCL形式化验证语言与执行系统详细设计_v0.1.docx",
+      "sha256": "8fa7491cb6c428ccab6158e95dce23ec222e9250e3ca518f90b7bc1227dc34fc",
+      "expected_sha256": "8fa7491cb6c428ccab6158e95dce23ec222e9250e3ca518f90b7bc1227dc34fc",
+      "unchanged": true
+    }
+  ],
+  "source_sha256": {
+    ".gitignore": "031dc29e2b3e4d64eaaa20a7dae90baedea18d7e9710d3c35d804b401ff612ad",
+    "README.md": "efe09ac81385cc6e1fdda841723a8912ca8615fe9df0c6b7ae6fb44c1fc2af63",
+    "pyproject.toml": "4864f62a7f048bf27ed5324b7e852f1df5a30dade079cdf5fcb8a92aafaf35ac",
+    "requirements-postgres.txt": "0daf3b8e85377838c5a732a37e3ddcb11a4d7c0eafd2dd3913d48eeaa0300f21",
+    "verify.cmd": "4eab334294b8e017862f892a8c1b66e43119d627c6d00770ee93acd7dd146ac9",
+    "avcl/__init__.py": "f407872bd5382e051bb4ff52df1c7de71f77857be4df8e77a3bc2b2a462e0f73",
+    "avcl/canonical.py": "027443cfaf532ba6dd212d97aabe42cc80c4408c5bc0393edb749d9810c97f9a",
+    "avcl/checks.py": "671a29e596b7e1235103cbb986d97fa0973bedd7c53ef8c1255a5f326f08ca9a",
+    "avcl/contract.py": "11020dc7cab4ba1a83cb5cc2bd82a746c8ed36403c5a9e88e3edc691047d02f9",
+    "avcl/ir.py": "cac1f497966eab7ba78b7bd5f9dd13d376b72e7b541774315b51b6af82f5d4a6",
+    "avcl/ir_types.py": "404be4104339d626fb6080d3b2e8b3bad4e109bdbeb5cb1846715d2cdde4204a",
+    "avcl/package.py": "34f248138635b26fec65b341ca49c39ab9f5255f86b035801069c7f8165ee1b2",
+    "avcl/policy.py": "9326e7fce6aeeeb4fb6cf7495326b4070eb3f93aac742e8512d483c17df37eba",
+    "avcl/postgres.py": "9767950c396e7df11c1df1c63e6b7e01a331f16872ef303dc4afe8096edf0cb5",
+    "avcl/runtime.py": "264fb863bc8efc93d54c3e9051c653b21cdfb919110ebd42feca2a1fd5a6fae2",
+    "avcl/simulator.py": "6cbce4b1b100522845890b7ea224fe496254a59869f0204beecd2261ba54379b",
+    "avcl/storage_codec.py": "e6a17df50c5fc0390e06c835ed32fe0460710024575cbf358ee02d3134167426",
+    "avcl/types.py": "e7a88e8b7657e60fc074d276be4e77adef26d5cc0d42764f1d1d827c66839a41",
+    "avcl/verification.py": "ee5a7367c639379271744d725db67edbf76af455c15233b484a591ab5c1463d8",
+    "avcl/workflow.py": "3d94a694a8ab0afb32fcd9e9535ebc5d0e411166a84a5db2e0ed94bda2bd0161",
+    "avcl/workflow_runtime.py": "44120078b52b759e19c3f6cd7d53018a3c223ec4e469f515ef60bdb5dc61f1d4",
+    "examples/ir_pipeline.py": "cd2dc7931c8b8504c5b53a9ebcb876c08a966825ddb4d8240f65b8f7b72b51a7",
+    "examples/policy_lifecycle.py": "d27c8936d893fab19b0c5c91639fb597ceb64e4dd54bbb3acf307dcc94b1ce72",
+    "examples/refund_demo.py": "c79af4360066b5132cfeae7d6e5030fbe0aa74b331c56ebeb82dfb3a9e46d658",
+    "examples/workflow_demo.py": "04d6a5b63f16c05e7ec82830d85562861d546c387b32948fb2bcecfd53dc6cf1",
+    "formal/lean/Core.lean": "dc4b5918d2f2c51a5c2562d2b8f17af7f67c961836b826f126441f123979c98a",
+    "formal/lean/lean-toolchain": "b8861a22d770ed6ea042401cbbb74f38d435659a4be3d6faae561c0fe563a645",
+    "integration/crash_worker.py": "c5389be343c24660c3e56c4f242f3434fdf1e58900ab44111ad17eff9e4aa94a",
+    "integration/test_postgres.py": "64900925dc0b31eda2f17583f6c3e7b432ccf8bca3d4e63c6557d3b2b1e6dce3",
+    "migrations/001_core.sql": "2507e2d601095935e1d25574c3f08a6f08226ba9dbf8335235d8bd94b6003d0b",
+    "models/__init__.py": "cec31c95db21711d73f44ccaea48e578fb1280e342a089ca1bffacfc0d8d3e4a",
+    "models/budget_model.py": "718853c57b17f6048c85afb4f28fe6d2310e1791020093f74697d7b5a9c1c4b9",
+    "scripts/bootstrap_postgres.py": "689183a0da319e7abc03a77ea94044ea9e0af16a583c0ca1ff2e30acb3827c35",
+    "scripts/local_postgres.py": "57bc30faedbd98f8f8b94eb8aa40b2298116a1f74470731f5cec3ccf2b6e3498",
+    "scripts/postgres_environment.py": "f2607f6ca39bf97ed3e33352660ea6c4910dfb3140fc71fc2ac9957fc7386450",
+    "scripts/verify.py": "4e1bae87353af9f11c72e6df447dfb8fe5d23df51e9b9b59b3633139ffa3a27d",
+    "spec/contract-policy.md": "46e478412df1eafaac18ed4ecd2ed919f5b727f6722a42d0256903a565eeec0e",
+    "spec/implementation-status.md": "be5d2a50a2e61c86e3b0ef4992e3df70cf067c76e4d07a61396fa0b8e6bc6fd3",
+    "spec/ir-profile.md": "7fdd5f52a6a4a695edc2efe24e3fdad9de82a56ced64bec958453ae669950305",
+    "spec/reference-decisions.md": "ac58f3dcf8f0cb11c4141e66190025ba5ed3112a821f91611d16d297c594ecaa",
+    "spec/workflow-profile.md": "254e85db99c031cfd42259e3e716cc8cebea5a7fd0fb44bc3c45091ad8409fd6",
+    "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tests/support.py": "12109865ce2d50f004c0b4733f8fe7946feaf8c4e834242421e6e5c38c693c5e",
+    "tests/test_contract_policy.py": "0e45d0bd392682caba286df2785366136148aaf1544a19e8c91705b36bd368c8",
+    "tests/test_encoding_ir.py": "09a5c9b91e18296102fc3b0edb12bd9e12d6cc658fcd14e7d3e2a937a1a1beaa",
+    "tests/test_ir_pipeline.py": "eaf09d4a92ac45a1c6dbd504cd04af05ffacca281a42f77b03671749fc2367fe",
+    "tests/test_model.py": "a7fc9b3868dc27b23ba21c5a839964920f734b809c540eb8a35d2ccd12e72777",
+    "tests/test_package.py": "1f913c30fa9f90e9ec6599c9cf27adbb5430865d5ed16c77f06a1e9c09199d2b",
+    "tests/test_runtime.py": "f515958519e6605d746713cc519902901444fa9a01b314545c4cdd80cccb7ddd",
+    "tests/test_storage_codec.py": "eaa473ce70c2544213e10859f42d568d1faea5d6a3e76e02359cbb5c3f25e621",
+    "tests/test_workflow.py": "dae245413279daaf70d79c34192bb044574c2a9d1c6b0c8297e41b0e74aa497c"
+  }
+}

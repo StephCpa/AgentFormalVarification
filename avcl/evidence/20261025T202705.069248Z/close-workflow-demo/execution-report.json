@@ -1,0 +1,327 @@
+[
+  {
+    "scenario": "confirmed",
+    "workflow": {
+      "workflow_digest": "sha256:f89d8922afec0dec0fe0f3378fb8a1aaa66aefe90b613b5a2981d84b8a222f82",
+      "run_id": "run",
+      "status": "Finished",
+      "steps": [
+        {
+          "checked_ref": "checked-07baab7d8247ddde541c0e9fd0a03b7d8064fcdb7a54eea2e7f36fe98a1b75f4",
+          "command": "Validate",
+          "context_ref": "context-0c941f93dd821e308bbaf767f3424be584a8aac71ffb4aed78834f308038d1b7",
+          "evidence_ref": "evidence-444f803d13cc7e0cab15a49eb5ab5a4d8eb7e095c8a2de5ea74851f31eaabd54",
+          "node_id": "w0.0",
+          "operation_id": null,
+          "result": "RuntimeSatisfied",
+          "validator_id": "order-service",
+          "validator_version": "sim/0.1"
+        },
+        {
+          "command": "Prepare",
+          "node_id": "w0.1",
+          "operation_id": "op-e1d76e47d1974a0dbabac876b3efa203",
+          "result": "Prepared"
+        },
+        {
+          "command": "Dispatch",
+          "node_id": "w0.2",
+          "operation_id": "op-e1d76e47d1974a0dbabac876b3efa203",
+          "result": "Admitted"
+        },
+        {
+          "command": "Send",
+          "node_id": "w0.3",
+          "operation_id": "op-e1d76e47d1974a0dbabac876b3efa203",
+          "result": "ReceiptObserved"
+        },
+        {
+          "close_request_id": "sha256:cbb0932b874b29340feb8626dcaa69b9133005f785a7df0d29f7f81aa1f1dca2",
+          "command": "Close",
+          "node_id": "w0.4",
+          "operation_id": null,
+          "result": "Completed",
+          "task_ref": "task-e4609047cbd249dc917ba8806aeafb32",
+          "task_revision": "5"
+        }
+      ],
+      "failed_node": null,
+      "error": null,
+      "operations": [
+        {
+          "id": "op-e1d76e47d1974a0dbabac876b3efa203",
+          "execution": "Confirmed",
+          "settlement": "Final",
+          "remaining": [
+            {
+              "account": "order:a:CNY",
+              "amount": "0"
+            },
+            {
+              "account": "tenant:CNY",
+              "amount": "0"
+            }
+          ]
+        }
+      ],
+      "scope": "Finished means the command program ended, not business completion or released budget"
+    },
+    "current_task": {
+      "task_ref": "task-e4609047cbd249dc917ba8806aeafb32",
+      "task_key": "task",
+      "contract_digest": "sha256:4ad7fc28da364953aaac54b6df34374d0721526a0b8fb9e21bcf8c92d23a02b1",
+      "revision": "5",
+      "close_requested": true,
+      "sealed": true,
+      "breached_obligation_count": "0",
+      "expected_count": "1",
+      "matched_count": "1",
+      "missing_business_keys": [],
+      "open_obligation_count": "0",
+      "operations": [
+        {
+          "completion_status": "RuntimeSatisfied",
+          "execution_state": "Confirmed",
+          "failed_clause_count": "0",
+          "operation_id": "op-e1d76e47d1974a0dbabac876b3efa203",
+          "revision": "2",
+          "settlement_state": "Final"
+        }
+      ],
+      "reason": "all_completion_requirements_satisfied",
+      "status": "Completed",
+      "verified_handoff_count": "0"
+    },
+    "close_steps": [
+      "Completed"
+    ],
+    "actual_cost": 70,
+    "spent": 70,
+    "pending": 0,
+    "send_invocations": 1,
+    "initial_evidence_count": 0,
+    "validation_count": 1
+  },
+  {
+    "scenario": "pending",
+    "workflow": {
+      "workflow_digest": "sha256:f89d8922afec0dec0fe0f3378fb8a1aaa66aefe90b613b5a2981d84b8a222f82",
+      "run_id": "run",
+      "status": "Finished",
+      "steps": [
+        {
+          "checked_ref": "checked-be1d6bfdc89fe1e52cce93eeb5cccfa4c4ef38270eab50ffa677af5de8fd7b42",
+          "command": "Validate",
+          "context_ref": "context-0875c3214ec668c38832108b198dc545c23655c418c1e9db6ce8133a4a17a6f0",
+          "evidence_ref": "evidence-b13dc764a70e3f3a85d2b2aad55804d2a6970417fd5b5dc453afd1f036142b11",
+          "node_id": "w0.0",
+          "operation_id": null,
+          "result": "RuntimeSatisfied",
+          "validator_id": "order-service",
+          "validator_version": "sim/0.1"
+        },
+        {
+          "command": "Prepare",
+          "node_id": "w0.1",
+          "operation_id": "op-db7e6981d4f64d129554e59d0bfdfded",
+          "result": "Prepared"
+        },
+        {
+          "command": "Dispatch",
+          "node_id": "w0.2",
+          "operation_id": "op-db7e6981d4f64d129554e59d0bfdfded",
+          "result": "Admitted"
+        },
+        {
+          "command": "Send",
+          "node_id": "w0.3",
+          "operation_id": "op-db7e6981d4f64d129554e59d0bfdfded",
+          "result": "NoAuthoritativeReceipt"
+        },
+        {
+          "close_request_id": "sha256:cbb0932b874b29340feb8626dcaa69b9133005f785a7df0d29f7f81aa1f1dca2",
+          "command": "Close",
+          "node_id": "w0.4",
+          "operation_id": null,
+          "result": "Pending",
+          "task_ref": "task-a3846a7746a342f68c4a01f070a64247",
+          "task_revision": "5"
+        }
+      ],
+      "failed_node": null,
+      "error": null,
+      "operations": [
+        {
+          "id": "op-db7e6981d4f64d129554e59d0bfdfded",
+          "execution": "Unknown",
+          "settlement": "Unsettled",
+          "remaining": [
+            {
+              "account": "order:a:CNY",
+              "amount": "70"
+            },
+            {
+              "account": "tenant:CNY",
+              "amount": "70"
+            }
+          ]
+        }
+      ],
+      "scope": "Finished means the command program ended, not business completion or released budget"
+    },
+    "current_task": {
+      "task_ref": "task-a3846a7746a342f68c4a01f070a64247",
+      "task_key": "task",
+      "contract_digest": "sha256:4ad7fc28da364953aaac54b6df34374d0721526a0b8fb9e21bcf8c92d23a02b1",
+      "revision": "5",
+      "close_requested": true,
+      "sealed": false,
+      "breached_obligation_count": "0",
+      "expected_count": "1",
+      "matched_count": "1",
+      "missing_business_keys": [],
+      "open_obligation_count": "1",
+      "operations": [
+        {
+          "completion_status": "Violated",
+          "execution_state": "Unknown",
+          "failed_clause_count": "1",
+          "operation_id": "op-db7e6981d4f64d129554e59d0bfdfded",
+          "revision": "2",
+          "settlement_state": "Unsettled"
+        }
+      ],
+      "reason": "unresolved_effect_cost_or_obligation",
+      "status": "Pending",
+      "verified_handoff_count": "0"
+    },
+    "close_steps": [
+      "Pending"
+    ],
+    "actual_cost": 70,
+    "spent": 0,
+    "pending": 70,
+    "send_invocations": 1,
+    "initial_evidence_count": 0,
+    "validation_count": 1
+  },
+  {
+    "scenario": "recovered",
+    "workflow": {
+      "workflow_digest": "sha256:b5feb62c3a00760034b60944fd1a634a2d7b71d50574257e6dc51e6a909dbf3e",
+      "run_id": "run",
+      "status": "Finished",
+      "steps": [
+        {
+          "checked_ref": "checked-ba07b900af83c153ae87963c43944c9a0bd7d0d62eeac91b2b549d109d1a0ffe",
+          "command": "Validate",
+          "context_ref": "context-dcc521d11674fdca0aeb1652712a03c4fed6b95dfdc79ef8a20c3a992b318d9d",
+          "evidence_ref": "evidence-d940186a4aaf81b970bd5458d844cb2ad47a02d75ca3e49a9efc2e9b5634006f",
+          "node_id": "w0.0",
+          "operation_id": null,
+          "result": "RuntimeSatisfied",
+          "validator_id": "order-service",
+          "validator_version": "sim/0.1"
+        },
+        {
+          "command": "Prepare",
+          "node_id": "w0.1",
+          "operation_id": "op-3d2cd7330e5b4724aae297ada593b60b",
+          "result": "Prepared"
+        },
+        {
+          "command": "Dispatch",
+          "node_id": "w0.2",
+          "operation_id": "op-3d2cd7330e5b4724aae297ada593b60b",
+          "result": "Admitted"
+        },
+        {
+          "command": "Send",
+          "node_id": "w0.3",
+          "operation_id": "op-3d2cd7330e5b4724aae297ada593b60b",
+          "result": "NoAuthoritativeReceipt"
+        },
+        {
+          "close_request_id": "sha256:856512b7d18a06a5c11db5ecb8bac5032e6395d1da6876ccba014c4e99f1f7cc",
+          "command": "Close",
+          "node_id": "w0.4",
+          "operation_id": null,
+          "result": "Pending",
+          "task_ref": "task-f4bb0be45f06495eabdef7c86a89aca4",
+          "task_revision": "5"
+        },
+        {
+          "command": "Reconcile",
+          "node_id": "w0.5",
+          "operation_id": "op-3d2cd7330e5b4724aae297ada593b60b",
+          "result": "ReceiptObserved"
+        },
+        {
+          "close_request_id": "sha256:c99f0cbe7bac56bc50e771d50f1fe0210f3d553edab069a8e5f2ecd319cfb8ef",
+          "command": "Close",
+          "node_id": "w0.6",
+          "operation_id": null,
+          "result": "Completed",
+          "task_ref": "task-f4bb0be45f06495eabdef7c86a89aca4",
+          "task_revision": "6"
+        }
+      ],
+      "failed_node": null,
+      "error": null,
+      "operations": [
+        {
+          "id": "op-3d2cd7330e5b4724aae297ada593b60b",
+          "execution": "Confirmed",
+          "settlement": "Final",
+          "remaining": [
+            {
+              "account": "order:a:CNY",
+              "amount": "0"
+            },
+            {
+              "account": "tenant:CNY",
+              "amount": "0"
+            }
+          ]
+        }
+      ],
+      "scope": "Finished means the command program ended, not business completion or released budget"
+    },
+    "current_task": {
+      "task_ref": "task-f4bb0be45f06495eabdef7c86a89aca4",
+      "task_key": "task",
+      "contract_digest": "sha256:4ad7fc28da364953aaac54b6df34374d0721526a0b8fb9e21bcf8c92d23a02b1",
+      "revision": "6",
+      "close_requested": true,
+      "sealed": true,
+      "breached_obligation_count": "0",
+      "expected_count": "1",
+      "matched_count": "1",
+      "missing_business_keys": [],
+      "open_obligation_count": "0",
+      "operations": [
+        {
+          "completion_status": "RuntimeSatisfied",
+          "execution_state": "Confirmed",
+          "failed_clause_count": "0",
+          "operation_id": "op-3d2cd7330e5b4724aae297ada593b60b",
+          "revision": "3",
+          "settlement_state": "Final"
+        }
+      ],
+      "reason": "all_completion_requirements_satisfied",
+      "status": "Completed",
+      "verified_handoff_count": "0"
+    },
+    "close_steps": [
+      "Pending",
+      "Completed"
+    ],
+    "actual_cost": 70,
+    "spent": 70,
+    "pending": 0,
+    "send_invocations": 1,
+    "initial_evidence_count": 0,
+    "validation_count": 1
+  }
+]

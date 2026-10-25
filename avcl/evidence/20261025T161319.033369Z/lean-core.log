@@ -1,0 +1,2 @@
+'AVCL.P3_budget_preserved' depends on axioms: [propext, Quot.sound]
+'AVCL.P1_P2_admission' depends on axioms: [propext]

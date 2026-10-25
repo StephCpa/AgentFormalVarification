@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "stage_count": 21,
+  "tests": {
+    "tests": 189,
+    "postgres-integration": 185
+  },
+  "source_files": 115,
+  "source_mismatches": [],
+  "private_entries": [],
+  "design_documents_unchanged": true,
+  "demo_passed": true,
+  "demo_authorization_or_key_fields": [],
+  "demo_final": {
+    "action": "independently_retained_receipt",
+    "decision": "Final",
+    "time": 5,
+    "actual": 20,
+    "spent": 20,
+    "pending": 0,
+    "effect_count": 1
+  }
+}

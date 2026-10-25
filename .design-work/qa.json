@@ -1,0 +1,12 @@
+{
+  "source_unchanged": true,
+  "pages": 34,
+  "tables": 19,
+  "diagrams": 2,
+  "requirements": 16,
+  "acceptance_cases": 20,
+  "json_examples_parsed": 3,
+  "layout_review": "all current page images inspected; unchanged images confirmed by hash",
+  "implementation_tests_executed": false,
+  "formal_proofs_executed": false
+}

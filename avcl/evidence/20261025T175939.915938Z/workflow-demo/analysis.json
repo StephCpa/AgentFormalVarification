@@ -1,0 +1,23 @@
+{
+  "workflow_id": "refund-flow",
+  "workflow_digest": "sha256:ee0b0af2404b4ffeba60d0e319503805fffaf0f7163c0ee48a5135e0ccb4e5ca",
+  "contract_digest": "sha256:84a379229dd6e517a4f4fdd9819f02f624420af6974c2cee6fe7395b5e601a17",
+  "checker": "avcl/affine-effects/0.5",
+  "compilation_status": "Accepted",
+  "meta_theory_status": "Pending",
+  "backend_requirements": [],
+  "inferred_effects": [
+    "Disclose",
+    "Read",
+    "ResourceConsume",
+    "Write"
+  ],
+  "declared_effects": [
+    "Disclose",
+    "Read",
+    "ResourceConsume",
+    "Write"
+  ],
+  "remaining_affine_variables": [],
+  "scope": "structured command typing only; no authorization, liveness or deployment proof"
+}

@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "stage_count": 20,
+  "test_counts": {
+    "tests": 175,
+    "postgres-integration": 178
+  },
+  "source_files": 110,
+  "source_mismatches": [],
+  "private_entries": [],
+  "design_documents_unchanged": true,
+  "window_model_states": 90,
+  "window_model_edges": 204,
+  "window_mutants": 3
+}

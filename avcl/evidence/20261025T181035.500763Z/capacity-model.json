@@ -1,0 +1,69 @@
+{
+  "scope": "two operations; one future obligation each; capacity one; no adapter violations; independent abstract model, not SQL refinement",
+  "correct": {
+    "mode": "reserve_before_prepare",
+    "states": 20,
+    "edges": 32,
+    "violations": {}
+  },
+  "mutation_oracles": [
+    {
+      "mode": "count_only_existing_obligations",
+      "states": 36,
+      "edges": 94,
+      "violations": {
+        "reserved_future_slots": {
+          "trace": [
+            "Prepare(0)",
+            "Prepare(1)"
+          ],
+          "state": [
+            "Prepared",
+            "Prepared"
+          ],
+          "active": 2,
+          "open": 0
+        },
+        "actual_open_obligations": {
+          "trace": [
+            "Prepare(0)",
+            "Dispatch(0)",
+            "Prepare(1)",
+            "Timeout(0)",
+            "Dispatch(1)",
+            "Timeout(1)"
+          ],
+          "state": [
+            "Unknown",
+            "Unknown"
+          ],
+          "active": 2,
+          "open": 2
+        }
+      }
+    },
+    {
+      "mode": "release_on_handoff",
+      "states": 27,
+      "edges": 54,
+      "violations": {
+        "reserved_future_slots": {
+          "trace": [
+            "Prepare(0)",
+            "Dispatch(0)",
+            "Timeout(0)",
+            "AcceptHandoff(0)",
+            "Prepare(1)"
+          ],
+          "state": [
+            "HandedOff",
+            "Prepared"
+          ],
+          "active": 2,
+          "open": 0
+        }
+      }
+    }
+  ],
+  "passed": true
+}

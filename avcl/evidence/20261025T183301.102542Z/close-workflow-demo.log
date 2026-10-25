@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "scenarios": [
+    {
+      "name": "confirmed",
+      "close_steps": [
+        "Completed"
+      ],
+      "pending": 0,
+      "send_invocations": 1
+    },
+    {
+      "name": "pending",
+      "close_steps": [
+        "Pending"
+      ],
+      "pending": 70,
+      "send_invocations": 1
+    },
+    {
+      "name": "recovered",
+      "close_steps": [
+        "Pending",
+        "Completed"
+      ],
+      "pending": 0,
+      "send_invocations": 1
+    }
+  ]
+}

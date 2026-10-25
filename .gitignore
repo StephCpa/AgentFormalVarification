@@ -1,0 +1,22 @@
+# Local environments, database clusters and credentials
+.runtime/
+.venv/
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+.lake/
+*.olean
+*.ilean
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+# Editor / operating-system temporary files
+~$*
+Thumbs.db
+.DS_Store
+*.tmp
+# Ad-hoc proof build output; frozen evidence logs remain tracked
+/avcl/formal/lean/*-check.log

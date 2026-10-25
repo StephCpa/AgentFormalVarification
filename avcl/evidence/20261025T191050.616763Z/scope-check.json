@@ -1,0 +1,13 @@
+{
+  "verification_passed": true,
+  "stages": 13,
+  "unit_tests": 164,
+  "source_files": 105,
+  "post_freeze_source_mismatches": [],
+  "private_entries": [],
+  "design_documents_unchanged": true,
+  "runtime_migrations_integration_unchanged_from": "20261025T184606.849827Z",
+  "compared_runtime_files": 43,
+  "postgres_retested": false,
+  "postgres_status_observed": "stopped"
+}

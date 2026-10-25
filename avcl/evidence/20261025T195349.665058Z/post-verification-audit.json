@@ -1,0 +1,8 @@
+{
+  "scope": "Additional compatibility audit after the declared suite passed",
+  "scenario": "A previously applied legacy Observation is reauthenticated without changing its account-indexed costs or other facts",
+  "observed_before_fix": {"settlement": "Disputed", "spent": 20},
+  "required": {"settlement": "Final", "spent": 20},
+  "cause": "Legacy tuples and authenticated JSON decoding used different account order; duplicate comparison was positional",
+  "follow_up": "Normalize cost-vector order for duplicate comparison only; preserve frozen records; add memory and PostgreSQL regressions; rerun full verification"
+}

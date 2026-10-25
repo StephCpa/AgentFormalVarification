@@ -1,0 +1,53 @@
+{
+  "scope": "two child grants; cost two each; child limits two; shared limit three; ancestor revoke; no fees or crashes; not a proof of general P7 or SQL refinement",
+  "correct": {
+    "mode": "shared_ledger",
+    "states": 40,
+    "edges": 60,
+    "violations": {}
+  },
+  "mutation_oracles": [
+    {
+      "mode": "omit_shared_gate",
+      "states": 72,
+      "edges": 156,
+      "violations": {
+        "shared_budget": {
+          "trace": [
+            "Prepare(0)",
+            "Prepare(1)"
+          ],
+          "state": [
+            [
+              "Prepared",
+              "Prepared"
+            ],
+            false
+          ]
+        }
+      }
+    },
+    {
+      "mode": "omit_ancestor_recheck",
+      "states": 40,
+      "edges": 64,
+      "violations": {
+        "revocation_cut": {
+          "trace": [
+            "Prepare(0)",
+            "RevokeAncestor",
+            "Dispatch(0)"
+          ],
+          "state": [
+            [
+              "Dispatched",
+              "Absent"
+            ],
+            true
+          ]
+        }
+      }
+    }
+  ],
+  "passed": true
+}

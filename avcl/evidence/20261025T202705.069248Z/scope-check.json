@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "stage_count": 21,
+  "tests": {
+    "tests": 208,
+    "postgres-integration": 195
+  },
+  "source_files": 120,
+  "source_mismatches": [],
+  "private_entries": [],
+  "design_documents_unchanged": true,
+  "compatibility_regressions_passed": {
+    "tests": true,
+    "postgres-integration": true
+  },
+  "prior_compatibility_audit": "evidence/20261025T195349.665058Z/post-verification-audit.json",
+  "demo_passed": true,
+  "tampered_receipt_rejected": true,
+  "demo_final": {
+    "action": "independently_retained_receipt",
+    "decision": "Final",
+    "time": 5,
+    "actual": 20,
+    "spent": 20,
+    "pending": 0,
+    "effect_count": 1
+  }
+}

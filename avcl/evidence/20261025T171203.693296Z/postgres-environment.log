@@ -1,0 +1,17 @@
+{
+  "server": "PostgreSQL 18.6 on x86_64-windows, compiled by msvc-19.44.35229, 64-bit",
+  "server_version": 180006,
+  "psycopg": "3.3.3",
+  "python": "3.12.14",
+  "settings": {
+    "fsync": "on",
+    "synchronous_commit": "on",
+    "full_page_writes": "on",
+    "server_encoding": "UTF8",
+    "listen_addresses": "127.0.0.1"
+  },
+  "binary_source": "https://get.enterprisedb.com/postgresql/postgresql-18.6-5-windows-x64-binaries.zip",
+  "toolchain_manifest_sha256": "7ded9fca036df7313b9596bf2628183cffccf15eabff9a872193cf36bd7eda95",
+  "verified_binary_files": 1583,
+  "provenance_limit": "HTTPS official distributor ZIP, ZIP CRC and local SHA256; no separately published vendor SHA256"
+}

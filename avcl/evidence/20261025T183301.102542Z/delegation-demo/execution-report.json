@@ -1,0 +1,214 @@
+{
+  "schema": "avcl/delegation-demo/0.1",
+  "passed": true,
+  "grants": {
+    "one": {
+      "child_cap_ref": "cap-d3a1d7c6019d5e67cd04a10653832bcabc1b34e7bb14c04fa0eb87700da3283f",
+      "parent_ref": "root",
+      "child_subject": "one",
+      "orders": [
+        "a"
+      ],
+      "tools": [
+        "refund"
+      ],
+      "effects": [
+        "Disclose",
+        "ResourceConsume",
+        "Write"
+      ],
+      "max_amount_minor": "60",
+      "limit_minor": "80",
+      "expires": "800",
+      "can_delegate": false
+    },
+    "two": {
+      "child_cap_ref": "cap-530d6f420945aaca4336f431c45afffba18b875e68edf682a38c2c9c38fd8164",
+      "parent_ref": "root",
+      "child_subject": "two",
+      "orders": [
+        "b"
+      ],
+      "tools": [
+        "refund"
+      ],
+      "effects": [
+        "Disclose",
+        "ResourceConsume",
+        "Write"
+      ],
+      "max_amount_minor": "60",
+      "limit_minor": "80",
+      "expires": "800",
+      "can_delegate": false
+    }
+  },
+  "sibling_prepare_rejected": "BUDGET_EXCEEDED",
+  "pending_after_ancestor_revoke": 60,
+  "actual_cost": 60,
+  "effect_count": 1,
+  "final_reservations": [
+    {
+      "account": "delegation:944147f1d3b3051c6c52aa09afa6d33a5d9c71c7782f25934f0774aa57523f8e:CNY",
+      "upper": 60,
+      "charged": 60,
+      "remaining": 0
+    },
+    {
+      "account": "delegation:b10d6959e3c959ffdfc487e375cece54f25ae92240bcd4a7c8111d9d3ef4d48d:CNY",
+      "upper": 60,
+      "charged": 60,
+      "remaining": 0
+    },
+    {
+      "account": "order:a:CNY",
+      "upper": 60,
+      "charged": 60,
+      "remaining": 0
+    },
+    {
+      "account": "tenant:CNY",
+      "upper": 60,
+      "charged": 60,
+      "remaining": 0
+    }
+  ],
+  "events": [
+    {
+      "sequence": 1,
+      "kind": "DelegationSubjectRegistered",
+      "operation_id": null,
+      "details": {
+        "requirement_id": "R11",
+        "subject": "parent"
+      }
+    },
+    {
+      "sequence": 2,
+      "kind": "DelegationSubjectRegistered",
+      "operation_id": null,
+      "details": {
+        "requirement_id": "R11",
+        "subject": "one"
+      }
+    },
+    {
+      "sequence": 3,
+      "kind": "DelegationSubjectRegistered",
+      "operation_id": null,
+      "details": {
+        "requirement_id": "R11",
+        "subject": "two"
+      }
+    },
+    {
+      "sequence": 4,
+      "kind": "DelegationRootRegistered",
+      "operation_id": null,
+      "details": {
+        "account": "delegation:944147f1d3b3051c6c52aa09afa6d33a5d9c71c7782f25934f0774aa57523f8e:CNY",
+        "capability_ref": "root",
+        "limit": "100",
+        "requirement_id": "R11"
+      }
+    },
+    {
+      "sequence": 5,
+      "kind": "CapabilityDelegated",
+      "operation_id": null,
+      "details": {
+        "account": "delegation:b10d6959e3c959ffdfc487e375cece54f25ae92240bcd4a7c8111d9d3ef4d48d:CNY",
+        "capability_ref": "cap-d3a1d7c6019d5e67cd04a10653832bcabc1b34e7bb14c04fa0eb87700da3283f",
+        "child_subject": "one",
+        "limit": "80",
+        "parent_ref": "root",
+        "request_id": "grant-one",
+        "requirement_id": "R11",
+        "subject": "parent"
+      }
+    },
+    {
+      "sequence": 6,
+      "kind": "CapabilityDelegated",
+      "operation_id": null,
+      "details": {
+        "account": "delegation:aab74aea90014019c08145d301f850b5a2bad8b7561a726d3bca9ac5e23a7492:CNY",
+        "capability_ref": "cap-530d6f420945aaca4336f431c45afffba18b875e68edf682a38c2c9c38fd8164",
+        "child_subject": "two",
+        "limit": "80",
+        "parent_ref": "root",
+        "request_id": "grant-two",
+        "requirement_id": "R11",
+        "subject": "parent"
+      }
+    },
+    {
+      "sequence": 7,
+      "kind": "Prepared",
+      "operation_id": "op-30b9ab0251b3493a9540d22146f996e4",
+      "details": {
+        "binding": "sha256:fd5011f81f8e5e196dc7517b7583b1ee65c7d2e8556478c38c3339f324fc15ee",
+        "contract_digest": "sha256:84a379229dd6e517a4f4fdd9819f02f624420af6974c2cee6fe7395b5e601a17",
+        "ir_digest": "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d",
+        "requirement_id": "R09"
+      }
+    },
+    {
+      "sequence": 8,
+      "kind": "DispatchAdmitted",
+      "operation_id": "op-30b9ab0251b3493a9540d22146f996e4",
+      "details": {
+        "binding": "sha256:fd5011f81f8e5e196dc7517b7583b1ee65c7d2e8556478c38c3339f324fc15ee",
+        "contract_digest": "sha256:84a379229dd6e517a4f4fdd9819f02f624420af6974c2cee6fe7395b5e601a17",
+        "epoch": "1",
+        "ir_digest": "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d",
+        "policy": "refund-policy/0.1",
+        "requirement_id": "R09"
+      }
+    },
+    {
+      "sequence": 9,
+      "kind": "Unknown",
+      "operation_id": "op-30b9ab0251b3493a9540d22146f996e4",
+      "details": {
+        "due": "86400"
+      }
+    },
+    {
+      "sequence": 10,
+      "kind": "CapabilityRevoked",
+      "operation_id": null,
+      "details": {
+        "capability_ref": "root",
+        "requirement_id": "R11"
+      }
+    },
+    {
+      "sequence": 11,
+      "kind": "ObservationRecorded",
+      "operation_id": "op-30b9ab0251b3493a9540d22146f996e4",
+      "details": {
+        "content": "Observation(id='remote:op-30b9ab0251b3493a9540d22146f996e4', operation_id='op-30b9ab0251b3493a9540d22146f996e4', request_digest='sha256:36a59924ffe19f61c00617ae4a1ccfeaa63717419d50db4fb257c6afd6817fed', kind=<Execution.CONFIRMED: 'Confirmed'>, cumulative_costs=(('tenant:CNY', 60), ('order:a:CNY', 60)), final_cost=True, terminal_effect=True)",
+        "observation": "remote:op-30b9ab0251b3493a9540d22146f996e4"
+      }
+    },
+    {
+      "sequence": 12,
+      "kind": "Settled",
+      "operation_id": "op-30b9ab0251b3493a9540d22146f996e4",
+      "details": {
+        "observation": "remote:op-30b9ab0251b3493a9540d22146f996e4"
+      }
+    },
+    {
+      "sequence": 13,
+      "kind": "ObligationResolved",
+      "operation_id": "op-30b9ab0251b3493a9540d22146f996e4",
+      "details": {
+        "at": "0",
+        "requirement_id": "R10",
+        "resolution": "FinalEffect"
+      }
+    }
+  ]
+}

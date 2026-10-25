@@ -1,0 +1,221 @@
+[
+  {
+    "name": "runtime-refund",
+    "ir_digest": "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d",
+    "reports": [
+      {
+        "requirement_ids": [
+          "R09"
+        ],
+        "ir_digest": "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d",
+        "source_digest": "sha256:395f0070cead5654d6bf50c9efab882f5cd3c4f1d20fb6eeec5a156743bcb8d7",
+        "checker_build": "avcl/checks/0.2",
+        "assumption_ids": [
+          "pure-ir-typing",
+          "python-runtime"
+        ],
+        "solver_status": null,
+        "bounds": {
+          "fields": {
+            "amount": {
+              "kind": "Int",
+              "lower": "0",
+              "upper": "999999999999999999"
+            },
+            "currency": {
+              "kind": "String"
+            }
+          },
+          "max_cases": "10000"
+        },
+        "checked_at": "2026-10-25T17:49:09.988803+00:00",
+        "property_id": "checks-equivalent",
+        "status": "Unknown",
+        "checked_cases": "0",
+        "reason": "declared_domain_exceeds_enumeration_profile"
+      },
+      {
+        "requirement_ids": [
+          "R09"
+        ],
+        "ir_digest": "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d",
+        "source_digest": "sha256:395f0070cead5654d6bf50c9efab882f5cd3c4f1d20fb6eeec5a156743bcb8d7",
+        "checker_build": "avcl/checks/0.2",
+        "assumption_ids": [
+          "pure-ir-typing",
+          "python-runtime"
+        ],
+        "solver_status": null,
+        "bounds": {
+          "fields": {
+            "amount": {
+              "kind": "Int",
+              "lower": "0",
+              "upper": "999999999999999999"
+            },
+            "currency": {
+              "kind": "String"
+            }
+          },
+          "max_cases": "10000"
+        },
+        "checked_at": "2026-10-25T17:49:09.988803+00:00",
+        "property_id": "allowed-action-exists",
+        "status": "Unknown",
+        "checked_cases": "0",
+        "reason": "declared_domain_exceeds_enumeration_profile"
+      }
+    ]
+  },
+  {
+    "name": "bounded-refund",
+    "ir_digest": "sha256:8614cbe7514f8f8a2d7a8f1e4a9878d0aa0660130ef1905bf4e89c0bdf4e9bc3",
+    "reports": [
+      {
+        "requirement_ids": [
+          "R13"
+        ],
+        "ir_digest": "sha256:8614cbe7514f8f8a2d7a8f1e4a9878d0aa0660130ef1905bf4e89c0bdf4e9bc3",
+        "source_digest": "sha256:8e4f6772280d129ba849772ed1c5d01b679a5e70f76ee9829cab3e28a73061ee",
+        "checker_build": "avcl/checks/0.2",
+        "assumption_ids": [
+          "pure-ir-typing",
+          "python-runtime"
+        ],
+        "solver_status": null,
+        "bounds": {
+          "fields": {
+            "allowed": {
+              "kind": "Set",
+              "element": {
+                "kind": "Enum",
+                "name": "Currency",
+                "members": [
+                  "CNY",
+                  "USD"
+                ]
+              },
+              "max_size": "1"
+            },
+            "approval": {
+              "kind": "Option",
+              "element": {
+                "kind": "Int",
+                "lower": "0",
+                "upper": "3"
+              }
+            },
+            "order": {
+              "kind": "Record",
+              "fields": {
+                "amount": {
+                  "kind": "Int",
+                  "lower": "0",
+                  "upper": "3"
+                },
+                "currency": {
+                  "kind": "Enum",
+                  "name": "Currency",
+                  "members": [
+                    "CNY",
+                    "USD"
+                  ]
+                }
+              }
+            }
+          },
+          "max_cases": "10000"
+        },
+        "checked_at": "2026-10-25T17:49:10.018422+00:00",
+        "property_id": "checks-equivalent",
+        "status": "BoundedChecked",
+        "checked_cases": "120",
+        "complete_declared_domain": true
+      },
+      {
+        "requirement_ids": [
+          "R13"
+        ],
+        "ir_digest": "sha256:8614cbe7514f8f8a2d7a8f1e4a9878d0aa0660130ef1905bf4e89c0bdf4e9bc3",
+        "source_digest": "sha256:8e4f6772280d129ba849772ed1c5d01b679a5e70f76ee9829cab3e28a73061ee",
+        "checker_build": "avcl/checks/0.2",
+        "assumption_ids": [
+          "pure-ir-typing",
+          "python-runtime"
+        ],
+        "solver_status": null,
+        "bounds": {
+          "fields": {
+            "allowed": {
+              "kind": "Set",
+              "element": {
+                "kind": "Enum",
+                "name": "Currency",
+                "members": [
+                  "CNY",
+                  "USD"
+                ]
+              },
+              "max_size": "1"
+            },
+            "approval": {
+              "kind": "Option",
+              "element": {
+                "kind": "Int",
+                "lower": "0",
+                "upper": "3"
+              }
+            },
+            "order": {
+              "kind": "Record",
+              "fields": {
+                "amount": {
+                  "kind": "Int",
+                  "lower": "0",
+                  "upper": "3"
+                },
+                "currency": {
+                  "kind": "Enum",
+                  "name": "Currency",
+                  "members": [
+                    "CNY",
+                    "USD"
+                  ]
+                }
+              }
+            }
+          },
+          "max_cases": "10000"
+        },
+        "checked_at": "2026-10-25T17:49:10.018422+00:00",
+        "property_id": "allowed-action-exists",
+        "status": "BoundedChecked",
+        "checked_cases": "120",
+        "complete_declared_domain": true,
+        "witness": {
+          "allowed": [
+            "CNY"
+          ],
+          "approval": {
+            "tag": "Some",
+            "value": "1"
+          },
+          "order": {
+            "amount": "1",
+            "currency": "CNY"
+          }
+        },
+        "rejected_witness": {
+          "allowed": [],
+          "approval": {
+            "tag": "None"
+          },
+          "order": {
+            "amount": "0",
+            "currency": "CNY"
+          }
+        }
+      }
+    ]
+  }
+]

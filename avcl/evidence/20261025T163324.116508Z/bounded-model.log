@@ -1,0 +1,142 @@
+{
+  "bounds": {
+    "operations": 2,
+    "costs": [
+      70,
+      60
+    ],
+    "budget": 100,
+    "revocations": 1,
+    "fees": false,
+    "crashes": false,
+    "remote_dedup_expiry": false
+  },
+  "runs": [
+    {
+      "mode": "correct",
+      "states": 114,
+      "edges": 445,
+      "actions": {
+        "abort": 12,
+        "dispatch": 6,
+        "prepare": 6,
+        "receipt": 48,
+        "remote_apply": 24,
+        "remote_cancel": 24,
+        "remote_retry": 104,
+        "repeat_dispatch": 128,
+        "revoke": 57,
+        "timeout": 36
+      },
+      "counterexample": null,
+      "exploration_complete": true
+    },
+    {
+      "mode": "split_check",
+      "states": 288,
+      "edges": 1448,
+      "actions": {
+        "abort": 48,
+        "check": 8,
+        "commit_without_recheck": 24,
+        "dispatch": 24,
+        "receipt": 192,
+        "remote_apply": 96,
+        "remote_cancel": 96,
+        "remote_retry": 288,
+        "repeat_dispatch": 384,
+        "revoke": 144,
+        "timeout": 144
+      },
+      "counterexample": {
+        "trace": [
+          "check:0",
+          "check:1",
+          "commit_without_recheck:0",
+          "commit_without_recheck:1"
+        ],
+        "violations": [
+          "ledger_exceeds_budget"
+        ],
+        "state": {
+          "local": [
+            "P",
+            "P"
+          ],
+          "pending": [
+            70,
+            60
+          ],
+          "spent": [
+            0,
+            0
+          ],
+          "remote": [
+            0,
+            0
+          ],
+          "admissions": [
+            0,
+            0
+          ],
+          "revoked": false
+        },
+        "actual": 0
+      },
+      "exploration_complete": true
+    },
+    {
+      "mode": "early_release",
+      "states": 210,
+      "edges": 1067,
+      "actions": {
+        "abort": 28,
+        "dispatch": 14,
+        "prepare": 12,
+        "receipt": 144,
+        "remote_apply": 72,
+        "remote_cancel": 72,
+        "remote_retry": 232,
+        "repeat_dispatch": 304,
+        "revoke": 105,
+        "timeout": 84
+      },
+      "counterexample": {
+        "trace": [
+          "prepare:0",
+          "dispatch:0",
+          "remote_apply:0",
+          "timeout:0"
+        ],
+        "violations": [
+          "actual_exceeds_exposure"
+        ],
+        "state": {
+          "local": [
+            "U",
+            "N"
+          ],
+          "pending": [
+            0,
+            0
+          ],
+          "spent": [
+            0,
+            0
+          ],
+          "remote": [
+            1,
+            0
+          ],
+          "admissions": [
+            1,
+            0
+          ],
+          "revoked": false
+        },
+        "actual": 70
+      },
+      "exploration_complete": true
+    }
+  ]
+}

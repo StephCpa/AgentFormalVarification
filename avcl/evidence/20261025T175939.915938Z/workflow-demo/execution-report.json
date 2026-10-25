@@ -1,0 +1,125 @@
+[
+  {
+    "proceed": true,
+    "actual_cost": 70,
+    "spent": 70,
+    "pending": 0,
+    "result": {
+      "workflow_digest": "sha256:ee0b0af2404b4ffeba60d0e319503805fffaf0f7163c0ee48a5135e0ccb4e5ca",
+      "run_id": "run1",
+      "status": "Finished",
+      "steps": [
+        {
+          "command": "Prepare",
+          "node_id": "w0.0",
+          "operation_id": "op-9b20837eb5f946ba855fb0a4757c3a04",
+          "result": "Prepared"
+        },
+        {
+          "command": "If",
+          "node_id": "w0.1",
+          "result": "then"
+        },
+        {
+          "command": "Dispatch",
+          "node_id": "w0.1.then.0",
+          "operation_id": "op-9b20837eb5f946ba855fb0a4757c3a04",
+          "result": "Admitted"
+        },
+        {
+          "command": "Send",
+          "node_id": "w0.1.then.1",
+          "operation_id": "op-9b20837eb5f946ba855fb0a4757c3a04",
+          "result": "NoAuthoritativeReceipt"
+        },
+        {
+          "command": "Reconcile",
+          "node_id": "w0.1.then.2",
+          "operation_id": "op-9b20837eb5f946ba855fb0a4757c3a04",
+          "result": "ReceiptObserved"
+        }
+      ],
+      "failed_node": null,
+      "error": null,
+      "operations": [
+        {
+          "id": "op-9b20837eb5f946ba855fb0a4757c3a04",
+          "execution": "Confirmed",
+          "settlement": "Final",
+          "remaining": [
+            {
+              "account": "order:order:CNY",
+              "amount": "0"
+            },
+            {
+              "account": "tenant:CNY",
+              "amount": "0"
+            }
+          ]
+        }
+      ],
+      "scope": "Finished means the command program ended, not business completion or released budget"
+    },
+    "kernel_events": [
+      "Prepared",
+      "DispatchAdmitted",
+      "SendAttemptAdmitted",
+      "Unknown",
+      "ObservationRecorded",
+      "Settled"
+    ]
+  },
+  {
+    "proceed": false,
+    "actual_cost": 0,
+    "spent": 0,
+    "pending": 70,
+    "result": {
+      "workflow_digest": "sha256:ee0b0af2404b4ffeba60d0e319503805fffaf0f7163c0ee48a5135e0ccb4e5ca",
+      "run_id": "run1",
+      "status": "Finished",
+      "steps": [
+        {
+          "command": "Prepare",
+          "node_id": "w0.0",
+          "operation_id": "op-7717267909be4f1e872e16e517a40ad3",
+          "result": "Prepared"
+        },
+        {
+          "command": "If",
+          "node_id": "w0.1",
+          "result": "otherwise"
+        },
+        {
+          "command": "Drop",
+          "node_id": "w0.1.else.0",
+          "operation_id": null,
+          "result": "VariableDropped"
+        }
+      ],
+      "failed_node": null,
+      "error": null,
+      "operations": [
+        {
+          "id": "op-7717267909be4f1e872e16e517a40ad3",
+          "execution": "Prepared",
+          "settlement": "Unsettled",
+          "remaining": [
+            {
+              "account": "order:order:CNY",
+              "amount": "70"
+            },
+            {
+              "account": "tenant:CNY",
+              "amount": "70"
+            }
+          ]
+        }
+      ],
+      "scope": "Finished means the command program ended, not business completion or released budget"
+    },
+    "kernel_events": [
+      "Prepared"
+    ]
+  }
+]

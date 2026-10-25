@@ -1,0 +1,114 @@
+{
+  "schema": "avcl/verification/0.1",
+  "started_utc": "20261025T161023.799978Z",
+  "passed": true,
+  "scope": "in-memory reference; bounded model; abstract Lean core; no production guarantee",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "stages": [
+    {
+      "name": "tests",
+      "command": [
+        "C:\\Users\\Administrator\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-v"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.703,
+      "log": "tests.log"
+    },
+    {
+      "name": "bounded-model",
+      "command": [
+        "C:\\Users\\Administrator\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "models.budget_model"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.11,
+      "log": "bounded-model.log"
+    },
+    {
+      "name": "lean-version",
+      "command": [
+        "lean",
+        "--version"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.125,
+      "log": "lean-version.log"
+    },
+    {
+      "name": "lean-core",
+      "command": [
+        "lean",
+        "Core.lean"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 1.469,
+      "log": "lean-core.log"
+    },
+    {
+      "name": "refund-demo",
+      "command": [
+        "C:\\Users\\Administrator\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "examples/refund_demo.py"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.125,
+      "log": "refund-demo.log"
+    }
+  ],
+  "design_baselines": [
+    {
+      "path": "Agent形式化验证语言研究与设计.docx",
+      "sha256": "0543471efc21c36a0cbfcf210a1c0fe9be9c111bb894152d32cac00722b8e00a",
+      "expected_sha256": "0543471efc21c36a0cbfcf210a1c0fe9be9c111bb894152d32cac00722b8e00a",
+      "unchanged": true
+    },
+    {
+      "path": "AVCL形式化验证语言与执行系统详细设计_v0.1.docx",
+      "sha256": "8fa7491cb6c428ccab6158e95dce23ec222e9250e3ca518f90b7bc1227dc34fc",
+      "expected_sha256": "8fa7491cb6c428ccab6158e95dce23ec222e9250e3ca518f90b7bc1227dc34fc",
+      "unchanged": true
+    }
+  ],
+  "source_sha256": {
+    ".gitignore": "c4728e0c05e7976a4c74cf61e1136dac724ebff0dbc65b8b8c276785eaeff97e",
+    "avcl/__init__.py": "f407872bd5382e051bb4ff52df1c7de71f77857be4df8e77a3bc2b2a462e0f73",
+    "avcl/canonical.py": "027443cfaf532ba6dd212d97aabe42cc80c4408c5bc0393edb749d9810c97f9a",
+    "avcl/ir.py": "97f491168c4896f5127e4d1fc158ae16a737a873f62881abd4d65f435429c6a1",
+    "avcl/runtime.py": "c9385b885f1038820ad160f686a672ca564f4d502be6bbf92642161648de39a2",
+    "avcl/simulator.py": "6cbce4b1b100522845890b7ea224fe496254a59869f0204beecd2261ba54379b",
+    "avcl/types.py": "120eed11faa9cdf1fbf88a07d7c9b12d15567abed7a9ce8feb59f4973f16b418",
+    "examples/refund_demo.py": "c79af4360066b5132cfeae7d6e5030fbe0aa74b331c56ebeb82dfb3a9e46d658",
+    "formal/lean/Core.lean": "dc4b5918d2f2c51a5c2562d2b8f17af7f67c961836b826f126441f123979c98a",
+    "formal/lean/lean-toolchain": "b8861a22d770ed6ea042401cbbb74f38d435659a4be3d6faae561c0fe563a645",
+    "models/__init__.py": "cec31c95db21711d73f44ccaea48e578fb1280e342a089ca1bffacfc0d8d3e4a",
+    "models/budget_model.py": "718853c57b17f6048c85afb4f28fe6d2310e1791020093f74697d7b5a9c1c4b9",
+    "pyproject.toml": "91236b47ec1968217463aaba7186d34e593208e28dc4c854f3e24fcba1f3a5f5",
+    "README.md": "5eb424b0d9686718866bc0f8e366153ccd77bc86303c451afc27094c83a12c17",
+    "scripts/verify.py": "16778b484ce4ebbcbfbcede9c0593f8540430e9a918d01f618f16cdb763e9f56",
+    "spec/implementation-status.md": "e98fa16278a6fc8808b5e0259e5b180a3f5ecd6552a0c5fc3bf7e2b146a5e6f6",
+    "spec/reference-decisions.md": "a56ac97e6d88f80aeeae03497ee9104194bd4d8d8a95f15f699166e7efeb5c5a",
+    "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tests/support.py": "12109865ce2d50f004c0b4733f8fe7946feaf8c4e834242421e6e5c38c693c5e",
+    "tests/test_encoding_ir.py": "09a5c9b91e18296102fc3b0edb12bd9e12d6cc658fcd14e7d3e2a937a1a1beaa",
+    "tests/test_model.py": "a7fc9b3868dc27b23ba21c5a839964920f734b809c540eb8a35d2ccd12e72777",
+    "tests/test_runtime.py": "f515958519e6605d746713cc519902901444fa9a01b314545c4cdd80cccb7ddd",
+    "verify.cmd": "e9a72eea10b23276703b7bd2af1b4bb111104aed3fd3995cb1e4cd39bab6dbfa"
+  }
+}

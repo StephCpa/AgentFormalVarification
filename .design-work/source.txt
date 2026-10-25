@@ -1,0 +1,283 @@
+0: 面向 LLM Agent 的形式化验证语言设计
+1: AVCL 研究与设计方案 第一版
+2: 资料核查日期 2026 年 10 月 25 日
+3: 设计结论
+4: 我建议把 AVCL 暂定为 Agent Verification and Contract Language，定位为连接 Agent 规范、验证器和受控执行器的领域专用语言。LLM 可以生成计划、代码和候选动作；权限、资源预留和外部副作用则由独立的执行核心约束。首版优先解决结构化工具调用中的授权、并发预算和结果未知，不承诺证明任意自然语言答案正确或任意开放任务必然成功。
+5: 这个选择来自对 2024 至 2026 年一手研究的比较。AgentSpec、Agent-C、ContrAgent、Alignment Contracts、LLMbda 和 FORGE 已覆盖规则语言、时序合约、效果语义、信息流及不同程度的形式证明。因此，本方案不能把“Agent 专用 DSL 加运行时监控”当成原创贡献。更值得推进的候选方向，是在版本变化、并发和外部故障下，让已经检查的授权持续对应实际执行的动作。[1–8]
+6: 本方案的完成状态为：已核查相关论文与官方资料；已设计语言核心、操作生命周期、拟证明性质及评测协议；已执行一个两 Agent 预算模型的有限状态枚举。完整编译器、部署执行器、机械化证明和 LLM 基准实验尚待实现。后文的语法、定理和实施指标分别属于设计提案、证明目标和验收建议。
+7: 1 研究范围与已有工作
+8: 1.1 应当区分的验证对象
+9: “面向 Agent 的形式化验证”至少包含四类问题。第一类是让 Agent 辅助证明数学定理或验证普通程序；第二类是验证 Agent 工作流的类型、分支和数据依赖；第三类是约束 Agent 实际调用工具所产生的效果；第四类是验证信息流、概率风险和多 Agent 组合。AVCL 以第三类为核心，并为第二类和第四类提供明确接口。
+10: LLM 生成的证明如果经过独立内核检查，可以成为有效证明。关键困难在于证明的命题是否对应真实需求，以及被证明的模型是否覆盖部署执行。自然语言需求、形式规范、抽象模型和实际执行器是四个不同对象，不能因为其中两个由同一个模型生成，就假定它们一致。
+11: 1.2 最相关研究对照
+12: 表中的范围来自所列版本，不表示作者的后续实现永远不可能扩展。未注明正式发表的项目按预印本或研究系统理解。
+13: 两个补充近邻影响实现顺序。Agent Contracts 已讨论层级委派与资源治理，但所查版本主要在调用后结算费用；严格预算需要进一步落实调用前上界和预留。Lean4Agent 已统一描述工作流与轨迹，其静态语义论证使用 LLMExec 局部正确性假设；必须把该假设与真实运行中后置条件成立区分开。[13,14]
+14: 上述研究支持的结论是：应复用已有形式方法，收窄要填补的语义缺口。它们没有支持“只要再写一门新语言，就能自动获得更强安全性”的结论。
+15: 1.3 为什么还考虑一种专用语言
+16: 正确实现的 Python 监控器能够执行同样的策略。独立语法的价值需要通过工程证据证明：能否减少规范与实现不一致，阻止把模型判断误用为授权，自动产生一致的验证条件和运行时检查，并降低政策维护错误。
+17: 因此，实施顺序应是形式核心、参考解释器、Python 嵌入接口，最后才决定是否需要独立文本语法。若嵌入接口已经足够清晰，且专用语法不能改善规范质量，就保留验证库和中间表示。
+18: 2 从失效场景推导语言需求
+19: 2.1 目标场景
+20: 首版选择企业结构化工具 Agent，例如读取订单、生成候选退款、检查资格、调用受控退款接口并核对结果。这个场景同时包含不可信文本、动态事实、权限、并发和不可简单撤销的外部效果，适合检验语言的实质价值。
+21: 暂不让首版直接覆盖任意 shell、任意浏览器页面和物理机器人。若必须接入这些工具，需要把它们的底层网络、文件与执行能力纳入中介；只记录“调用过 shell”不足以覆盖 shell 内部效果。
+22: 2.2 需求和最小反例
+23: 2.3 威胁模型和可信边界
+24: 对授权和预算安全，将 LLM 视为任意候选生成器，包括错误、受提示注入影响或恶意生成。外部文档、工具说明和普通工具返回不自动可信。Agent 不持有绕过门卫的凭据，也不能自行创建 Capability、Permit 或升级政策版本。
+25: 可信计算基包括：规范解析和类型检查的相关实现、验证或证书检查内核、监控器、规范化器、能力签发与校验、持久账本、身份服务、相关工具适配器、隔离配置，以及具体定理所依赖的外部服务协议。若使用未独立校验的 SMT 结果，相应求解器也在可信边界内。
+26: “所有相关效果都经过执行器”是部署假设，需要隔离和接口审计支持。它无法通过在论文中定义一个门卫而自动成立。日志追加不可篡改也不等于日志内容真实；日志必须由观察到操作的可信组件产生。[5,8]
+27: 3 语言核心
+28: 3.1 八类一等对象
+29: Evidence 必须写明命题、对象摘要、适用版本、验证器、假设与有效范围。检查 JSON 结构只产生结构证据；检查订单签名只证明签发者做出过相应断言；人工批准主要建立权限关系。它们都不能无条件升级为“现实事实已证明”。
+30: 机密性与完整性使用独立标签。机密性控制谁可以看到数据；完整性控制数据能否参与高权限决定。endorse 改变完整性，declassify 改变机密性，两者要求不同授权。模型输出继承完整上下文和控制依赖的机密性，默认不能仅凭语气或置信度取得可信完整性。[6,10]
+31: 3.2 效果与能力
+32: 效果描述至少覆盖 Read、Write、Disclose、InvokeModel、Spawn 和 ResourceConsume。只读能力可以按策略复用；一次性批准、调用次数和预算许可使用仿射资源，最多消费一次。线性或仿射类型只处理语言内的合法使用，跨进程重放和崩溃恢复仍须由持久账本约束。
+33: 权限委派必须衰减：子 Agent 的作用域、时限、工具种类和额度都不能超过父授权。委派权限不能通过把一段权限描述复制到提示词中实现；子 Agent 接收的是可校验、绑定身份的权限对象。
+34: 3.3 小核心语法
+35: 下面给出语义内核的缩略文法。完整表层语言还需要模块、名称解析和错误位置等工程语法。
+36: Type ::= Bool | Int | Id | Record | Enum
+       | Candidate<Action> | Labeled<Type>
+       | Evidence<Predicate> | Capability<Effect>
+       | Permit<Action> | Operation<Result>
+
+Cmd  ::= propose Context
+       | validate Candidate with Validator
+       | prepare Candidate using Capability Evidence
+       | dispatch Permit
+       | reconcile Operation
+       | delegate Capability Budget
+       | close Outcome
+
+Spec ::= requires Predicate
+       | invariant Predicate
+       | forbid Event when Predicate
+       | before Event require PastPredicate
+       | on Event owe Event within Bound
+       | success Predicate
+       | assume Predicate from Authority
+37: 运行时关键路径只接受可终止的纯谓词。首版采用有限枚举、记录、定长标识、线性整数约束和有界集合；金额使用带币种的最小单位整数。时间约束使用受信任的单调时钟，事件顺序与真实时间分开。任意 Python 函数、外部网络查询和 LLM judge 不进入硬安全谓词。
+38: 一般递归、无界量化、非线性算术和任意程序终止不作为首版自动可判定片段。需要它们的用户可以提供独立证明，或得到明确的 Unsupported、Timeout 或 Unknown 结果。资源索引监控器必须有并发实例上限和未完成义务的持久化规则，不能靠丢弃旧状态控制内存。
+39: 3.4 五种性质和相应证据
+40: 安全不变式适合前缀检查和拒绝式执行；有截止时间的义务需要时钟与调度；最终完成需要额外活性条件；非干扰需要关系式推理；概率风险需要分布和统计假设。不能把这些性质都塞进一个 verified 布尔字段。有限轨迹逻辑提供有限任务的表达基础，但执行前缀上的待决义务仍可能在之后失败。[15,16]
+41: ProofStatus = ProvedUnder(assumptions)
+            | BoundedChecked(bounds)
+            | RuntimeSatisfied(closed_trace)
+            | Pending(obligations)
+            | Violated(witness)
+            | AssumptionBroken(cause)
+            | Unknown(reason)
+42: 求解器的 Unknown、外部操作结果的 Unknown、尚未结束任务的 Pending 是三个不同概念。实现中使用不同枚举，避免异常处理把它们合并为 False 或成功。
+43: 4 形式语义与证明边界
+44: 4.1 运行状态
+45: 将核心运行状态表示为
+46: 
+47: 其中 e 是控制表达式，mu 是带标签存储，K 是能力集合，q 是合约监控状态，L 是持久操作与预算账本，nu 是策略及权限版本，B 是与当前可信证据一致的可能世界集合，tau 是事件历史。现实世界 w 不等于监控器的知识；需要显式维护“现实被知识抽象覆盖”的假设。
+48: 对授权安全，模型响应可以解释为任意候选。这个内部解释转移不能自行扩大能力集合、签发许可或产生对外效果。真实模型请求则是受控 InvokeModel 效果：先检查披露权限并预留费用，再请求模型，最后解释响应。表层 propose 是这些步骤的语法糖；模型请求超时但可能已经计费时，也需要保留预留。模型质量影响候选是否有用，但不能成为权限正确性的前提。若研究概率非干扰，则必须另外明确模型随机核和观察语义，不能直接用无结构非确定性替代全部概率行为。
+49: 4.2 动作语义必须覆盖所有相关后果
+50: 每个工具声明抽象效果关系 R，覆盖成功、拒绝、部分效果、异步执行和已知并发干扰。对于轨迹安全条件 Safe，一个保守的放行条件为
+51: 
+52: ExecPrefixes 包含动作所有允许执行的有限前缀以及相关环境交错。状态同时保留监控状态和不可擦除的效果历史。这要求安全相关的中间效果也符合策略，不能只检查最后一次工具返回的状态。只提供前后摘要的适配器不能据此宣称覆盖未建模的中间行为。实际实现不用枚举任意世界集合；首版用有限操作状态和费用上界实现保守抽象，再逐步增加符号推理。
+53: 设 alpha 为从现实状态到抽象状态的映射。工具适配器应承担模拟关系的证明或显式假设：现实每一步都能被抽象模型允许的步骤覆盖。若抽象漏掉“请求成功但回执丢失”，模型内证明不能约束该现实执行。
+54: 4.3 时序逻辑的两种使用方式
+55: 硬门禁使用前缀封闭的安全条件，或已证明可强制的安全片段。全体 LTLf 公式可用于已结束轨迹检查，但不能一概宣称可由当前动作过滤强制满足。编译时分别标记 safety、bounded obligation、completion 和 statistical 条款。
+56: 例如，要求每次派发都存在适用的认证和批准：
+57: 
+58: AuthorizedNow 应展开为身份、资源、参数、版本、时限及未消费许可的确定性检查。它不能被定义成“对话中曾出现过同意二字”。
+59: 完成条件可写为
+60: 
+61: 这个性质需要调度、响应与处置服务的假设。Escalated 只表示已转交处置，不能算成业务任务完成。仅靠阻断坏动作，不能强迫任意外部服务在有限时间完成工作。[16]
+62: 4.4 SMT 判定的准确含义
+63: 对于前置条件 P、转移关系 T 和目标后置条件 Q，检查
+64: 
+65: 在健全编码和求解器假设下，UNSAT 表示该编码中不存在违反 Q 的转移。SAT 给出模型；若使用过近似抽象，它可能是伪反例，需要精化。Unknown 或超时没有建立证明。检查 P 的可满足性、触发事件可达性和目标可达性也必不可少，否则前提为假的规范会空洞通过。
+66: 无界循环的部分正确性要求不变式；总正确性还要求终止论证，例如良基下降度量。限制最多尝试 20 次能证明控制过程停止，但不能证明任务在 20 次内成功。
+67: 4.5 类型判断和关键转移
+68: 类型与效果判断写为
+69: 
+70: Gamma 保存可复用绑定，Delta 保存一次性许可等仿射资源，E 表示表达式可能产生的效果。模型返回的数据只进入 Candidate 或低完整性数据类型。Capability、Permit 和 Evidence 的构造器对普通程序不可见。消费 Permit 后不能再使用同一许可；dispatch 返回持久 Operation 句柄，后续结算引用它。该句柄不授予新派发权；结算按操作标识和账本状态幂等更新，跨崩溃的唯一性由持久注册表保证。
+71: 设 Match 检查请求摘要和版本，Live 检查许可状态与时限，Ready 检查监控状态及必要前置条件。派发准入的缩略规则为
+72: 
+73: 该步骤原子地记录派发意图、消费对应许可并把操作转入在途状态。它不把本地更新与远端效果假定为一个分布式原子事务。网络发送与远端生效由之后的转移描述；崩溃发生在这些转移之间时，账本必须保留可能已生效的分支。本文的撤销保证以这个准入线性化点为界，不能追溯取消此前已接纳的派发。
+74: 5 授权与外部操作协议
+75: 5.1 许可绑定
+76: 一次性 Permit 绑定以下规范化数据：主体与租户、任务标识、工具及适配器版本、资源标识、完整参数摘要、相关对象版本、策略版本、权限 epoch、有效期、成本上界和逻辑 operation_id。
+77: 规范化必须处理默认参数、路径、URL、编码和币种等歧义。高权限收件人、付款目标和资源范围从已授权的结构化对象解析，不能由不可信页面自由替换。安全性关键在于绑定与实际请求一致；使用哈希时还依赖规范化正确性及相应密码学假设。
+78: prepare 在本地原子地核对能力并预留资源。dispatch 再检查请求未变、权限和政策仍适用、证据未失效，并持久记录操作状态。授权判断与撤销必须共享明确的线性化顺序。不能先给出一个永久有效的“通过”，让后续任意代码使用。
+79: 5.2 操作状态机
+80: Proposed -> Prepared -> Dispatched
+                         |-> Confirmed
+                         |-> RejectedNoEffect
+                         |-> Unknown
+
+Unknown -> reconcile -> Confirmed
+                     |-> RejectedNoEffect
+                     |-> Unknown
+81: Confirmed 要求可信回执或核对证据。RejectedNoEffect 要求能够确认相关效果没有发生，且同一待处理请求之后也不会再生效。普通 HTTP 错误、超时或“暂时查不到记录”通常不足以建立这个结论。若 API 可能产生部分效果，应为这些效果建立独立状态或保持最坏情形预留，不能强行归入无效果失败。
+82: Unknown 保留资源预留和原 operation_id。允许通过查询状态或在服务端协议允许的范围内使用相同标识与完全相同参数重发。幂等保留期、作用域、参数一致性和查询语义都必须成为适配器契约。过了服务端去重期限，旧操作不能继续按原保证自动重试。
+83: 服务端幂等记录与实际修改需要一致提交；客户端一次性对象自身不能证明外部恰好一次。HTTP 条件请求则需要由远端在应用操作前检查状态，客户端先读再检查无法替代远端执行条件。[17,18]
+84: 5.3 预算不变式
+85: 设 B 为预算上限，S 为已经确认的成本，U 为所有未完成操作的成本上界之和，包括 Prepared、Dispatched 和 Unknown。维护
+86: 
+87: reserve 原子检查剩余额度并增加 U。确认实际成本 c 后，从 U 移除该操作的预留上界 u，再向 S 增加 c，并要求 c 不大于 u。确认无效果才能释放相应预留；超时和本地取消不能直接释放。若取消或拒绝仍产生费用，应单独结算这些已发生费用。
+88: 在每个真实操作成本受对应上界覆盖、服务端不重复生效、相关成本均纳入账本的前提下，可进一步得到真实累计成本不超过 S 加 U。若调用价格、重试费用或输出费用没有可靠上界，只能声明软预算，不能宣称严格不超支。
+89: 5.4 撤销与更新
+90: 首版定义撤销保证为：撤销线性化之后，不再批准新的派发；此前已经派发的请求仍可能完成。若需要“实际生效瞬间权限有效”，远端必须参与权限版本校验或取消协议，本地执行器无法单独提供该保证。
+91: 政策更新生成新版本并保留旧版本的证据范围。尚未派发的旧许可重新校验；已经在途的操作按更新策略显式处置，账本不删除。Agent 可以提出政策修改建议，但不能自行弱化硬约束以通过验证。
+92: 新政策若降低预算，必须核查已确认消费与所有未决预留是否仍满足新上限。不能把上限直接改小，再宣称不变式一直成立；无法满足时应拒绝该更新，或将待履行承诺及过渡期单独纳入经授权的更新契约。
+93: 5.5 取消和补偿
+94: 取消分为停止本地新动作、发出远端取消请求、获得无效果取消确认。只有第三类确认及其费用清算满足契约后，才可释放相应预留。补偿是新的外部动作，有自己的权限、成本和失败模式；它不会让已发送信息变成从未被接收，也不能擦除违规历史。
+95: 6 多 Agent 和信息流
+96: 6.1 组合规则
+97: 每个 Agent 使用局部合约，系统仍保留全局不变式和共同账本。子合约的资源作用域包含于父作用域，预算分配从父可用预算原子扣减。并行子 Agent 持有的是互不重复的额度份额，或在每次消费前访问共同的原子账本。
+98: 假设保证推理要求每个组件的环境假设由其余组件和系统环境共同满足。单独证明两个 Agent 各自安全，不足以推出共享资源上的组合安全。循环依赖不能通过双方互相假设对方安全而完成证明；需要共同不变式或合法的组合规则。
+99: 记录因果关系以解释跨 Agent 依赖；对共享预算和一次性许可使用明确序列化点。偏序事件能够说明“谁依赖谁”，不能取代资源冲突的裁决。FORGE 已证明这一类依赖建模的重要性，AVCL 的候选增量在于将其与未决效果、版本和资源账本联结。[8]
+100: 6.2 信息流保证
+101: 数据标签应覆盖工具数据、完整模型上下文、会话记忆、派生变量、分支、错误、重试、日志、遥测及子 Agent 消息。把原始文档从提示词中删除，不会自动消除它对保留状态的影响。模型服务本身也是接收数据的一方，调用外部模型之前就需要检查披露权限。
+102: v0.1 优先保证规定出口上的显式流向约束和完整性隔离。完整非干扰是比较不同秘密输入下可观察行为的关系性质，需要定义观察者、时序、终止和随机性。仅在一条轨迹中没有看到秘密原文，不能证明没有泄露。LLMbda 的终止不敏感概率非干扰也不等于覆盖终止、时间及全部部署侧信道的完整保证。[6,10,19]
+103: 后续若加入差分隐私，应要求明确相邻关系、机制证书、适用数据范围、发布边界和组合 accountant。private 标签和权限检查不能替代这些条件。第一版不将完整概率非干扰和差分隐私组合证明纳入最小交付。
+104: 7 一个完整的表层示例
+105: 下面是拟议 AVCL 语法，用于说明语义，不是已可运行的实现。退款资格与支付事实来自受信任的订单服务；free-form 文本不能自行签发批准。人可以预先授予范围内能力，只有政策规定的情况才要求逐笔批准。
+106: module RefundService
+version "0.1"
+
+type Cents = Int where value >= 0
+type Outcome = Confirmed | RejectedNoEffect | Unknown
+
+resource TenantBudget : Ledger<Cents>
+resource OrderBudget  : Ledger<Cents>
+
+tool refund(req: RefundRequest) -> Outcome
+  effect Write<Payment>, Disclose<Processor>
+  requires adapter.conditional_update
+  requires adapter.idempotency_by_operation_id
+  requires adapter.authoritative_reconcile
+  cost_bound req.amount + adapter.max_fee
+
+contract RefundPolicy
+  invariant TenantBudget.spent + TenantBudget.pending
+            <= TenantBudget.limit
+  invariant OrderBudget.spent + OrderBudget.pending
+            <= OrderBudget.limit
+
+  before dispatch(refund, req)
+    require authenticated(req.principal, req.tenant)
+    require entitlement(req.principal, req.order)
+    require req.destination == req.order.original_method
+    require approved_digest(req) == canonical_digest(req)
+    require evidence_valid_for(req.order_version)
+    require authority_epoch_is_current(req)
+
+  on Unknown(op)
+    retain reservations(op)
+    require same_operation_identity(op)
+    owe Reconciled(op) or Escalated(op) within 24h
+
+workflow HandleRefund(input, refund_cap, model_cap)
+  candidate = propose input using model_cap
+              as Candidate<RefundRequest>
+  checked = validate candidate with RefundEligibility
+  req = checked.request
+  permit = prepare checked using refund_cap
+           reserve atomically
+             TenantBudget: req.amount + adapter.max_fee
+             OrderBudget: req.amount
+
+  operation, outcome = dispatch permit
+                       conditional_on checked.order_version
+107:   match outcome
+    Confirmed(receipt):
+      settle operation using receipt
+      close Completed(receipt)
+    RejectedNoEffect(proof):
+      settle_fees_and_release operation using proof
+      close Rejected(proof)
+    Unknown:
+      persist operation and supervision atomically
+      transfer operation to ReconciliationSupervisor
+      return Pending(operation)
+108: 该示例的强保证依赖远端条件更新、幂等和核对协议。编译器不能因为出现三个 requires 声明，就把远端能力视为已经证明；这些要求必须绑定适配器契约、验证证据和部署配置。无法提供这些前提时，工具只能进入较弱保证配置，报告应明确降级。
+109: 示例中的 24 小时是示例业务参数，不是系统已达到的服务指标。返回 Pending 仅结束本次调用栈，合约实例、预留和未完成义务继续由持久监督器管理。监督责任的转移必须持久化，不能只注册易失定时器。调度失败应记录未履行义务，不能悄悄把 Pending 变成完成。核对、升级与回执日志同样受到权限和数据标签约束。
+110: 8 编译器与验证体系
+111: 8.1 一份核心规范生成多种产物
+112: 前端依次处理名称解析、类型和效果检查、能力与证据来源检查、条款分类及可满足性检查，再生成统一中间表示。中间表示同时驱动纯逻辑验证条件、时序自动机、执行器检查、事件记录 schema 和审计重放。
+113: 编译正确性应分别证明：合法表层程序的含义由核心语义保持；静态验证条件足以推出所声明性质；运行时监控器不会把核心禁止的事件判为可执行；适配器现实执行被核心效果关系覆盖。共用一份 JSON 定义可以减少重复，但自身不构成这些证明。
+114: 8.2 后端选择
+115: SMT 处理线性数值、身份关系和局部验证条件。有限自动机处理适合监控的时序片段。TLA+ 或另一明确状态模型用于探索并发、崩溃和消息丢失。Lean 或 Dafny 适合机械化小核心和证明义务。首版选择一条机械化主线，避免同时维护两套定理语言。
+116: 模型检查结果附带具体边界；SMT 结果附带公式、假设和求解器版本；机械化证明附带内核和构建版本。声明 Verified 的单位应是某个性质及其证据包，而不是整个 Agent 名称。
+117: 8.3 可信假设清单
+118: 每个证明包保存规范摘要、核心语义版本、验证目标、环境假设、适配器版本、工具 schema、政策版本、证据有效期、模型检查边界及尚未履行的运行时义务。模型版本也记录用于复现，但安全定理若已对任意候选成立，不必把具体模型正确性当成前提。
+119: 权限、外部对象或适配器变化时，按依赖关系使相关证据失效。检测到观察失真或工具违反契约时进入 AssumptionBroken，阻止相关后续危险动作并保留事实历史。不能丢弃违规返回，再宣布接纳轨迹仍然安全。
+120: 8.4 规范编写与自修复
+121: 自然语言前端只生成候选规范。每条原始要求对应一个需求编号、正式条款、正反例及验证方法。冻结安全要求后，Agent 可以修改候选计划；规范变更需要独立权限和版本记录。不可满足核心用于指出冲突，不作为自动删除安全要求的许可。
+122: 反例反馈只提供修复所需信息。若反馈包含秘密状态或受限资源存在性，也可能成为信息出口，应经过标签检查。自然语言回译、另一模型复核和测试可以帮助发现规范遗漏，但不等同于需求等价性的形式证明。
+123: 9 拟证明的性质
+124: 9.1 授权完整性
+125: 目标为：在能力不可伪造、请求绑定正确、所有相关效果经过执行器、账本持久且本地授权步骤原子化的前提下，每一个 Dispatch 事件都有与其主体、参数和权限版本一致的有效许可。
+126: 这里的授权时点是 dispatch 的线性化点。定理不推出外部效果一定成功，也不推出在途操作完成时权限仍有效。更强时点要求需要远端协议参与。
+127: 9.2 预算保持
+128: 归纳证明目标是从初始预算不变式出发，所有允许转移继续保持 S 加 U 不超过 B。准备增加预留前检查上界；派发和超时不减少预留；确认将上界替换为不更大的实际费用；可信无效果结果释放预留。并发必须通过共同线性化点或预算份额守恒化归到这些步骤。
+129: 将账本性质提升到现实成本上界，还需要费用上界真实、执行次数受远端幂等约束，以及所有相关费用都被覆盖。这个附加桥接义务不能藏在证明结论里。
+130: 9.3 受控轨迹安全
+131: 若初态安全、监控器编译健全、事件观察完整、适配器效果抽象健全且环境满足 rely 条件，则对任意模型候选序列和允许调度，受控轨迹满足规定的安全策略。
+132: 若要求整个世界一直满足 I，还必须证明环境自身的变化保持 I，或把环境变化纳入转移关系。Agent 不能仅通过约束自己的工具调用，就保证其他用户永远不删除同一文件。
+133: 9.4 实现精化与组合
+134: 应分别建立核心到参考解释器、解释器到生产执行器、适配器到远端协议的关系。对多 Agent，证明作用域衰减、额度守恒与共同不变式。不能用抽象语言的类型安全替代真实驱动的正确性，也不能用日志可重放替代实际效果覆盖。
+135: 上述都是后续机械化目标。本轮给出了证明结构和应检查的前提，没有声称这些目标已经由 Lean、Dafny 或其他证明器完成。
+136: 10 本轮完成的有限状态检查
+137: 为检验预算协议中的一个关键选择，本轮实际实现并运行了两 Agent 模型：总预算 100，A 尝试消费 70，B 尝试消费 60，每个 Agent 至多一个逻辑操作。工具可能提交、无效果拒绝或超时；超时之后可以核对。枚举对所定义的有限状态转移完整展开，不调用 LLM 或真实支付服务。
+138: 可达状态按完整状态元组去重；边数为全部可达状态上的启用转移；完整终止轨迹为到达无后继状态的不同带标签路径。多个路径可以汇聚到相同状态。没有给调度赋予概率，因此 4/6 和 136/618 不能解释为现实违规概率。
+139: 普通模型的最短反例为四步：A 检查 70 通过，B 检查 60 通过，A 消费 70，B 消费 60。最终实际消费 130。
+140: 超时错误释放的最短反例为七步：A 预留 70，A 派发，远端消费 70，A 超时并错误释放预留，B 预留 60，B 派发，远端消费 60。此时实际消费 130，但本地账本尚未收到成功回执。之后 A 核对成功、B 收到成功回执，账本也会确认消费 130。
+141: 正确版本的全部 54 个可达状态满足实际消费不超过已确认消费加预留，且两者之和不超过 100。发生无效果终局拒绝后可以释放预留，让另一项操作继续，因此它并非简单拒绝全部请求。
+142: 模型分别记录本地状态与外部状态，允许先发生副作用后超时，也允许先超时后发生副作用；每操作最多一次发送、一次超时和一次最终结算。预留操作被设为原子，单次副作用最多一次且成本精确为声明值，no_effect 是终局事实。无限等待、网络重发和进程崩溃均未包含在本次有限模型中。
+143: 这些结果只能支持模型内的结论。它们没有覆盖任意数量 Agent、无界重试、服务器错误去重、权限撤销、部分费用或全部崩溃恢复。生产安全仍需要更完整的环境模型、机械证明与适配器验证。
+144: 11 评测设计
+145: 11.1 将语言价值与执行器价值分开
+146: 最关键基线是同策略、同工具适配器、同门禁和同预算的手写 Python 监控器。若只比较提示词 Agent 与新执行器，得到的改进主要说明外部执法有效，无法证明专用语言必要。
+147: 其他比较包括结构化 JSON 工具、AgentSpec 事件规则、Agent-C 或 ContrAgent 时序约束、FORGE 事件依赖、能力或 IFC 专项方案，以及 TLA+ 或 Dafny 模型加手工执行绑定。范围不匹配的系统应分层比较，不能用未支持的属性直接判负。只公开形式核心或未公开实现的工作，明确标注采用公开规范重实现。
+148: 11.2 任务与故障集
+149: AgentDojo 用于间接提示注入和良性任务效用；tau-bench 或 tau2-bench 用于政策依从与任务完成，后者的共享环境适合状态变化分析。这些基准提供任务背景，不能充分替代并发和故障验证。[20,21]
+150: 另建带独立真实状态 oracle 的模拟服务，覆盖确认后改参、权限撤销、对象版本变化、重复消息、请求已生效但回执丢失、取消竞态、崩溃恢复、事件丢失、相同幂等标识不同参数、幂等期限到期以及工具返回不实。区分违反假设的攻击与假设内反例；后者直接推翻对应保证。
+151: 11.3 主要指标
+152: 核心终点是安全任务完成率：目标完成且整条实际效果轨迹无违规。另报每任务违规率、每次实际效果违规率、良性误拒绝、拒绝后恢复率、重复效果数量、错误释放预留、长期 Unknown 数量和转交处置率。成功、拒绝、挂起和人工接管分别统计。
+153: 工程指标包括编译耗时、检查延迟的 p50/p95/p99、状态内存、额外模型调用和完整成本。规范质量指标包括需求覆盖、漏译、矛盾、空洞满足、作者用时和政策更新回归率。延迟测试固定硬件、策略规模和并发度，不能直接跨论文比较摘要数字。
+154: 11.4 实验和统计口径
+155: 冻结任务、策略、工具版本和评判器；使用任务级配对实验，重试耗费计入同一总预算。攻击开发与测试任务分离，并加入适应性攻击。人工评审规范正确性，不能让同一个生成器及其编译规则成为唯一评分器。
+156: 重复运行的至少一次成功 pass@k 与 k 次都成功 pass^k 分开报告。零次违规不能推导普遍安全：在 n 次独立同分布伯努利试验中，零失败的单侧 95% 上界为
+157: 
+158: 同一任务的多个动作或重试通常不是独立样本，应按任务聚类给出不确定性。统计结果与机械证明、有限模型检查分别展示。
+159: 11.5 消融和停止条件
+160: 分别去掉请求版本绑定、原子预留、Unknown 保留、能力衰减、可信事实来源以及中途轨迹检查，验证各部分是否消除了其对应反例。允许模型判断直接生成授权证据的消融只能在模拟环境执行。
+161: 在声称覆盖的假设内找到一个实际违规，就必须撤回该保证并修复模型、证明或实现。若独立 DSL 相对同语义 Python 接口没有改善规范正确性和维护成本，就停止独立语法扩张。如果工具无法满足远端条件与幂等前提，应降低保证范围，而不是继续扩大安全宣传。
+162: 12 实施顺序与研究定位
+163: 12.1 最小研究原型
+164: 先实现固定政策版本、结构化 API、有限主体集合和有界资源。交付语法与语义、参考解释器、可信能力注册、原子账本、结果枚举和独立故障模拟器。第一批形式目标只有授权完整性与预算保持，同时明确环境和适配器假设。
+165: 第二阶段加入权限 epoch、对象版本、远端条件执行、Unknown 核对与崩溃恢复，检查实现是否精化核心状态机。第三阶段加入跨 Agent 委派、时序义务和基础信息流，再开展与现有系统的配对实验。完整概率非干扰、任意自然语言谓词和复杂分布式活性留到独立扩展。
+166: 对于熟悉编译器和形式方法的两至三人团队，可将前两个阶段规划为约十二至十六周的研究原型工作量；这是排期假设，实际取决于适配器、证明工具经验和模型复杂度。应按证明与故障复现里程碑验收，而不是按关键词数量验收。
+167: 12.2 值得优先检验的研究问题
+168: 第一，能否把未知外部效果、并发预算与撤销语义统一在一个小核心中，并建立现实成本及权限性质的条件证明。第二，能否让同一规范可靠地产生静态条件、运行时检查和审计解释，从而减少跨层错误。第三，这些机制是否在相同成本下改善安全任务完成率，并降低规范编写和更新缺陷。
+169: 这三个问题属于候选贡献。它们需要继续与最近邻最新版及分布式系统已有协议比较。预算预留、版本条件、幂等和引用监控本身都是已有技术；研究价值应体现在 Agent 场景的精确语义、组合论证和可复现实现中。
+170: 12.3 推荐立项方式
+171: 以可验证的 Agent 契约核心立项，先交付一个能说明每条保证来自哪里、何时失效的执行系统。独立语言是否值得保留，由强基线和规范质量实验决定。第一份真正有说服力的交付，应包括可机器检查的核心定理、可复现的故障反例、与工具真实行为对应的适配器契约，以及安全与完成率同时成立的证据。
+172: 参考资料
+173: 以下均为论文、作者项目或正式协议资料。版本日期用于标识本轮阅读对象；预印本中的实验数字与主张不视为本方案已复现结果。
+174: Wang H, Poskitt C M, Sun J. AgentSpec: Customizable Runtime Enforcement for Safe and Reliable LLM Agents. v3, 2025-07-31; ICSE 2026. https://arxiv.org/html/2503.18666v3
+175: Kamath A, et al. Enforcing Temporal Constraints for LLM Agents. 2025-12-25. https://arxiv.org/pdf/2512.23738
+176: Miculicich L, et al. VeriGuard: Enhancing LLM Agent Safety via Verified Code Generation. 2025-10-03. https://arxiv.org/html/2510.05156v1
+177: Xiao Y, Nuzzo P. Symbolic Temporal Supervision of LLM Agents Using Contracts. 2026-09-16. https://arxiv.org/html/2609.18128
+178: David I, Guarnieri M, Gervais A. Alignment Contracts for Agentic Security Systems. 2026-04-30. https://arxiv.org/html/2605.00081v1
+179: The LLMbda Calculus. v2, 2026-07-10. https://arxiv.org/html/2602.20064v2
+180: Odersky M, et al. Tracking Capabilities for Safer Agents. v2, 2026-05-07. https://arxiv.org/abs/2603.00991 官方实现 https://github.com/lampepfl/tacit
+181: Palumbo N, et al. Formal Policy Enforcement for Agentic Systems. v4, 2026-10-12. https://arxiv.org/html/2602.16708
+182: Li Y, et al. VIGIL: Runtime Enforcement of Behavioral Specifications in AI Agent Skills. 2026-06-25. https://arxiv.org/html/2606.26524v1
+183: Costa M, et al. Securing AI Agents with Information-Flow Control. v2, 2025-09-03. https://arxiv.org/html/2505.23643v2
+184: Wang H, et al. ProbGuard: Proactive Runtime Monitoring for LLM Agent Safety via Probabilistic Prediction. v4, 2026-08-03; ASE 2026. https://arxiv.org/html/2508.00500v4
+185: Yu M Y, Kim T, Choi J W. NOMOS: Compiling Written Policies into Statically Verified Tool-Call Gates for LLM Agents. 2026-10-08. https://arxiv.org/html/2610.11030v1
+186: Ye Q, Tan J. Agent Contracts: A Formal Framework for Resource-Bounded Autonomous AI Systems. v3, 2026-03-25; COINE 2026. https://arxiv.org/html/2601.08815v3
+187: Lean4Agent: Formal Modeling and Verification for Agent Workflow and Trajectory. v2, 2026-06-15. https://arxiv.org/html/2606.06523v2
+188: De Giacomo G, Vardi M Y. Linear Temporal Logic and Linear Dynamic Logic on Finite Traces. IJCAI 2013. https://www.ijcai.org/Abstract/13/132
+189: Schneider F B. Enforceable Security Policies. ACM TISSEC, 2000. https://www.cs.cornell.edu/fbs/publications/EnfSecPols.pdf
+190: Fielding R, Nottingham M, Reschke J. RFC 9110 HTTP Semantics. 2022, sections 9.2.2 and 13.1.1. https://www.rfc-editor.org/rfc/rfc9110.html
+191: AWS Builders Library. Making retries safe with idempotent APIs. https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/
+192: Clarkson M R, Schneider F B. Hyperproperties. Cornell technical report, 2008; subsequent journal treatment 2010. https://www.cs.cornell.edu/fbs/publications/1813-9480.pdf
+193: Debenedetti E, et al. AgentDojo: A Dynamic Environment to Evaluate Prompt Injection Attacks and Defenses for LLM Agents. 2024. https://agentdojo.spylab.ai/
+194: Barres V, et al. tau2-Bench: Evaluating Conversational Agents in a Dual-Control Environment. 2025. https://arxiv.org/abs/2506.07982 官方代码 https://github.com/sierra-research/tau2-bench
