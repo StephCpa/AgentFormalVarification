@@ -1,0 +1,178 @@
+{
+  "schema": "avcl/evaluation-budget-audit/0.1",
+  "verification_passed": true,
+  "source_files_checked": 153,
+  "source_hash_mismatches": [],
+  "design_baselines_unchanged": true,
+  "stage_count": 26,
+  "test_counts": {
+    "tests": 242,
+    "smt-tests": 38,
+    "m1-targeted-checks": 24,
+    "postgres-integration": 215
+  },
+  "work_model": "avcl/evaluation-work/0.1",
+  "pure_cases": [
+    {
+      "case": "flat-record-set",
+      "input_wire_bytes": 41229,
+      "ast_nodes": 3,
+      "work_limit": 4000000,
+      "backends": {
+        "ast": {
+          "status": "RuntimeSatisfied",
+          "value": true,
+          "error": null,
+          "work": {
+            "model": "avcl/evaluation-work/0.1",
+            "limit": "4000000",
+            "used": "2494997",
+            "exhausted": false
+          }
+        },
+        "checks": {
+          "status": "RuntimeSatisfied",
+          "value": true,
+          "error": null,
+          "work": {
+            "model": "avcl/evaluation-work/0.1",
+            "limit": "4000000",
+            "used": "2494997",
+            "exhausted": false
+          }
+        }
+      }
+    },
+    {
+      "case": "flat-record-set",
+      "input_wire_bytes": 41229,
+      "ast_nodes": 3,
+      "work_limit": 16000000,
+      "backends": {
+        "ast": {
+          "status": "RuntimeSatisfied",
+          "value": true,
+          "error": null,
+          "work": {
+            "model": "avcl/evaluation-work/0.1",
+            "limit": "16000000",
+            "used": "2494997",
+            "exhausted": false
+          }
+        },
+        "checks": {
+          "status": "RuntimeSatisfied",
+          "value": true,
+          "error": null,
+          "work": {
+            "model": "avcl/evaluation-work/0.1",
+            "limit": "16000000",
+            "used": "2494997",
+            "exhausted": false
+          }
+        }
+      }
+    },
+    {
+      "case": "nested-record-set",
+      "input_wire_bytes": 42253,
+      "ast_nodes": 3,
+      "work_limit": 4000000,
+      "backends": {
+        "ast": {
+          "status": "Unknown",
+          "value": null,
+          "error": "UNKNOWN_EVALUATION",
+          "work": {
+            "model": "avcl/evaluation-work/0.1",
+            "limit": "4000000",
+            "used": "4000000",
+            "exhausted": true
+          }
+        },
+        "checks": {
+          "status": "Unknown",
+          "value": null,
+          "error": "UNKNOWN_EVALUATION",
+          "work": {
+            "model": "avcl/evaluation-work/0.1",
+            "limit": "4000000",
+            "used": "4000000",
+            "exhausted": true
+          }
+        }
+      }
+    },
+    {
+      "case": "nested-record-set",
+      "input_wire_bytes": 42253,
+      "ast_nodes": 3,
+      "work_limit": 16000000,
+      "backends": {
+        "ast": {
+          "status": "RuntimeSatisfied",
+          "value": true,
+          "error": null,
+          "work": {
+            "model": "avcl/evaluation-work/0.1",
+            "limit": "16000000",
+            "used": "12210709",
+            "exhausted": false
+          }
+        },
+        "checks": {
+          "status": "RuntimeSatisfied",
+          "value": true,
+          "error": null,
+          "work": {
+            "model": "avcl/evaluation-work/0.1",
+            "limit": "16000000",
+            "used": "12210709",
+            "exhausted": false
+          }
+        }
+      }
+    }
+  ],
+  "durable_atomic_failures": [
+    {
+      "test_id": "test_evaluation_budget.DurableEvaluationBudgetTests.test_prepare_work_exhaustion_rolls_back_every_durable_projection",
+      "status": "Passed",
+      "seconds": 2.532,
+      "observations": {
+        "gate": "prepare",
+        "work_limit": 75,
+        "error": "UNKNOWN_EVALUATION",
+        "durable_snapshot_unchanged": true
+      },
+      "requirement_ids": [
+        "R04",
+        "R09"
+      ]
+    },
+    {
+      "test_id": "test_evaluation_budget.DurableEvaluationBudgetTests.test_dispatch_work_exhaustion_keeps_permit_reservations_and_no_outbox",
+      "status": "Passed",
+      "seconds": 2.953,
+      "observations": {
+        "gate": "dispatch",
+        "work_limit": 75,
+        "error": "UNKNOWN_EVALUATION",
+        "durable_snapshot_unchanged": true,
+        "pending": 70,
+        "outbox_count": 0
+      },
+      "requirement_ids": [
+        "R04",
+        "R08",
+        "R09"
+      ]
+    }
+  ],
+  "m1_release_decision": "not_issued",
+  "limits": [
+    "conservative abstract work units, not wall-clock or whole-service bounds",
+    "SMT fuel semantics not encoded; resource-sufficiency assumption explicit",
+    "full-design requirement audit, durable denial logs and extension diagnostic review remain"
+  ]
+}

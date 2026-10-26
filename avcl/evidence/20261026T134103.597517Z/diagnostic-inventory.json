@@ -1,0 +1,4796 @@
+{
+  "format": "avcl/diagnostic-inventory/0.1",
+  "passed": true,
+  "scope": "Literal and conditional-literal first arguments at named calls in avcl/*.py; not whole-program coverage or proof",
+  "reviewed_codes": 252,
+  "observed_literal_codes": 243,
+  "missing_codes": [],
+  "sites": [
+    {
+      "path": "avcl/canonical.py",
+      "line": 21,
+      "callee": "Reject",
+      "code": "INVALID_AMOUNT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/canonical.py",
+      "line": 32,
+      "callee": "Reject",
+      "code": "INVALID_CUMULATIVE_COST",
+      "reviewed": true,
+      "requirement_ids": [
+        "R04"
+      ]
+    },
+    {
+      "path": "avcl/canonical.py",
+      "line": 64,
+      "callee": "Reject",
+      "code": "REQUEST_TOO_LARGE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/canonical.py",
+      "line": 74,
+      "callee": "Reject",
+      "code": "INVALID_JSON",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/canonical.py",
+      "line": 62,
+      "callee": "Reject",
+      "code": "REQUEST_TOO_DEEP",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/canonical.py",
+      "line": 77,
+      "callee": "Reject",
+      "code": "REQUEST_TOO_LARGE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/canonical.py",
+      "line": 86,
+      "callee": "Reject",
+      "code": "JSON_NUMBERS_UNSUPPORTED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/canonical.py",
+      "line": 92,
+      "callee": "Reject",
+      "code": "INVALID_JSON",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/canonical.py",
+      "line": 43,
+      "callee": "Reject",
+      "code": "INVALID_UNICODE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/canonical.py",
+      "line": 53,
+      "callee": "Reject",
+      "code": "UNSUPPORTED_CANONICAL_VALUE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/canonical.py",
+      "line": 82,
+      "callee": "Reject",
+      "code": "DUPLICATE_KEY",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/canonical.py",
+      "line": 50,
+      "callee": "Reject",
+      "code": "INVALID_KEY",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/capacity.py",
+      "line": 13,
+      "callee": "Reject",
+      "code": "MISSING_CAPACITY_POLICY",
+      "reviewed": true,
+      "requirement_ids": [
+        "R10"
+      ]
+    },
+    {
+      "path": "avcl/capacity.py",
+      "line": 25,
+      "callee": "Reject",
+      "code": "OPERATION_CAPACITY_EXCEEDED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R10"
+      ]
+    },
+    {
+      "path": "avcl/capacity.py",
+      "line": 28,
+      "callee": "Reject",
+      "code": "WORKFLOW_CAPACITY_EXCEEDED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R10"
+      ]
+    },
+    {
+      "path": "avcl/capacity.py",
+      "line": 31,
+      "callee": "Reject",
+      "code": "INVALID_CAPACITY_POLICY",
+      "reviewed": true,
+      "requirement_ids": [
+        "R10"
+      ]
+    },
+    {
+      "path": "avcl/capacity.py",
+      "line": 33,
+      "callee": "Reject",
+      "code": "CAPACITY_BELOW_COMMITMENT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R10"
+      ]
+    },
+    {
+      "path": "avcl/checks.py",
+      "line": 71,
+      "callee": "Diagnostic",
+      "code": "INVALID_CHECK_RESULT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/checks.py",
+      "line": 106,
+      "callee": "Reject",
+      "code": "CHECK_ARTIFACT_MISMATCH",
+      "reviewed": true,
+      "requirement_ids": [
+        "R13"
+      ]
+    },
+    {
+      "path": "avcl/checks.py",
+      "line": 69,
+      "callee": "Diagnostic",
+      "code": "INVALID_CHECK_INSTRUCTION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/contract.py",
+      "line": 118,
+      "callee": "Reject",
+      "code": "INVALID_CONTRACT_ID",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/contract.py",
+      "line": 122,
+      "callee": "Reject",
+      "code": "EMPTY_CONTRACT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/contract.py",
+      "line": 152,
+      "callee": "Reject",
+      "code": "INVALID_ACCOUNT_LIMITS",
+      "reviewed": true,
+      "requirement_ids": [
+        "R04"
+      ]
+    },
+    {
+      "path": "avcl/contract.py",
+      "line": 153,
+      "callee": "Reject",
+      "code": "INVALID_ACCOUNT_LIMITS",
+      "reviewed": true,
+      "requirement_ids": [
+        "R04"
+      ]
+    },
+    {
+      "path": "avcl/contract.py",
+      "line": 166,
+      "callee": "Reject",
+      "code": "INVALID_CONTRACT_DOCUMENT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/contract.py",
+      "line": 170,
+      "callee": "Reject",
+      "code": "INVALID_DECLARATION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/contract.py",
+      "line": 185,
+      "callee": "Reject",
+      "code": "UNSUPPORTED_CONTRACT_VERSION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/contract.py",
+      "line": 195,
+      "callee": "Reject",
+      "code": "INVALID_SOURCE_MAP",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/contract.py",
+      "line": 209,
+      "callee": "Reject",
+      "code": "INVALID_CONTRACT_DOCUMENT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/contract.py",
+      "line": 120,
+      "callee": "Reject",
+      "code": "INVALID_DECLARATION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/contract.py",
+      "line": 121,
+      "callee": "Reject",
+      "code": "DUPLICATE_OR_INVALID_DECLARATION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/contract.py",
+      "line": 125,
+      "callee": "Reject",
+      "code": "INVALID_TOOL_DECLARATION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/contract.py",
+      "line": 127,
+      "callee": "Reject",
+      "code": "INVALID_VALIDATOR",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/contract.py",
+      "line": 130,
+      "callee": "Reject",
+      "code": "INVALID_ASSUMPTION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/contract.py",
+      "line": 231,
+      "callee": "Reject",
+      "code": "INVALID_CONTRACT_CONTEXT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/contract.py",
+      "line": 134,
+      "callee": "Reject",
+      "code": "UNSUPPORTED_CLAUSE_KIND",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/contract.py",
+      "line": 135,
+      "callee": "Reject",
+      "code": "INVALID_CLAUSE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/contract.py",
+      "line": 137,
+      "callee": "Reject",
+      "code": "INVALID_CLAUSE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/contract.py",
+      "line": 138,
+      "callee": "Reject",
+      "code": "INVALID_CLAUSE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/contract.py",
+      "line": 145,
+      "callee": "Reject",
+      "code": "REQUIREMENT_MAPPING_MISMATCH",
+      "reviewed": true,
+      "requirement_ids": [
+        "R13"
+      ]
+    },
+    {
+      "path": "avcl/contract.py",
+      "line": 159,
+      "callee": "Reject",
+      "code": "UNCOVERED_TOOL_EVENT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/contract.py",
+      "line": 200,
+      "callee": "Reject",
+      "code": "INVALID_SOURCE_MAP",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/contract.py",
+      "line": 141,
+      "callee": "Reject",
+      "code": "INVALID_SAFETY_SELECTOR",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/contract.py",
+      "line": 143,
+      "callee": "Reject",
+      "code": "COMPLETION_IS_NOT_AUTHORIZATION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09",
+        "R10"
+      ]
+    },
+    {
+      "path": "avcl/contract.py",
+      "line": 108,
+      "callee": "Reject",
+      "code": "CONFLICTING_CONTEXT_TYPE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/contract_smt.py",
+      "line": 80,
+      "callee": "Reject",
+      "code": "INVALID_SMT_LIMIT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/contract_smt.py",
+      "line": 145,
+      "callee": "Reject",
+      "code": "CONFLICTING_CONTEXT_TYPE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/delegation.py",
+      "line": 31,
+      "callee": "Reject",
+      "code": "INVALID_DELEGATION_CHAIN",
+      "reviewed": true,
+      "requirement_ids": [
+        "R11"
+      ]
+    },
+    {
+      "path": "avcl/delegation.py",
+      "line": 37,
+      "callee": "Reject",
+      "code": "SCOPE_DENIED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01",
+        "R02"
+      ]
+    },
+    {
+      "path": "avcl/delegation.py",
+      "line": 41,
+      "callee": "Reject",
+      "code": "INVALID_SUBJECT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R11"
+      ]
+    },
+    {
+      "path": "avcl/delegation.py",
+      "line": 46,
+      "callee": "Reject",
+      "code": "AUTH_DENIED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01",
+        "R02"
+      ]
+    },
+    {
+      "path": "avcl/delegation.py",
+      "line": 53,
+      "callee": "Reject",
+      "code": "INVALID_DELEGATION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R11"
+      ]
+    },
+    {
+      "path": "avcl/delegation.py",
+      "line": 54,
+      "callee": "Reject",
+      "code": "DELEGATION_ROOT_ALREADY_USED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R11"
+      ]
+    },
+    {
+      "path": "avcl/delegation.py",
+      "line": 55,
+      "callee": "Reject",
+      "code": "AUTH_DENIED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01",
+        "R02"
+      ]
+    },
+    {
+      "path": "avcl/delegation.py",
+      "line": 57,
+      "callee": "Reject",
+      "code": "BUDGET_EXCEEDED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R04"
+      ]
+    },
+    {
+      "path": "avcl/delegation.py",
+      "line": 66,
+      "callee": "Reject",
+      "code": "AUTH_DENIED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01",
+        "R02"
+      ]
+    },
+    {
+      "path": "avcl/delegation.py",
+      "line": 73,
+      "callee": "Reject",
+      "code": "INVALID_DELEGATION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R11"
+      ]
+    },
+    {
+      "path": "avcl/delegation.py",
+      "line": 74,
+      "callee": "Reject",
+      "code": "INVALID_DELEGATION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R11"
+      ]
+    },
+    {
+      "path": "avcl/delegation.py",
+      "line": 76,
+      "callee": "Reject",
+      "code": "INVALID_DELEGATION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R11"
+      ]
+    },
+    {
+      "path": "avcl/delegation.py",
+      "line": 80,
+      "callee": "Reject",
+      "code": "INVALID_DELEGATION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R11"
+      ]
+    },
+    {
+      "path": "avcl/delegation.py",
+      "line": 82,
+      "callee": "Reject",
+      "code": "INVALID_DELEGATION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R11"
+      ]
+    },
+    {
+      "path": "avcl/delegation.py",
+      "line": 93,
+      "callee": "Reject",
+      "code": "CLOCK_ROLLBACK",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/delegation.py",
+      "line": 94,
+      "callee": "Reject",
+      "code": "ASSUMPTION_BROKEN",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/delegation.py",
+      "line": 95,
+      "callee": "Reject",
+      "code": "POLICY_EXPIRED_OR_NOT_YET_VALID",
+      "reviewed": true,
+      "requirement_ids": [
+        "R06"
+      ]
+    },
+    {
+      "path": "avcl/delegation.py",
+      "line": 97,
+      "callee": "Reject",
+      "code": "AUTH_DENIED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01",
+        "R02"
+      ]
+    },
+    {
+      "path": "avcl/delegation.py",
+      "line": 99,
+      "callee": "Reject",
+      "code": "AUTH_DENIED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01",
+        "R02"
+      ]
+    },
+    {
+      "path": "avcl/delegation.py",
+      "line": 100,
+      "callee": "Reject",
+      "code": "DELEGATION_DEPTH_EXCEEDED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R11"
+      ]
+    },
+    {
+      "path": "avcl/delegation.py",
+      "line": 103,
+      "callee": "Reject",
+      "code": "DELEGATION_NOT_ATTENUATED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R11"
+      ]
+    },
+    {
+      "path": "avcl/delegation.py",
+      "line": 110,
+      "callee": "Reject",
+      "code": "BUDGET_EXCEEDED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R04"
+      ]
+    },
+    {
+      "path": "avcl/delegation.py",
+      "line": 124,
+      "callee": "Reject",
+      "code": "INVALID_COST_VECTOR",
+      "reviewed": true,
+      "requirement_ids": [
+        "R04"
+      ]
+    },
+    {
+      "path": "avcl/delegation.py",
+      "line": 126,
+      "callee": "Reject",
+      "code": "INVALID_DELEGATION_RESERVATION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R04",
+        "R11"
+      ]
+    },
+    {
+      "path": "avcl/delegation.py",
+      "line": 18,
+      "callee": "Reject",
+      "code": "INVALID_DELEGATION_CHAIN",
+      "reviewed": true,
+      "requirement_ids": [
+        "R11"
+      ]
+    },
+    {
+      "path": "avcl/delegation.py",
+      "line": 21,
+      "callee": "Reject",
+      "code": "INVALID_DELEGATION_CHAIN",
+      "reviewed": true,
+      "requirement_ids": [
+        "R11"
+      ]
+    },
+    {
+      "path": "avcl/delegation.py",
+      "line": 22,
+      "callee": "Reject",
+      "code": "INVALID_DELEGATION_CHAIN",
+      "reviewed": true,
+      "requirement_ids": [
+        "R11"
+      ]
+    },
+    {
+      "path": "avcl/delegation.py",
+      "line": 24,
+      "callee": "Reject",
+      "code": "AUTH_DENIED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01",
+        "R02"
+      ]
+    },
+    {
+      "path": "avcl/delegation.py",
+      "line": 79,
+      "callee": "Reject",
+      "code": "INVALID_DELEGATION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R11"
+      ]
+    },
+    {
+      "path": "avcl/delegation.py",
+      "line": 107,
+      "callee": "Reject",
+      "code": "IDEMPOTENCY_CONFLICT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02",
+        "R08"
+      ]
+    },
+    {
+      "path": "avcl/delegation.py",
+      "line": 29,
+      "callee": "Reject",
+      "code": "INVALID_DELEGATION_CHAIN",
+      "reviewed": true,
+      "requirement_ids": [
+        "R11"
+      ]
+    },
+    {
+      "path": "avcl/evaluation.py",
+      "line": 83,
+      "callee": "Reject",
+      "code": "EVALUATION_TYPE_OR_RANGE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/evaluation.py",
+      "line": 106,
+      "callee": "Reject",
+      "code": "INVALID_CHECK_INSTRUCTION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/evaluation.py",
+      "line": 49,
+      "callee": "Reject",
+      "code": "INVALID_EVALUATION_BUDGET",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/evaluation.py",
+      "line": 68,
+      "callee": "Reject",
+      "code": "EVALUATION_TYPE_OR_RANGE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/evaluation.py",
+      "line": 30,
+      "callee": "Reject",
+      "code": "INVALID_EVALUATION_BUDGET",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/evaluation.py",
+      "line": 35,
+      "callee": "Reject",
+      "code": "INVALID_EVALUATION_BUDGET",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/gateway.py",
+      "line": 90,
+      "callee": "Reject",
+      "code": "ENDPOINT_NOT_FOUND",
+      "reviewed": true,
+      "requirement_ids": []
+    },
+    {
+      "path": "avcl/gateway.py",
+      "line": 36,
+      "callee": "Reject",
+      "code": "INVALID_API_CREDENTIAL",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01"
+      ]
+    },
+    {
+      "path": "avcl/gateway.py",
+      "line": 56,
+      "callee": "Reject",
+      "code": "INVALID_CHECKED_REQUEST",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02"
+      ]
+    },
+    {
+      "path": "avcl/gateway.py",
+      "line": 39,
+      "callee": "Reject",
+      "code": "INVALID_API_CREDENTIAL",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01"
+      ]
+    },
+    {
+      "path": "avcl/gateway.py",
+      "line": 49,
+      "callee": "Reject",
+      "code": "UNTRUSTED_REFERENCE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01"
+      ]
+    },
+    {
+      "path": "avcl/gateway.py",
+      "line": 60,
+      "callee": "Reject",
+      "code": "INVALID_CHECKED_REQUEST",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02"
+      ]
+    },
+    {
+      "path": "avcl/gateway.py",
+      "line": 72,
+      "callee": "Reject",
+      "code": "INVALID_CREDENTIAL",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01"
+      ]
+    },
+    {
+      "path": "avcl/gateway.py",
+      "line": 111,
+      "callee": "Reject",
+      "code": "INVALID_CREDENTIAL",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01"
+      ]
+    },
+    {
+      "path": "avcl/gateway.py",
+      "line": 113,
+      "callee": "Reject",
+      "code": "INVALID_CREDENTIAL",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01"
+      ]
+    },
+    {
+      "path": "avcl/gateway.py",
+      "line": 96,
+      "callee": "Reject",
+      "code": "OPERATION_NOT_FOUND",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01",
+        "R02"
+      ]
+    },
+    {
+      "path": "avcl/gateway.py",
+      "line": 117,
+      "callee": "Reject",
+      "code": "INVALID_REQUEST",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/gateway.py",
+      "line": 138,
+      "callee": "Reject",
+      "code": "INVALID_CREDENTIAL",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01"
+      ]
+    },
+    {
+      "path": "avcl/gateway.py",
+      "line": 143,
+      "callee": "Reject",
+      "code": "INVALID_CREDENTIAL",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01"
+      ]
+    },
+    {
+      "path": "avcl/gateway.py",
+      "line": 144,
+      "callee": "Reject",
+      "code": "API_SCOPE_DENIED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01"
+      ]
+    },
+    {
+      "path": "avcl/gateway.py",
+      "line": 153,
+      "callee": "Reject",
+      "code": "CLOCK_ROLLBACK",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/gateway.py",
+      "line": 121,
+      "callee": "Reject",
+      "code": "INVALID_REQUEST",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/gateway.py",
+      "line": 123,
+      "callee": "Reject",
+      "code": "INVALID_REQUEST",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/gateway.py",
+      "line": 128,
+      "callee": "Reject",
+      "code": "INVALID_REQUEST",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/gateway.py",
+      "line": 160,
+      "callee": "Reject",
+      "code": "IDEMPOTENCY_CONFLICT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02",
+        "R08"
+      ]
+    },
+    {
+      "path": "avcl/gateway.py",
+      "line": 164,
+      "callee": "Reject",
+      "code": "AUTH_DENIED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01",
+        "R02"
+      ]
+    },
+    {
+      "path": "avcl/gateway.py",
+      "line": 165,
+      "callee": "Reject",
+      "code": "STALE_EVIDENCE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02",
+        "R03"
+      ]
+    },
+    {
+      "path": "avcl/gateway.py",
+      "line": 167,
+      "callee": "Reject",
+      "code": "AUTH_DENIED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01",
+        "R02"
+      ]
+    },
+    {
+      "path": "avcl/gateway.py",
+      "line": 168,
+      "callee": "Reject",
+      "code": "BINDING_MISMATCH",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02"
+      ]
+    },
+    {
+      "path": "avcl/gateway.py",
+      "line": 131,
+      "callee": "Reject",
+      "code": "INVALID_REQUEST",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/gateway.py",
+      "line": 132,
+      "callee": "Reject",
+      "code": "INVALID_REQUEST",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/gateway.py",
+      "line": 174,
+      "callee": "Reject",
+      "code": "UNSUPPORTED_GUARANTEE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/gateway.py",
+      "line": 177,
+      "callee": "Reject",
+      "code": "INVALID_TRANSITION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R08"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 117,
+      "callee": "error",
+      "code": "INVALID_METADATA",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 118,
+      "callee": "error",
+      "code": "INVALID_FIELD_SCHEMA",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 195,
+      "callee": "error",
+      "code": "PREDICATE_NOT_BOOLEAN",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 220,
+      "callee": "Reject",
+      "code": "INVALID_IR_DOCUMENT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 221,
+      "callee": "Reject",
+      "code": "UNSUPPORTED_IR_VERSION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 222,
+      "callee": "Reject",
+      "code": "INVALID_FIELD_SCHEMA",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 49,
+      "callee": "Diagnostic",
+      "code": "EVALUATION_FIELDS",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 86,
+      "callee": "Diagnostic",
+      "code": "UNSUPPORTED_NODE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 124,
+      "callee": "error",
+      "code": "INVALID_FIELD_SCHEMA",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 137,
+      "callee": "error",
+      "code": "PREDICATE_LIMIT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 138,
+      "callee": "error",
+      "code": "INVALID_AST",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 158,
+      "callee": "error",
+      "code": "UNSUPPORTED_NODE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 160,
+      "callee": "error",
+      "code": "INVALID_AST",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 233,
+      "callee": "fail",
+      "code": "PREDICATE_LIMIT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 234,
+      "callee": "fail",
+      "code": "INVALID_NODE_ID",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 248,
+      "callee": "Reject",
+      "code": "INVALID_SOURCE_MAP",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 53,
+      "callee": "Diagnostic",
+      "code": "EVALUATION_FIELDS",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 59,
+      "callee": "Diagnostic",
+      "code": "EVALUATION_TYPE_OR_RANGE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 121,
+      "callee": "error",
+      "code": "INVALID_FIELD_SCHEMA",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 128,
+      "callee": "error",
+      "code": "CONFLICTING_NOMINAL_TYPE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 141,
+      "callee": "error",
+      "code": "INVALID_AST",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 154,
+      "callee": "error",
+      "code": "UNKNOWN_FIELD",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 169,
+      "callee": "error",
+      "code": "UNKNOWN_FIELD",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 237,
+      "callee": "fail",
+      "code": "INVALID_AST",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 145,
+      "callee": "error",
+      "code": "INVALID_LITERAL",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 148,
+      "callee": "error",
+      "code": "INVALID_LITERAL",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 150,
+      "callee": "error",
+      "code": "INVALID_LITERAL",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 172,
+      "callee": "error",
+      "code": "PREDICATE_TYPE_ERROR",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 242,
+      "callee": "fail",
+      "code": "INVALID_AST",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 174,
+      "callee": "error",
+      "code": "PREDICATE_TYPE_ERROR",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 177,
+      "callee": "error",
+      "code": "PREDICATE_TYPE_ERROR",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 179,
+      "callee": "error",
+      "code": "UNGUARDED_OPTION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 182,
+      "callee": "error",
+      "code": "PREDICATE_TYPE_ERROR",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 184,
+      "callee": "error",
+      "code": "PREDICATE_TYPE_ERROR",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 186,
+      "callee": "error",
+      "code": "PREDICATE_TYPE_ERROR",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 187,
+      "callee": "error",
+      "code": "NONLINEAR_UNSUPPORTED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir_types.py",
+      "line": 14,
+      "callee": "Reject",
+      "code": "INVALID_IR_INTEGER",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir_types.py",
+      "line": 169,
+      "callee": "Reject",
+      "code": "INVALID_FIELD_SCHEMA",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir_types.py",
+      "line": 186,
+      "callee": "Reject",
+      "code": "INVALID_FIELD_SCHEMA",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir_types.py",
+      "line": 46,
+      "callee": "Reject",
+      "code": "INVALID_FIELD_SCHEMA",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir_types.py",
+      "line": 48,
+      "callee": "Reject",
+      "code": "INVALID_FIELD_SCHEMA",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir_types.py",
+      "line": 50,
+      "callee": "Reject",
+      "code": "INVALID_FIELD_SCHEMA",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir_types.py",
+      "line": 123,
+      "callee": "Reject",
+      "code": "EVALUATION_TYPE_OR_RANGE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir_types.py",
+      "line": 173,
+      "callee": "Reject",
+      "code": "INVALID_FIELD_SCHEMA",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir_types.py",
+      "line": 178,
+      "callee": "Reject",
+      "code": "INVALID_FIELD_SCHEMA",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir_types.py",
+      "line": 182,
+      "callee": "Reject",
+      "code": "INVALID_FIELD_SCHEMA",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir_types.py",
+      "line": 52,
+      "callee": "Reject",
+      "code": "INVALID_FIELD_SCHEMA",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir_types.py",
+      "line": 53,
+      "callee": "Reject",
+      "code": "INVALID_FIELD_SCHEMA",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir_types.py",
+      "line": 56,
+      "callee": "Reject",
+      "code": "INVALID_FIELD_SCHEMA",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir_types.py",
+      "line": 57,
+      "callee": "Reject",
+      "code": "INVALID_FIELD_SCHEMA",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir_types.py",
+      "line": 59,
+      "callee": "Reject",
+      "code": "INVALID_FIELD_SCHEMA",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir_types.py",
+      "line": 65,
+      "callee": "Reject",
+      "code": "INVALID_FIELD_SCHEMA",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir_types.py",
+      "line": 66,
+      "callee": "Reject",
+      "code": "INVALID_FIELD_SCHEMA",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir_types.py",
+      "line": 68,
+      "callee": "Reject",
+      "code": "INVALID_FIELD_SCHEMA",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir_types.py",
+      "line": 70,
+      "callee": "Reject",
+      "code": "INVALID_FIELD_SCHEMA",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir_types.py",
+      "line": 63,
+      "callee": "Reject",
+      "code": "INVALID_FIELD_SCHEMA",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir_types.py",
+      "line": 154,
+      "callee": "Reject",
+      "code": "INVALID_IR_VALUE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir_types.py",
+      "line": 86,
+      "callee": "Reject",
+      "code": "EVALUATION_TYPE_OR_RANGE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir_types.py",
+      "line": 157,
+      "callee": "Reject",
+      "code": "INVALID_IR_VALUE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir_types.py",
+      "line": 159,
+      "callee": "Reject",
+      "code": "INVALID_IR_VALUE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir_types.py",
+      "line": 104,
+      "callee": "Reject",
+      "code": "EVALUATION_TYPE_OR_RANGE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir_types.py",
+      "line": 162,
+      "callee": "Reject",
+      "code": "INVALID_IR_VALUE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir_types.py",
+      "line": 164,
+      "callee": "Reject",
+      "code": "DUPLICATE_SET_ELEMENT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir_types.py",
+      "line": 94,
+      "callee": "Reject",
+      "code": "EVALUATION_TYPE_OR_RANGE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir_types.py",
+      "line": 97,
+      "callee": "Reject",
+      "code": "EVALUATION_TYPE_OR_RANGE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir_types.py",
+      "line": 103,
+      "callee": "Reject",
+      "code": "EVALUATION_TYPE_OR_RANGE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir_types.py",
+      "line": 112,
+      "callee": "Reject",
+      "code": "EVALUATION_TYPE_OR_RANGE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir_types.py",
+      "line": 100,
+      "callee": "Reject",
+      "code": "EVALUATION_TYPE_OR_RANGE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/ir_types.py",
+      "line": 116,
+      "callee": "Reject",
+      "code": "EVALUATION_TYPE_OR_RANGE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/package.py",
+      "line": 40,
+      "callee": "Reject",
+      "code": "INVALID_PACKAGE_FILES",
+      "reviewed": true,
+      "requirement_ids": [
+        "R13"
+      ]
+    },
+    {
+      "path": "avcl/package.py",
+      "line": 51,
+      "callee": "Reject",
+      "code": "INVALID_PACKAGE_MANIFEST",
+      "reviewed": true,
+      "requirement_ids": [
+        "R13"
+      ]
+    },
+    {
+      "path": "avcl/package.py",
+      "line": 52,
+      "callee": "Reject",
+      "code": "UNTRUSTED_POLICY_DIGEST",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01",
+        "R06"
+      ]
+    },
+    {
+      "path": "avcl/package.py",
+      "line": 53,
+      "callee": "Reject",
+      "code": "PACKAGE_HASH_MISMATCH",
+      "reviewed": true,
+      "requirement_ids": [
+        "R13"
+      ]
+    },
+    {
+      "path": "avcl/package.py",
+      "line": 61,
+      "callee": "Reject",
+      "code": "PACKAGE_BINDING_MISMATCH",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02",
+        "R13"
+      ]
+    },
+    {
+      "path": "avcl/package.py",
+      "line": 44,
+      "callee": "Reject",
+      "code": "INVALID_PACKAGE_FILES",
+      "reviewed": true,
+      "requirement_ids": [
+        "R13"
+      ]
+    },
+    {
+      "path": "avcl/package.py",
+      "line": 47,
+      "callee": "Reject",
+      "code": "INVALID_PACKAGE_ENCODING",
+      "reviewed": true,
+      "requirement_ids": [
+        "R13"
+      ]
+    },
+    {
+      "path": "avcl/package.py",
+      "line": 59,
+      "callee": "Reject",
+      "code": "INVALID_PACKAGE_ENCODING",
+      "reviewed": true,
+      "requirement_ids": [
+        "R13"
+      ]
+    },
+    {
+      "path": "avcl/policy.py",
+      "line": 30,
+      "callee": "Reject",
+      "code": "INVALID_SIGNING_CONFIGURATION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01"
+      ]
+    },
+    {
+      "path": "avcl/policy.py",
+      "line": 45,
+      "callee": "Reject",
+      "code": "ASSUMPTION_BROKEN",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/policy.py",
+      "line": 48,
+      "callee": "Reject",
+      "code": "INVALID_POLICY_VALIDITY",
+      "reviewed": true,
+      "requirement_ids": [
+        "R06"
+      ]
+    },
+    {
+      "path": "avcl/policy.py",
+      "line": 52,
+      "callee": "Reject",
+      "code": "INCOMPLETE_REQUIREMENT_REVIEW",
+      "reviewed": true,
+      "requirement_ids": [
+        "R13"
+      ]
+    },
+    {
+      "path": "avcl/policy.py",
+      "line": 54,
+      "callee": "Reject",
+      "code": "HARD_CLAUSE_WITHOUT_APPROVED_CHECK",
+      "reviewed": true,
+      "requirement_ids": [
+        "R13"
+      ]
+    },
+    {
+      "path": "avcl/policy.py",
+      "line": 55,
+      "callee": "Reject",
+      "code": "MISSING_NONVACUITY_WITNESS",
+      "reviewed": true,
+      "requirement_ids": [
+        "R15"
+      ]
+    },
+    {
+      "path": "avcl/policy.py",
+      "line": 79,
+      "callee": "Reject",
+      "code": "UNSUPPORTED_SIGNED_POLICY",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01",
+        "R06"
+      ]
+    },
+    {
+      "path": "avcl/policy.py",
+      "line": 82,
+      "callee": "Reject",
+      "code": "INVALID_POLICY_SIGNATURE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01",
+        "R06"
+      ]
+    },
+    {
+      "path": "avcl/policy.py",
+      "line": 85,
+      "callee": "Reject",
+      "code": "POLICY_EXPIRED_OR_NOT_YET_VALID",
+      "reviewed": true,
+      "requirement_ids": [
+        "R06"
+      ]
+    },
+    {
+      "path": "avcl/policy.py",
+      "line": 88,
+      "callee": "Reject",
+      "code": "MISSING_CLAUSE_ARTIFACT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R13"
+      ]
+    },
+    {
+      "path": "avcl/policy.py",
+      "line": 91,
+      "callee": "Reject",
+      "code": "POLICY_APPROVAL_MISMATCH",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02"
+      ]
+    },
+    {
+      "path": "avcl/policy.py",
+      "line": 92,
+      "callee": "Reject",
+      "code": "MISSING_NONVACUITY_WITNESS",
+      "reviewed": true,
+      "requirement_ids": [
+        "R15"
+      ]
+    },
+    {
+      "path": "avcl/policy.py",
+      "line": 33,
+      "callee": "Reject",
+      "code": "INVALID_AUTHORITY_REGISTRY",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01"
+      ]
+    },
+    {
+      "path": "avcl/policy.py",
+      "line": 41,
+      "callee": "Reject",
+      "code": "TOOL_DEPENDENCY_MISMATCH",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/policy.py",
+      "line": 43,
+      "callee": "Reject",
+      "code": "VALIDATOR_DEPENDENCY_MISMATCH",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/policy.py",
+      "line": 65,
+      "callee": "Reject",
+      "code": "INVALID_NONVACUITY_WITNESS",
+      "reviewed": true,
+      "requirement_ids": [
+        "R15"
+      ]
+    },
+    {
+      "path": "avcl/policy.py",
+      "line": 96,
+      "callee": "Reject",
+      "code": "INVALID_NONVACUITY_WITNESS",
+      "reviewed": true,
+      "requirement_ids": [
+        "R15"
+      ]
+    },
+    {
+      "path": "avcl/policy.py",
+      "line": 64,
+      "callee": "Reject",
+      "code": "INVALID_NONVACUITY_WITNESS",
+      "reviewed": true,
+      "requirement_ids": [
+        "R15"
+      ]
+    },
+    {
+      "path": "avcl/policy.py",
+      "line": 99,
+      "callee": "Reject",
+      "code": "INVALID_NONVACUITY_WITNESS",
+      "reviewed": true,
+      "requirement_ids": [
+        "R15"
+      ]
+    },
+    {
+      "path": "avcl/policy.py",
+      "line": 61,
+      "callee": "Reject",
+      "code": "CONFLICTING_CONTEXT_TYPE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/postgres.py",
+      "line": 37,
+      "callee": "Reject",
+      "code": "INVALID_DATABASE_SCHEMA",
+      "reviewed": true,
+      "requirement_ids": []
+    },
+    {
+      "path": "avcl/postgres.py",
+      "line": 38,
+      "callee": "Reject",
+      "code": "INVALID_TENANT",
+      "reviewed": true,
+      "requirement_ids": []
+    },
+    {
+      "path": "avcl/postgres.py",
+      "line": 92,
+      "callee": "Reject",
+      "code": "CORRUPT_POLICY_SNAPSHOT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/postgres.py",
+      "line": 111,
+      "callee": "Reject",
+      "code": "CORRUPT_PERMIT_PROJECTION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R08"
+      ]
+    },
+    {
+      "path": "avcl/postgres.py",
+      "line": 122,
+      "callee": "Reject",
+      "code": "CORRUPT_AUDIT_SEQUENCE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R16"
+      ]
+    },
+    {
+      "path": "avcl/postgres.py",
+      "line": 243,
+      "callee": "Reject",
+      "code": "INVALID_LEASE",
+      "reviewed": true,
+      "requirement_ids": []
+    },
+    {
+      "path": "avcl/postgres.py",
+      "line": 244,
+      "callee": "Reject",
+      "code": "INVALID_RECEIPT_MODE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R16"
+      ]
+    },
+    {
+      "path": "avcl/postgres.py",
+      "line": 308,
+      "callee": "Reject",
+      "code": "INVALID_OBSERVATION_BINDING",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02"
+      ]
+    },
+    {
+      "path": "avcl/postgres.py",
+      "line": 46,
+      "callee": "Reject",
+      "code": "UNSUPPORTED_DATABASE_VERSION",
+      "reviewed": true,
+      "requirement_ids": []
+    },
+    {
+      "path": "avcl/postgres.py",
+      "line": 107,
+      "callee": "Reject",
+      "code": "CORRUPT_OPERATION_PROJECTION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/postgres.py",
+      "line": 115,
+      "callee": "Reject",
+      "code": "CORRUPT_PERMIT_PROJECTION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R08"
+      ]
+    },
+    {
+      "path": "avcl/postgres.py",
+      "line": 246,
+      "callee": "Reject",
+      "code": "ASSUMPTION_BROKEN",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/postgres.py",
+      "line": 260,
+      "callee": "Reject",
+      "code": "ASSUMPTION_BROKEN",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/postgres.py",
+      "line": 53,
+      "callee": "Reject",
+      "code": "DATABASE_SCHEMA_MISMATCH",
+      "reviewed": true,
+      "requirement_ids": []
+    },
+    {
+      "path": "avcl/postgres.py",
+      "line": 186,
+      "callee": "Reject",
+      "code": "UNKNOWN_TENANT",
+      "reviewed": true,
+      "requirement_ids": []
+    },
+    {
+      "path": "avcl/postgres.py",
+      "line": 188,
+      "callee": "Reject",
+      "code": "INVALID_CLOCK",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/postgres.py",
+      "line": 190,
+      "callee": "Reject",
+      "code": "CLOCK_ROLLBACK",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/postgres.py",
+      "line": 199,
+      "callee": "Reject",
+      "code": "INVALID_REJECTION_CONTEXT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01",
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/receipt_envelope.py",
+      "line": 63,
+      "callee": "Reject",
+      "code": "INVALID_RECEIPT_ENVELOPE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09",
+        "R16"
+      ]
+    },
+    {
+      "path": "avcl/receipt_envelope.py",
+      "line": 65,
+      "callee": "Reject",
+      "code": "INVALID_RECEIPT_AUTHENTICATION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01",
+        "R16"
+      ]
+    },
+    {
+      "path": "avcl/receipt_envelope.py",
+      "line": 68,
+      "callee": "Reject",
+      "code": "INVALID_RECEIPT_AUTHENTICATION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01",
+        "R16"
+      ]
+    },
+    {
+      "path": "avcl/receipt_envelope.py",
+      "line": 70,
+      "callee": "Reject",
+      "code": "RECEIPT_AUTHORITY_SCOPE_MISMATCH",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02",
+        "R16"
+      ]
+    },
+    {
+      "path": "avcl/receipt_envelope.py",
+      "line": 71,
+      "callee": "Reject",
+      "code": "UNEXPECTED_ADAPTER_OBSERVATION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02"
+      ]
+    },
+    {
+      "path": "avcl/receipt_envelope.py",
+      "line": 74,
+      "callee": "Reject",
+      "code": "INVALID_OBSERVATION_BINDING",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02"
+      ]
+    },
+    {
+      "path": "avcl/receipt_envelope.py",
+      "line": 76,
+      "callee": "Reject",
+      "code": "RECEIPT_FROM_FUTURE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02",
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/receipt_envelope.py",
+      "line": 79,
+      "callee": "Reject",
+      "code": "INVALID_RECEIPT_ENVELOPE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09",
+        "R16"
+      ]
+    },
+    {
+      "path": "avcl/receipt_envelope.py",
+      "line": 80,
+      "callee": "Reject",
+      "code": "INVALID_RECEIPT_ENVELOPE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09",
+        "R16"
+      ]
+    },
+    {
+      "path": "avcl/receipt_envelope.py",
+      "line": 83,
+      "callee": "Reject",
+      "code": "INVALID_RECEIPT_ENVELOPE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09",
+        "R16"
+      ]
+    },
+    {
+      "path": "avcl/receipt_envelope.py",
+      "line": 85,
+      "callee": "Reject",
+      "code": "INVALID_COST_VECTOR",
+      "reviewed": true,
+      "requirement_ids": [
+        "R04"
+      ]
+    },
+    {
+      "path": "avcl/receipt_envelope.py",
+      "line": 43,
+      "callee": "Reject",
+      "code": "INVALID_RECEIPT_SIGNER",
+      "reviewed": true,
+      "requirement_ids": [
+        "R16"
+      ]
+    },
+    {
+      "path": "avcl/receipt_envelope.py",
+      "line": 47,
+      "callee": "Reject",
+      "code": "INVALID_RECEIPT_SOURCE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02",
+        "R16"
+      ]
+    },
+    {
+      "path": "avcl/receipt_envelope.py",
+      "line": 49,
+      "callee": "Reject",
+      "code": "INVALID_COST_VECTOR",
+      "reviewed": true,
+      "requirement_ids": [
+        "R04"
+      ]
+    },
+    {
+      "path": "avcl/receipt_envelope.py",
+      "line": 50,
+      "callee": "Reject",
+      "code": "INVALID_CUMULATIVE_COST",
+      "reviewed": true,
+      "requirement_ids": [
+        "R04"
+      ]
+    },
+    {
+      "path": "avcl/receipt_envelope.py",
+      "line": 82,
+      "callee": "Reject",
+      "code": "INVALID_RECEIPT_ENVELOPE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09",
+        "R16"
+      ]
+    },
+    {
+      "path": "avcl/rejection_audit.py",
+      "line": 37,
+      "callee": "Reject",
+      "code": "INVALID_AUDIT_POLICY",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/rejection_audit.py",
+      "line": 39,
+      "callee": "Reject",
+      "code": "INVALID_AUDIT_POLICY",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/rejection_audit.py",
+      "line": 49,
+      "callee": "Reject",
+      "code": "AUDIT_UNAVAILABLE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/rejection_audit.py",
+      "line": 56,
+      "callee": "Reject",
+      "code": "AUDIT_CAPACITY_EXCEEDED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/rejection_audit.py",
+      "line": 67,
+      "callee": "Reject",
+      "code": "AUDIT_RECORD_TOO_LARGE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/rejection_audit.py",
+      "line": 29,
+      "callee": "Reject",
+      "code": "INVALID_REJECTION_CONTEXT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01",
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 78,
+      "callee": "Reject",
+      "code": "UNTRUSTED_REFERENCE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 84,
+      "callee": "Reject",
+      "code": "AUTH_DENIED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01",
+        "R02"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 97,
+      "callee": "Reject",
+      "code": "ASSUMPTION_BROKEN",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 99,
+      "callee": "Reject",
+      "code": "POLICY_DENIED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 105,
+      "callee": "Reject",
+      "code": "AUTH_DENIED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01",
+        "R02"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 107,
+      "callee": "Reject",
+      "code": "SCOPE_DENIED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01",
+        "R02"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 111,
+      "callee": "Reject",
+      "code": "STALE_EVIDENCE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02",
+        "R03"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 114,
+      "callee": "Reject",
+      "code": "APPROVAL_MISMATCH",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 116,
+      "callee": "Reject",
+      "code": "POLICY_EXPIRED_OR_NOT_YET_VALID",
+      "reviewed": true,
+      "requirement_ids": [
+        "R06"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 142,
+      "callee": "Reject",
+      "code": "INVALID_REQUEST",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 145,
+      "callee": "Reject",
+      "code": "AUTH_DENIED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01",
+        "R02"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 147,
+      "callee": "Reject",
+      "code": "INVALID_TTL",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 149,
+      "callee": "Reject",
+      "code": "INVALID_REQUEST_ID",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 423,
+      "callee": "Reject",
+      "code": "INVALID_OBSERVATION_BINDING",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 444,
+      "callee": "Reject",
+      "code": "UNTRUSTED_OBSERVATION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R16"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 166,
+      "callee": "Reject",
+      "code": "BUSINESS_ACTION_CONFLICT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02",
+        "R08"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 168,
+      "callee": "Reject",
+      "code": "APPROVAL_CONSUMED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02",
+        "R08"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 207,
+      "callee": "Reject",
+      "code": "BINDING_MISMATCH",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 211,
+      "callee": "Reject",
+      "code": "INVALID_TRANSITION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R08"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 216,
+      "callee": "Reject",
+      "code": "STALE_PERMIT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R06",
+        "R08"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 219,
+      "callee": "Reject",
+      "code": "BINDING_MISMATCH",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 221,
+      "callee": "Reject",
+      "code": "ASSUMPTION_BROKEN",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 236,
+      "callee": "Reject",
+      "code": "NO_EFFECT_NOT_ESTABLISHED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R05",
+        "R07"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 313,
+      "callee": "Reject",
+      "code": "INVALID_ACCOUNT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R04"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 324,
+      "callee": "Reject",
+      "code": "INVALID_CAPABILITY",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 332,
+      "callee": "Reject",
+      "code": "INVALID_EVIDENCE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 334,
+      "callee": "Reject",
+      "code": "UNREGISTERED_VALIDATOR",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 342,
+      "callee": "Reject",
+      "code": "INVALID_APPROVAL",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 361,
+      "callee": "Reject",
+      "code": "NONMONOTONIC_POLICY_VERSION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R06"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 368,
+      "callee": "Reject",
+      "code": "UNSUPPORTED_RUNTIME_DEPENDENCIES",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 397,
+      "callee": "Reject",
+      "code": "INVALID_ASSUMPTION_HEALTH",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 407,
+      "callee": "Reject",
+      "code": "INVALID_TRANSITION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R08"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 458,
+      "callee": "Reject",
+      "code": "INVALID_OBSERVATION_BINDING",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 460,
+      "callee": "Reject",
+      "code": "INVALID_COST_VECTOR",
+      "reviewed": true,
+      "requirement_ids": [
+        "R04"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 464,
+      "callee": "Reject",
+      "code": "INVALID_COST_VECTOR",
+      "reviewed": true,
+      "requirement_ids": [
+        "R04"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 466,
+      "callee": "Reject",
+      "code": "TERMINAL_EFFECT_NOT_ESTABLISHED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R05"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 158,
+      "callee": "Reject",
+      "code": "IDEMPOTENCY_CONFLICT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02",
+        "R08"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 178,
+      "callee": "Reject",
+      "code": "BUDGET_EXCEEDED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R04"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 367,
+      "callee": "Reject",
+      "code": "FROZEN_CLAUSE_CHANGED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R06"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 377,
+      "callee": "Reject",
+      "code": "DELEGATION_QUOTA_IMMUTABLE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R04",
+        "R11"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 378,
+      "callee": "Reject",
+      "code": "POLICY_BUDGET_BELOW_COMMITMENT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R04"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 372,
+      "callee": "Reject",
+      "code": "UNSUPPORTED_RUNTIME_CONTEXT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 429,
+      "callee": "Reject",
+      "code": "UNEXPECTED_ADAPTER_OBSERVATION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02"
+      ]
+    },
+    {
+      "path": "avcl/runtime.py",
+      "line": 430,
+      "callee": "Reject",
+      "code": "AUTHENTICATED_RECEIPT_REQUIRED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R16"
+      ]
+    },
+    {
+      "path": "avcl/send_envelope.py",
+      "line": 56,
+      "callee": "Reject",
+      "code": "INVALID_SEND_VERIFIER",
+      "reviewed": true,
+      "requirement_ids": [
+        "R16"
+      ]
+    },
+    {
+      "path": "avcl/send_envelope.py",
+      "line": 66,
+      "callee": "Reject",
+      "code": "INVALID_SEND_ENVELOPE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09",
+        "R16"
+      ]
+    },
+    {
+      "path": "avcl/send_envelope.py",
+      "line": 69,
+      "callee": "Reject",
+      "code": "INVALID_SEND_AUTHENTICATION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01",
+        "R16"
+      ]
+    },
+    {
+      "path": "avcl/send_envelope.py",
+      "line": 72,
+      "callee": "Reject",
+      "code": "INVALID_SEND_AUTHENTICATION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01",
+        "R16"
+      ]
+    },
+    {
+      "path": "avcl/send_envelope.py",
+      "line": 75,
+      "callee": "Reject",
+      "code": "SEND_AUTHORITY_SCOPE_MISMATCH",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02",
+        "R16"
+      ]
+    },
+    {
+      "path": "avcl/send_envelope.py",
+      "line": 77,
+      "callee": "Reject",
+      "code": "INVALID_SEND_ENVELOPE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09",
+        "R16"
+      ]
+    },
+    {
+      "path": "avcl/send_envelope.py",
+      "line": 80,
+      "callee": "Reject",
+      "code": "SEND_REQUEST_BINDING_MISMATCH",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02"
+      ]
+    },
+    {
+      "path": "avcl/send_envelope.py",
+      "line": 85,
+      "callee": "Reject",
+      "code": "INVALID_SEND_ENVELOPE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09",
+        "R16"
+      ]
+    },
+    {
+      "path": "avcl/send_envelope.py",
+      "line": 87,
+      "callee": "Reject",
+      "code": "INVALID_SEND_ENVELOPE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09",
+        "R16"
+      ]
+    },
+    {
+      "path": "avcl/send_envelope.py",
+      "line": 88,
+      "callee": "Reject",
+      "code": "INVALID_REMOTE_CLOCK",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/send_envelope.py",
+      "line": 89,
+      "callee": "Reject",
+      "code": "SEND_ENVELOPE_NOT_YET_VALID",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02",
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/send_envelope.py",
+      "line": 90,
+      "callee": "Reject",
+      "code": "REMOTE_ACCEPTANCE_CLOSED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R05",
+        "R08"
+      ]
+    },
+    {
+      "path": "avcl/send_envelope.py",
+      "line": 83,
+      "callee": "Reject",
+      "code": "INVALID_SEND_ENVELOPE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09",
+        "R16"
+      ]
+    },
+    {
+      "path": "avcl/sending.py",
+      "line": 44,
+      "callee": "Reject",
+      "code": "NOT_ADMITTED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R08"
+      ]
+    },
+    {
+      "path": "avcl/sending.py",
+      "line": 47,
+      "callee": "Reject",
+      "code": "UNTRUSTED_OPERATION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R16"
+      ]
+    },
+    {
+      "path": "avcl/sending.py",
+      "line": 49,
+      "callee": "Reject",
+      "code": "BINDING_MISMATCH",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02"
+      ]
+    },
+    {
+      "path": "avcl/sending.py",
+      "line": 61,
+      "callee": "Reject",
+      "code": "INVALID_CLOCK",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/sending.py",
+      "line": 66,
+      "callee": "Reject",
+      "code": "CLOCK_ROLLBACK",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/sending.py",
+      "line": 22,
+      "callee": "Reject",
+      "code": "WORKFLOW_PERMIT_NOT_FRESH",
+      "reviewed": true,
+      "requirement_ids": [
+        "R06",
+        "R08"
+      ]
+    },
+    {
+      "path": "avcl/sending.py",
+      "line": 35,
+      "callee": "Reject",
+      "code": "WORKFLOW_SEND_NOT_AUTHORIZED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R16"
+      ]
+    },
+    {
+      "path": "avcl/sending.py",
+      "line": 36,
+      "callee": "Reject",
+      "code": "NESTED_SEND_CONTEXT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R16"
+      ]
+    },
+    {
+      "path": "avcl/sending.py",
+      "line": 54,
+      "callee": "Reject",
+      "code": "WORKFLOW_SEND_NOT_AUTHORIZED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R16"
+      ]
+    },
+    {
+      "path": "avcl/simulator.py",
+      "line": 59,
+      "callee": "Reject",
+      "code": "INVALID_REMOTE_CLOCK",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/simulator.py",
+      "line": 60,
+      "callee": "Reject",
+      "code": "REMOTE_CLOCK_ROLLBACK",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/simulator.py",
+      "line": 74,
+      "callee": "Reject",
+      "code": "REMOTE_ACCEPTANCE_CLOSED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R05",
+        "R08"
+      ]
+    },
+    {
+      "path": "avcl/simulator.py",
+      "line": 76,
+      "callee": "Reject",
+      "code": "REMOTE_IDEMPOTENCY_CONFLICT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02",
+        "R08"
+      ]
+    },
+    {
+      "path": "avcl/simulator.py",
+      "line": 79,
+      "callee": "Reject",
+      "code": "REMOTE_RETENTION_TOO_SHORT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R05",
+        "R08",
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/simulator.py",
+      "line": 102,
+      "callee": "Reject",
+      "code": "INELIGIBLE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02",
+        "R03"
+      ]
+    },
+    {
+      "path": "avcl/simulator.py",
+      "line": 108,
+      "callee": "Reject",
+      "code": "UNKNOWN_ORDER",
+      "reviewed": true,
+      "requirement_ids": [
+        "R03"
+      ]
+    },
+    {
+      "path": "avcl/simulator.py",
+      "line": 129,
+      "callee": "Reject",
+      "code": "NOT_ADMITTED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R08"
+      ]
+    },
+    {
+      "path": "avcl/simulator.py",
+      "line": 159,
+      "callee": "Reject",
+      "code": "SIGNED_CANCEL_UNSUPPORTED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R07"
+      ]
+    },
+    {
+      "path": "avcl/simulator.py",
+      "line": 161,
+      "callee": "Reject",
+      "code": "NOT_ADMITTED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R08"
+      ]
+    },
+    {
+      "path": "avcl/simulator.py",
+      "line": 165,
+      "callee": "Reject",
+      "code": "REMOTE_IDEMPOTENCY_CONFLICT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02",
+        "R08"
+      ]
+    },
+    {
+      "path": "avcl/simulator.py",
+      "line": 135,
+      "callee": "Reject",
+      "code": "REMOTE_IDEMPOTENCY_CONFLICT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02",
+        "R08"
+      ]
+    },
+    {
+      "path": "avcl/smt.py",
+      "line": 327,
+      "callee": "Reject",
+      "code": "INVALID_SMT_LIMIT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/storage_codec.py",
+      "line": 20,
+      "callee": "Reject",
+      "code": "UNSUPPORTED_STORAGE_VALUE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/storage_codec.py",
+      "line": 47,
+      "callee": "Reject",
+      "code": "INVALID_STORAGE_VALUE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/storage_codec.py",
+      "line": 23,
+      "callee": "Reject",
+      "code": "INVALID_STORAGE_DEPTH",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/storage_codec.py",
+      "line": 25,
+      "callee": "Reject",
+      "code": "INVALID_STORAGE_VALUE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/storage_codec.py",
+      "line": 28,
+      "callee": "Reject",
+      "code": "INVALID_STORAGE_INTEGER",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/storage_codec.py",
+      "line": 35,
+      "callee": "Reject",
+      "code": "INVALID_STORAGE_SEQUENCE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/storage_codec.py",
+      "line": 45,
+      "callee": "Reject",
+      "code": "INVALID_STORAGE_RECORD",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/storage_codec.py",
+      "line": 32,
+      "callee": "Reject",
+      "code": "INVALID_STORAGE_ENUM",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/storage_codec.py",
+      "line": 40,
+      "callee": "Reject",
+      "code": "INVALID_STORAGE_SEQUENCE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/storage_codec.py",
+      "line": 39,
+      "callee": "Reject",
+      "code": "INVALID_STORAGE_SEQUENCE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/supervision.py",
+      "line": 44,
+      "callee": "Reject",
+      "code": "INVALID_LEASE",
+      "reviewed": true,
+      "requirement_ids": []
+    },
+    {
+      "path": "avcl/supervision.py",
+      "line": 57,
+      "callee": "Reject",
+      "code": "STALE_OBLIGATION_CLAIM",
+      "reviewed": true,
+      "requirement_ids": [
+        "R10"
+      ]
+    },
+    {
+      "path": "avcl/supervision.py",
+      "line": 59,
+      "callee": "Reject",
+      "code": "STALE_OBLIGATION_CLAIM",
+      "reviewed": true,
+      "requirement_ids": [
+        "R10"
+      ]
+    },
+    {
+      "path": "avcl/supervision.py",
+      "line": 63,
+      "callee": "Reject",
+      "code": "INVALID_RETRY",
+      "reviewed": true,
+      "requirement_ids": [
+        "R10"
+      ]
+    },
+    {
+      "path": "avcl/supervision.py",
+      "line": 72,
+      "callee": "Reject",
+      "code": "INVALID_HANDOFF_RECEIVER",
+      "reviewed": true,
+      "requirement_ids": [
+        "R10"
+      ]
+    },
+    {
+      "path": "avcl/supervision.py",
+      "line": 81,
+      "callee": "Reject",
+      "code": "INVALID_HANDOFF_ACK",
+      "reviewed": true,
+      "requirement_ids": [
+        "R10"
+      ]
+    },
+    {
+      "path": "avcl/supervision.py",
+      "line": 101,
+      "callee": "Reject",
+      "code": "UNSUPPORTED_RECONCILIATION_ADAPTER",
+      "reviewed": true,
+      "requirement_ids": [
+        "R10"
+      ]
+    },
+    {
+      "path": "avcl/supervision.py",
+      "line": 74,
+      "callee": "Reject",
+      "code": "INVALID_HANDOFF_RECEIVER",
+      "reviewed": true,
+      "requirement_ids": [
+        "R10"
+      ]
+    },
+    {
+      "path": "avcl/supervision.py",
+      "line": 89,
+      "callee": "Reject",
+      "code": "UNAUTHORIZED_HANDOFF_RECEIVER",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01",
+        "R10"
+      ]
+    },
+    {
+      "path": "avcl/supervision.py",
+      "line": 85,
+      "callee": "Reject",
+      "code": "HANDOFF_RECEIPT_CONFLICT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R10"
+      ]
+    },
+    {
+      "path": "avcl/tasks.py",
+      "line": 28,
+      "callee": "Reject",
+      "code": "TASK_CLOSED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R10"
+      ]
+    },
+    {
+      "path": "avcl/tasks.py",
+      "line": 29,
+      "callee": "Reject",
+      "code": "TASK_SCOPE_MISMATCH",
+      "reviewed": true,
+      "requirement_ids": [
+        "R10"
+      ]
+    },
+    {
+      "path": "avcl/tasks.py",
+      "line": 90,
+      "callee": "Reject",
+      "code": "TASK_NOT_FOUND",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01",
+        "R02"
+      ]
+    },
+    {
+      "path": "avcl/tasks.py",
+      "line": 98,
+      "callee": "Reject",
+      "code": "INVALID_REQUEST_ID",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/tasks.py",
+      "line": 117,
+      "callee": "Reject",
+      "code": "INVALID_TASK_SCOPE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R10"
+      ]
+    },
+    {
+      "path": "avcl/tasks.py",
+      "line": 126,
+      "callee": "Reject",
+      "code": "MISSING_OR_UNSUPPORTED_COMPLETION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R10"
+      ]
+    },
+    {
+      "path": "avcl/tasks.py",
+      "line": 127,
+      "callee": "Reject",
+      "code": "UNSUPPORTED_COMPLETION_CONTEXT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R10"
+      ]
+    },
+    {
+      "path": "avcl/tasks.py",
+      "line": 128,
+      "callee": "Reject",
+      "code": "TASK_ALREADY_STARTED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R10"
+      ]
+    },
+    {
+      "path": "avcl/tasks.py",
+      "line": 123,
+      "callee": "Reject",
+      "code": "TASK_SCOPE_CONFLICT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R10"
+      ]
+    },
+    {
+      "path": "avcl/types.py",
+      "line": 44,
+      "callee": "Reject",
+      "code": "INVALID_REQUEST",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/types.py",
+      "line": 46,
+      "callee": "Reject",
+      "code": "UNSUPPORTED_GUARANTEE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/types.py",
+      "line": 48,
+      "callee": "Reject",
+      "code": "INVALID_AMOUNT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/validation.py",
+      "line": 24,
+      "callee": "Reject",
+      "code": "UNREGISTERED_VALIDATOR",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01"
+      ]
+    },
+    {
+      "path": "avcl/validation.py",
+      "line": 29,
+      "callee": "Reject",
+      "code": "AUTH_DENIED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01",
+        "R02"
+      ]
+    },
+    {
+      "path": "avcl/validation.py",
+      "line": 30,
+      "callee": "Reject",
+      "code": "STALE_EVIDENCE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02",
+        "R03"
+      ]
+    },
+    {
+      "path": "avcl/validation.py",
+      "line": 67,
+      "callee": "Reject",
+      "code": "STALE_EVIDENCE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02",
+        "R03"
+      ]
+    },
+    {
+      "path": "avcl/validation.py",
+      "line": 70,
+      "callee": "Reject",
+      "code": "INVALID_REQUEST",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/validation.py",
+      "line": 75,
+      "callee": "Reject",
+      "code": "INVALID_REQUEST",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/validation.py",
+      "line": 87,
+      "callee": "Reject",
+      "code": "INELIGIBLE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02",
+        "R03"
+      ]
+    },
+    {
+      "path": "avcl/validation.py",
+      "line": 89,
+      "callee": "Reject",
+      "code": "STALE_EVIDENCE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02",
+        "R03"
+      ]
+    },
+    {
+      "path": "avcl/validation.py",
+      "line": 40,
+      "callee": "Reject",
+      "code": "INVALID_CONTEXT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02",
+        "R03"
+      ]
+    },
+    {
+      "path": "avcl/validation.py",
+      "line": 54,
+      "callee": "Reject",
+      "code": "INVALID_CONTEXT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02",
+        "R03"
+      ]
+    },
+    {
+      "path": "avcl/validation.py",
+      "line": 81,
+      "callee": "Reject",
+      "code": "IDEMPOTENCY_CONFLICT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02",
+        "R08"
+      ]
+    },
+    {
+      "path": "avcl/validation.py",
+      "line": 45,
+      "callee": "Reject",
+      "code": "CLOCK_ROLLBACK",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/validation.py",
+      "line": 46,
+      "callee": "Reject",
+      "code": "INVALID_CONTEXT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02",
+        "R03"
+      ]
+    },
+    {
+      "path": "avcl/validation.py",
+      "line": 57,
+      "callee": "Reject",
+      "code": "UNTRUSTED_REFERENCE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01"
+      ]
+    },
+    {
+      "path": "avcl/verification.py",
+      "line": 61,
+      "callee": "Reject",
+      "code": "INVALID_VERIFICATION_BOUND",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 106,
+      "callee": "Reject",
+      "code": "UNSUPPORTED_WORKFLOW_VERSION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 107,
+      "callee": "Reject",
+      "code": "INVALID_WORKFLOW_CONTRACT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 109,
+      "callee": "Reject",
+      "code": "INVALID_WORKFLOW_METADATA",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 111,
+      "callee": "Reject",
+      "code": "INVALID_WORKFLOW_INPUTS",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 123,
+      "callee": "Reject",
+      "code": "INVALID_WORKFLOW_EFFECTS",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 212,
+      "callee": "WorkflowDiagnostic",
+      "code": "E-EFFECT-301",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09",
+        "R16"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 236,
+      "callee": "Reject",
+      "code": "INVALID_WORKFLOW_DOCUMENT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 237,
+      "callee": "Reject",
+      "code": "UNSUPPORTED_WORKFLOW_VERSION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 238,
+      "callee": "Reject",
+      "code": "WORKFLOW_CONTRACT_MISMATCH",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02",
+        "R13"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 240,
+      "callee": "Reject",
+      "code": "INVALID_WORKFLOW_INPUTS",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 248,
+      "callee": "Reject",
+      "code": "INVALID_WORKFLOW_SOURCE_MAP",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 271,
+      "callee": "Reject",
+      "code": "WORKFLOW_ANALYSIS_MISMATCH",
+      "reviewed": true,
+      "requirement_ids": [
+        "R13"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 273,
+      "callee": "Reject",
+      "code": "INVALID_WORKFLOW_SOURCE_MAP",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 274,
+      "callee": "Reject",
+      "code": "INVALID_WORKFLOW_SOURCE_MAP",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 118,
+      "callee": "Reject",
+      "code": "INVALID_WORKFLOW_REFERENCE_TYPE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 121,
+      "callee": "Reject",
+      "code": "INVALID_WORKFLOW_VALUE_TYPE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 127,
+      "callee": "Reject",
+      "code": "WORKFLOW_LIMIT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 243,
+      "callee": "Reject",
+      "code": "INVALID_WORKFLOW_REFERENCE_TYPE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 252,
+      "callee": "Reject",
+      "code": "WORKFLOW_LIMIT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 131,
+      "callee": "Reject",
+      "code": "WORKFLOW_LIMIT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 132,
+      "callee": "Reject",
+      "code": "INVALID_WORKFLOW_COMMAND",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 142,
+      "callee": "fail",
+      "code": "UNSUPPORTED_WORKFLOW_COMMAND",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 143,
+      "callee": "fail",
+      "code": "INVALID_WORKFLOW_COMMAND",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 258,
+      "callee": "fail",
+      "code": "WORKFLOW_LIMIT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 259,
+      "callee": "fail",
+      "code": "INVALID_WORKFLOW_NODE_ID",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 146,
+      "callee": "fail",
+      "code": "INVALID_WORKFLOW_VARIABLE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 147,
+      "callee": "fail",
+      "code": "E-AFFINE-201",
+      "reviewed": true,
+      "requirement_ids": [
+        "R08"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 147,
+      "callee": "fail",
+      "code": "UNKNOWN_WORKFLOW_VARIABLE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 149,
+      "callee": "fail",
+      "code": "E-TYPE-101",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 153,
+      "callee": "fail",
+      "code": "WORKFLOW_VARIABLE_REBOUND",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 156,
+      "callee": "fail",
+      "code": "INVALID_BRANCH_PREDICATE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 158,
+      "callee": "fail",
+      "code": "INVALID_BRANCH_CONTEXT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 174,
+      "callee": "fail",
+      "code": "UNSUPPORTED_WORKFLOW_DELEGATION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09",
+        "R11"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 263,
+      "callee": "fail",
+      "code": "INVALID_WORKFLOW_COMMAND",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 179,
+      "callee": "fail",
+      "code": "WORKFLOW_TOOL_SCOPE_MISMATCH",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 182,
+      "callee": "fail",
+      "code": "UNSUPPORTED_WORKFLOW_VALIDATOR",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01",
+        "R03",
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 188,
+      "callee": "fail",
+      "code": "WORKFLOW_TOOL_SCOPE_MISMATCH",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 197,
+      "callee": "fail",
+      "code": "E-AFFINE-201",
+      "reviewed": true,
+      "requirement_ids": [
+        "R08"
+      ]
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 199,
+      "callee": "fail",
+      "code": "MOVE_REQUIRES_AFFINE_VALUE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R08"
+      ]
+    },
+    {
+      "path": "avcl/workflow_postgres.py",
+      "line": 296,
+      "callee": "Reject",
+      "code": "WORKFLOW_LIMIT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow_postgres.py",
+      "line": 33,
+      "callee": "Reject",
+      "code": "INVALID_WORKFLOW_EXECUTION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow_postgres.py",
+      "line": 38,
+      "callee": "Reject",
+      "code": "UNKNOWN_WORKFLOW_RUN",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01"
+      ]
+    },
+    {
+      "path": "avcl/workflow_postgres.py",
+      "line": 44,
+      "callee": "Reject",
+      "code": "INVALID_WORKFLOW_EXECUTION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow_postgres.py",
+      "line": 85,
+      "callee": "Reject",
+      "code": "WORKFLOW_ADAPTER_MODE_CHANGED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R16"
+      ]
+    },
+    {
+      "path": "avcl/workflow_postgres.py",
+      "line": 87,
+      "callee": "Reject",
+      "code": "CORRUPT_WORKFLOW_PROGRAM",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/workflow_postgres.py",
+      "line": 104,
+      "callee": "Reject",
+      "code": "CORRUPT_WORKFLOW_RECEIPT_MODE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R16"
+      ]
+    },
+    {
+      "path": "avcl/workflow_postgres.py",
+      "line": 106,
+      "callee": "Reject",
+      "code": "CORRUPT_WORKFLOW_RECEIPT_MODE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R16"
+      ]
+    },
+    {
+      "path": "avcl/workflow_postgres.py",
+      "line": 124,
+      "callee": "Reject",
+      "code": "INVALID_LEASE",
+      "reviewed": true,
+      "requirement_ids": []
+    },
+    {
+      "path": "avcl/workflow_postgres.py",
+      "line": 29,
+      "callee": "Reject",
+      "code": "UNSUPPORTED_WORKFLOW_ADAPTER",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/workflow_postgres.py",
+      "line": 49,
+      "callee": "Reject",
+      "code": "UNSUPPORTED_WORKFLOW_ADAPTER",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/workflow_postgres.py",
+      "line": 50,
+      "callee": "Reject",
+      "code": "WORKFLOW_INPUT_MISMATCH",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02",
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow_postgres.py",
+      "line": 51,
+      "callee": "Reject",
+      "code": "INVALID_FAULT_PLAN",
+      "reviewed": true,
+      "requirement_ids": []
+    },
+    {
+      "path": "avcl/workflow_postgres.py",
+      "line": 53,
+      "callee": "Reject",
+      "code": "INVALID_FAULT_PLAN",
+      "reviewed": true,
+      "requirement_ids": []
+    },
+    {
+      "path": "avcl/workflow_postgres.py",
+      "line": 246,
+      "callee": "Reject",
+      "code": "UNKNOWN_WORKFLOW_IO",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/workflow_postgres.py",
+      "line": 73,
+      "callee": "Reject",
+      "code": "WORKFLOW_RUN_CONFLICT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02",
+        "R08"
+      ]
+    },
+    {
+      "path": "avcl/workflow_postgres.py",
+      "line": 136,
+      "callee": "Reject",
+      "code": "WORKFLOW_PERMIT_ALREADY_CONSUMED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R08"
+      ]
+    },
+    {
+      "path": "avcl/workflow_postgres.py",
+      "line": 139,
+      "callee": "Reject",
+      "code": "CLOCK_ROLLBACK",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/workflow_postgres.py",
+      "line": 58,
+      "callee": "Reject",
+      "code": "INVALID_WORKFLOW_CANDIDATE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow_postgres.py",
+      "line": 61,
+      "callee": "Reject",
+      "code": "INVALID_WORKFLOW_REFERENCE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01"
+      ]
+    },
+    {
+      "path": "avcl/workflow_postgres.py",
+      "line": 64,
+      "callee": "Reject",
+      "code": "WORKFLOW_AFFINE_INPUT_ALIAS",
+      "reviewed": true,
+      "requirement_ids": [
+        "R08"
+      ]
+    },
+    {
+      "path": "avcl/workflow_postgres.py",
+      "line": 147,
+      "callee": "Reject",
+      "code": "WORKFLOW_POLICY_CHANGED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R06"
+      ]
+    },
+    {
+      "path": "avcl/workflow_postgres.py",
+      "line": 153,
+      "callee": "Reject",
+      "code": "WORKFLOW_POLICY_CHANGED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R06"
+      ]
+    },
+    {
+      "path": "avcl/workflow_postgres.py",
+      "line": 155,
+      "callee": "Reject",
+      "code": "INVALID_WORKFLOW_CANDIDATE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow_postgres.py",
+      "line": 165,
+      "callee": "Reject",
+      "code": "WORKFLOW_POLICY_CHANGED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R06"
+      ]
+    },
+    {
+      "path": "avcl/workflow_postgres.py",
+      "line": 170,
+      "callee": "Reject",
+      "code": "WORKFLOW_PERMIT_NOT_FRESH",
+      "reviewed": true,
+      "requirement_ids": [
+        "R06",
+        "R08"
+      ]
+    },
+    {
+      "path": "avcl/workflow_postgres.py",
+      "line": 172,
+      "callee": "Reject",
+      "code": "WORKFLOW_PERMIT_NOT_FRESH",
+      "reviewed": true,
+      "requirement_ids": [
+        "R06",
+        "R08"
+      ]
+    },
+    {
+      "path": "avcl/workflow_postgres.py",
+      "line": 221,
+      "callee": "Reject",
+      "code": "UNSUPPORTED_WORKFLOW_COMMAND",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow_postgres.py",
+      "line": 191,
+      "callee": "Reject",
+      "code": "NOT_ADMITTED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R08"
+      ]
+    },
+    {
+      "path": "avcl/workflow_postgres.py",
+      "line": 205,
+      "callee": "Reject",
+      "code": "ASSUMPTION_BROKEN",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/workflow_postgres.py",
+      "line": 207,
+      "callee": "Reject",
+      "code": "MISSING_OUTBOX",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/workflow_runtime.py",
+      "line": 53,
+      "callee": "Reject",
+      "code": "INVALID_WORKFLOW_EXECUTION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow_runtime.py",
+      "line": 55,
+      "callee": "Reject",
+      "code": "INVALID_FAULT_PLAN",
+      "reviewed": true,
+      "requirement_ids": []
+    },
+    {
+      "path": "avcl/workflow_runtime.py",
+      "line": 65,
+      "callee": "Reject",
+      "code": "WORKFLOW_REQUIRES_DURABLE_VALIDATION_BACKEND",
+      "reviewed": true,
+      "requirement_ids": [
+        "R03"
+      ]
+    },
+    {
+      "path": "avcl/workflow_runtime.py",
+      "line": 66,
+      "callee": "Reject",
+      "code": "WORKFLOW_REQUIRES_DURABLE_TASK_BACKEND",
+      "reviewed": true,
+      "requirement_ids": [
+        "R10"
+      ]
+    },
+    {
+      "path": "avcl/workflow_runtime.py",
+      "line": 67,
+      "callee": "Reject",
+      "code": "UNSUPPORTED_WORKFLOW_ADAPTER",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/workflow_runtime.py",
+      "line": 69,
+      "callee": "Reject",
+      "code": "WORKFLOW_INPUT_MISMATCH",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02",
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow_runtime.py",
+      "line": 71,
+      "callee": "Reject",
+      "code": "INVALID_FAULT_PLAN",
+      "reviewed": true,
+      "requirement_ids": []
+    },
+    {
+      "path": "avcl/workflow_runtime.py",
+      "line": 61,
+      "callee": "Reject",
+      "code": "WORKFLOW_HISTORY_UNAVAILABLE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/workflow_runtime.py",
+      "line": 92,
+      "callee": "Reject",
+      "code": "WORKFLOW_RUN_CONFLICT",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02",
+        "R08"
+      ]
+    },
+    {
+      "path": "avcl/workflow_runtime.py",
+      "line": 100,
+      "callee": "Reject",
+      "code": "WORKFLOW_PERMIT_ALREADY_CONSUMED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R08"
+      ]
+    },
+    {
+      "path": "avcl/workflow_runtime.py",
+      "line": 77,
+      "callee": "Reject",
+      "code": "INVALID_WORKFLOW_CANDIDATE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow_runtime.py",
+      "line": 80,
+      "callee": "Reject",
+      "code": "INVALID_WORKFLOW_REFERENCE",
+      "reviewed": true,
+      "requirement_ids": [
+        "R01"
+      ]
+    },
+    {
+      "path": "avcl/workflow_runtime.py",
+      "line": 83,
+      "callee": "Reject",
+      "code": "WORKFLOW_AFFINE_INPUT_ALIAS",
+      "reviewed": true,
+      "requirement_ids": [
+        "R08"
+      ]
+    },
+    {
+      "path": "avcl/workflow_runtime.py",
+      "line": 119,
+      "callee": "Reject",
+      "code": "WORKFLOW_POLICY_CHANGED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R06"
+      ]
+    },
+    {
+      "path": "avcl/workflow_runtime.py",
+      "line": 133,
+      "callee": "Reject",
+      "code": "WORKFLOW_PERMIT_NOT_FRESH",
+      "reviewed": true,
+      "requirement_ids": [
+        "R06",
+        "R08"
+      ]
+    },
+    {
+      "path": "avcl/workflow_runtime.py",
+      "line": 128,
+      "callee": "Reject",
+      "code": "WORKFLOW_POLICY_CHANGED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R06"
+      ]
+    },
+    {
+      "path": "avcl/workflow_runtime.py",
+      "line": 213,
+      "callee": "Reject",
+      "code": "UNSUPPORTED_WORKFLOW_COMMAND",
+      "reviewed": true,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "path": "avcl/workflow_runtime.py",
+      "line": 152,
+      "callee": "Reject",
+      "code": "NOT_ADMITTED",
+      "reviewed": true,
+      "requirement_ids": [
+        "R08"
+      ]
+    },
+    {
+      "path": "avcl/workflow_runtime.py",
+      "line": 161,
+      "callee": "Reject",
+      "code": "ASSUMPTION_BROKEN",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/workflow_runtime.py",
+      "line": 184,
+      "callee": "Reject",
+      "code": "ADAPTER_INTERNAL_ERROR",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/workflow_runtime.py",
+      "line": 194,
+      "callee": "Reject",
+      "code": "ADAPTER_INTERNAL_ERROR",
+      "reviewed": true,
+      "requirement_ids": [
+        "R14"
+      ]
+    },
+    {
+      "path": "avcl/workflow_runtime.py",
+      "line": 203,
+      "callee": "Reject",
+      "code": "UNEXPECTED_ADAPTER_OBSERVATION",
+      "reviewed": true,
+      "requirement_ids": [
+        "R02"
+      ]
+    }
+  ],
+  "dynamic_sites": [
+    {
+      "path": "avcl/ir.py",
+      "line": 116,
+      "callee": "Diagnostic",
+      "expression": "code"
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 198,
+      "callee": "error",
+      "expression": "exc.code"
+    },
+    {
+      "path": "avcl/ir.py",
+      "line": 232,
+      "callee": "Diagnostic",
+      "expression": "code"
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 134,
+      "callee": "WorkflowDiagnostic",
+      "expression": "code"
+    },
+    {
+      "path": "avcl/workflow.py",
+      "line": 257,
+      "callee": "WorkflowDiagnostic",
+      "expression": "code"
+    }
+  ],
+  "source_sha256": {
+    "avcl/__init__.py": "f407872bd5382e051bb4ff52df1c7de71f77857be4df8e77a3bc2b2a462e0f73",
+    "avcl/canonical.py": "23994b6a461c26da44bd3abc781b7882e74f6f7ccaea6c2595e16c256b4a0552",
+    "avcl/capacity.py": "144f2e92b3d0fa4a2474c099cf5729699e71563948303d5f35575c1a3b49ff7f",
+    "avcl/checks.py": "4f1701919e312730628f56a99b629ed5b6eec491682116a660c2c97623ace4be",
+    "avcl/contract.py": "567d52e7dc1cc7a6a61064347c2e6c6e6262f3dce4d9e968affb90c26c8a514d",
+    "avcl/contract_smt.py": "a0cb5f4574aabaf0046a0658a4129d534f5eb8a5e0e1b09b6e7aafdac560269d",
+    "avcl/contract_smt_package.py": "87cce0e7e27669e8545f2049e235bcd080dcbcd26a69529cb650e9332ce152f7",
+    "avcl/delegation.py": "04007383e40d20b81364315fbbda1a3396e9b46b9d0a42a584b9f407e4bc6679",
+    "avcl/diagnostics.py": "16105678670e52bc3bbab77ed3e62793d4aba47bfccc44319a9175194c480abe",
+    "avcl/evaluation.py": "b10b8fdf6e8c2d331fccebf1c0bd843cd5e5b5980b51e666218e8926d1570286",
+    "avcl/gateway.py": "7ddd2865cfc70e7448fdf67b1b4790b67b5fa37e71f4c2b8086598d7bdec1a53",
+    "avcl/http_gateway.py": "58c89e723e44c5696f9bf7a38afa29ae9eca2ea51dada4f56cad6de5b868ee32",
+    "avcl/ir.py": "c6c6aa5ca377740450f5b233475570bc6e6e8559abedfdb6b3e0e7acd3d853ef",
+    "avcl/ir_types.py": "f5c84a4f622d23e8ff1993dfa52534d1dc8eeaf7090ff0822b0c8edd2d5b61e1",
+    "avcl/package.py": "34f248138635b26fec65b341ca49c39ab9f5255f86b035801069c7f8165ee1b2",
+    "avcl/policy.py": "50918f0898b250a3e5f1a2f9278ef9509deb346fb76f483bc36a0c791924ae7b",
+    "avcl/postgres.py": "7f085d029efd151b4b28409bf5194817ae4b0ec9745595f3f67b10b70f1d5b4b",
+    "avcl/receipt_envelope.py": "c1a84a83c25758f8d24458e0a1b90602f82210c35b1205c536395328a1e23ea4",
+    "avcl/rejection_audit.py": "dd3e9391c86b733512b3c813825ac46c3793f392d543320c09e25ca6a3be58c5",
+    "avcl/requirements.py": "2426608594bda5012188598673a7b4220a3605ab79fba066cb29abebca0c9d33",
+    "avcl/runtime.py": "475546b47674cdede9a04af5c02d0a1a224a042389d2a5311b2eeb7ab282c1c4",
+    "avcl/send_envelope.py": "0657b06b8134fac10e4f87a16147022f1badbb72bc41e735d6098790dff96d1e",
+    "avcl/sending.py": "978c78074f77ad7e197a721f8af3d437f226a962bf53431fef1faf7f92a8a8a1",
+    "avcl/simulator.py": "4a0920e4711375b538a2a4c8d866c52e65aeda18f65f490e3e69cd4073ebf356",
+    "avcl/smt.py": "648ee2ba7266db9cce8be2e0277bc259d310e1ca86c47249cc3d3ff07ff9b89b",
+    "avcl/smt_package.py": "d66287299ddc64382eb213ed0c9132eaed425a5ed137192ec3973e23a7d5b4d5",
+    "avcl/storage_codec.py": "44205576f66ed68f87971f4e56758779929d35c3bb61269cc0523e37f7c1a839",
+    "avcl/supervision.py": "b8855eaf918ec3d783dd217852da44c47229e88c16505c8ad58979534785912f",
+    "avcl/tasks.py": "3b8e7263ee4316c4023c34c433ef8d07f05dc7de18dccdf65f7dc8696d0d9102",
+    "avcl/types.py": "a7ea9a8abee14c7612090c6aa7e7e787386428e4d66609f9c0980bca1e4d5583",
+    "avcl/validation.py": "d6f8be952975e105385ec23e4c43d7d7a02700df02ba67944eedb63dea1dafaa",
+    "avcl/verification.py": "3bb85ab7139842ef88e29f217a86c9450dc9e3109a228b00582059a09f19b845",
+    "avcl/workflow.py": "e3a0eeb4d06b4aa3a65b8132ff568f62d68b614cd1727fee65813614320d7f8f",
+    "avcl/workflow_postgres.py": "5f9c2d9c704ce85f8c99a8fea2f7baa384a22edbd89c74e8a6df1c077b34de78",
+    "avcl/workflow_runtime.py": "ab054acffbbe3a7249447f35d16685d151e204bcca601c901b34c28a94b87ebe"
+  }
+}

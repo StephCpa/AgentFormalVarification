@@ -54,7 +54,7 @@ def enable(k,cap_ref,limit,can_delegate=True,tools=TOOLS,effects=EFFECTS):
     if cap_ref in k._grants or any(op.capability_ref==cap_ref for op in k._operations.values()):raise Reject("DELEGATION_ROOT_ALREADY_USED")
     if cap.tenant!=k.tenant or cap.epoch!=k.epoch or cap.expires<=k._clock() or not k._subjects.get(cap.subject):raise Reject("AUTH_DENIED")
     root=k._lookup(k._accounts,"tenant:CNY")
-    if root.breached or limit>root.limit-root.spent-root.pending:raise Reject("BUDGET_EXCEEDED")
+    if root.breached or limit>root.limit-root.spent-root.pending:raise Reject("BUDGET_EXCEEDED", requirement_ids=("R11",))
     account="delegation:"+secrets.token_hex(32)+":CNY"
     k._accounts[account]=Account(limit)
     k._grants[cap_ref]=DelegationGrant(cap_ref,None,account,can_delegate,tools,effects)
@@ -107,7 +107,7 @@ def delegate(k,subject,raw):
         if prior[0]!=submitted:raise Reject("IDEMPOTENCY_CONFLICT")
         chain(k,prior[1]);return project(k,prior[1])
     accounts=[k._accounts[g.account] for _,g in links]+[k._lookup(k._accounts,"tenant:CNY")]
-    if any(a.breached or numbers["limit_minor"]>a.limit-a.spent-a.pending for a in accounts):raise Reject("BUDGET_EXCEEDED")
+    if any(a.breached or numbers["limit_minor"]>a.limit-a.spent-a.pending for a in accounts):raise Reject("BUDGET_EXCEEDED", requirement_ids=("R11",))
     ref="cap-"+secrets.token_hex(32);account="delegation:"+secrets.token_hex(32)+":CNY"
     child=Capability(ref,k.tenant,body["child_subject"],frozenset(spec["orders"]),numbers["max_amount_minor"],numbers["expires"],k.epoch)
     k._caps[ref]=child;k._accounts[account]=Account(numbers["limit_minor"])

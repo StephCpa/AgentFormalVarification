@@ -1,0 +1,15 @@
+test_cli_dependency_errors_do_not_print_credentials (test_audit_export.DurableAuditExportTests.test_cli_dependency_errors_do_not_print_credentials) ... ok
+test_cli_export_verify_and_no_overwrite (test_audit_export.DurableAuditExportTests.test_cli_export_verify_and_no_overwrite) ... ok
+test_export_is_readonly_preserves_payload_bytes_and_paginates (test_audit_export.DurableAuditExportTests.test_export_is_readonly_preserves_payload_bytes_and_paginates) ... ok
+test_external_checkpoint_detects_validly_shaped_database_rewrite (test_audit_export.DurableAuditExportTests.test_external_checkpoint_detects_validly_shaped_database_rewrite) ... ok
+test_new_events_extend_old_page_without_changing_old_anchor (test_audit_export.DurableAuditExportTests.test_new_events_extend_old_page_without_changing_old_anchor) ... ok
+test_strict_mode_does_not_rewrite_unsupported_legacy_events (test_audit_export.DurableAuditExportTests.test_strict_mode_does_not_rewrite_unsupported_legacy_events) ... ok
+test_strict_payload_check_on_real_rejection_and_configuration (test_audit_export.DurableAuditExportTests.test_strict_payload_check_on_real_rejection_and_configuration) ... ok
+test_strict_payload_check_on_real_workflow_and_receipts (test_audit_export.DurableAuditExportTests.test_strict_payload_check_on_real_workflow_and_receipts) ... ok
+test_tenant_isolation_and_checkpoint_scope (test_audit_export.DurableAuditExportTests.test_tenant_isolation_and_checkpoint_scope) ... ok
+test_type_equivalent_prefix_mutation_is_rejected_for_writes_and_reads (test_audit_export.DurableAuditExportTests.test_type_equivalent_prefix_mutation_is_rejected_for_writes_and_reads) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 23.620s
+
+OK

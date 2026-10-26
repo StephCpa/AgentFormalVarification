@@ -1,0 +1,13 @@
+{
+  "schema": "avcl/smt-evidence/0.1",
+  "status": "unsigned-offline-evidence",
+  "ir_digest": "sha256:8614cbe7514f8f8a2d7a8f1e4a9878d0aa0660130ef1905bf4e89c0bdf4e9bc3",
+  "files": {
+    "core.ir.json": "8146ed90efed680abe773c031e0a73f0d83bae036527540afe3436ea50633080",
+    "checks.json": "d0aabccc52a4d8600adf0093c03e3ac9c4f5c2aaec6abaffb658879b6b055aa6",
+    "verification-report.json": "88321dcca01071fc764de948f285bb1f1fbc6e3038e1cee825615bcc7cee877d",
+    "input-domain-inhabited.smt2": "c409f180711afab76ccb9b8ec68e45284b0ed2422668c7a4d0f03921fcf724e8",
+    "checks-equivalent.smt2": "65dc04a3022a2546ea84211e36d62e590177c0e3a415aad76816ace9b4ed07bf",
+    "allowed-action-exists.smt2": "be0ab102312137a3174eb61e9221d8ff63fb4f0ffcb3ac7e974ad8997379373c"
+  }
+}

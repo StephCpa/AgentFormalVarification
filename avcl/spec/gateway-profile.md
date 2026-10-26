@@ -1,5 +1,7 @@
 # 受限运行时 API 与凭据绑定
 
+schema v9 为通过路由/输入检查且凭据认证成功的请求增加[持久拒绝记录](durable-rejection-profile.md)。业务 Reject 在 savepoint 内回滚，事件与配额在同一 guard 下提交；审计容量或存储失败返回 503，不宣称原始拒绝已记录。未经认证及解析阶段错误仍不在此范围。
+
 依据详细设计第 19 章，PostgreSQL schema v5 增加服务端凭据、冻结 checked_ref 和 API 请求防重。当前 HTTP 服务只允许绑定 `127.0.0.1`，用于独立进程集成验证；未作为面向网络的生产服务器发布。
 
 ## 身份与引用
@@ -62,3 +64,7 @@ Prepare 只能传 checked_ref、capability_ref、一个 approval_ref、权威业
 这证明受限网络 API 的请求边界，不证明完整 OS 沙箱或全中介。服务仍用测试数据库管理身份；同一 Windows 用户若持有主机文件/执行权限，仍可能读取配置或绕过 API。生产数据库角色、独立服务账户、工具凭据隔离和网络出口策略尚未落实。完整语言命令、通用验证器治理和管理 API 仍未完成。
 
 schema v8 增加 `POST /v1/capabilities/delegate`，要求 delegate scope，创建绑定已登记子主体的衰减能力；协议、共享额度与撤销语义见 [委派规格](delegation-profile.md)。此路由不提供主体登记、根权限开通或凭据签发功能。
+
+## 需求诊断补充
+
+错误响应的 `requirement_ids` 按实际拒绝门禁与失败条款生成，详见 [运行拒绝与需求追踪](requirement-diagnostics.md)。不再为所有错误填写固定 R01/R02/R16。字段形状、状态码与授权/事务行为保持原协议；这些编号不证明整个需求已经满足，也不代替持久拒绝审计日志。

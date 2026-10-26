@@ -68,3 +68,7 @@ schema v8 的 [在线委派](delegation-profile.md) 与操作准入共享 tenant
 schema v2 的 [持久监督器](supervision-profile.md) 已加入领取、超期记录、免费模拟查询与确认交接；v3 的 [持久工作流](durable-workflow-profile.md) 接通事务检查点；v4 的 [容量门禁](capacity-profile.md) 在新操作前预留未来义务槽位。下一步需增加公平调度和收费核对预算、限制数据库角色和宿主 API、加入真实身份与出口隔离，并验证远端去重保留窗口及恢复 epoch。签名键目前与测试数据共库保存；没有生产密钥隔离。默认时钟仍是 0 起始的逻辑时钟，不能直接连接真实时间服务并沿用默认 0..1000 的有效期。
 
 来源：[PostgreSQL Windows 下载](https://www.postgresql.org/download/windows/)、[EDB ZIP 分发](https://www.enterprisedb.com/download-postgresql-binaries)、[PostgreSQL 18 事务隔离](https://www.postgresql.org/docs/18/transaction-iso.html)。
+
+schema v9 的[认证网关拒绝记录](durable-rejection-profile.md)在业务回滚后、同一租户 guard 内保存事件，并限制租户总量与主体窗口速率。审计不可用返回 503，旧历史不补写；完整系统覆盖和归档仍待完成。
+
+schema v10 的[事务审计序号](audit-counter-profile.md)使用每租户计数行分配，计数与事件随事务回滚；检查历史前缀、表与载荷投影，并拒绝损坏历史升级。

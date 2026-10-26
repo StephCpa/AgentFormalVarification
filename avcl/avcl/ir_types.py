@@ -2,6 +2,7 @@
 from dataclasses import dataclass
 import re
 from .canonical import Reject
+from .evaluation import use_budget, integer_work, value_work
 
 BOUND=10**18-1
 
@@ -69,32 +70,55 @@ class FieldType:
         elif self.element is not None: raise Reject("INVALID_FIELD_SCHEMA")
         return self
 
-    def normalize(self,value):
+    def normalize(self,value,*,budget=None):
+        budget=use_budget(budget);budget.charge()
         bad=False
         if self.kind=="Bool": bad=type(value) is not bool
-        elif self.kind=="Int": bad=type(value) is not int or not self.lower<=value<=self.upper
+        elif self.kind=="Int":
+            if type(value) is int:budget.charge(integer_work(value))
+            bad=type(value) is not int or not self.lower<=value<=self.upper
         elif self.kind=="String":
+            if type(value) is str and len(value)<=256:budget.charge(len(value))
             bad=type(value) is not str or len(value)>256 or any(0xD800<=ord(c)<=0xDFFF for c in value)
         elif self.kind in {"Id","Enum"}:
-            bad=(type(value) is not Tagged or value.name!=self.name or type(value.value) is not str or not value.value or len(value.value)>256 or any(0xD800<=ord(c)<=0xDFFF for c in value.value))
+            if (type(value) is not Tagged or type(value.name) is not str or len(value.name)>128 or
+                    type(value.value) is not str or not value.value or len(value.value)>256):
+                raise Reject("EVALUATION_TYPE_OR_RANGE")
+            budget.charge(len(value.name)+(len(self.members)+1)*len(value.value))
+            bad=value.name!=self.name or any(0xD800<=ord(c)<=0xDFFF for c in value.value)
             if not bad and self.kind=="Enum": bad=value.value not in self.members
         elif self.kind=="Record":
             if type(value) is Record:
-                if (type(value.entries) is not tuple or any(type(p) is not tuple or len(p)!=2 or type(p[0]) is not str for p in value.entries)):
+                if (type(value.entries) is not tuple or len(value.entries)!=len(self.fields) or
+                        any(type(p) is not tuple or len(p)!=2 or type(p[0]) is not str or len(p[0])>128 for p in value.entries)):
                     raise Reject("EVALUATION_TYPE_OR_RANGE")
+                budget.charge((len(value.entries)+1)*sum(1+len(p[0]) for p in value.entries))
                 entries=dict(value.entries)
                 if len(entries)!=len(value.entries): raise Reject("EVALUATION_TYPE_OR_RANGE")
-            elif type(value) is dict: entries=value
+            elif type(value) is dict:
+                if len(value)!=len(self.fields) or any(type(k) is not str or len(k)>128 for k in value):
+                    raise Reject("EVALUATION_TYPE_OR_RANGE")
+                budget.charge((len(value)+1)*sum(1+len(k) for k in value))
+                entries=value
             else: raise Reject("EVALUATION_TYPE_OR_RANGE")
             if set(entries)!=set(k for k,_ in self.fields): raise Reject("EVALUATION_TYPE_OR_RANGE")
-            return Record(tuple((k,t.normalize(entries[k])) for k,t in sorted(self.fields)))
+            budget.charge((len(self.fields)+1)*sum(1+len(k) for k,_ in self.fields))
+            normalized=tuple((k,t.normalize(entries[k],budget=budget)) for k,t in sorted(self.fields))
+            if type(value) is Record and all(k==oldk and v is oldv for (k,v),(oldk,oldv) in zip(normalized,value.entries)):
+                return value
+            return Record(normalized)
         elif self.kind=="Option":
             if value is None: return None
             if type(value) is not Some: raise Reject("EVALUATION_TYPE_OR_RANGE")
-            return Some(self.element.normalize(value.value))
+            normalized=self.element.normalize(value.value,budget=budget)
+            return value if normalized is value.value else Some(normalized)
         elif self.kind=="Set":
             if type(value) is not frozenset or len(value)>self.max_size: raise Reject("EVALUATION_TYPE_OR_RANGE")
-            return frozenset(self.element.normalize(v) for v in value)
+            budget.charge(len(value))
+            items=[(v,self.element.normalize(v,budget=budget)) for v in value]
+            if all(old is new for old,new in items):return value
+            budget.charge((len(items)+1)*sum(value_work(v,budget) for _,v in items))
+            return frozenset(v for _,v in items)
         else: bad=True
         if bad: raise Reject("EVALUATION_TYPE_OR_RANGE")
         return value

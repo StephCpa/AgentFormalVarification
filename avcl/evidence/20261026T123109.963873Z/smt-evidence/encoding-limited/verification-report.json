@@ -1,0 +1,171 @@
+{
+  "schema": "avcl/smt/0.1",
+  "reports": [
+    {
+      "requirement_ids": [
+        "R09"
+      ],
+      "ir_digest": "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d",
+      "source_digest": "sha256:395f0070cead5654d6bf50c9efab882f5cd3c4f1d20fb6eeec5a156743bcb8d7",
+      "spec_digest": "sha256:f1b28c01ce181e9a42a046b00842711227e2402eefcd925326d1c7acf966f878",
+      "checker_build": "avcl/checks/0.2",
+      "encoder_build": "avcl/smt/0.1",
+      "checks_sha256": "a685b9c5835066373f63e1c226e0f4d640fd7945704abc6be69e0ccf4a9a9478",
+      "assumption_ids": [
+        "pure-ir-typing",
+        "smt-value-encoding",
+        "smt-ast-encoding",
+        "smt-vm-encoding",
+        "python-runtime",
+        "z3-4.15.4.0",
+        "evaluation-work-sufficient"
+      ],
+      "tool_versions": {
+        "python": "3.12.14",
+        "z3_package": "4.15.4.0",
+        "z3_core": "4.15.4"
+      },
+      "bounds": {
+        "fields": {
+          "amount": {
+            "kind": "Int",
+            "lower": "0",
+            "upper": "999999999999999999"
+          },
+          "currency": {
+            "kind": "String"
+          }
+        },
+        "timeout_ms": "5000",
+        "rlimit": "1000000",
+        "max_encoding_steps": "1",
+        "max_witness_nodes": "10000",
+        "evaluation_work_model": "avcl/evaluation-work/0.1",
+        "evaluation_work_limit": "4000000",
+        "runtime_budget_encoded": false
+      },
+      "runtime_obligations": [
+        "enforce-evaluation-work-budget"
+      ],
+      "checked_at": "2026-10-26T12:31:37.053884+00:00",
+      "scope": "ideal pure semantics on one immutable input, conditional on sufficient evaluation work; no fuel-bound, state-transition or external-effect proof",
+      "independent_certificate_checked": false,
+      "property_id": "input-domain-inhabited",
+      "status": "Unknown",
+      "solver_status": "Error",
+      "witness_ref": null,
+      "reason": "encoding_failed:encoding_step_limit"
+    },
+    {
+      "requirement_ids": [
+        "R09"
+      ],
+      "ir_digest": "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d",
+      "source_digest": "sha256:395f0070cead5654d6bf50c9efab882f5cd3c4f1d20fb6eeec5a156743bcb8d7",
+      "spec_digest": "sha256:f1b28c01ce181e9a42a046b00842711227e2402eefcd925326d1c7acf966f878",
+      "checker_build": "avcl/checks/0.2",
+      "encoder_build": "avcl/smt/0.1",
+      "checks_sha256": "a685b9c5835066373f63e1c226e0f4d640fd7945704abc6be69e0ccf4a9a9478",
+      "assumption_ids": [
+        "pure-ir-typing",
+        "smt-value-encoding",
+        "smt-ast-encoding",
+        "smt-vm-encoding",
+        "python-runtime",
+        "z3-4.15.4.0",
+        "evaluation-work-sufficient"
+      ],
+      "tool_versions": {
+        "python": "3.12.14",
+        "z3_package": "4.15.4.0",
+        "z3_core": "4.15.4"
+      },
+      "bounds": {
+        "fields": {
+          "amount": {
+            "kind": "Int",
+            "lower": "0",
+            "upper": "999999999999999999"
+          },
+          "currency": {
+            "kind": "String"
+          }
+        },
+        "timeout_ms": "5000",
+        "rlimit": "1000000",
+        "max_encoding_steps": "1",
+        "max_witness_nodes": "10000",
+        "evaluation_work_model": "avcl/evaluation-work/0.1",
+        "evaluation_work_limit": "4000000",
+        "runtime_budget_encoded": false
+      },
+      "runtime_obligations": [
+        "enforce-evaluation-work-budget"
+      ],
+      "checked_at": "2026-10-26T12:31:37.053884+00:00",
+      "scope": "ideal pure semantics on one immutable input, conditional on sufficient evaluation work; no fuel-bound, state-transition or external-effect proof",
+      "independent_certificate_checked": false,
+      "property_id": "checks-equivalent",
+      "status": "Unknown",
+      "solver_status": "Error",
+      "witness_ref": null,
+      "reason": "encoding_failed:encoding_step_limit"
+    },
+    {
+      "requirement_ids": [
+        "R09"
+      ],
+      "ir_digest": "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d",
+      "source_digest": "sha256:395f0070cead5654d6bf50c9efab882f5cd3c4f1d20fb6eeec5a156743bcb8d7",
+      "spec_digest": "sha256:f1b28c01ce181e9a42a046b00842711227e2402eefcd925326d1c7acf966f878",
+      "checker_build": "avcl/checks/0.2",
+      "encoder_build": "avcl/smt/0.1",
+      "checks_sha256": "a685b9c5835066373f63e1c226e0f4d640fd7945704abc6be69e0ccf4a9a9478",
+      "assumption_ids": [
+        "pure-ir-typing",
+        "smt-value-encoding",
+        "smt-ast-encoding",
+        "smt-vm-encoding",
+        "python-runtime",
+        "z3-4.15.4.0",
+        "evaluation-work-sufficient"
+      ],
+      "tool_versions": {
+        "python": "3.12.14",
+        "z3_package": "4.15.4.0",
+        "z3_core": "4.15.4"
+      },
+      "bounds": {
+        "fields": {
+          "amount": {
+            "kind": "Int",
+            "lower": "0",
+            "upper": "999999999999999999"
+          },
+          "currency": {
+            "kind": "String"
+          }
+        },
+        "timeout_ms": "5000",
+        "rlimit": "1000000",
+        "max_encoding_steps": "1",
+        "max_witness_nodes": "10000",
+        "evaluation_work_model": "avcl/evaluation-work/0.1",
+        "evaluation_work_limit": "4000000",
+        "runtime_budget_encoded": false
+      },
+      "runtime_obligations": [
+        "enforce-evaluation-work-budget"
+      ],
+      "checked_at": "2026-10-26T12:31:37.053884+00:00",
+      "scope": "ideal pure semantics on one immutable input, conditional on sufficient evaluation work; no fuel-bound, state-transition or external-effect proof",
+      "independent_certificate_checked": false,
+      "property_id": "allowed-action-exists",
+      "status": "Unknown",
+      "solver_status": "Error",
+      "witness_ref": null,
+      "reason": "encoding_failed:encoding_step_limit"
+    }
+  ],
+  "queries": []
+}

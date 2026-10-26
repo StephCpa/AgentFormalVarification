@@ -1,0 +1,17 @@
+(set-option :timeout 5000)
+(set-option :rlimit 1000000)
+(set-option :smt.random_seed 0)
+; benchmark generated from python API
+(set-info :status unknown)
+(declare-fun input_1 () (Seq Int))
+(declare-fun input_0 () Int)
+(assert
+ (let (($x43 (forall ((index_1 Int) )(let (($x35 (or (< (seq.nth input_1 index_1) 55296) (> (seq.nth input_1 index_1) 57343))))
+(let (($x38 (and (>= (seq.nth input_1 index_1) 0) (<= (seq.nth input_1 index_1) 1114111) $x35)))
+(=> (and (>= index_1 0) (< index_1 (seq.len input_1))) $x38))))
+))
+(let ((?x23 (seq.len input_1)))
+(let (($x26 (<= ?x23 256)))
+(let (($x24 (>= ?x23 0)))
+(and (and (>= input_0 0) (<= input_0 999999999999999999)) (and $x24 $x26 $x43)))))))
+(check-sat)

@@ -6,17 +6,30 @@ All quantities at the request boundary are canonical decimal strings.
 import hashlib
 import json
 import re
+from .requirements import merge_requirements, requirements_for
 
 
 class Reject(ValueError):
-    def __init__(self, code: str):
+    def __init__(self, code: str, *, requirement_ids=()):
         super().__init__(code)
         self.code = code
+        self.requirement_ids = merge_requirements(requirements_for(code), requirement_ids)
 
 
 def amount(value: str) -> int:
     if type(value) is not str or not re.fullmatch(r"0|[1-9][0-9]{0,17}", value):
         raise Reject("INVALID_AMOUNT")
+    return int(value)
+
+
+def cumulative_cost(value: str) -> int:
+    """Bounded aggregate domain; two legal 18-digit components always fit.
+
+    This does not widen request components or timestamps. Values above the
+    operation's admitted bound are decoded so the ledger can record an incident.
+    """
+    if type(value) is not str or not re.fullmatch(r"0|[1-9][0-9]{0,18}", value):
+        raise Reject("INVALID_CUMULATIVE_COST")
     return int(value)
 
 

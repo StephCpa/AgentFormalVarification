@@ -1,0 +1,60 @@
+{
+  "schema": "avcl/review-fixes/0.1",
+  "review_baseline": "3e5c63f4b44b31cdbceb9a4b9c056c949ef12276",
+  "passed": true,
+  "unit_tests": 217,
+  "postgres_tests": 206,
+  "verification_stages": 22,
+  "source_files": 125,
+  "source_hash_mismatches": [],
+  "design_baselines_unchanged": true,
+  "findings": {
+    "F1": "Subsumed same-effect/same-cost facts preserve Final, task closure, zero reservation, resolved obligations and capacity; new cost and contradictions still dispute.",
+    "F2": "Existing workflow ownership gates generic outbox claims and common send admission. Executed Send intent and attempt commit atomically; crash, concurrency and reload regressions pass.",
+    "F3": "Independent 19-digit cumulative domain covers two 18-digit request components; authenticated receipt and crash recovery settle legal aggregates.",
+    "F4": "Memory replay normalizes against the historical contract and checks the full submission digest; new runs still require the active contract."
+  },
+  "new_tests": {
+    "unit": 9,
+    "postgres": 11
+  },
+  "additional_checks": [
+    {
+      "check": "F1-delegated-accounts",
+      "passed": true,
+      "accounts": 4,
+      "spent_each": 60,
+      "pending_each": 0
+    },
+    {
+      "check": "F2-halted-ownership-after-health-restored",
+      "passed": true,
+      "effects": 0
+    },
+    {
+      "check": "F3-resubmit-old-rejected-large-receipt",
+      "passed": true,
+      "spent": 1000000000000000000,
+      "pending": 0,
+      "historical_quarantine_retained": true
+    }
+  ],
+  "models": {
+    "receipt": {
+      "states": 9,
+      "edges": 25
+    },
+    "send": {
+      "states": 7,
+      "edges": 17
+    },
+    "detected_mutants": 2
+  },
+  "baseline_log_scope": "Baseline probes assert reproduction of known defects; review-regressions-before.log intentionally fails correctness assertions before fixes. Neither is a passing product test.",
+  "limits": [
+    "M1 release gate remains open",
+    "No mechanical Python/SQL refinement claim",
+    "No production host/key/egress isolation claim",
+    "Bounded models are separate state spaces, not additive coverage"
+  ]
+}

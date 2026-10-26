@@ -1,0 +1,378 @@
+{
+  "schema": "avcl/smt/0.1",
+  "reports": [
+    {
+      "requirement_ids": [
+        "R13"
+      ],
+      "ir_digest": "sha256:8614cbe7514f8f8a2d7a8f1e4a9878d0aa0660130ef1905bf4e89c0bdf4e9bc3",
+      "source_digest": "sha256:8e4f6772280d129ba849772ed1c5d01b679a5e70f76ee9829cab3e28a73061ee",
+      "spec_digest": "sha256:f1b28c01ce181e9a42a046b00842711227e2402eefcd925326d1c7acf966f878",
+      "checker_build": "avcl/checks/0.2",
+      "encoder_build": "avcl/smt/0.1",
+      "checks_sha256": "d0aabccc52a4d8600adf0093c03e3ac9c4f5c2aaec6abaffb658879b6b055aa6",
+      "assumption_ids": [
+        "pure-ir-typing",
+        "smt-value-encoding",
+        "smt-ast-encoding",
+        "smt-vm-encoding",
+        "python-runtime",
+        "z3-4.15.4.0",
+        "evaluation-work-sufficient"
+      ],
+      "tool_versions": {
+        "python": "3.12.14",
+        "z3_package": "4.15.4.0",
+        "z3_core": "4.15.4"
+      },
+      "bounds": {
+        "fields": {
+          "allowed": {
+            "kind": "Set",
+            "element": {
+              "kind": "Enum",
+              "name": "Currency",
+              "members": [
+                "CNY",
+                "USD"
+              ]
+            },
+            "max_size": "1"
+          },
+          "approval": {
+            "kind": "Option",
+            "element": {
+              "kind": "Int",
+              "lower": "0",
+              "upper": "3"
+            }
+          },
+          "order": {
+            "kind": "Record",
+            "fields": {
+              "amount": {
+                "kind": "Int",
+                "lower": "0",
+                "upper": "3"
+              },
+              "currency": {
+                "kind": "Enum",
+                "name": "Currency",
+                "members": [
+                  "CNY",
+                  "USD"
+                ]
+              }
+            }
+          }
+        },
+        "timeout_ms": "5000",
+        "rlimit": "1000000",
+        "max_encoding_steps": "50000",
+        "max_witness_nodes": "10000",
+        "evaluation_work_model": "avcl/evaluation-work/0.1",
+        "evaluation_work_limit": "4000000",
+        "runtime_budget_encoded": false
+      },
+      "runtime_obligations": [
+        "enforce-evaluation-work-budget"
+      ],
+      "checked_at": "2026-10-26T13:41:28.219244+00:00",
+      "scope": "ideal pure semantics on one immutable input, conditional on sufficient evaluation work; no fuel-bound, state-transition or external-effect proof",
+      "independent_certificate_checked": false,
+      "property_id": "input-domain-inhabited",
+      "status": "ProvedUnder",
+      "solver_status": "Sat",
+      "witness_ref": "#/queries/0/witness",
+      "reason": null,
+      "query_sha256": "c409f180711afab76ccb9b8ec68e45284b0ed2422668c7a4d0f03921fcf724e8",
+      "witness": {
+        "allowed": [],
+        "approval": {
+          "tag": "None"
+        },
+        "order": {
+          "amount": "2",
+          "currency": "USD"
+        }
+      },
+      "replay": {
+        "ast": {
+          "value": false,
+          "error": null
+        },
+        "checks": {
+          "value": false,
+          "error": null
+        }
+      }
+    },
+    {
+      "requirement_ids": [
+        "R13"
+      ],
+      "ir_digest": "sha256:8614cbe7514f8f8a2d7a8f1e4a9878d0aa0660130ef1905bf4e89c0bdf4e9bc3",
+      "source_digest": "sha256:8e4f6772280d129ba849772ed1c5d01b679a5e70f76ee9829cab3e28a73061ee",
+      "spec_digest": "sha256:f1b28c01ce181e9a42a046b00842711227e2402eefcd925326d1c7acf966f878",
+      "checker_build": "avcl/checks/0.2",
+      "encoder_build": "avcl/smt/0.1",
+      "checks_sha256": "d0aabccc52a4d8600adf0093c03e3ac9c4f5c2aaec6abaffb658879b6b055aa6",
+      "assumption_ids": [
+        "pure-ir-typing",
+        "smt-value-encoding",
+        "smt-ast-encoding",
+        "smt-vm-encoding",
+        "python-runtime",
+        "z3-4.15.4.0",
+        "evaluation-work-sufficient"
+      ],
+      "tool_versions": {
+        "python": "3.12.14",
+        "z3_package": "4.15.4.0",
+        "z3_core": "4.15.4"
+      },
+      "bounds": {
+        "fields": {
+          "allowed": {
+            "kind": "Set",
+            "element": {
+              "kind": "Enum",
+              "name": "Currency",
+              "members": [
+                "CNY",
+                "USD"
+              ]
+            },
+            "max_size": "1"
+          },
+          "approval": {
+            "kind": "Option",
+            "element": {
+              "kind": "Int",
+              "lower": "0",
+              "upper": "3"
+            }
+          },
+          "order": {
+            "kind": "Record",
+            "fields": {
+              "amount": {
+                "kind": "Int",
+                "lower": "0",
+                "upper": "3"
+              },
+              "currency": {
+                "kind": "Enum",
+                "name": "Currency",
+                "members": [
+                  "CNY",
+                  "USD"
+                ]
+              }
+            }
+          }
+        },
+        "timeout_ms": "5000",
+        "rlimit": "1000000",
+        "max_encoding_steps": "50000",
+        "max_witness_nodes": "10000",
+        "evaluation_work_model": "avcl/evaluation-work/0.1",
+        "evaluation_work_limit": "4000000",
+        "runtime_budget_encoded": false
+      },
+      "runtime_obligations": [
+        "enforce-evaluation-work-budget"
+      ],
+      "checked_at": "2026-10-26T13:41:28.219244+00:00",
+      "scope": "ideal pure semantics on one immutable input, conditional on sufficient evaluation work; no fuel-bound, state-transition or external-effect proof",
+      "independent_certificate_checked": false,
+      "property_id": "checks-equivalent",
+      "status": "ProvedUnder",
+      "solver_status": "Unsat",
+      "witness_ref": null,
+      "reason": null,
+      "query_sha256": "65dc04a3022a2546ea84211e36d62e590177c0e3a415aad76816ace9b4ed07bf"
+    },
+    {
+      "requirement_ids": [
+        "R13"
+      ],
+      "ir_digest": "sha256:8614cbe7514f8f8a2d7a8f1e4a9878d0aa0660130ef1905bf4e89c0bdf4e9bc3",
+      "source_digest": "sha256:8e4f6772280d129ba849772ed1c5d01b679a5e70f76ee9829cab3e28a73061ee",
+      "spec_digest": "sha256:f1b28c01ce181e9a42a046b00842711227e2402eefcd925326d1c7acf966f878",
+      "checker_build": "avcl/checks/0.2",
+      "encoder_build": "avcl/smt/0.1",
+      "checks_sha256": "d0aabccc52a4d8600adf0093c03e3ac9c4f5c2aaec6abaffb658879b6b055aa6",
+      "assumption_ids": [
+        "pure-ir-typing",
+        "smt-value-encoding",
+        "smt-ast-encoding",
+        "smt-vm-encoding",
+        "python-runtime",
+        "z3-4.15.4.0",
+        "evaluation-work-sufficient"
+      ],
+      "tool_versions": {
+        "python": "3.12.14",
+        "z3_package": "4.15.4.0",
+        "z3_core": "4.15.4"
+      },
+      "bounds": {
+        "fields": {
+          "allowed": {
+            "kind": "Set",
+            "element": {
+              "kind": "Enum",
+              "name": "Currency",
+              "members": [
+                "CNY",
+                "USD"
+              ]
+            },
+            "max_size": "1"
+          },
+          "approval": {
+            "kind": "Option",
+            "element": {
+              "kind": "Int",
+              "lower": "0",
+              "upper": "3"
+            }
+          },
+          "order": {
+            "kind": "Record",
+            "fields": {
+              "amount": {
+                "kind": "Int",
+                "lower": "0",
+                "upper": "3"
+              },
+              "currency": {
+                "kind": "Enum",
+                "name": "Currency",
+                "members": [
+                  "CNY",
+                  "USD"
+                ]
+              }
+            }
+          }
+        },
+        "timeout_ms": "5000",
+        "rlimit": "1000000",
+        "max_encoding_steps": "50000",
+        "max_witness_nodes": "10000",
+        "evaluation_work_model": "avcl/evaluation-work/0.1",
+        "evaluation_work_limit": "4000000",
+        "runtime_budget_encoded": false
+      },
+      "runtime_obligations": [
+        "enforce-evaluation-work-budget"
+      ],
+      "checked_at": "2026-10-26T13:41:28.219244+00:00",
+      "scope": "ideal pure semantics on one immutable input, conditional on sufficient evaluation work; no fuel-bound, state-transition or external-effect proof",
+      "independent_certificate_checked": false,
+      "property_id": "allowed-action-exists",
+      "status": "ProvedUnder",
+      "solver_status": "Sat",
+      "witness_ref": "#/queries/2/witness",
+      "reason": null,
+      "query_sha256": "be0ab102312137a3174eb61e9221d8ff63fb4f0ffcb3ac7e974ad8997379373c",
+      "witness": {
+        "allowed": [
+          "USD"
+        ],
+        "approval": {
+          "tag": "Some",
+          "value": "2"
+        },
+        "order": {
+          "amount": "2",
+          "currency": "USD"
+        }
+      },
+      "replay": {
+        "ast": {
+          "value": true,
+          "error": null
+        },
+        "checks": {
+          "value": true,
+          "error": null
+        }
+      }
+    }
+  ],
+  "queries": [
+    {
+      "property_id": "input-domain-inhabited",
+      "query_sha256": "c409f180711afab76ccb9b8ec68e45284b0ed2422668c7a4d0f03921fcf724e8",
+      "smt2": "(set-option :timeout 5000)\n(set-option :rlimit 1000000)\n(set-option :smt.random_seed 0)\n; benchmark generated from python API\n(set-info :status unknown)\n(declare-datatypes ((type_91ba441ae29e8b26857341aa351e85232b2b12e9a3f7bf0a9e2863a4f7970906 0)) (((record_type_91ba441ae29e8b26857341aa351e85232b2b12e9a3f7bf0a9e2863a4f7970906 (field_0 Int) (field_1 Int)))))\n(declare-datatypes ((type_61d8746f635520f173d2bcb8206bb8a1aca1b868b214273437df93b090eb9b21 0)) (((none_type_61d8746f635520f173d2bcb8206bb8a1aca1b868b214273437df93b090eb9b21) (some_type_61d8746f635520f173d2bcb8206bb8a1aca1b868b214273437df93b090eb9b21 (value_type_61d8746f635520f173d2bcb8206bb8a1aca1b868b214273437df93b090eb9b21 Int)))))\n(declare-fun input_2 () type_91ba441ae29e8b26857341aa351e85232b2b12e9a3f7bf0a9e2863a4f7970906)\n(declare-fun input_1 () type_61d8746f635520f173d2bcb8206bb8a1aca1b868b214273437df93b090eb9b21)\n(declare-fun input_0 () (Seq Int))\n(assert\n (let (($x37 (and (and (>= (field_0 input_2) 0) (<= (field_0 input_2) 3)) (and (>= (field_1 input_2) 0) (< (field_1 input_2) 2)))))\n(let ((?x23 (value_type_61d8746f635520f173d2bcb8206bb8a1aca1b868b214273437df93b090eb9b21 input_1)))\n(let (($x27 (and (>= ?x23 0) (<= ?x23 3))))\n(let (($x22 ((_ is some_type_61d8746f635520f173d2bcb8206bb8a1aca1b868b214273437df93b090eb9b21 ) input_1)))\n(let (($x18 (and (>= (seq.nth input_0 0) 0) (< (seq.nth input_0 0) 2))))\n(let ((?x9 (seq.len input_0)))\n(let (($x13 (> ?x9 0)))\n(let (($x11 (<= ?x9 1)))\n(and (and $x11 (and (=> $x13 $x18))) (=> $x22 $x27) $x37))))))))))\n(check-sat)\n",
+      "solver_status": "Sat",
+      "reason": null,
+      "statistics": "(:added-eqs               58\n :arith-eq-adapter        9\n :arith-conflicts         1\n :arith-diseq             3\n :arith-fixed-eqs         2\n :arith-lower             14\n :arith-make-feasible     13\n :arith-max-columns       14\n :arith-max-rows          2\n :arith-upper             9\n :binary-propagations     2\n :conflicts               2\n :datatype-accessor-ax    2\n :datatype-constructor-ax 2\n :decisions               13\n :del-clause              5\n :final-checks            3\n :interface-eqs           1\n :max-memory              18.58\n :memory                  17.38\n :mk-bool-var             48\n :mk-clause               18\n :mk-clause-binary        6\n :num-allocs              1160539\n :num-checks              2\n :propagations            8\n :rlimit-count            1897\n :seq-add-axiom           19\n :seq-fixed-length        1\n :seq-length-coherence    1\n :seq-num-reductions      5\n :time                    0.00)",
+      "model": "(define-fun input_0 () (Seq Int)\n  (as seq.empty (Seq Int)))\n(define-fun input_1 () type_61d8746f635520f173d2bcb8206bb8a1aca1b868b214273437df93b090eb9b21\n  none_type_61d8746f635520f173d2bcb8206bb8a1aca1b868b214273437df93b090eb9b21)\n(define-fun input_2 () type_91ba441ae29e8b26857341aa351e85232b2b12e9a3f7bf0a9e2863a4f7970906\n  (record_type_91ba441ae29e8b26857341aa351e85232b2b12e9a3f7bf0a9e2863a4f7970906\n  2\n  1))",
+      "witness": {
+        "allowed": [],
+        "approval": {
+          "tag": "None"
+        },
+        "order": {
+          "amount": "2",
+          "currency": "USD"
+        }
+      },
+      "replay": {
+        "ast": {
+          "value": false,
+          "error": null
+        },
+        "checks": {
+          "value": false,
+          "error": null
+        }
+      }
+    },
+    {
+      "property_id": "checks-equivalent",
+      "query_sha256": "65dc04a3022a2546ea84211e36d62e590177c0e3a415aad76816ace9b4ed07bf",
+      "smt2": "(set-option :timeout 5000)\n(set-option :rlimit 1000000)\n(set-option :smt.random_seed 0)\n; benchmark generated from python API\n(set-info :status unknown)\n(declare-datatypes ((type_91ba441ae29e8b26857341aa351e85232b2b12e9a3f7bf0a9e2863a4f7970906 0)) (((record_type_91ba441ae29e8b26857341aa351e85232b2b12e9a3f7bf0a9e2863a4f7970906 (field_0 Int) (field_1 Int)))))\n(declare-datatypes ((type_61d8746f635520f173d2bcb8206bb8a1aca1b868b214273437df93b090eb9b21 0)) (((none_type_61d8746f635520f173d2bcb8206bb8a1aca1b868b214273437df93b090eb9b21) (some_type_61d8746f635520f173d2bcb8206bb8a1aca1b868b214273437df93b090eb9b21 (value_type_61d8746f635520f173d2bcb8206bb8a1aca1b868b214273437df93b090eb9b21 Int)))))\n(declare-fun input_2 () type_91ba441ae29e8b26857341aa351e85232b2b12e9a3f7bf0a9e2863a4f7970906)\n(declare-fun input_0 () (Seq Int))\n(declare-fun input_1 () type_61d8746f635520f173d2bcb8206bb8a1aca1b868b214273437df93b090eb9b21)\n(assert\n (let ((?x9 (seq.len input_0)))\n(let (($x13 (> ?x9 0)))\n(let (($x43 (or (and $x13 (= (field_1 input_2) (seq.nth input_0 0))))))\n(let ((?x68 (seq.nth_i input_0 0)))\n(let ((?x69 (seq.nth_u input_0 0)))\n(let (($x64 (<= ?x9 0)))\n(let ((?x71 (ite $x64 ?x69 ?x68)))\n(let ((?x33 (field_1 input_2)))\n(let (($x72 (= ?x33 ?x71)))\n(let (($x65 (not $x64)))\n(let (($x73 (and $x65 $x72)))\n(let (($x74 (not $x73)))\n(let ((?x29 (field_0 input_2)))\n(let (($x60 (<= ?x29 0)))\n(let (($x61 (not $x60)))\n(let (($x76 (and $x61 $x74)))\n(let ((?x23 (value_type_61d8746f635520f173d2bcb8206bb8a1aca1b868b214273437df93b090eb9b21 input_1)))\n(let (($x46 (<= ?x29 ?x23)))\n(let (($x22 ((_ is some_type_61d8746f635520f173d2bcb8206bb8a1aca1b868b214273437df93b090eb9b21 ) input_1)))\n(let (($x70 (and $x61 $x65 $x72 $x22)))\n(let (($x75 (or (and $x70 $x46) (and (and $x61 $x65 $x72 (not $x22)) $x22) (and $x76 $x43) (and $x60 (< 0 ?x29)))))\n(let (($x40 (< 0 ?x29)))\n(let (($x53 (and $x40 (and $x43 (and $x22 $x46)))))\n(let (($x62 (not $x22)))\n(let (($x66 (and $x61 $x65 $x72 $x62)))\n(let (($x63 (or $x70 $x66 $x76 $x60)))\n(let (($x39 (and true true)))\n(let (($x52 (and $x39 (=> $x43 (and true (=> $x22 (and true (and true $x22))))))))\n(let (($x55 (and $x39 (=> $x40 $x52))))\n(let (($x37 (and (and (>= ?x29 0) (<= ?x29 3)) (and (>= ?x33 0) (< ?x33 2)))))\n(let (($x18 (and (>= (seq.nth input_0 0) 0) (< (seq.nth input_0 0) 2))))\n(let (($x11 (<= ?x9 1)))\n(let (($x38 (and (and $x11 (and (=> $x13 $x18))) (=> $x22 (and (>= ?x23 0) (<= ?x23 3))) $x37)))\n(and $x38 (not (and $x55 $x63 (= $x53 $x75))))))))))))))))))))))))))))))))))))))\n(check-sat)\n",
+      "solver_status": "Unsat",
+      "reason": null,
+      "statistics": "(:max-memory   18.58\n :memory       17.45\n :mk-bool-var  1\n :num-allocs   1559539\n :num-checks   2\n :rlimit-count 3560)"
+    },
+    {
+      "property_id": "allowed-action-exists",
+      "query_sha256": "be0ab102312137a3174eb61e9221d8ff63fb4f0ffcb3ac7e974ad8997379373c",
+      "smt2": "(set-option :timeout 5000)\n(set-option :rlimit 1000000)\n(set-option :smt.random_seed 0)\n; benchmark generated from python API\n(set-info :status unknown)\n(declare-datatypes ((type_61d8746f635520f173d2bcb8206bb8a1aca1b868b214273437df93b090eb9b21 0)) (((none_type_61d8746f635520f173d2bcb8206bb8a1aca1b868b214273437df93b090eb9b21) (some_type_61d8746f635520f173d2bcb8206bb8a1aca1b868b214273437df93b090eb9b21 (value_type_61d8746f635520f173d2bcb8206bb8a1aca1b868b214273437df93b090eb9b21 Int)))))\n(declare-datatypes ((type_91ba441ae29e8b26857341aa351e85232b2b12e9a3f7bf0a9e2863a4f7970906 0)) (((record_type_91ba441ae29e8b26857341aa351e85232b2b12e9a3f7bf0a9e2863a4f7970906 (field_0 Int) (field_1 Int)))))\n(declare-fun input_1 () type_61d8746f635520f173d2bcb8206bb8a1aca1b868b214273437df93b090eb9b21)\n(declare-fun input_2 () type_91ba441ae29e8b26857341aa351e85232b2b12e9a3f7bf0a9e2863a4f7970906)\n(declare-fun input_0 () (Seq Int))\n(assert\n (let ((?x23 (value_type_61d8746f635520f173d2bcb8206bb8a1aca1b868b214273437df93b090eb9b21 input_1)))\n(let ((?x29 (field_0 input_2)))\n(let (($x46 (<= ?x29 ?x23)))\n(let (($x22 ((_ is some_type_61d8746f635520f173d2bcb8206bb8a1aca1b868b214273437df93b090eb9b21 ) input_1)))\n(let ((?x9 (seq.len input_0)))\n(let (($x13 (> ?x9 0)))\n(let (($x43 (or (and $x13 (= (field_1 input_2) (seq.nth input_0 0))))))\n(let (($x40 (< 0 ?x29)))\n(let (($x53 (and $x40 (and $x43 (and $x22 $x46)))))\n(let (($x39 (and true true)))\n(let (($x52 (and $x39 (=> $x43 (and true (=> $x22 (and true (and true $x22))))))))\n(let (($x55 (and $x39 (=> $x40 $x52))))\n(let (($x37 (and (and (>= ?x29 0) (<= ?x29 3)) (and (>= (field_1 input_2) 0) (< (field_1 input_2) 2)))))\n(let (($x18 (and (>= (seq.nth input_0 0) 0) (< (seq.nth input_0 0) 2))))\n(let (($x11 (<= ?x9 1)))\n(let (($x38 (and (and $x11 (and (=> $x13 $x18))) (=> $x22 (and (>= ?x23 0) (<= ?x23 3))) $x37)))\n(and $x38 $x55 $x53))))))))))))))))))\n(check-sat)\n",
+      "solver_status": "Sat",
+      "reason": null,
+      "statistics": "(:added-eqs               48\n :arith-eq-adapter        7\n :arith-assume-eqs        2\n :arith-diseq             1\n :arith-fixed-eqs         3\n :arith-lower             9\n :arith-make-feasible     7\n :arith-max-columns       14\n :arith-max-rows          3\n :arith-upper             13\n :binary-propagations     3\n :datatype-accessor-ax    2\n :datatype-constructor-ax 2\n :decisions               2\n :final-checks            3\n :interface-eqs           1\n :max-memory              18.58\n :memory                  17.44\n :mk-bool-var             41\n :mk-clause               3\n :mk-clause-binary        3\n :num-allocs              2009765\n :num-checks              2\n :propagations            4\n :rlimit-count            5078\n :seq-add-axiom           14\n :seq-fixed-length        1\n :seq-num-reductions      3\n :time                    0.00)",
+      "model": "(define-fun input_0 () (Seq Int)\n  (seq.unit 1))\n(define-fun input_1 () type_61d8746f635520f173d2bcb8206bb8a1aca1b868b214273437df93b090eb9b21\n  (some_type_61d8746f635520f173d2bcb8206bb8a1aca1b868b214273437df93b090eb9b21 2))\n(define-fun input_2 () type_91ba441ae29e8b26857341aa351e85232b2b12e9a3f7bf0a9e2863a4f7970906\n  (record_type_91ba441ae29e8b26857341aa351e85232b2b12e9a3f7bf0a9e2863a4f7970906\n  2\n  1))",
+      "witness": {
+        "allowed": [
+          "USD"
+        ],
+        "approval": {
+          "tag": "Some",
+          "value": "2"
+        },
+        "order": {
+          "amount": "2",
+          "currency": "USD"
+        }
+      },
+      "replay": {
+        "ast": {
+          "value": true,
+          "error": null
+        },
+        "checks": {
+          "value": true,
+          "error": null
+        }
+      }
+    }
+  ],
+  "encoding_steps": "81"
+}

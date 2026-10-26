@@ -346,6 +346,12 @@ class PersistenceTests(unittest.TestCase):
     def test_schema_v7_migration_preserves_operations_and_adds_delegation(self):
         self.check_schema_migration(7)
 
+    def test_schema_v8_migration_preserves_operations_and_adds_rejection_quota(self):
+        self.check_schema_migration(8)
+
+    def test_schema_v9_migration_preserves_history_and_initializes_counter(self):
+        self.check_schema_migration(9)
+
     def check_schema_migration(self,version):
         pending=self.unknown()
         other=prepare(self.k,authorize(self.k,self.s,"b",20),"req-b")
@@ -366,6 +372,8 @@ class PersistenceTests(unittest.TestCase):
                 if version>=5:c.execute((ROOT/"migrations"/"005_gateway.sql").read_text(encoding="utf-8"))
                 if version>=6:c.execute((ROOT/"migrations"/"006_validation.sql").read_text(encoding="utf-8"))
                 if version>=7:c.execute((ROOT/"migrations"/"007_task_close.sql").read_text(encoding="utf-8"))
+                if version>=8:c.execute((ROOT/"migrations"/"008_delegation.sql").read_text(encoding="utf-8"))
+                if version>=9:c.execute((ROOT/"migrations"/"009_rejection_audit.sql").read_text(encoding="utf-8"))
                 for table in tables:
                     columns=[r["column_name"] for r in c.execute("SELECT column_name FROM information_schema.columns WHERE table_schema=%s AND table_name=%s ORDER BY ordinal_position",(old_schema,table))]
                     rows=c.execute(sql.SQL("SELECT * FROM {}.{}").format(sql.Identifier(self.schema),sql.Identifier(table))).fetchall()
@@ -374,7 +382,14 @@ class PersistenceTests(unittest.TestCase):
                         c.execute(sql.SQL("INSERT INTO {} ({}) VALUES ({})").format(sql.Identifier(table),sql.SQL(",").join(map(sql.Identifier,columns)),sql.SQL(",").join(sql.Placeholder() for _ in columns)),tuple(row[col] for col in columns))
                 if version>=4:
                     c.execute(sql.SQL("INSERT INTO capacity_policy SELECT * FROM {}.capacity_policy").format(sql.Identifier(self.schema)))
+                if version>=9:
+                    c.execute(sql.SQL("INSERT INTO rejection_audit_policy SELECT * FROM {}.rejection_audit_policy").format(sql.Identifier(self.schema)))
             restored=PostgresKernel(self.dsn,schema=old_schema,clock=self.clock);restored.migrate();restored.migrate()
+            with restored._connect() as c:
+                c.execute(sql.SQL("SET LOCAL search_path={},pg_catalog").format(sql.Identifier(old_schema)))
+                self.assertEqual(c.execute("SELECT version FROM schema_version").fetchone()["version"],10)
+                self.assertEqual(c.execute("SELECT recorded FROM rejection_audit_policy WHERE tenant_id='demo'").fetchone()["recorded"],0)
+                self.assertEqual(c.execute("SELECT last_sequence FROM audit_counter WHERE tenant_id='demo'").fetchone()["last_sequence"],len(self.k.events()))
             self.assertEqual(restored.get("a",pending.id),pending)
             rows={r["operation_id"]:r for r in restored.status()["obligations"]}
             self.assertEqual(rows[pending.id]["due"],pending.obligation_due)

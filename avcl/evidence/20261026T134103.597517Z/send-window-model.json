@@ -1,0 +1,108 @@
+{
+  "scope": "One logical operation, two packets, time 0..4, fixed acceptance cutoff 2.\n\nServer records live for two ticks, never slide on retry. Packet admission is\nnot arrival: delayed packets survive sender crashes. No order-version defense\nis assumed, so this model isolates the deadline/dedup contract itself.\n",
+  "correct": {
+    "mode": "fenced",
+    "states": 90,
+    "edges": 204,
+    "violations": {},
+    "exploration_complete": true
+  },
+  "mutation_oracles": [
+    {
+      "mode": "late_sender",
+      "states": 90,
+      "edges": 230,
+      "violations": {
+        "late_sender_admission": {
+          "trace": [
+            "Tick",
+            "Tick",
+            "AdmitPacket"
+          ],
+          "state": {
+            "now": 2,
+            "attempts": 1,
+            "packets": 1,
+            "record_until": 0,
+            "effects": 0,
+            "unknown": false,
+            "pending": 1
+          }
+        }
+      },
+      "exploration_complete": true
+    },
+    {
+      "mode": "unfenced_server",
+      "states": 114,
+      "edges": 224,
+      "violations": {
+        "duplicate_effect": {
+          "trace": [
+            "AdmitPacket",
+            "AdmitPacket",
+            "RemoteApply",
+            "Tick",
+            "Tick",
+            "RemoteApply"
+          ],
+          "state": {
+            "now": 2,
+            "attempts": 2,
+            "packets": 0,
+            "record_until": 4,
+            "effects": 2,
+            "unknown": false,
+            "pending": 1
+          }
+        },
+        "actual_exceeds_exposure": {
+          "trace": [
+            "AdmitPacket",
+            "AdmitPacket",
+            "RemoteApply",
+            "Tick",
+            "Tick",
+            "RemoteApply"
+          ],
+          "state": {
+            "now": 2,
+            "attempts": 2,
+            "packets": 0,
+            "record_until": 4,
+            "effects": 2,
+            "unknown": false,
+            "pending": 1
+          }
+        }
+      },
+      "exploration_complete": true
+    },
+    {
+      "mode": "absence_releases",
+      "states": 135,
+      "edges": 300,
+      "violations": {
+        "actual_exceeds_exposure": {
+          "trace": [
+            "AdmitPacket",
+            "LoseReceiptOrWorker",
+            "QueryAbsent",
+            "RemoteApply"
+          ],
+          "state": {
+            "now": 0,
+            "attempts": 1,
+            "packets": 0,
+            "record_until": 2,
+            "effects": 1,
+            "unknown": true,
+            "pending": 0
+          }
+        }
+      },
+      "exploration_complete": true
+    }
+  ],
+  "passed": true
+}

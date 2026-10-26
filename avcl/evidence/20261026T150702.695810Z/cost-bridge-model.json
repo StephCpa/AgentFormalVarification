@@ -1,0 +1,118 @@
+{
+  "scope": "Finite P4 cost bridge: one principal-two, fee-one logical operation.\n\nRemote costs are independent of local spent/pending. No crashes, multiple\noperations, receipt reordering, identities, or database refinement are modeled.\n",
+  "correct": {
+    "mode": "sound",
+    "states": 41,
+    "edges": 135,
+    "exploration_complete": true,
+    "violations": {}
+  },
+  "mutation_oracles": [
+    {
+      "mode": "early_timeout_release",
+      "states": 41,
+      "edges": 135,
+      "exploration_complete": true,
+      "violations": {
+        "actual_exceeds_exposure": {
+          "trace": [
+            "Prepare",
+            "Admit",
+            "LoseReceipt",
+            "RemotePrincipal"
+          ],
+          "state": {
+            "phase": "Unknown",
+            "principal": 2,
+            "fee": 0,
+            "spent": 0,
+            "pending": 0,
+            "closed": false
+          },
+          "actual": 2,
+          "exposure": 0
+        }
+      }
+    },
+    {
+      "mode": "final_on_partial",
+      "states": 37,
+      "edges": 118,
+      "exploration_complete": true,
+      "violations": {
+        "actual_exceeds_exposure": {
+          "trace": [
+            "Prepare",
+            "Admit",
+            "MistakePartialForFinal",
+            "RemotePrincipal"
+          ],
+          "state": {
+            "phase": "Final",
+            "principal": 2,
+            "fee": 0,
+            "spent": 0,
+            "pending": 0,
+            "closed": false
+          },
+          "actual": 2,
+          "exposure": 0
+        }
+      }
+    },
+    {
+      "mode": "underestimated_upper",
+      "states": 41,
+      "edges": 135,
+      "exploration_complete": true,
+      "violations": {
+        "actual_exceeds_exposure": {
+          "trace": [
+            "Prepare",
+            "Admit",
+            "RemotePrincipal",
+            "RemoteFee"
+          ],
+          "state": {
+            "phase": "Admitted",
+            "principal": 2,
+            "fee": 1,
+            "spent": 0,
+            "pending": 2,
+            "closed": false
+          },
+          "actual": 3,
+          "exposure": 2
+        }
+      }
+    },
+    {
+      "mode": "post_final_cost",
+      "states": 46,
+      "edges": 165,
+      "exploration_complete": true,
+      "violations": {
+        "actual_exceeds_exposure": {
+          "trace": [
+            "Prepare",
+            "Admit",
+            "CloseAllRemoteCostSources",
+            "ObserveFinal",
+            "RemotePrincipal"
+          ],
+          "state": {
+            "phase": "Final",
+            "principal": 2,
+            "fee": 0,
+            "spent": 0,
+            "pending": 0,
+            "closed": true
+          },
+          "actual": 2,
+          "exposure": 0
+        }
+      }
+    }
+  ],
+  "passed": true
+}

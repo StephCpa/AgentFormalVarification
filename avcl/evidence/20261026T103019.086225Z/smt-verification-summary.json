@@ -1,0 +1,15 @@
+{
+  "schema": "avcl/smt-verification-summary/0.1",
+  "passed": true,
+  "unit_tests": 217,
+  "smt_tests": 20,
+  "stages": 18,
+  "source_files": 132,
+  "source_hash_mismatches": [],
+  "package_hash_mismatches": [],
+  "postgres_tested_this_run": false,
+  "prior_postgres_evidence": "20261025T213748.983131Z",
+  "prior_runtime_module_mismatches": [],
+  "preserved_failure_evidence": "20261026T102745.066889Z",
+  "scope": "Pure-predicate local VCs only; explicit encoder and Z3 trust; M1 still open"
+}

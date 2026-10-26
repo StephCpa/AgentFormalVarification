@@ -1,0 +1,21 @@
+[
+  {
+    "check": "F1-delegated-accounts",
+    "passed": true,
+    "accounts": 4,
+    "spent_each": 60,
+    "pending_each": 0
+  },
+  {
+    "check": "F2-halted-ownership-after-health-restored",
+    "passed": true,
+    "effects": 0
+  },
+  {
+    "check": "F3-resubmit-old-rejected-large-receipt",
+    "passed": true,
+    "spent": 1000000000000000000,
+    "pending": 0,
+    "historical_quarantine_retained": true
+  }
+]

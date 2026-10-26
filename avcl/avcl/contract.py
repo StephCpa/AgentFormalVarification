@@ -9,6 +9,7 @@ from .canonical import Reject,canonical_bytes,digest,strict_loads
 from .ir import Predicate,load_predicate,refund_predicate
 from .ir_types import identifier
 from .checks import compile_checks
+from .diagnostics import annotate
 
 FORMAT="avcl/contract/0.3"
 EFFECTS=frozenset({"Read","Write","Disclose","InvokeModel","Spawn","ResourceConsume"})
@@ -108,7 +109,12 @@ class Contract:
                     result[key]=t
         return result
 
-def build_contract(module_id,policy_version,tools,validators,assumptions,clauses,account_limits=()):
+def build_contract(module_id,policy_version,tools,validators,assumptions,clauses,account_limits=(),*,source="<contract-builder>"):
+    try:return _build_contract(module_id,policy_version,tools,validators,assumptions,clauses,account_limits)
+    except Reject as exc:raise annotate(exc,source_ref=source,location="/",component="contract")
+
+
+def _build_contract(module_id,policy_version,tools,validators,assumptions,clauses,account_limits):
     if not identifier(module_id) or not moment(policy_version) or policy_version==0: raise Reject("INVALID_CONTRACT_ID")
     for items,cls in [(tools,Tool),(validators,Validator),(assumptions,Assumption),(clauses,Clause)]:
         if type(items) is not tuple or len(items)>200 or any(type(v) is not cls for v in items): raise Reject("INVALID_DECLARATION")
@@ -123,21 +129,25 @@ def build_contract(module_id,policy_version,tools,validators,assumptions,clauses
         if not all(identifier(v) for v in (a.authority,a.scope,a.monitor)) or not moment(a.valid_from) or not moment(a.expires) or a.valid_from>=a.expires:
             raise Reject("INVALID_ASSUMPTION")
     known_tools={t.id for t in tools};known_assumptions={a.id for a in assumptions};normalized=[]
-    for c in clauses:
-        if type(c.kind) is not str or c.kind not in {"safety","completion"}: raise Reject("UNSUPPORTED_CLAUSE_KIND")
-        if type(c.tool) is not str or type(c.rule) is not str: raise Reject("INVALID_CLAUSE")
-        if c.tool not in known_tools or not names(c.events) or not names(c.requirement_ids) or not c.requirement_ids or not names(c.assumptions):
-            raise Reject("INVALID_CLAUSE")
-        if not set(c.assumptions)<=known_assumptions or type(c.frozen) is not bool or type(c.predicate) is not Predicate: raise Reject("INVALID_CLAUSE")
-        if c.kind=="safety":
-            if c.rule not in {"requires","forbid","invariant"} or not c.events or not set(c.events)<={"prepare","dispatch"}:
-                raise Reject("INVALID_SAFETY_SELECTOR")
-        elif c.rule!="success" or c.events!=("close",) or c.frozen:
-            raise Reject("COMPLETION_IS_NOT_AUTHORIZATION")
-        p=load_predicate(c.predicate.to_json())
-        if p.requirement_id not in c.requirement_ids: raise Reject("REQUIREMENT_MAPPING_MISMATCH")
-        normalized.append(Clause(c.id,c.kind,c.rule,c.tool,tuple(sorted(c.events)),tuple(sorted(c.requirement_ids)),
-                                 tuple(sorted(c.assumptions)),c.frozen,p))
+    for index,c in enumerate(clauses):
+        try:
+            if type(c.kind) is not str or c.kind not in {"safety","completion"}: raise Reject("UNSUPPORTED_CLAUSE_KIND")
+            if type(c.tool) is not str or type(c.rule) is not str: raise Reject("INVALID_CLAUSE")
+            if c.tool not in known_tools or not names(c.events) or not names(c.requirement_ids) or not c.requirement_ids or not names(c.assumptions):
+                raise Reject("INVALID_CLAUSE")
+            if not set(c.assumptions)<=known_assumptions or type(c.frozen) is not bool or type(c.predicate) is not Predicate: raise Reject("INVALID_CLAUSE")
+            if c.kind=="safety":
+                if c.rule not in {"requires","forbid","invariant"} or not c.events or not set(c.events)<={"prepare","dispatch"}:
+                    raise Reject("INVALID_SAFETY_SELECTOR")
+            elif c.rule!="success" or c.events!=("close",) or c.frozen:
+                raise Reject("COMPLETION_IS_NOT_AUTHORIZATION")
+            p=load_predicate(c.predicate.to_json())
+            if p.requirement_id not in c.requirement_ids: raise Reject("REQUIREMENT_MAPPING_MISMATCH")
+            normalized.append(Clause(c.id,c.kind,c.rule,c.tool,tuple(sorted(c.events)),tuple(sorted(c.requirement_ids)),
+                                     tuple(sorted(c.assumptions)),c.frozen,p))
+        except Reject as exc:
+            raise annotate(exc,requirement_ids=c.requirement_ids if type(c.requirement_ids) is tuple else (),
+                           clause_id=c.id,location=f"/clauses/{index}",component="contract")
     if type(account_limits) is not tuple or any(type(p) is not tuple or len(p)!=2 or type(p[0]) is not str or not p[0] or len(p[0])>256 or not moment(p[1]) for p in account_limits):
         raise Reject("INVALID_ACCOUNT_LIMITS")
     if len({p[0] for p in account_limits})!=len(account_limits): raise Reject("INVALID_ACCOUNT_LIMITS")
@@ -163,7 +173,14 @@ def sequence(obj):
 def string_tuple(value):
     return tuple(sequence(value))
 
-def load_contract(raw):
+def load_contract(raw,*,source="<contract-input>"):
+    try:return _load_contract(raw)
+    except Reject as exc:
+        if getattr(exc,"source_ref",None)=="<contract-builder>":exc.source_ref=None
+        raise annotate(exc,source_ref=source,location="/",component="contract")
+
+
+def _load_contract(raw):
     o=exact(strict_loads(raw),"format module_id policy_version tools validators assumptions clauses account_limits source_map")
     if o["format"]!=FORMAT: raise Reject("UNSUPPORTED_CONTRACT_VERSION")
     tools=[];validators=[];assumptions=[];clauses=[]
@@ -176,13 +193,19 @@ def load_contract(raw):
         assumptions.append(Assumption(a["id"],a["authority"],a["scope"],decimal(a["valid_from"]),decimal(a["expires"]),a["monitor"]))
     sources=o["source_map"]
     if type(sources) is not dict: raise Reject("INVALID_SOURCE_MAP")
-    for item in sequence(o["clauses"]):
-        c=exact(item,"id kind rule tool events requirement_ids assumptions frozen predicate")
-        if type(c["id"]) is not str or c["id"] not in sources or type(c["predicate"]) is not dict or "source_map" in c["predicate"]:
-            raise Reject("INVALID_SOURCE_MAP")
-        p=load_predicate(canonical_bytes({**c["predicate"],"source_map":sources[c["id"]]}).decode("utf-8"))
-        clauses.append(Clause(c["id"],c["kind"],c["rule"],c["tool"],string_tuple(c["events"]),string_tuple(c["requirement_ids"]),
-                              string_tuple(c["assumptions"]),c["frozen"],p))
+    for index,item in enumerate(sequence(o["clauses"])):
+        try:
+            c=exact(item,"id kind rule tool events requirement_ids assumptions frozen predicate")
+            if type(c["id"]) is not str or c["id"] not in sources or type(c["predicate"]) is not dict or "source_map" in c["predicate"]:
+                raise Reject("INVALID_SOURCE_MAP")
+            p=load_predicate(canonical_bytes({**c["predicate"],"source_map":sources[c["id"]]}).decode("utf-8"))
+            clauses.append(Clause(c["id"],c["kind"],c["rule"],c["tool"],string_tuple(c["events"]),string_tuple(c["requirement_ids"]),
+                                  string_tuple(c["assumptions"]),c["frozen"],p))
+        except Reject as exc:
+            req=item.get("requirement_ids") if type(item) is dict else None
+            raise annotate(exc,requirement_ids=req if type(req) is list else (),
+                           clause_id=item.get("id") if type(item) is dict else None,
+                           location=f"/clauses/{index}",component="contract")
     if set(sources)!={c.id for c in clauses} or type(o["account_limits"]) is not dict: raise Reject("INVALID_CONTRACT_DOCUMENT")
     return build_contract(o["module_id"],decimal(o["policy_version"]),tuple(tools),tuple(validators),tuple(assumptions),tuple(clauses),
                           tuple((k,decimal(v)) for k,v in o["account_limits"].items()))
@@ -201,24 +224,28 @@ class CompiledContract:
     contract: Contract
     checks: tuple
 
-    def evaluate(self,event,tool,values,health,now):
+    def evaluate(self,event,tool,values,health,now,*,budget=None):
+        from .evaluation import use_budget
+        budget=use_budget(budget)
         if event not in {"prepare","dispatch","close"} or type(values) is not dict or type(health) is not dict or not moment(now):
             raise Reject("INVALID_CONTRACT_CONTEXT")
         reports=[];compiled=dict(self.checks)
         for c in self.contract.clauses:
             if c.tool!=tool or event not in c.events: continue
             status="Unknown";reason=None;passed=False
-            if not assumptions_valid(self.contract,c.assumptions,health,now):
-                status="AssumptionBroken";reason="assumption_unavailable_expired_or_broken"
-            else:
-                try:
+            try:
+                budget.charge(1+len(c.predicate.fields)+len(c.assumptions))
+                if not assumptions_valid(self.contract,c.assumptions,health,now):
+                    status="AssumptionBroken";reason="assumption_unavailable_expired_or_broken"
+                else:
                     fields={key:values[key] for key,_ in c.predicate.fields}
-                    value=compiled[c.id].evaluate(fields);passed=not value if c.rule=="forbid" else value
+                    value=compiled[c.id].evaluate(fields,budget=budget);passed=not value if c.rule=="forbid" else value
                     status="RuntimeSatisfied" if passed else "Violated"
-                except (Reject,KeyError) as exc: reason=exc.code if isinstance(exc,Reject) else "MISSING_CONTEXT_FIELD"
+            except (Reject,KeyError) as exc: reason=exc.code if isinstance(exc,Reject) else "MISSING_CONTEXT_FIELD"
             reports.append({"clause_id":c.id,"requirement_ids":list(c.requirement_ids),"kind":c.kind,"event":event,
                 "status":status,"passed":passed,"reason":reason,"contract_digest":self.contract.semantic_digest})
-        return {"event":event,"allowed":bool(reports) and all(r["passed"] for r in reports),"reports":reports}
+        return {"event":event,"allowed":bool(reports) and all(r["passed"] for r in reports),"reports":reports,
+                "evaluation_work":budget.report()}
 
 def compile_contract(contract):
     normalized=load_contract(contract.to_json())

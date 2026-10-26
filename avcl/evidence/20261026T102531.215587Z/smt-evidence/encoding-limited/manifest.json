@@ -1,0 +1,10 @@
+{
+  "schema": "avcl/smt-evidence/0.1",
+  "status": "unsigned-offline-evidence",
+  "ir_digest": "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d",
+  "files": {
+    "core.ir.json": "9a7ec0b17f351b4d3036e32769b44da0f58b68cb69a9ed02a2e15f7f25941393",
+    "checks.json": "a685b9c5835066373f63e1c226e0f4d640fd7945704abc6be69e0ccf4a9a9478",
+    "verification-report.json": "a95ef6e136c56d96f28e0a9d956b0063da0fd2169844a7cded2a470899442643"
+  }
+}

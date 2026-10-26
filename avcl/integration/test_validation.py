@@ -172,6 +172,10 @@ class ValidationTests(unittest.TestCase):
             with self.assertRaises(psycopg.errors.RaiseException):self.query(statement)
 
     def test_v5_migration_retains_existing_gateway_credentials_and_checked_refs(self):
+        self.query("DROP TRIGGER audit_requires_allocation ON audit_event")
+        self.query("DROP FUNCTION require_audit_allocation()")
+        self.query("DROP TABLE audit_counter")
+        self.query("DROP TABLE rejection_audit_subject, rejection_audit_policy")
         self.assertEqual(self.query("SELECT * FROM delegation_grant"),[])
         self.query("DROP TABLE delegation_request, delegation_grant, delegation_subject")
         self.query("DROP FUNCTION freeze_delegation_grant()")

@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "sibling_prepare_rejected": "BUDGET_EXCEEDED",
+  "pending_after_ancestor_revoke": 60,
+  "actual_cost": 60,
+  "effect_count": 1
+}

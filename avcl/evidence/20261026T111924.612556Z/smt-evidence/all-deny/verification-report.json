@@ -1,0 +1,194 @@
+{
+  "schema": "avcl/smt/0.1",
+  "reports": [
+    {
+      "requirement_ids": [
+        "R09"
+      ],
+      "ir_digest": "sha256:22ff6ddcb193e05be909ac58eab849c76a66801051ceb56139a335270d5c6337",
+      "source_digest": "sha256:4996f53584d2927324acb103c16ceb050362b1bfca9b028308dbc5fec954f8c4",
+      "spec_digest": "sha256:f4a113919b5a8d6c570d7193a1e75d1fb5fe22f824e17ad1d3359cfa42b5d301",
+      "checker_build": "avcl/checks/0.2",
+      "encoder_build": "avcl/smt/0.1",
+      "checks_sha256": "defb96b58d194dae61c48d9b490865bcc78d1d762a666a2cd265c871ed92bda3",
+      "assumption_ids": [
+        "pure-ir-typing",
+        "smt-value-encoding",
+        "smt-ast-encoding",
+        "smt-vm-encoding",
+        "python-runtime",
+        "z3-4.15.4.0"
+      ],
+      "tool_versions": {
+        "python": "3.12.14",
+        "z3_package": "4.15.4.0",
+        "z3_core": "4.15.4"
+      },
+      "bounds": {
+        "fields": {
+          "b": {
+            "kind": "Bool"
+          }
+        },
+        "timeout_ms": "5000",
+        "rlimit": "1000000",
+        "max_encoding_steps": "50000",
+        "max_witness_nodes": "10000"
+      },
+      "runtime_obligations": [],
+      "checked_at": "2026-10-26T11:19:48.092518+00:00",
+      "scope": "one immutable input; no state transition or external effect",
+      "independent_certificate_checked": false,
+      "property_id": "input-domain-inhabited",
+      "status": "ProvedUnder",
+      "solver_status": "Sat",
+      "witness_ref": "#/queries/0/witness",
+      "reason": null,
+      "query_sha256": "f3f72c21854bf3f275abbee83c5a3279d1dc55639f811ffde68b778d37f06f71",
+      "witness": {
+        "b": false
+      },
+      "replay": {
+        "ast": {
+          "value": false,
+          "error": null
+        },
+        "checks": {
+          "value": false,
+          "error": null
+        }
+      }
+    },
+    {
+      "requirement_ids": [
+        "R09"
+      ],
+      "ir_digest": "sha256:22ff6ddcb193e05be909ac58eab849c76a66801051ceb56139a335270d5c6337",
+      "source_digest": "sha256:4996f53584d2927324acb103c16ceb050362b1bfca9b028308dbc5fec954f8c4",
+      "spec_digest": "sha256:f4a113919b5a8d6c570d7193a1e75d1fb5fe22f824e17ad1d3359cfa42b5d301",
+      "checker_build": "avcl/checks/0.2",
+      "encoder_build": "avcl/smt/0.1",
+      "checks_sha256": "defb96b58d194dae61c48d9b490865bcc78d1d762a666a2cd265c871ed92bda3",
+      "assumption_ids": [
+        "pure-ir-typing",
+        "smt-value-encoding",
+        "smt-ast-encoding",
+        "smt-vm-encoding",
+        "python-runtime",
+        "z3-4.15.4.0"
+      ],
+      "tool_versions": {
+        "python": "3.12.14",
+        "z3_package": "4.15.4.0",
+        "z3_core": "4.15.4"
+      },
+      "bounds": {
+        "fields": {
+          "b": {
+            "kind": "Bool"
+          }
+        },
+        "timeout_ms": "5000",
+        "rlimit": "1000000",
+        "max_encoding_steps": "50000",
+        "max_witness_nodes": "10000"
+      },
+      "runtime_obligations": [],
+      "checked_at": "2026-10-26T11:19:48.092518+00:00",
+      "scope": "one immutable input; no state transition or external effect",
+      "independent_certificate_checked": false,
+      "property_id": "checks-equivalent",
+      "status": "ProvedUnder",
+      "solver_status": "Unsat",
+      "witness_ref": null,
+      "reason": null,
+      "query_sha256": "8c658684cf742365ffc1edf1c77656de0c0c952a8fd236f6bee20287b7070a37"
+    },
+    {
+      "requirement_ids": [
+        "R09"
+      ],
+      "ir_digest": "sha256:22ff6ddcb193e05be909ac58eab849c76a66801051ceb56139a335270d5c6337",
+      "source_digest": "sha256:4996f53584d2927324acb103c16ceb050362b1bfca9b028308dbc5fec954f8c4",
+      "spec_digest": "sha256:f4a113919b5a8d6c570d7193a1e75d1fb5fe22f824e17ad1d3359cfa42b5d301",
+      "checker_build": "avcl/checks/0.2",
+      "encoder_build": "avcl/smt/0.1",
+      "checks_sha256": "defb96b58d194dae61c48d9b490865bcc78d1d762a666a2cd265c871ed92bda3",
+      "assumption_ids": [
+        "pure-ir-typing",
+        "smt-value-encoding",
+        "smt-ast-encoding",
+        "smt-vm-encoding",
+        "python-runtime",
+        "z3-4.15.4.0"
+      ],
+      "tool_versions": {
+        "python": "3.12.14",
+        "z3_package": "4.15.4.0",
+        "z3_core": "4.15.4"
+      },
+      "bounds": {
+        "fields": {
+          "b": {
+            "kind": "Bool"
+          }
+        },
+        "timeout_ms": "5000",
+        "rlimit": "1000000",
+        "max_encoding_steps": "50000",
+        "max_witness_nodes": "10000"
+      },
+      "runtime_obligations": [],
+      "checked_at": "2026-10-26T11:19:48.092518+00:00",
+      "scope": "one immutable input; no state transition or external effect",
+      "independent_certificate_checked": false,
+      "property_id": "allowed-action-exists",
+      "status": "Violated",
+      "solver_status": "Unsat",
+      "witness_ref": null,
+      "reason": null,
+      "query_sha256": "2faa0220d8ee31c1aa36d347e85753d71d56553e05d467de188f239a412b4806"
+    }
+  ],
+  "queries": [
+    {
+      "property_id": "input-domain-inhabited",
+      "query_sha256": "f3f72c21854bf3f275abbee83c5a3279d1dc55639f811ffde68b778d37f06f71",
+      "smt2": "(set-option :timeout 5000)\n(set-option :rlimit 1000000)\n(set-option :smt.random_seed 0)\n; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (and true))\n(check-sat)\n",
+      "solver_status": "Sat",
+      "reason": null,
+      "statistics": "(:max-memory   18.58\n :memory       17.22\n :num-allocs   2537147\n :rlimit-count 7)",
+      "model": "",
+      "witness": {
+        "b": false
+      },
+      "replay": {
+        "ast": {
+          "value": false,
+          "error": null
+        },
+        "checks": {
+          "value": false,
+          "error": null
+        }
+      }
+    },
+    {
+      "property_id": "checks-equivalent",
+      "query_sha256": "8c658684cf742365ffc1edf1c77656de0c0c952a8fd236f6bee20287b7070a37",
+      "smt2": "(set-option :timeout 5000)\n(set-option :rlimit 1000000)\n(set-option :smt.random_seed 0)\n; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (let (($x6 (and true)))\n(and $x6 (not (and true (or true) (= false (or (and true false))))))))\n(check-sat)\n",
+      "solver_status": "Unsat",
+      "reason": null,
+      "statistics": "(:max-memory   18.58\n :memory       17.22\n :num-allocs   2759361\n :rlimit-count 38)"
+    },
+    {
+      "property_id": "allowed-action-exists",
+      "query_sha256": "2faa0220d8ee31c1aa36d347e85753d71d56553e05d467de188f239a412b4806",
+      "smt2": "(set-option :timeout 5000)\n(set-option :rlimit 1000000)\n(set-option :smt.random_seed 0)\n; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (let (($x6 (and true)))\n(and $x6 true false)))\n(check-sat)\n",
+      "solver_status": "Unsat",
+      "reason": null,
+      "statistics": "(:max-memory   18.58\n :memory       17.23\n :num-allocs   2988301\n :rlimit-count 44)"
+    }
+  ],
+  "encoding_steps": "7"
+}

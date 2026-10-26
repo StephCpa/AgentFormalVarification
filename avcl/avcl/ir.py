@@ -2,6 +2,8 @@
 from dataclasses import dataclass
 from .canonical import Reject,canonical_bytes,digest,strict_loads
 from .ir_types import FieldType,Some,Tagged,Record,identifier,type_from_wire,same_type,join_type,BOUND
+from .evaluation import use_budget, EvaluationLimit, binary, record_get
+from .diagnostics import annotate, predicate_location
 
 VERSION="avcl/predicate/0.2"
 SEMANTICS="avcl/pure/0.2"
@@ -9,7 +11,7 @@ BOOL=FieldType("Bool")
 
 class Diagnostic(Reject):
     def __init__(self,code,requirement_id,node_id):
-        super().__init__(code)
+        super().__init__(code, requirement_ids=("R09", requirement_id))
         self.requirement_id,self.node_id=requirement_id,node_id
 
 @dataclass(frozen=True)
@@ -40,33 +42,47 @@ class Predicate:
     requirement_id: str
     source_map: tuple
 
-    def values(self,values):
-        if type(values) is not dict or set(values)!=set(k for k,_ in self.fields):
+    def values(self,values,*,budget=None):
+        budget=use_budget(budget)
+        if (type(values) is not dict or len(values)!=len(self.fields) or
+                any(type(k) is not str or len(k)>128 for k in values)):
             raise Diagnostic("EVALUATION_FIELDS",self.requirement_id,self.root.node_id)
-        try: return {k:t.normalize(values[k]) for k,t in self.fields}
+        try:
+            budget.charge((len(values)+1)*sum(1+len(k) for k in values))
+            if set(values)!=set(k for k,_ in self.fields):
+                raise Diagnostic("EVALUATION_FIELDS",self.requirement_id,self.root.node_id)
+            return {k:t.normalize(values[k],budget=budget) for k,t in self.fields}
+        except EvaluationLimit as exc:
+            raise exc.locate(self.requirement_id,self.root.node_id)
+        except Diagnostic:raise
         except (Reject,TypeError,ValueError):
             raise Diagnostic("EVALUATION_TYPE_OR_RANGE",self.requirement_id,self.root.node_id) from None
 
-    def evaluate(self,values):
-        env=self.values(values)
+    def evaluate(self,values,*,budget=None):
+        budget=use_budget(budget);env=self.values(values,budget=budget)
         def run(n):
+            try:
+                budget.charge()
+                return evaluate_node(n)
+            except EvaluationLimit as exc:
+                raise exc.locate(self.requirement_id,n.node_id)
+        def evaluate_node(n):
             if n.tag=="Const": return n.value
             if n.tag=="Field": return env[n.value]
-            if n.tag=="Get": return run(n.children[0]).get(n.value)
+            if n.tag=="Get": return record_get(run(n.children[0]),n.value,budget)
             if n.tag=="And": return run(n.children[0]) and run(n.children[1])
             if n.tag=="Or": return run(n.children[0]) or run(n.children[1])
-            if n.tag=="If": return run(n.children[1] if run(n.children[0]) else n.children[2])
+            if n.tag=="If":
+                if run(n.children[0]):
+                    result=run(n.children[1]);budget.charge()  # VM's true-branch join JUMP.
+                    return result
+                return run(n.children[2])
             if n.tag=="Not": return not run(n.children[0])
             if n.tag=="IsSome": return run(n.children[0]) is not None
             if n.tag=="Unwrap": return run(n.children[0]).value
             a,b=(run(c) for c in n.children)
-            if n.tag=="Eq": return a==b
-            if n.tag=="Le": return a<=b
-            if n.tag=="Lt": return a<b
-            if n.tag=="Add": return a+b
-            if n.tag=="Sub": return a-b
-            if n.tag=="MulConst": return a*b
-            if n.tag=="InSet": return a in b
+            ops={"Eq":"EQ","Le":"LE","Lt":"LT","Add":"ADD","Sub":"SUB","MulConst":"MUL","InSet":"IN"}
+            if n.tag in ops:return binary(ops[n.tag],a,b,budget)
             raise Diagnostic("UNSUPPORTED_NODE",self.requirement_id,n.node_id)
         return run(self.root)
 
@@ -96,15 +112,16 @@ def known_some(node,truth):
     return set()
 
 def compile_predicate(raw,fields,requirement_id="R09",source="<builder>"):
-    def error(code,node="n0"): raise Diagnostic(code,requirement_id,node)
-    if not identifier(requirement_id) or type(source) is not str or len(source)>256: error("INVALID_METADATA")
-    if type(fields) is not dict or not fields or len(fields)>64: error("INVALID_FIELD_SCHEMA")
+    def error(code,node="n0",location=None):
+        raise annotate(Diagnostic(code,requirement_id,node),source_ref=source,location=location or predicate_location(node),component="predicate")
+    if not identifier(requirement_id) or type(source) is not str or len(source)>256: error("INVALID_METADATA",None,"/")
+    if type(fields) is not dict or not fields or len(fields)>64: error("INVALID_FIELD_SCHEMA",None,"/fields")
     try:
         for k,t in fields.items():
             if not identifier(k) or type(t) is not FieldType: error("INVALID_FIELD_SCHEMA")
             t.validate()
         fields={k:type_from_wire(t.wire()) for k,t in fields.items()}
-    except Reject: error("INVALID_FIELD_SCHEMA")
+    except Reject: error("INVALID_FIELD_SCHEMA",None,"/fields")
     nominal={}
     def register(t,path):
         if t.kind in {"Id","Enum"}:
@@ -181,31 +198,54 @@ def compile_predicate(raw,fields,requirement_id="R09",source="<builder>"):
     except Reject as exc: error(exc.code)
     return result
 
-def load_predicate(raw):
-    obj=strict_loads(raw)
+def load_predicate(raw,*,source="<predicate-input>"):
+    obj=None
+    try:
+        obj=strict_loads(raw)
+        return _load_predicate(obj)
+    except Reject as exc:
+        req=obj.get("requirement_id") if type(obj) is dict else None
+        sm=obj.get("source_map") if type(obj) is dict else None
+        node=getattr(exc,"node_id",None)
+        origin=sm.get(node) if type(sm) is dict and node is not None else None
+        # A loader's revalidation uses a synthetic builder label. Prefer the
+        # corresponding supplied source-map entry, or the caller's file label.
+        if getattr(exc,"source_ref",None)=="<builder>":exc.source_ref=None
+        raise annotate(exc,requirement_ids=("R09",req),source_ref=origin if type(origin) is str else source,
+                       location=predicate_location(node) or "/",component="predicate")
+
+
+def _load_predicate(obj):
     if type(obj) is not dict or set(obj)!={"ir_version","semantic_version","requirement_id","fields","root","source_map"}:
         raise Reject("INVALID_IR_DOCUMENT")
     if obj["ir_version"]!=VERSION or obj["semantic_version"]!=SEMANTICS: raise Reject("UNSUPPORTED_IR_VERSION")
     if type(obj["fields"]) is not dict: raise Reject("INVALID_FIELD_SCHEMA")
-    fields={k:type_from_wire(v) for k,v in obj["fields"].items()}
+    fields={}
+    for k,v in obj["fields"].items():
+        try:fields[k]=type_from_wire(v)
+        except Reject as exc:
+            raise annotate(exc,location="/fields/"+k.replace("~","~0").replace("/","~1"))
     count=0
     def decode(n,path="n0",depth=0):
         nonlocal count
         count+=1
-        if count>1000 or depth>64: raise Reject("PREDICATE_LIMIT")
-        if type(n) is not dict or n.get("node_id")!=path: raise Reject("INVALID_NODE_ID")
+        def fail(code):raise Diagnostic(code,obj.get("requirement_id"),path)
+        if count>1000 or depth>64: fail("PREDICATE_LIMIT")
+        if type(n) is not dict or n.get("node_id")!=path: fail("INVALID_NODE_ID")
         out={k:v for k,v in n.items() if k!="node_id"}
         if out.get("tag")=="Const":
-            if set(out)!={"tag","type","value"}: raise Reject("INVALID_AST")
-            t=type_from_wire(out["type"]);out.update(type=t,value=t.value_from_wire(out["value"]))
+            if set(out)!={"tag","type","value"}: fail("INVALID_AST")
+            try:
+                t=type_from_wire(out["type"]);out.update(type=t,value=t.value_from_wire(out["value"]))
+            except Reject as exc:raise annotate(exc,node_id=path,location=predicate_location(path))
         elif "args" in out:
-            if type(out["args"]) is not list: raise Reject("INVALID_AST")
+            if type(out["args"]) is not list: fail("INVALID_AST")
             out["args"]=[decode(v,f"{path}.{i}",depth+1) for i,v in enumerate(out["args"])]
         return out
     result=compile_predicate(decode(obj["root"]),fields,obj["requirement_id"])
     sm=obj["source_map"]
     if type(sm) is not dict or set(sm)!=set(n.node_id for n in nodes(result.root)) or any(type(v) is not str or len(v)>256 for v in sm.values()):
-        raise Reject("INVALID_SOURCE_MAP")
+        raise annotate(Reject("INVALID_SOURCE_MAP"),location="/source_map")
     return Predicate(result.root,result.fields,result.requirement_id,tuple(sorted(sm.items())))
 
 def refund_predicate():

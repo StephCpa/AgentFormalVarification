@@ -1,0 +1,74 @@
+{
+  "scope": "normalization calls and string characters only; excludes hashing, equality and instruction work",
+  "runtime_budget_implemented": false,
+  "results": [
+    {
+      "set_elements": 1,
+      "input_wire_bytes": 664,
+      "ast_nodes": 3,
+      "backends": {
+        "ast": {
+          "result": true,
+          "normalization_calls": 20,
+          "string_characters": 512
+        },
+        "checks": {
+          "result": true,
+          "normalization_calls": 20,
+          "string_characters": 512
+        }
+      }
+    },
+    {
+      "set_elements": 8,
+      "input_wire_bytes": 5172,
+      "ast_nodes": 3,
+      "backends": {
+        "ast": {
+          "result": true,
+          "normalization_calls": 146,
+          "string_characters": 4096
+        },
+        "checks": {
+          "result": true,
+          "normalization_calls": 146,
+          "string_characters": 4096
+        }
+      }
+    },
+    {
+      "set_elements": 32,
+      "input_wire_bytes": 20628,
+      "ast_nodes": 3,
+      "backends": {
+        "ast": {
+          "result": true,
+          "normalization_calls": 578,
+          "string_characters": 16384
+        },
+        "checks": {
+          "result": true,
+          "normalization_calls": 578,
+          "string_characters": 16384
+        }
+      }
+    },
+    {
+      "set_elements": 64,
+      "input_wire_bytes": 41236,
+      "ast_nodes": 3,
+      "backends": {
+        "ast": {
+          "result": true,
+          "normalization_calls": 1154,
+          "string_characters": 32768
+        },
+        "checks": {
+          "result": true,
+          "normalization_calls": 1154,
+          "string_characters": 32768
+        }
+      }
+    }
+  ]
+}

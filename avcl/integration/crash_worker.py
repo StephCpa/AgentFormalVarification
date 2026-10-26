@@ -9,7 +9,8 @@ from avcl.storage_codec import loads
 from avcl.supervision import PostgresSupervisor
 from avcl.workflow_postgres import DurableWorkflowExecutor
 from avcl.validation import validate_candidate
-from avcl.canonical import strict_loads
+from avcl.canonical import strict_loads,Reject,digest
+from avcl.rejection_audit import AuthenticatedContext
 from avcl.tasks import PostgresTasks
 
 profile=json.loads((ROOT/".runtime"/"local-postgres.json").read_text(encoding="utf-8"))
@@ -21,6 +22,13 @@ method=job["method"]
 if method.startswith("supervisor."):target=PostgresSupervisor(k);method=method.split(".",1)[1]
 if method.startswith("workflow."):target=DurableWorkflowExecutor(k);method=method.split(".",1)[1]
 if method.startswith("tasks."):target=PostgresTasks(k);method=method.split(".",1)[1]
-if method=="validation":k._transaction("api-validate",lambda kernel,c:validate_candidate(kernel,c,args[0],strict_loads(args[1])))
+if method=="audit-rejection":
+    def fail(kernel,c):
+        kernel.prepare(*args)
+        k._save(c,kernel)
+        raise Reject("BUDGET_EXCEEDED")
+    context=AuthenticatedContext("a","prepare",digest({"attempt":"crash"}),"trace-crash")
+    k._transaction("audit-rejection",fail,authenticate=lambda kernel,c:context)
+elif method=="validation":k._transaction("api-validate",lambda kernel,c:validate_candidate(kernel,c,args[0],strict_loads(args[1])))
 else:getattr(target,method)(*args)
 raise RuntimeError("Declared crash point was not reached")

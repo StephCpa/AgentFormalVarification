@@ -1,0 +1,9 @@
+'AVCL.Delegation.P7_scope_transitive' depends on axioms: [propext]
+'AVCL.Delegation.P7_ancestor_revocation' does not depend on any axioms
+'AVCL.Delegation.P7_shared_budget' depends on axioms: [propext, Quot.sound]
+'AVCL.Delegation.P7_composition' depends on axioms: [propext, Quot.sound]
+'AVCL.Delegation.example_nonempty_run' depends on axioms: [propext, Quot.sound]
+'AVCL.Delegation.example_rejects_second_reservation' depends on axioms: [propext, Quot.sound]
+'AVCL.Delegation.example_partial_then_final' depends on axioms: [propext, Quot.sound]
+'AVCL.Delegation.example_can_admit' depends on axioms: [propext, Quot.sound]
+'AVCL.Delegation.example_root_revoked_leaf_not_revoked' depends on axioms: [propext]

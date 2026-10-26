@@ -1,0 +1,106 @@
+{
+  "schema": "avcl/m1-evidence-audit/0.1",
+  "verification_passed": true,
+  "targeted_suite_passed": true,
+  "m1_release_ready": false,
+  "source_files": 143,
+  "source_hash_mismatches": [],
+  "unit_tests": 220,
+  "smt_tests": 36,
+  "targeted_checks": 19,
+  "verification_stages": 21,
+  "process_evidence": [
+    {
+      "test_id": "test_m1_processes.M1ProcessTests.test_T04_two_processes_contend_for_70_and_60_of_100",
+      "host_pids": [
+        66676,
+        65420
+      ],
+      "backend_pids": [
+        73584,
+        47760
+      ],
+      "independent_processes": true,
+      "independent_backends": true,
+      "overlap_confirmed": true,
+      "postconditions": {
+        "operations": 1,
+        "pending": 70,
+        "limit": 100
+      }
+    },
+    {
+      "test_id": "test_m1_processes.M1ProcessTests.test_T08_two_processes_consume_one_permit_once",
+      "host_pids": [
+        35604,
+        61784
+      ],
+      "backend_pids": [
+        66228,
+        35048
+      ],
+      "independent_processes": true,
+      "independent_backends": true,
+      "overlap_confirmed": true,
+      "postconditions": {
+        "admissions": 1,
+        "outbox": 1,
+        "pending": 70
+      }
+    },
+    {
+      "test_id": "test_m1_processes.M1ProcessTests.test_two_processes_retry_same_prepare_without_duplicate_reservation",
+      "host_pids": [
+        68324,
+        66056
+      ],
+      "backend_pids": [
+        39576,
+        66984
+      ],
+      "independent_processes": true,
+      "independent_backends": true,
+      "overlap_confirmed": true,
+      "postconditions": {
+        "rows": {
+          "operation": 1,
+          "permit": 1,
+          "business_action": 1,
+          "request_dedup": 1
+        },
+        "pending": 70
+      }
+    }
+  ],
+  "diagnostic_findings": [
+    {
+      "code": "BUDGET_EXCEEDED",
+      "expected_requirement": "R04",
+      "actual_requirements": [
+        "R01",
+        "R02",
+        "R16"
+      ],
+      "requirement_present": false
+    },
+    {
+      "code": "POLICY_DENIED",
+      "expected_requirement": "R09",
+      "actual_requirements": [
+        "R01",
+        "R02",
+        "R16"
+      ],
+      "requirement_present": false
+    }
+  ],
+  "runtime_evaluator_signatures": {
+    "Predicate.evaluate": "(self, values)",
+    "Checks.evaluate": "(self, values)"
+  },
+  "remaining_items": [
+    "runtime evaluation work budget and fail-closed propagation",
+    "accurate requirement IDs in denial diagnostics and admission evidence"
+  ],
+  "postgres_scope": "four targeted cases including three two-process cases; full suite not rerun"
+}

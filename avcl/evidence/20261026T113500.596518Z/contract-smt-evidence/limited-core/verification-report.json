@@ -1,0 +1,812 @@
+{
+  "schema": "avcl/contract-smt/0.1",
+  "contract_digest": "sha256:fbf9d4f46d6567106fd65530e316d6bb63b734739d15b89281645d557491b613",
+  "reports": [
+    {
+      "contract_digest": "sha256:fbf9d4f46d6567106fd65530e316d6bb63b734739d15b89281645d557491b613",
+      "source_digest": "sha256:ab8b1f5a84329811f781e40cc60068cfabbfbcc718f8f39476371f3cff400afa",
+      "spec_digest": "sha256:c4fb0cd2b3981ca0ced94c42364217103bb9cfc1246ed38897a9e0e1a3f01a0a",
+      "checker_build": "avcl/checks/0.2",
+      "encoder_build": "avcl/smt/0.1",
+      "contract_checker_build": "avcl/contract-smt/0.1",
+      "tool_versions": {
+        "python": "3.12.14",
+        "z3_package": "4.15.4.0",
+        "z3_core": "4.15.4"
+      },
+      "bounds": {
+        "timeout_ms": "5000",
+        "rlimit": "1000000",
+        "max_encoding_steps": "100000",
+        "max_solver_calls": "3",
+        "total_timeout_ms": "30000",
+        "max_witness_nodes": "10000"
+      },
+      "checked_at": "2026-10-26T11:35:26.152243+00:00",
+      "runtime_obligations": [],
+      "independent_certificate_checked": false,
+      "trust_assumptions": [
+        "pure-ir-typing",
+        "smt-value-encoding",
+        "smt-ast-encoding",
+        "smt-vm-encoding",
+        "python-runtime",
+        "z3-4.15.4.0",
+        "hypothetical-healthy-observations"
+      ],
+      "scope": "one tool, one immutable input and one hypothetical healthy observation time",
+      "tool": "refund",
+      "selector": "prepare",
+      "events": [
+        "prepare"
+      ],
+      "observation_time": {
+        "lower": "0",
+        "upper_exclusive": "1000000000000000000"
+      },
+      "requirement_ids": [
+        "R09",
+        "R15"
+      ],
+      "assumption_ids": [
+        "remote-idempotency"
+      ],
+      "clause_ids": [
+        "baseline-refund",
+        "high",
+        "low"
+      ],
+      "ir_digests": {
+        "baseline-refund": "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d",
+        "high": "sha256:2ea6e3a807cfa20f49be3a1505ec861e02bbb0764344063bd6b0dcdd427d41e4",
+        "low": "sha256:215c204de1943ad48443523792a0d84e8832ce8d5fc79733d7f7ea338c861216"
+      },
+      "checks_sha256": {
+        "baseline-refund": "a685b9c5835066373f63e1c226e0f4d640fd7945704abc6be69e0ccf4a9a9478",
+        "high": "b1b695386487ee7fb7405acfd898ea4b54a318d6c7cc615b375ba8c507cf1029",
+        "low": "fe012d1b13920e5eb1aaaa0ca6e1034e20908dde9e57660f3b05f94cb51b1a3d"
+      },
+      "input_fields": {
+        "amount": {
+          "kind": "Int",
+          "lower": "0",
+          "upper": "999999999999999999"
+        },
+        "currency": {
+          "kind": "String"
+        }
+      },
+      "property_id": "refund/prepare/input-domain-inhabited",
+      "status": "ProvedUnder",
+      "solver_status": "Sat",
+      "query_id": "q0",
+      "witness_ref": "#/queries/0/witness",
+      "reason": null,
+      "query_sha256": "89380807583b45682018b7d2648acb7013f3f243c972c11ea6af5ae9e96f0036"
+    },
+    {
+      "contract_digest": "sha256:fbf9d4f46d6567106fd65530e316d6bb63b734739d15b89281645d557491b613",
+      "source_digest": "sha256:ab8b1f5a84329811f781e40cc60068cfabbfbcc718f8f39476371f3cff400afa",
+      "spec_digest": "sha256:c4fb0cd2b3981ca0ced94c42364217103bb9cfc1246ed38897a9e0e1a3f01a0a",
+      "checker_build": "avcl/checks/0.2",
+      "encoder_build": "avcl/smt/0.1",
+      "contract_checker_build": "avcl/contract-smt/0.1",
+      "tool_versions": {
+        "python": "3.12.14",
+        "z3_package": "4.15.4.0",
+        "z3_core": "4.15.4"
+      },
+      "bounds": {
+        "timeout_ms": "5000",
+        "rlimit": "1000000",
+        "max_encoding_steps": "100000",
+        "max_solver_calls": "3",
+        "total_timeout_ms": "30000",
+        "max_witness_nodes": "10000"
+      },
+      "checked_at": "2026-10-26T11:35:26.152243+00:00",
+      "runtime_obligations": [],
+      "independent_certificate_checked": false,
+      "trust_assumptions": [
+        "pure-ir-typing",
+        "smt-value-encoding",
+        "smt-ast-encoding",
+        "smt-vm-encoding",
+        "python-runtime",
+        "z3-4.15.4.0",
+        "hypothetical-healthy-observations"
+      ],
+      "scope": "one tool, one immutable input and one hypothetical healthy observation time",
+      "tool": "refund",
+      "selector": "prepare",
+      "events": [
+        "prepare"
+      ],
+      "observation_time": {
+        "lower": "0",
+        "upper_exclusive": "1000000000000000000"
+      },
+      "requirement_ids": [
+        "R09",
+        "R15"
+      ],
+      "assumption_ids": [
+        "remote-idempotency"
+      ],
+      "clause_ids": [
+        "baseline-refund",
+        "high",
+        "low"
+      ],
+      "ir_digests": {
+        "baseline-refund": "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d",
+        "high": "sha256:2ea6e3a807cfa20f49be3a1505ec861e02bbb0764344063bd6b0dcdd427d41e4",
+        "low": "sha256:215c204de1943ad48443523792a0d84e8832ce8d5fc79733d7f7ea338c861216"
+      },
+      "checks_sha256": {
+        "baseline-refund": "a685b9c5835066373f63e1c226e0f4d640fd7945704abc6be69e0ccf4a9a9478",
+        "high": "b1b695386487ee7fb7405acfd898ea4b54a318d6c7cc615b375ba8c507cf1029",
+        "low": "fe012d1b13920e5eb1aaaa0ca6e1034e20908dde9e57660f3b05f94cb51b1a3d"
+      },
+      "input_fields": {
+        "amount": {
+          "kind": "Int",
+          "lower": "0",
+          "upper": "999999999999999999"
+        },
+        "currency": {
+          "kind": "String"
+        }
+      },
+      "property_id": "refund/prepare/contract-checks-equivalent",
+      "status": "ProvedUnder",
+      "solver_status": "Unsat",
+      "query_id": "q1",
+      "witness_ref": null,
+      "reason": null,
+      "query_sha256": "b8a4b1f83205066a4283da691c0e13bb5a08540ff3fe6250088cc72fb178f18b"
+    },
+    {
+      "contract_digest": "sha256:fbf9d4f46d6567106fd65530e316d6bb63b734739d15b89281645d557491b613",
+      "source_digest": "sha256:ab8b1f5a84329811f781e40cc60068cfabbfbcc718f8f39476371f3cff400afa",
+      "spec_digest": "sha256:c4fb0cd2b3981ca0ced94c42364217103bb9cfc1246ed38897a9e0e1a3f01a0a",
+      "checker_build": "avcl/checks/0.2",
+      "encoder_build": "avcl/smt/0.1",
+      "contract_checker_build": "avcl/contract-smt/0.1",
+      "tool_versions": {
+        "python": "3.12.14",
+        "z3_package": "4.15.4.0",
+        "z3_core": "4.15.4"
+      },
+      "bounds": {
+        "timeout_ms": "5000",
+        "rlimit": "1000000",
+        "max_encoding_steps": "100000",
+        "max_solver_calls": "3",
+        "total_timeout_ms": "30000",
+        "max_witness_nodes": "10000"
+      },
+      "checked_at": "2026-10-26T11:35:26.152243+00:00",
+      "runtime_obligations": [],
+      "independent_certificate_checked": false,
+      "trust_assumptions": [
+        "pure-ir-typing",
+        "smt-value-encoding",
+        "smt-ast-encoding",
+        "smt-vm-encoding",
+        "python-runtime",
+        "z3-4.15.4.0",
+        "hypothetical-healthy-observations"
+      ],
+      "scope": "one tool, one immutable input and one hypothetical healthy observation time",
+      "tool": "refund",
+      "selector": "prepare",
+      "events": [
+        "prepare"
+      ],
+      "observation_time": {
+        "lower": "0",
+        "upper_exclusive": "1000000000000000000"
+      },
+      "requirement_ids": [
+        "R09",
+        "R15"
+      ],
+      "assumption_ids": [
+        "remote-idempotency"
+      ],
+      "clause_ids": [
+        "baseline-refund",
+        "high",
+        "low"
+      ],
+      "ir_digests": {
+        "baseline-refund": "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d",
+        "high": "sha256:2ea6e3a807cfa20f49be3a1505ec861e02bbb0764344063bd6b0dcdd427d41e4",
+        "low": "sha256:215c204de1943ad48443523792a0d84e8832ce8d5fc79733d7f7ea338c861216"
+      },
+      "checks_sha256": {
+        "baseline-refund": "a685b9c5835066373f63e1c226e0f4d640fd7945704abc6be69e0ccf4a9a9478",
+        "high": "b1b695386487ee7fb7405acfd898ea4b54a318d6c7cc615b375ba8c507cf1029",
+        "low": "fe012d1b13920e5eb1aaaa0ca6e1034e20908dde9e57660f3b05f94cb51b1a3d"
+      },
+      "input_fields": {
+        "amount": {
+          "kind": "Int",
+          "lower": "0",
+          "upper": "999999999999999999"
+        },
+        "currency": {
+          "kind": "String"
+        }
+      },
+      "property_id": "refund/prepare/joint-allowed-input-exists",
+      "status": "Violated",
+      "solver_status": "Unsat",
+      "query_id": "q2",
+      "witness_ref": null,
+      "reason": null,
+      "query_sha256": "ca0cffdfaa8e951ee7a4280b34a92518822480e38ccee8a4b582c5368da36a2e",
+      "conflict": {
+        "constraint_ids": [
+          "assumption/remote-idempotency",
+          "clause/baseline-refund",
+          "clause/high",
+          "clause/low"
+        ],
+        "unsat_query_id": "q2",
+        "minimality": "Unconfirmed",
+        "minimum_cardinality_claimed": false,
+        "necessity_witnesses": {},
+        "deletion_query_ids": [],
+        "fixed_background": "full declared input domain and legal time",
+        "budget_reason": "solver_call_budget_exhausted"
+      }
+    },
+    {
+      "contract_digest": "sha256:fbf9d4f46d6567106fd65530e316d6bb63b734739d15b89281645d557491b613",
+      "source_digest": "sha256:ab8b1f5a84329811f781e40cc60068cfabbfbcc718f8f39476371f3cff400afa",
+      "spec_digest": "sha256:c4fb0cd2b3981ca0ced94c42364217103bb9cfc1246ed38897a9e0e1a3f01a0a",
+      "checker_build": "avcl/checks/0.2",
+      "encoder_build": "avcl/smt/0.1",
+      "contract_checker_build": "avcl/contract-smt/0.1",
+      "tool_versions": {
+        "python": "3.12.14",
+        "z3_package": "4.15.4.0",
+        "z3_core": "4.15.4"
+      },
+      "bounds": {
+        "timeout_ms": "5000",
+        "rlimit": "1000000",
+        "max_encoding_steps": "100000",
+        "max_solver_calls": "3",
+        "total_timeout_ms": "30000",
+        "max_witness_nodes": "10000"
+      },
+      "checked_at": "2026-10-26T11:35:26.152243+00:00",
+      "runtime_obligations": [],
+      "independent_certificate_checked": false,
+      "trust_assumptions": [
+        "pure-ir-typing",
+        "smt-value-encoding",
+        "smt-ast-encoding",
+        "smt-vm-encoding",
+        "python-runtime",
+        "z3-4.15.4.0",
+        "hypothetical-healthy-observations"
+      ],
+      "scope": "one tool, one immutable input and one hypothetical healthy observation time",
+      "tool": "refund",
+      "selector": "dispatch",
+      "events": [
+        "dispatch"
+      ],
+      "observation_time": {
+        "lower": "0",
+        "upper_exclusive": "1000000000000000000"
+      },
+      "requirement_ids": [
+        "R09",
+        "R15"
+      ],
+      "assumption_ids": [
+        "remote-idempotency"
+      ],
+      "clause_ids": [
+        "baseline-refund",
+        "high",
+        "low"
+      ],
+      "ir_digests": {
+        "baseline-refund": "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d",
+        "high": "sha256:2ea6e3a807cfa20f49be3a1505ec861e02bbb0764344063bd6b0dcdd427d41e4",
+        "low": "sha256:215c204de1943ad48443523792a0d84e8832ce8d5fc79733d7f7ea338c861216"
+      },
+      "checks_sha256": {
+        "baseline-refund": "a685b9c5835066373f63e1c226e0f4d640fd7945704abc6be69e0ccf4a9a9478",
+        "high": "b1b695386487ee7fb7405acfd898ea4b54a318d6c7cc615b375ba8c507cf1029",
+        "low": "fe012d1b13920e5eb1aaaa0ca6e1034e20908dde9e57660f3b05f94cb51b1a3d"
+      },
+      "property_id": "refund/dispatch/input-domain-inhabited",
+      "status": "Unknown",
+      "solver_status": null,
+      "query_id": null,
+      "witness_ref": null,
+      "reason": "solver_call_budget_exhausted"
+    },
+    {
+      "contract_digest": "sha256:fbf9d4f46d6567106fd65530e316d6bb63b734739d15b89281645d557491b613",
+      "source_digest": "sha256:ab8b1f5a84329811f781e40cc60068cfabbfbcc718f8f39476371f3cff400afa",
+      "spec_digest": "sha256:c4fb0cd2b3981ca0ced94c42364217103bb9cfc1246ed38897a9e0e1a3f01a0a",
+      "checker_build": "avcl/checks/0.2",
+      "encoder_build": "avcl/smt/0.1",
+      "contract_checker_build": "avcl/contract-smt/0.1",
+      "tool_versions": {
+        "python": "3.12.14",
+        "z3_package": "4.15.4.0",
+        "z3_core": "4.15.4"
+      },
+      "bounds": {
+        "timeout_ms": "5000",
+        "rlimit": "1000000",
+        "max_encoding_steps": "100000",
+        "max_solver_calls": "3",
+        "total_timeout_ms": "30000",
+        "max_witness_nodes": "10000"
+      },
+      "checked_at": "2026-10-26T11:35:26.152243+00:00",
+      "runtime_obligations": [],
+      "independent_certificate_checked": false,
+      "trust_assumptions": [
+        "pure-ir-typing",
+        "smt-value-encoding",
+        "smt-ast-encoding",
+        "smt-vm-encoding",
+        "python-runtime",
+        "z3-4.15.4.0",
+        "hypothetical-healthy-observations"
+      ],
+      "scope": "one tool, one immutable input and one hypothetical healthy observation time",
+      "tool": "refund",
+      "selector": "dispatch",
+      "events": [
+        "dispatch"
+      ],
+      "observation_time": {
+        "lower": "0",
+        "upper_exclusive": "1000000000000000000"
+      },
+      "requirement_ids": [
+        "R09",
+        "R15"
+      ],
+      "assumption_ids": [
+        "remote-idempotency"
+      ],
+      "clause_ids": [
+        "baseline-refund",
+        "high",
+        "low"
+      ],
+      "ir_digests": {
+        "baseline-refund": "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d",
+        "high": "sha256:2ea6e3a807cfa20f49be3a1505ec861e02bbb0764344063bd6b0dcdd427d41e4",
+        "low": "sha256:215c204de1943ad48443523792a0d84e8832ce8d5fc79733d7f7ea338c861216"
+      },
+      "checks_sha256": {
+        "baseline-refund": "a685b9c5835066373f63e1c226e0f4d640fd7945704abc6be69e0ccf4a9a9478",
+        "high": "b1b695386487ee7fb7405acfd898ea4b54a318d6c7cc615b375ba8c507cf1029",
+        "low": "fe012d1b13920e5eb1aaaa0ca6e1034e20908dde9e57660f3b05f94cb51b1a3d"
+      },
+      "property_id": "refund/dispatch/contract-checks-equivalent",
+      "status": "Unknown",
+      "solver_status": null,
+      "query_id": null,
+      "witness_ref": null,
+      "reason": "solver_call_budget_exhausted"
+    },
+    {
+      "contract_digest": "sha256:fbf9d4f46d6567106fd65530e316d6bb63b734739d15b89281645d557491b613",
+      "source_digest": "sha256:ab8b1f5a84329811f781e40cc60068cfabbfbcc718f8f39476371f3cff400afa",
+      "spec_digest": "sha256:c4fb0cd2b3981ca0ced94c42364217103bb9cfc1246ed38897a9e0e1a3f01a0a",
+      "checker_build": "avcl/checks/0.2",
+      "encoder_build": "avcl/smt/0.1",
+      "contract_checker_build": "avcl/contract-smt/0.1",
+      "tool_versions": {
+        "python": "3.12.14",
+        "z3_package": "4.15.4.0",
+        "z3_core": "4.15.4"
+      },
+      "bounds": {
+        "timeout_ms": "5000",
+        "rlimit": "1000000",
+        "max_encoding_steps": "100000",
+        "max_solver_calls": "3",
+        "total_timeout_ms": "30000",
+        "max_witness_nodes": "10000"
+      },
+      "checked_at": "2026-10-26T11:35:26.152243+00:00",
+      "runtime_obligations": [],
+      "independent_certificate_checked": false,
+      "trust_assumptions": [
+        "pure-ir-typing",
+        "smt-value-encoding",
+        "smt-ast-encoding",
+        "smt-vm-encoding",
+        "python-runtime",
+        "z3-4.15.4.0",
+        "hypothetical-healthy-observations"
+      ],
+      "scope": "one tool, one immutable input and one hypothetical healthy observation time",
+      "tool": "refund",
+      "selector": "dispatch",
+      "events": [
+        "dispatch"
+      ],
+      "observation_time": {
+        "lower": "0",
+        "upper_exclusive": "1000000000000000000"
+      },
+      "requirement_ids": [
+        "R09",
+        "R15"
+      ],
+      "assumption_ids": [
+        "remote-idempotency"
+      ],
+      "clause_ids": [
+        "baseline-refund",
+        "high",
+        "low"
+      ],
+      "ir_digests": {
+        "baseline-refund": "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d",
+        "high": "sha256:2ea6e3a807cfa20f49be3a1505ec861e02bbb0764344063bd6b0dcdd427d41e4",
+        "low": "sha256:215c204de1943ad48443523792a0d84e8832ce8d5fc79733d7f7ea338c861216"
+      },
+      "checks_sha256": {
+        "baseline-refund": "a685b9c5835066373f63e1c226e0f4d640fd7945704abc6be69e0ccf4a9a9478",
+        "high": "b1b695386487ee7fb7405acfd898ea4b54a318d6c7cc615b375ba8c507cf1029",
+        "low": "fe012d1b13920e5eb1aaaa0ca6e1034e20908dde9e57660f3b05f94cb51b1a3d"
+      },
+      "property_id": "refund/dispatch/joint-allowed-input-exists",
+      "status": "Unknown",
+      "solver_status": null,
+      "query_id": null,
+      "witness_ref": null,
+      "reason": "solver_call_budget_exhausted"
+    },
+    {
+      "contract_digest": "sha256:fbf9d4f46d6567106fd65530e316d6bb63b734739d15b89281645d557491b613",
+      "source_digest": "sha256:ab8b1f5a84329811f781e40cc60068cfabbfbcc718f8f39476371f3cff400afa",
+      "spec_digest": "sha256:c4fb0cd2b3981ca0ced94c42364217103bb9cfc1246ed38897a9e0e1a3f01a0a",
+      "checker_build": "avcl/checks/0.2",
+      "encoder_build": "avcl/smt/0.1",
+      "contract_checker_build": "avcl/contract-smt/0.1",
+      "tool_versions": {
+        "python": "3.12.14",
+        "z3_package": "4.15.4.0",
+        "z3_core": "4.15.4"
+      },
+      "bounds": {
+        "timeout_ms": "5000",
+        "rlimit": "1000000",
+        "max_encoding_steps": "100000",
+        "max_solver_calls": "3",
+        "total_timeout_ms": "30000",
+        "max_witness_nodes": "10000"
+      },
+      "checked_at": "2026-10-26T11:35:26.152243+00:00",
+      "runtime_obligations": [],
+      "independent_certificate_checked": false,
+      "trust_assumptions": [
+        "pure-ir-typing",
+        "smt-value-encoding",
+        "smt-ast-encoding",
+        "smt-vm-encoding",
+        "python-runtime",
+        "z3-4.15.4.0",
+        "hypothetical-healthy-observations"
+      ],
+      "scope": "one tool, one immutable input and one hypothetical healthy observation time",
+      "tool": "refund",
+      "selector": "publication",
+      "events": [
+        "prepare",
+        "dispatch"
+      ],
+      "observation_time": {
+        "lower": "0",
+        "upper_exclusive": "999999999999999999"
+      },
+      "requirement_ids": [
+        "R09",
+        "R15"
+      ],
+      "assumption_ids": [
+        "remote-idempotency"
+      ],
+      "clause_ids": [
+        "baseline-refund",
+        "high",
+        "low"
+      ],
+      "ir_digests": {
+        "baseline-refund": "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d",
+        "high": "sha256:2ea6e3a807cfa20f49be3a1505ec861e02bbb0764344063bd6b0dcdd427d41e4",
+        "low": "sha256:215c204de1943ad48443523792a0d84e8832ce8d5fc79733d7f7ea338c861216"
+      },
+      "checks_sha256": {
+        "baseline-refund": "a685b9c5835066373f63e1c226e0f4d640fd7945704abc6be69e0ccf4a9a9478",
+        "high": "b1b695386487ee7fb7405acfd898ea4b54a318d6c7cc615b375ba8c507cf1029",
+        "low": "fe012d1b13920e5eb1aaaa0ca6e1034e20908dde9e57660f3b05f94cb51b1a3d"
+      },
+      "property_id": "refund/publication/input-domain-inhabited",
+      "status": "Unknown",
+      "solver_status": null,
+      "query_id": null,
+      "witness_ref": null,
+      "reason": "solver_call_budget_exhausted"
+    },
+    {
+      "contract_digest": "sha256:fbf9d4f46d6567106fd65530e316d6bb63b734739d15b89281645d557491b613",
+      "source_digest": "sha256:ab8b1f5a84329811f781e40cc60068cfabbfbcc718f8f39476371f3cff400afa",
+      "spec_digest": "sha256:c4fb0cd2b3981ca0ced94c42364217103bb9cfc1246ed38897a9e0e1a3f01a0a",
+      "checker_build": "avcl/checks/0.2",
+      "encoder_build": "avcl/smt/0.1",
+      "contract_checker_build": "avcl/contract-smt/0.1",
+      "tool_versions": {
+        "python": "3.12.14",
+        "z3_package": "4.15.4.0",
+        "z3_core": "4.15.4"
+      },
+      "bounds": {
+        "timeout_ms": "5000",
+        "rlimit": "1000000",
+        "max_encoding_steps": "100000",
+        "max_solver_calls": "3",
+        "total_timeout_ms": "30000",
+        "max_witness_nodes": "10000"
+      },
+      "checked_at": "2026-10-26T11:35:26.152243+00:00",
+      "runtime_obligations": [],
+      "independent_certificate_checked": false,
+      "trust_assumptions": [
+        "pure-ir-typing",
+        "smt-value-encoding",
+        "smt-ast-encoding",
+        "smt-vm-encoding",
+        "python-runtime",
+        "z3-4.15.4.0",
+        "hypothetical-healthy-observations"
+      ],
+      "scope": "one tool, one immutable input and one hypothetical healthy observation time",
+      "tool": "refund",
+      "selector": "publication",
+      "events": [
+        "prepare",
+        "dispatch"
+      ],
+      "observation_time": {
+        "lower": "0",
+        "upper_exclusive": "999999999999999999"
+      },
+      "requirement_ids": [
+        "R09",
+        "R15"
+      ],
+      "assumption_ids": [
+        "remote-idempotency"
+      ],
+      "clause_ids": [
+        "baseline-refund",
+        "high",
+        "low"
+      ],
+      "ir_digests": {
+        "baseline-refund": "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d",
+        "high": "sha256:2ea6e3a807cfa20f49be3a1505ec861e02bbb0764344063bd6b0dcdd427d41e4",
+        "low": "sha256:215c204de1943ad48443523792a0d84e8832ce8d5fc79733d7f7ea338c861216"
+      },
+      "checks_sha256": {
+        "baseline-refund": "a685b9c5835066373f63e1c226e0f4d640fd7945704abc6be69e0ccf4a9a9478",
+        "high": "b1b695386487ee7fb7405acfd898ea4b54a318d6c7cc615b375ba8c507cf1029",
+        "low": "fe012d1b13920e5eb1aaaa0ca6e1034e20908dde9e57660f3b05f94cb51b1a3d"
+      },
+      "property_id": "refund/publication/contract-checks-equivalent",
+      "status": "Unknown",
+      "solver_status": null,
+      "query_id": null,
+      "witness_ref": null,
+      "reason": "solver_call_budget_exhausted"
+    },
+    {
+      "contract_digest": "sha256:fbf9d4f46d6567106fd65530e316d6bb63b734739d15b89281645d557491b613",
+      "source_digest": "sha256:ab8b1f5a84329811f781e40cc60068cfabbfbcc718f8f39476371f3cff400afa",
+      "spec_digest": "sha256:c4fb0cd2b3981ca0ced94c42364217103bb9cfc1246ed38897a9e0e1a3f01a0a",
+      "checker_build": "avcl/checks/0.2",
+      "encoder_build": "avcl/smt/0.1",
+      "contract_checker_build": "avcl/contract-smt/0.1",
+      "tool_versions": {
+        "python": "3.12.14",
+        "z3_package": "4.15.4.0",
+        "z3_core": "4.15.4"
+      },
+      "bounds": {
+        "timeout_ms": "5000",
+        "rlimit": "1000000",
+        "max_encoding_steps": "100000",
+        "max_solver_calls": "3",
+        "total_timeout_ms": "30000",
+        "max_witness_nodes": "10000"
+      },
+      "checked_at": "2026-10-26T11:35:26.152243+00:00",
+      "runtime_obligations": [],
+      "independent_certificate_checked": false,
+      "trust_assumptions": [
+        "pure-ir-typing",
+        "smt-value-encoding",
+        "smt-ast-encoding",
+        "smt-vm-encoding",
+        "python-runtime",
+        "z3-4.15.4.0",
+        "hypothetical-healthy-observations"
+      ],
+      "scope": "one tool, one immutable input and one hypothetical healthy observation time",
+      "tool": "refund",
+      "selector": "publication",
+      "events": [
+        "prepare",
+        "dispatch"
+      ],
+      "observation_time": {
+        "lower": "0",
+        "upper_exclusive": "999999999999999999"
+      },
+      "requirement_ids": [
+        "R09",
+        "R15"
+      ],
+      "assumption_ids": [
+        "remote-idempotency"
+      ],
+      "clause_ids": [
+        "baseline-refund",
+        "high",
+        "low"
+      ],
+      "ir_digests": {
+        "baseline-refund": "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d",
+        "high": "sha256:2ea6e3a807cfa20f49be3a1505ec861e02bbb0764344063bd6b0dcdd427d41e4",
+        "low": "sha256:215c204de1943ad48443523792a0d84e8832ce8d5fc79733d7f7ea338c861216"
+      },
+      "checks_sha256": {
+        "baseline-refund": "a685b9c5835066373f63e1c226e0f4d640fd7945704abc6be69e0ccf4a9a9478",
+        "high": "b1b695386487ee7fb7405acfd898ea4b54a318d6c7cc615b375ba8c507cf1029",
+        "low": "fe012d1b13920e5eb1aaaa0ca6e1034e20908dde9e57660f3b05f94cb51b1a3d"
+      },
+      "property_id": "refund/publication/joint-allowed-input-exists",
+      "status": "Unknown",
+      "solver_status": null,
+      "query_id": null,
+      "witness_ref": null,
+      "reason": "solver_call_budget_exhausted"
+    }
+  ],
+  "queries": [
+    {
+      "id": "q0",
+      "label": "refund/prepare/input-domain-inhabited",
+      "query_sha256": "89380807583b45682018b7d2648acb7013f3f243c972c11ea6af5ae9e96f0036",
+      "executed": true,
+      "solver_status": "Sat",
+      "reason": null,
+      "smt2": "(set-option :timeout 5000)\n(set-option :rlimit 1000000)\n(set-option :smt.random_seed 0)\n; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun input_1 () (Seq Int))\n(declare-fun input_0 () Int)\n(declare-fun observation_time () Int)\n(assert\n (let (($x47 (forall ((index_1 Int) )(let (($x39 (or (< (seq.nth input_1 index_1) 55296) (> (seq.nth input_1 index_1) 57343))))\n(let (($x42 (and (>= (seq.nth input_1 index_1) 0) (<= (seq.nth input_1 index_1) 1114111) $x39)))\n(=> (and (>= index_1 0) (< index_1 (seq.len input_1))) $x42))))\n))\n(let ((?x27 (seq.len input_1)))\n(let (($x30 (<= ?x27 256)))\n(let (($x28 (>= ?x27 0)))\n(let (($x16 (and (and (>= input_0 0) (<= input_0 999999999999999999)) (and $x28 $x30 $x47))))\n(let (($x9 (>= observation_time 0)))\n(and $x9 (< observation_time 1000000000000000000) $x16))))))))\n(check-sat)\n",
+      "statistics": "(:added-eqs            10\n :arith-assert-lower   3\n :arith-assert-upper   4\n :arith-eq-adapter     1\n :decisions            1\n :final-checks         3\n :interface-eqs        1\n :max-memory           35.06\n :memory               17.44\n :mk-bool-var          13\n :num-allocs           196782300\n :num-checks           2\n :rlimit-count         1793\n :seq-add-axiom        2\n :seq-fixed-length     1\n :seq-length-coherence 1\n :seq-num-reductions   1\n :time                 0.00)",
+      "model": "(define-fun observation_time () Int\n  0)\n(define-fun input_1 () (Seq Int)\n  (as seq.empty (Seq Int)))\n(define-fun input_0 () Int\n  0)\n(define-fun seq.nth_u ((x!0 (Seq Int)) (x!1 Int)) Int\n  0)",
+      "witness": {
+        "values": {
+          "amount": "0",
+          "currency": ""
+        },
+        "time": "0",
+        "health": "hypothetical-declared-Healthy"
+      }
+    },
+    {
+      "id": "q1",
+      "label": "refund/prepare/contract-checks-equivalent",
+      "query_sha256": "b8a4b1f83205066a4283da691c0e13bb5a08540ff3fe6250088cc72fb178f18b",
+      "executed": true,
+      "solver_status": "Unsat",
+      "reason": null,
+      "smt2": "(set-option :timeout 5000)\n(set-option :rlimit 1000000)\n(set-option :smt.random_seed 0)\n; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun input_0 () Int)\n(declare-fun input_1 () (Seq Int))\n(declare-fun observation_time () Int)\n(assert\n (let (($x78 (>= 3 input_0)))\n(let (($x79 (and true $x78)))\n(let (($x80 (or $x79)))\n(let (($x82 (and true $x80)))\n(let (($x74 (and true (or (and true (< 5 input_0))))))\n(let (($x52 (= input_1 (seq.++ (seq.unit 67) (seq.++ (seq.unit 78) (seq.unit 89))))))\n(let (($x60 (<= input_0 0)))\n(let (($x61 (not $x60)))\n(let (($x57 (and $x61 $x52)))\n(let (($x9 (>= observation_time 0)))\n(let (($x22 (and $x9 (< observation_time 1000))))\n(let (($x63 (and $x22)))\n(let (($x65 (and $x63 (or $x57 (and $x60 (< 0 input_0))))))\n(let (($x86 (and $x63 (and $x65 $x74 $x82))))\n(let (($x69 (< 5 input_0)))\n(let (($x70 (and true $x69)))\n(let (($x25 (< 0 input_0)))\n(let (($x53 (and $x25 $x52)))\n(let (($x64 (and $x63 $x53)))\n(let (($x84 (and $x63 (and $x64 $x70 $x79))))\n(let (($x72 (or true)))\n(let (($x76 (=> true $x72)))\n(let (($x67 (=> $x63 (or $x61 $x60))))\n(let (($x24 (and true true)))\n(let (($x75 (=> true $x24)))\n(let (($x55 (and $x24 (=> $x25 $x24))))\n(let (($x66 (=> $x63 $x55)))\n(let (($x90 (and (and $x66 $x75 $x75) (and $x67 $x76 $x76) (= $x84 $x86))))\n(let (($x47 (forall ((index_1 Int) )(let (($x39 (or (< (seq.nth input_1 index_1) 55296) (> (seq.nth input_1 index_1) 57343))))\n(let (($x42 (and (>= (seq.nth input_1 index_1) 0) (<= (seq.nth input_1 index_1) 1114111) $x39)))\n(=> (and (>= index_1 0) (< index_1 (seq.len input_1))) $x42))))\n))\n(let ((?x27 (seq.len input_1)))\n(let (($x30 (<= ?x27 256)))\n(let (($x28 (>= ?x27 0)))\n(let (($x16 (and (and (>= input_0 0) (<= input_0 999999999999999999)) (and $x28 $x30 $x47))))\n(let (($x17 (and $x9 (< observation_time 1000000000000000000) $x16)))\n(and $x17 (not $x90)))))))))))))))))))))))))))))))))))))\n(check-sat)\n",
+      "statistics": "(:max-memory   35.06\n :memory       17.39\n :num-allocs   198478311\n :rlimit-count 2149)"
+    },
+    {
+      "id": "q2",
+      "label": "refund/prepare/joint-allowed-input-exists",
+      "query_sha256": "ca0cffdfaa8e951ee7a4280b34a92518822480e38ccee8a4b582c5368da36a2e",
+      "executed": true,
+      "solver_status": "Unsat",
+      "reason": null,
+      "smt2": "(set-option :timeout 5000)\n(set-option :rlimit 1000000)\n(set-option :smt.random_seed 0)\n; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun input_0 () Int)\n(declare-fun input_1 () (Seq Int))\n(declare-fun observation_time () Int)\n(assert\n (let (($x78 (>= 3 input_0)))\n(let (($x24 (and true true)))\n(let (($x81 (and $x24 $x78)))\n(let (($x69 (< 5 input_0)))\n(let (($x73 (and $x24 $x69)))\n(let (($x52 (= input_1 (seq.++ (seq.unit 67) (seq.++ (seq.unit 78) (seq.unit 89))))))\n(let (($x25 (< 0 input_0)))\n(let (($x53 (and $x25 $x52)))\n(let (($x55 (and $x24 (=> $x25 $x24))))\n(let (($x56 (and $x55 $x53)))\n(let (($x9 (>= observation_time 0)))\n(let (($x22 (and $x9 (< observation_time 1000))))\n(let (($x47 (forall ((index_1 Int) )(let (($x39 (or (< (seq.nth input_1 index_1) 55296) (> (seq.nth input_1 index_1) 57343))))\n(let (($x42 (and (>= (seq.nth input_1 index_1) 0) (<= (seq.nth input_1 index_1) 1114111) $x39)))\n(=> (and (>= index_1 0) (< index_1 (seq.len input_1))) $x42))))\n))\n(let ((?x27 (seq.len input_1)))\n(let (($x30 (<= ?x27 256)))\n(let (($x28 (>= ?x27 0)))\n(let (($x16 (and (and (>= input_0 0) (<= input_0 999999999999999999)) (and $x28 $x30 $x47))))\n(let (($x17 (and $x9 (< observation_time 1000000000000000000) $x16)))\n(and $x17 (and $x22 $x56 $x73 $x81)))))))))))))))))))))\n(check-sat)\n",
+      "statistics": "(:arith-assert-lower  4\n :arith-assert-upper  4\n :arith-conflicts     1\n :conflicts           1\n :max-memory          35.06\n :memory              17.46\n :mk-bool-var         10\n :num-allocs          203616005\n :num-checks          2\n :rlimit-count        4427\n :solve-eqs-elim-vars 1\n :solve-eqs-steps     10\n :time                0.00)"
+    }
+  ],
+  "groups": [
+    {
+      "id": "refund/prepare",
+      "constraint_catalog": {
+        "assumption/remote-idempotency": {
+          "kind": "assumption-validity",
+          "assumption_id": "remote-idempotency",
+          "valid_from": "0",
+          "expires": "1000",
+          "authority": "simulator",
+          "scope": "refund",
+          "monitor": "remote-effect-oracle",
+          "dependent_clause_ids": [
+            "baseline-refund"
+          ]
+        },
+        "clause/baseline-refund": {
+          "kind": "clause",
+          "clause_id": "baseline-refund",
+          "rule": "requires",
+          "requirement_ids": [
+            "R09"
+          ],
+          "semantic_digest": "sha256:cce8015ad89bd2cf68ab696aefe0a529c248f3069d95041bc3611f8af79efdf5",
+          "source_map": {
+            "n0": "<builder>",
+            "n0.0": "<builder>",
+            "n0.0.0": "<builder>",
+            "n0.0.1": "<builder>",
+            "n0.1": "<builder>",
+            "n0.1.0": "<builder>",
+            "n0.1.1": "<builder>"
+          }
+        },
+        "clause/high": {
+          "kind": "clause",
+          "clause_id": "high",
+          "rule": "requires",
+          "requirement_ids": [
+            "R15"
+          ],
+          "semantic_digest": "sha256:1f5cedd08d44f08405fb63c00f94576e51b01a13ccff26828e63cb4b7bbcc3c8",
+          "source_map": {
+            "n0": "<builder>",
+            "n0.0": "<builder>",
+            "n0.1": "<builder>"
+          }
+        },
+        "clause/low": {
+          "kind": "clause",
+          "clause_id": "low",
+          "rule": "requires",
+          "requirement_ids": [
+            "R15"
+          ],
+          "semantic_digest": "sha256:2f9c3f6caabf8e064903be7a69659717eac380dc120e3965bde438fc06ac889b",
+          "source_map": {
+            "n0": "<builder>",
+            "n0.0": "<builder>",
+            "n0.1": "<builder>"
+          }
+        }
+      }
+    },
+    {
+      "id": "refund/dispatch",
+      "constraint_catalog": {}
+    },
+    {
+      "id": "refund/publication",
+      "constraint_catalog": {}
+    }
+  ],
+  "solver_calls": "3",
+  "encoding_steps": "44"
+}

@@ -12,7 +12,7 @@ from .ir_types import identifier
 from .checks import compile_checks
 from .contract import assumptions_valid
 from .workflow import load_workflow,commands,Workflow,delegation_request
-from .sending import admit_attempt, REMOTE_WINDOW_REJECTIONS
+from .sending import admit_attempt, REMOTE_WINDOW_REJECTIONS, bind_workflow, workflow_send_context
 
 @dataclass(frozen=True)
 class FaultPlan:
@@ -54,8 +54,13 @@ class WorkflowExecutor:
         if type(faults) is not FaultPlan or type(faults.drop_receipt_at) is not frozenset or type(faults.no_send_at) is not frozenset:
             raise Reject("INVALID_FAULT_PLAN")
         with self._lock:
+            key=(subject,run_id)
+            prior=self._runs.get(key)
             with self._kernel._lock:
-                contract=self._kernel._release.compiled.contract
+                if prior and prior[2] not in self._kernel._policy_snapshots:
+                    raise Reject("WORKFLOW_HISTORY_UNAVAILABLE")
+                contract=(self._kernel._policy_snapshots[prior[2]].compiled.contract if prior
+                          else self._kernel._release.compiled.contract)
                 program=load_workflow(program.to_json(),contract)
             if any(t.kind=="Context" for _,t in program.refs):raise Reject("WORKFLOW_REQUIRES_DURABLE_VALIDATION_BACKEND")
             if any(t.kind=="Task" for _,t in program.refs):raise Reject("WORKFLOW_REQUIRES_DURABLE_TASK_BACKEND")
@@ -83,7 +88,7 @@ class WorkflowExecutor:
                 "faults":{"drop":sorted(faults.drop_receipt_at),"no_send":sorted(faults.no_send_at)}},"avcl/workflow-run/0.4")
             key=(subject,run_id)
             if key in self._runs:
-                previous,result=self._runs[key]
+                previous,result,_=self._runs[key]
                 if previous!=submitted: raise Reject("WORKFLOW_RUN_CONFLICT")
                 return result
             steps=[];operation_ids=[];allocated=set();used=set();failed_node=None
@@ -126,6 +131,7 @@ class WorkflowExecutor:
                         remember(op)
                         if op.state!=Execution.PREPARED or op.admitted or op.id in allocated or op.contract_digest!=program.contract_digest:
                             raise Reject("WORKFLOW_PERMIT_NOT_FRESH")
+                        bind_workflow(self._kernel,op,subject,run_id,program.semantic_digest)
                         allocated.add(op.id);env[args["out"]]=PermitHandle(op.id,op.permit_ref);op_id=op.id;outcome="Prepared"
                     elif tag=="Dispatch":
                         handle=consume(args["permit"])
@@ -153,7 +159,8 @@ class WorkflowExecutor:
                                 dependencies=tuple({a for c in original.clauses if c.kind=="safety" and c.tool==op.request.tool for a in c.assumptions})
                                 if self._kernel._quarantined or not assumptions_valid(original,dependencies,self._kernel._health,self._kernel._clock()):
                                     raise Reject("ASSUMPTION_BROKEN")
-                                allowed=admit_attempt(self._kernel,op,workflow_digest=program.semantic_digest,node_id=node.node_id)
+                                with workflow_send_context(self._kernel,op,subject,run_id,program.semantic_digest,node.node_id):
+                                    allowed=admit_attempt(self._kernel,op)
                             try:
                                 if not allowed or node.node_id in faults.no_send_at: receipt=None
                                 else: receipt=self._simulator.send(allowed if self._simulator.requires_envelope else op)
@@ -210,5 +217,5 @@ class WorkflowExecutor:
                 result=WorkflowResult(program.semantic_digest,run_id,"Finished",tuple(steps),tuple(operation_ids))
             except Reject as exc:
                 result=WorkflowResult(program.semantic_digest,run_id,"Halted",tuple(steps),tuple(operation_ids),failed_node,exc.code)
-            self._runs[key]=(submitted,result)
+            self._runs[key]=(submitted,result,program.contract_digest)
             return result

@@ -1,0 +1,1101 @@
+{
+  "schema": "avcl/contract-smt/0.1",
+  "contract_digest": "sha256:909c5ad26f107b28a5264a5bcfd0f2ed4e17452f96b1ed1eb0e1762398d72e7f",
+  "reports": [
+    {
+      "contract_digest": "sha256:909c5ad26f107b28a5264a5bcfd0f2ed4e17452f96b1ed1eb0e1762398d72e7f",
+      "source_digest": "sha256:4c1591c8f0fa6eb2fad6eb5a471c6a775a10dfd988d0e42b733c60144699e45c",
+      "spec_digest": "sha256:c4fb0cd2b3981ca0ced94c42364217103bb9cfc1246ed38897a9e0e1a3f01a0a",
+      "checker_build": "avcl/checks/0.2",
+      "encoder_build": "avcl/smt/0.1",
+      "contract_checker_build": "avcl/contract-smt/0.1",
+      "tool_versions": {
+        "python": "3.12.14",
+        "z3_package": "4.15.4.0",
+        "z3_core": "4.15.4"
+      },
+      "bounds": {
+        "timeout_ms": "5000",
+        "rlimit": "1000000",
+        "max_encoding_steps": "100000",
+        "max_solver_calls": "512",
+        "total_timeout_ms": "30000",
+        "max_witness_nodes": "10000"
+      },
+      "checked_at": "2026-10-26T11:19:48.659275+00:00",
+      "runtime_obligations": [],
+      "independent_certificate_checked": false,
+      "trust_assumptions": [
+        "pure-ir-typing",
+        "smt-value-encoding",
+        "smt-ast-encoding",
+        "smt-vm-encoding",
+        "python-runtime",
+        "z3-4.15.4.0",
+        "hypothetical-healthy-observations"
+      ],
+      "scope": "one tool, one immutable input and one hypothetical healthy observation time",
+      "tool": "refund",
+      "selector": "prepare",
+      "events": [
+        "prepare"
+      ],
+      "observation_time": {
+        "lower": "0",
+        "upper_exclusive": "1000000000000000000"
+      },
+      "requirement_ids": [
+        "R09"
+      ],
+      "assumption_ids": [
+        "remote-idempotency"
+      ],
+      "clause_ids": [
+        "baseline-refund"
+      ],
+      "ir_digests": {
+        "baseline-refund": "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d"
+      },
+      "checks_sha256": {
+        "baseline-refund": "a685b9c5835066373f63e1c226e0f4d640fd7945704abc6be69e0ccf4a9a9478"
+      },
+      "input_fields": {
+        "amount": {
+          "kind": "Int",
+          "lower": "0",
+          "upper": "999999999999999999"
+        },
+        "currency": {
+          "kind": "String"
+        }
+      },
+      "property_id": "refund/prepare/input-domain-inhabited",
+      "status": "ProvedUnder",
+      "solver_status": "Sat",
+      "query_id": "q0",
+      "witness_ref": "#/queries/0/witness",
+      "reason": null,
+      "query_sha256": "89380807583b45682018b7d2648acb7013f3f243c972c11ea6af5ae9e96f0036"
+    },
+    {
+      "contract_digest": "sha256:909c5ad26f107b28a5264a5bcfd0f2ed4e17452f96b1ed1eb0e1762398d72e7f",
+      "source_digest": "sha256:4c1591c8f0fa6eb2fad6eb5a471c6a775a10dfd988d0e42b733c60144699e45c",
+      "spec_digest": "sha256:c4fb0cd2b3981ca0ced94c42364217103bb9cfc1246ed38897a9e0e1a3f01a0a",
+      "checker_build": "avcl/checks/0.2",
+      "encoder_build": "avcl/smt/0.1",
+      "contract_checker_build": "avcl/contract-smt/0.1",
+      "tool_versions": {
+        "python": "3.12.14",
+        "z3_package": "4.15.4.0",
+        "z3_core": "4.15.4"
+      },
+      "bounds": {
+        "timeout_ms": "5000",
+        "rlimit": "1000000",
+        "max_encoding_steps": "100000",
+        "max_solver_calls": "512",
+        "total_timeout_ms": "30000",
+        "max_witness_nodes": "10000"
+      },
+      "checked_at": "2026-10-26T11:19:48.659275+00:00",
+      "runtime_obligations": [],
+      "independent_certificate_checked": false,
+      "trust_assumptions": [
+        "pure-ir-typing",
+        "smt-value-encoding",
+        "smt-ast-encoding",
+        "smt-vm-encoding",
+        "python-runtime",
+        "z3-4.15.4.0",
+        "hypothetical-healthy-observations"
+      ],
+      "scope": "one tool, one immutable input and one hypothetical healthy observation time",
+      "tool": "refund",
+      "selector": "prepare",
+      "events": [
+        "prepare"
+      ],
+      "observation_time": {
+        "lower": "0",
+        "upper_exclusive": "1000000000000000000"
+      },
+      "requirement_ids": [
+        "R09"
+      ],
+      "assumption_ids": [
+        "remote-idempotency"
+      ],
+      "clause_ids": [
+        "baseline-refund"
+      ],
+      "ir_digests": {
+        "baseline-refund": "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d"
+      },
+      "checks_sha256": {
+        "baseline-refund": "a685b9c5835066373f63e1c226e0f4d640fd7945704abc6be69e0ccf4a9a9478"
+      },
+      "input_fields": {
+        "amount": {
+          "kind": "Int",
+          "lower": "0",
+          "upper": "999999999999999999"
+        },
+        "currency": {
+          "kind": "String"
+        }
+      },
+      "property_id": "refund/prepare/contract-checks-equivalent",
+      "status": "ProvedUnder",
+      "solver_status": "Unsat",
+      "query_id": "q1",
+      "witness_ref": null,
+      "reason": null,
+      "query_sha256": "7ca026239ad53b35ca5fb6e4760694760d7714b0e165bb40b01f95823fd39358"
+    },
+    {
+      "contract_digest": "sha256:909c5ad26f107b28a5264a5bcfd0f2ed4e17452f96b1ed1eb0e1762398d72e7f",
+      "source_digest": "sha256:4c1591c8f0fa6eb2fad6eb5a471c6a775a10dfd988d0e42b733c60144699e45c",
+      "spec_digest": "sha256:c4fb0cd2b3981ca0ced94c42364217103bb9cfc1246ed38897a9e0e1a3f01a0a",
+      "checker_build": "avcl/checks/0.2",
+      "encoder_build": "avcl/smt/0.1",
+      "contract_checker_build": "avcl/contract-smt/0.1",
+      "tool_versions": {
+        "python": "3.12.14",
+        "z3_package": "4.15.4.0",
+        "z3_core": "4.15.4"
+      },
+      "bounds": {
+        "timeout_ms": "5000",
+        "rlimit": "1000000",
+        "max_encoding_steps": "100000",
+        "max_solver_calls": "512",
+        "total_timeout_ms": "30000",
+        "max_witness_nodes": "10000"
+      },
+      "checked_at": "2026-10-26T11:19:48.659275+00:00",
+      "runtime_obligations": [],
+      "independent_certificate_checked": false,
+      "trust_assumptions": [
+        "pure-ir-typing",
+        "smt-value-encoding",
+        "smt-ast-encoding",
+        "smt-vm-encoding",
+        "python-runtime",
+        "z3-4.15.4.0",
+        "hypothetical-healthy-observations"
+      ],
+      "scope": "one tool, one immutable input and one hypothetical healthy observation time",
+      "tool": "refund",
+      "selector": "prepare",
+      "events": [
+        "prepare"
+      ],
+      "observation_time": {
+        "lower": "0",
+        "upper_exclusive": "1000000000000000000"
+      },
+      "requirement_ids": [
+        "R09"
+      ],
+      "assumption_ids": [
+        "remote-idempotency"
+      ],
+      "clause_ids": [
+        "baseline-refund"
+      ],
+      "ir_digests": {
+        "baseline-refund": "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d"
+      },
+      "checks_sha256": {
+        "baseline-refund": "a685b9c5835066373f63e1c226e0f4d640fd7945704abc6be69e0ccf4a9a9478"
+      },
+      "input_fields": {
+        "amount": {
+          "kind": "Int",
+          "lower": "0",
+          "upper": "999999999999999999"
+        },
+        "currency": {
+          "kind": "String"
+        }
+      },
+      "property_id": "refund/prepare/joint-allowed-input-exists",
+      "status": "ProvedUnder",
+      "solver_status": "Sat",
+      "query_id": "q2",
+      "witness_ref": "#/queries/2/witness",
+      "reason": null,
+      "query_sha256": "07e3c99bde43867e87be6b1f4866f3ce43673634f5427d5dfa5f065cc980a88d"
+    },
+    {
+      "contract_digest": "sha256:909c5ad26f107b28a5264a5bcfd0f2ed4e17452f96b1ed1eb0e1762398d72e7f",
+      "source_digest": "sha256:4c1591c8f0fa6eb2fad6eb5a471c6a775a10dfd988d0e42b733c60144699e45c",
+      "spec_digest": "sha256:c4fb0cd2b3981ca0ced94c42364217103bb9cfc1246ed38897a9e0e1a3f01a0a",
+      "checker_build": "avcl/checks/0.2",
+      "encoder_build": "avcl/smt/0.1",
+      "contract_checker_build": "avcl/contract-smt/0.1",
+      "tool_versions": {
+        "python": "3.12.14",
+        "z3_package": "4.15.4.0",
+        "z3_core": "4.15.4"
+      },
+      "bounds": {
+        "timeout_ms": "5000",
+        "rlimit": "1000000",
+        "max_encoding_steps": "100000",
+        "max_solver_calls": "512",
+        "total_timeout_ms": "30000",
+        "max_witness_nodes": "10000"
+      },
+      "checked_at": "2026-10-26T11:19:48.659275+00:00",
+      "runtime_obligations": [],
+      "independent_certificate_checked": false,
+      "trust_assumptions": [
+        "pure-ir-typing",
+        "smt-value-encoding",
+        "smt-ast-encoding",
+        "smt-vm-encoding",
+        "python-runtime",
+        "z3-4.15.4.0",
+        "hypothetical-healthy-observations"
+      ],
+      "scope": "one tool, one immutable input and one hypothetical healthy observation time",
+      "tool": "refund",
+      "selector": "dispatch",
+      "events": [
+        "dispatch"
+      ],
+      "observation_time": {
+        "lower": "0",
+        "upper_exclusive": "1000000000000000000"
+      },
+      "requirement_ids": [
+        "R09"
+      ],
+      "assumption_ids": [
+        "remote-idempotency"
+      ],
+      "clause_ids": [
+        "baseline-refund"
+      ],
+      "ir_digests": {
+        "baseline-refund": "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d"
+      },
+      "checks_sha256": {
+        "baseline-refund": "a685b9c5835066373f63e1c226e0f4d640fd7945704abc6be69e0ccf4a9a9478"
+      },
+      "input_fields": {
+        "amount": {
+          "kind": "Int",
+          "lower": "0",
+          "upper": "999999999999999999"
+        },
+        "currency": {
+          "kind": "String"
+        }
+      },
+      "property_id": "refund/dispatch/input-domain-inhabited",
+      "status": "ProvedUnder",
+      "solver_status": "Sat",
+      "query_id": "q3",
+      "witness_ref": "#/queries/3/witness",
+      "reason": null,
+      "query_sha256": "89380807583b45682018b7d2648acb7013f3f243c972c11ea6af5ae9e96f0036"
+    },
+    {
+      "contract_digest": "sha256:909c5ad26f107b28a5264a5bcfd0f2ed4e17452f96b1ed1eb0e1762398d72e7f",
+      "source_digest": "sha256:4c1591c8f0fa6eb2fad6eb5a471c6a775a10dfd988d0e42b733c60144699e45c",
+      "spec_digest": "sha256:c4fb0cd2b3981ca0ced94c42364217103bb9cfc1246ed38897a9e0e1a3f01a0a",
+      "checker_build": "avcl/checks/0.2",
+      "encoder_build": "avcl/smt/0.1",
+      "contract_checker_build": "avcl/contract-smt/0.1",
+      "tool_versions": {
+        "python": "3.12.14",
+        "z3_package": "4.15.4.0",
+        "z3_core": "4.15.4"
+      },
+      "bounds": {
+        "timeout_ms": "5000",
+        "rlimit": "1000000",
+        "max_encoding_steps": "100000",
+        "max_solver_calls": "512",
+        "total_timeout_ms": "30000",
+        "max_witness_nodes": "10000"
+      },
+      "checked_at": "2026-10-26T11:19:48.659275+00:00",
+      "runtime_obligations": [],
+      "independent_certificate_checked": false,
+      "trust_assumptions": [
+        "pure-ir-typing",
+        "smt-value-encoding",
+        "smt-ast-encoding",
+        "smt-vm-encoding",
+        "python-runtime",
+        "z3-4.15.4.0",
+        "hypothetical-healthy-observations"
+      ],
+      "scope": "one tool, one immutable input and one hypothetical healthy observation time",
+      "tool": "refund",
+      "selector": "dispatch",
+      "events": [
+        "dispatch"
+      ],
+      "observation_time": {
+        "lower": "0",
+        "upper_exclusive": "1000000000000000000"
+      },
+      "requirement_ids": [
+        "R09"
+      ],
+      "assumption_ids": [
+        "remote-idempotency"
+      ],
+      "clause_ids": [
+        "baseline-refund"
+      ],
+      "ir_digests": {
+        "baseline-refund": "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d"
+      },
+      "checks_sha256": {
+        "baseline-refund": "a685b9c5835066373f63e1c226e0f4d640fd7945704abc6be69e0ccf4a9a9478"
+      },
+      "input_fields": {
+        "amount": {
+          "kind": "Int",
+          "lower": "0",
+          "upper": "999999999999999999"
+        },
+        "currency": {
+          "kind": "String"
+        }
+      },
+      "property_id": "refund/dispatch/contract-checks-equivalent",
+      "status": "ProvedUnder",
+      "solver_status": "Unsat",
+      "query_id": "q4",
+      "witness_ref": null,
+      "reason": null,
+      "query_sha256": "7ca026239ad53b35ca5fb6e4760694760d7714b0e165bb40b01f95823fd39358"
+    },
+    {
+      "contract_digest": "sha256:909c5ad26f107b28a5264a5bcfd0f2ed4e17452f96b1ed1eb0e1762398d72e7f",
+      "source_digest": "sha256:4c1591c8f0fa6eb2fad6eb5a471c6a775a10dfd988d0e42b733c60144699e45c",
+      "spec_digest": "sha256:c4fb0cd2b3981ca0ced94c42364217103bb9cfc1246ed38897a9e0e1a3f01a0a",
+      "checker_build": "avcl/checks/0.2",
+      "encoder_build": "avcl/smt/0.1",
+      "contract_checker_build": "avcl/contract-smt/0.1",
+      "tool_versions": {
+        "python": "3.12.14",
+        "z3_package": "4.15.4.0",
+        "z3_core": "4.15.4"
+      },
+      "bounds": {
+        "timeout_ms": "5000",
+        "rlimit": "1000000",
+        "max_encoding_steps": "100000",
+        "max_solver_calls": "512",
+        "total_timeout_ms": "30000",
+        "max_witness_nodes": "10000"
+      },
+      "checked_at": "2026-10-26T11:19:48.659275+00:00",
+      "runtime_obligations": [],
+      "independent_certificate_checked": false,
+      "trust_assumptions": [
+        "pure-ir-typing",
+        "smt-value-encoding",
+        "smt-ast-encoding",
+        "smt-vm-encoding",
+        "python-runtime",
+        "z3-4.15.4.0",
+        "hypothetical-healthy-observations"
+      ],
+      "scope": "one tool, one immutable input and one hypothetical healthy observation time",
+      "tool": "refund",
+      "selector": "dispatch",
+      "events": [
+        "dispatch"
+      ],
+      "observation_time": {
+        "lower": "0",
+        "upper_exclusive": "1000000000000000000"
+      },
+      "requirement_ids": [
+        "R09"
+      ],
+      "assumption_ids": [
+        "remote-idempotency"
+      ],
+      "clause_ids": [
+        "baseline-refund"
+      ],
+      "ir_digests": {
+        "baseline-refund": "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d"
+      },
+      "checks_sha256": {
+        "baseline-refund": "a685b9c5835066373f63e1c226e0f4d640fd7945704abc6be69e0ccf4a9a9478"
+      },
+      "input_fields": {
+        "amount": {
+          "kind": "Int",
+          "lower": "0",
+          "upper": "999999999999999999"
+        },
+        "currency": {
+          "kind": "String"
+        }
+      },
+      "property_id": "refund/dispatch/joint-allowed-input-exists",
+      "status": "ProvedUnder",
+      "solver_status": "Sat",
+      "query_id": "q5",
+      "witness_ref": "#/queries/5/witness",
+      "reason": null,
+      "query_sha256": "07e3c99bde43867e87be6b1f4866f3ce43673634f5427d5dfa5f065cc980a88d"
+    },
+    {
+      "contract_digest": "sha256:909c5ad26f107b28a5264a5bcfd0f2ed4e17452f96b1ed1eb0e1762398d72e7f",
+      "source_digest": "sha256:4c1591c8f0fa6eb2fad6eb5a471c6a775a10dfd988d0e42b733c60144699e45c",
+      "spec_digest": "sha256:c4fb0cd2b3981ca0ced94c42364217103bb9cfc1246ed38897a9e0e1a3f01a0a",
+      "checker_build": "avcl/checks/0.2",
+      "encoder_build": "avcl/smt/0.1",
+      "contract_checker_build": "avcl/contract-smt/0.1",
+      "tool_versions": {
+        "python": "3.12.14",
+        "z3_package": "4.15.4.0",
+        "z3_core": "4.15.4"
+      },
+      "bounds": {
+        "timeout_ms": "5000",
+        "rlimit": "1000000",
+        "max_encoding_steps": "100000",
+        "max_solver_calls": "512",
+        "total_timeout_ms": "30000",
+        "max_witness_nodes": "10000"
+      },
+      "checked_at": "2026-10-26T11:19:48.659275+00:00",
+      "runtime_obligations": [],
+      "independent_certificate_checked": false,
+      "trust_assumptions": [
+        "pure-ir-typing",
+        "smt-value-encoding",
+        "smt-ast-encoding",
+        "smt-vm-encoding",
+        "python-runtime",
+        "z3-4.15.4.0",
+        "hypothetical-healthy-observations"
+      ],
+      "scope": "one tool, one immutable input and one hypothetical healthy observation time",
+      "tool": "refund",
+      "selector": "publication",
+      "events": [
+        "prepare",
+        "dispatch"
+      ],
+      "observation_time": {
+        "lower": "0",
+        "upper_exclusive": "999999999999999999"
+      },
+      "requirement_ids": [
+        "R09"
+      ],
+      "assumption_ids": [
+        "future-only",
+        "remote-idempotency"
+      ],
+      "clause_ids": [
+        "baseline-refund"
+      ],
+      "ir_digests": {
+        "baseline-refund": "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d"
+      },
+      "checks_sha256": {
+        "baseline-refund": "a685b9c5835066373f63e1c226e0f4d640fd7945704abc6be69e0ccf4a9a9478"
+      },
+      "input_fields": {
+        "amount": {
+          "kind": "Int",
+          "lower": "0",
+          "upper": "999999999999999999"
+        },
+        "currency": {
+          "kind": "String"
+        }
+      },
+      "property_id": "refund/publication/input-domain-inhabited",
+      "status": "ProvedUnder",
+      "solver_status": "Sat",
+      "query_id": "q6",
+      "witness_ref": "#/queries/6/witness",
+      "reason": null,
+      "query_sha256": "b284ca1d43bb8444cfb98b8f410867d26b9a0f84be7546c001fe00c5e74fb89c"
+    },
+    {
+      "contract_digest": "sha256:909c5ad26f107b28a5264a5bcfd0f2ed4e17452f96b1ed1eb0e1762398d72e7f",
+      "source_digest": "sha256:4c1591c8f0fa6eb2fad6eb5a471c6a775a10dfd988d0e42b733c60144699e45c",
+      "spec_digest": "sha256:c4fb0cd2b3981ca0ced94c42364217103bb9cfc1246ed38897a9e0e1a3f01a0a",
+      "checker_build": "avcl/checks/0.2",
+      "encoder_build": "avcl/smt/0.1",
+      "contract_checker_build": "avcl/contract-smt/0.1",
+      "tool_versions": {
+        "python": "3.12.14",
+        "z3_package": "4.15.4.0",
+        "z3_core": "4.15.4"
+      },
+      "bounds": {
+        "timeout_ms": "5000",
+        "rlimit": "1000000",
+        "max_encoding_steps": "100000",
+        "max_solver_calls": "512",
+        "total_timeout_ms": "30000",
+        "max_witness_nodes": "10000"
+      },
+      "checked_at": "2026-10-26T11:19:48.659275+00:00",
+      "runtime_obligations": [],
+      "independent_certificate_checked": false,
+      "trust_assumptions": [
+        "pure-ir-typing",
+        "smt-value-encoding",
+        "smt-ast-encoding",
+        "smt-vm-encoding",
+        "python-runtime",
+        "z3-4.15.4.0",
+        "hypothetical-healthy-observations"
+      ],
+      "scope": "one tool, one immutable input and one hypothetical healthy observation time",
+      "tool": "refund",
+      "selector": "publication",
+      "events": [
+        "prepare",
+        "dispatch"
+      ],
+      "observation_time": {
+        "lower": "0",
+        "upper_exclusive": "999999999999999999"
+      },
+      "requirement_ids": [
+        "R09"
+      ],
+      "assumption_ids": [
+        "future-only",
+        "remote-idempotency"
+      ],
+      "clause_ids": [
+        "baseline-refund"
+      ],
+      "ir_digests": {
+        "baseline-refund": "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d"
+      },
+      "checks_sha256": {
+        "baseline-refund": "a685b9c5835066373f63e1c226e0f4d640fd7945704abc6be69e0ccf4a9a9478"
+      },
+      "input_fields": {
+        "amount": {
+          "kind": "Int",
+          "lower": "0",
+          "upper": "999999999999999999"
+        },
+        "currency": {
+          "kind": "String"
+        }
+      },
+      "property_id": "refund/publication/contract-checks-equivalent",
+      "status": "ProvedUnder",
+      "solver_status": "Unsat",
+      "query_id": "q7",
+      "witness_ref": null,
+      "reason": null,
+      "query_sha256": "076dd9548050d53a4a48144f7dfd0197305427d23bcf3d1f00c5108937945e33"
+    },
+    {
+      "contract_digest": "sha256:909c5ad26f107b28a5264a5bcfd0f2ed4e17452f96b1ed1eb0e1762398d72e7f",
+      "source_digest": "sha256:4c1591c8f0fa6eb2fad6eb5a471c6a775a10dfd988d0e42b733c60144699e45c",
+      "spec_digest": "sha256:c4fb0cd2b3981ca0ced94c42364217103bb9cfc1246ed38897a9e0e1a3f01a0a",
+      "checker_build": "avcl/checks/0.2",
+      "encoder_build": "avcl/smt/0.1",
+      "contract_checker_build": "avcl/contract-smt/0.1",
+      "tool_versions": {
+        "python": "3.12.14",
+        "z3_package": "4.15.4.0",
+        "z3_core": "4.15.4"
+      },
+      "bounds": {
+        "timeout_ms": "5000",
+        "rlimit": "1000000",
+        "max_encoding_steps": "100000",
+        "max_solver_calls": "512",
+        "total_timeout_ms": "30000",
+        "max_witness_nodes": "10000"
+      },
+      "checked_at": "2026-10-26T11:19:48.659275+00:00",
+      "runtime_obligations": [],
+      "independent_certificate_checked": false,
+      "trust_assumptions": [
+        "pure-ir-typing",
+        "smt-value-encoding",
+        "smt-ast-encoding",
+        "smt-vm-encoding",
+        "python-runtime",
+        "z3-4.15.4.0",
+        "hypothetical-healthy-observations"
+      ],
+      "scope": "one tool, one immutable input and one hypothetical healthy observation time",
+      "tool": "refund",
+      "selector": "publication",
+      "events": [
+        "prepare",
+        "dispatch"
+      ],
+      "observation_time": {
+        "lower": "0",
+        "upper_exclusive": "999999999999999999"
+      },
+      "requirement_ids": [
+        "R09"
+      ],
+      "assumption_ids": [
+        "future-only",
+        "remote-idempotency"
+      ],
+      "clause_ids": [
+        "baseline-refund"
+      ],
+      "ir_digests": {
+        "baseline-refund": "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d"
+      },
+      "checks_sha256": {
+        "baseline-refund": "a685b9c5835066373f63e1c226e0f4d640fd7945704abc6be69e0ccf4a9a9478"
+      },
+      "input_fields": {
+        "amount": {
+          "kind": "Int",
+          "lower": "0",
+          "upper": "999999999999999999"
+        },
+        "currency": {
+          "kind": "String"
+        }
+      },
+      "property_id": "refund/publication/joint-allowed-input-exists",
+      "status": "Violated",
+      "solver_status": "Unsat",
+      "query_id": "q8",
+      "witness_ref": null,
+      "reason": null,
+      "query_sha256": "8f94e18eee23e1c68e5a6c72d684edf6d7e0921327df165f7ebf66c05e99610f",
+      "conflict": {
+        "constraint_ids": [
+          "assumption/future-only",
+          "assumption/remote-idempotency"
+        ],
+        "unsat_query_id": "q11",
+        "minimality": "InclusionMinimal",
+        "minimum_cardinality_claimed": false,
+        "necessity_witnesses": {
+          "assumption/future-only": {
+            "query_id": "q9",
+            "final_subset_replay": {
+              "assumption/remote-idempotency": true
+            }
+          },
+          "assumption/remote-idempotency": {
+            "query_id": "q10",
+            "final_subset_replay": {
+              "assumption/future-only": true
+            }
+          }
+        },
+        "deletion_query_ids": [
+          "q9",
+          "q10",
+          "q11"
+        ],
+        "fixed_background": "full declared input domain and legal time",
+        "budget_reason": null
+      }
+    }
+  ],
+  "queries": [
+    {
+      "id": "q0",
+      "label": "refund/prepare/input-domain-inhabited",
+      "query_sha256": "89380807583b45682018b7d2648acb7013f3f243c972c11ea6af5ae9e96f0036",
+      "executed": true,
+      "solver_status": "Sat",
+      "reason": null,
+      "smt2": "(set-option :timeout 5000)\n(set-option :rlimit 1000000)\n(set-option :smt.random_seed 0)\n; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun input_1 () (Seq Int))\n(declare-fun input_0 () Int)\n(declare-fun observation_time () Int)\n(assert\n (let (($x47 (forall ((index_1 Int) )(let (($x39 (or (< (seq.nth input_1 index_1) 55296) (> (seq.nth input_1 index_1) 57343))))\n(let (($x42 (and (>= (seq.nth input_1 index_1) 0) (<= (seq.nth input_1 index_1) 1114111) $x39)))\n(=> (and (>= index_1 0) (< index_1 (seq.len input_1))) $x42))))\n))\n(let ((?x27 (seq.len input_1)))\n(let (($x30 (<= ?x27 256)))\n(let (($x28 (>= ?x27 0)))\n(let (($x16 (and (and (>= input_0 0) (<= input_0 999999999999999999)) (and $x28 $x30 $x47))))\n(let (($x9 (>= observation_time 0)))\n(and $x9 (< observation_time 1000000000000000000) $x16))))))))\n(check-sat)\n",
+      "statistics": "(:added-eqs            10\n :arith-assert-lower   3\n :arith-assert-upper   4\n :arith-eq-adapter     1\n :decisions            1\n :final-checks         3\n :interface-eqs        1\n :max-memory           35.06\n :memory               17.44\n :mk-bool-var          13\n :num-allocs           120357673\n :num-checks           2\n :rlimit-count         1785\n :seq-add-axiom        2\n :seq-fixed-length     1\n :seq-length-coherence 1\n :seq-num-reductions   1\n :time                 0.00)",
+      "model": "(define-fun observation_time () Int\n  0)\n(define-fun input_1 () (Seq Int)\n  (as seq.empty (Seq Int)))\n(define-fun input_0 () Int\n  0)\n(define-fun seq.nth_u ((x!0 (Seq Int)) (x!1 Int)) Int\n  0)",
+      "witness": {
+        "values": {
+          "amount": "0",
+          "currency": ""
+        },
+        "time": "0",
+        "health": "hypothetical-declared-Healthy"
+      }
+    },
+    {
+      "id": "q1",
+      "label": "refund/prepare/contract-checks-equivalent",
+      "query_sha256": "7ca026239ad53b35ca5fb6e4760694760d7714b0e165bb40b01f95823fd39358",
+      "executed": true,
+      "solver_status": "Unsat",
+      "reason": null,
+      "smt2": "(set-option :timeout 5000)\n(set-option :rlimit 1000000)\n(set-option :smt.random_seed 0)\n; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun input_0 () Int)\n(declare-fun input_1 () (Seq Int))\n(declare-fun observation_time () Int)\n(assert\n (let (($x52 (= input_1 (seq.++ (seq.unit 67) (seq.++ (seq.unit 78) (seq.unit 89))))))\n(let (($x60 (<= input_0 0)))\n(let (($x61 (not $x60)))\n(let (($x57 (and $x61 $x52)))\n(let (($x59 (or $x57 (and $x60 (< 0 input_0)))))\n(let (($x9 (>= observation_time 0)))\n(let (($x22 (and $x9 (< observation_time 1000))))\n(let (($x63 (and $x22)))\n(let (($x65 (and $x63 $x59)))\n(let (($x71 (and $x63 (and $x65))))\n(let (($x69 (and $x63 (and (and $x63 (and (< 0 input_0) $x52))))))\n(let (($x24 (and true true)))\n(let (($x55 (and $x24 (=> (< 0 input_0) $x24))))\n(let (($x66 (=> $x63 $x55)))\n(let (($x75 (and (and $x66) (and (=> $x63 (or $x61 $x60))) (= $x69 $x71))))\n(let (($x47 (forall ((index_1 Int) )(let (($x39 (or (< (seq.nth input_1 index_1) 55296) (> (seq.nth input_1 index_1) 57343))))\n(let (($x42 (and (>= (seq.nth input_1 index_1) 0) (<= (seq.nth input_1 index_1) 1114111) $x39)))\n(=> (and (>= index_1 0) (< index_1 (seq.len input_1))) $x42))))\n))\n(let ((?x27 (seq.len input_1)))\n(let (($x30 (<= ?x27 256)))\n(let (($x28 (>= ?x27 0)))\n(let (($x16 (and (and (>= input_0 0) (<= input_0 999999999999999999)) (and $x28 $x30 $x47))))\n(let (($x17 (and $x9 (< observation_time 1000000000000000000) $x16)))\n(and $x17 (not $x75))))))))))))))))))))))))\n(check-sat)\n",
+      "statistics": "(:max-memory   35.06\n :memory       17.39\n :num-allocs   121660474\n :rlimit-count 2085)"
+    },
+    {
+      "id": "q2",
+      "label": "refund/prepare/joint-allowed-input-exists",
+      "query_sha256": "07e3c99bde43867e87be6b1f4866f3ce43673634f5427d5dfa5f065cc980a88d",
+      "executed": true,
+      "solver_status": "Sat",
+      "reason": null,
+      "smt2": "(set-option :timeout 5000)\n(set-option :rlimit 1000000)\n(set-option :smt.random_seed 0)\n; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun input_1 () (Seq Int))\n(declare-fun input_0 () Int)\n(declare-fun observation_time () Int)\n(assert\n (let (($x52 (= input_1 (seq.++ (seq.unit 67) (seq.++ (seq.unit 78) (seq.unit 89))))))\n(let (($x25 (< 0 input_0)))\n(let (($x53 (and $x25 $x52)))\n(let (($x24 (and true true)))\n(let (($x55 (and $x24 (=> $x25 $x24))))\n(let (($x56 (and $x55 $x53)))\n(let (($x9 (>= observation_time 0)))\n(let (($x22 (and $x9 (< observation_time 1000))))\n(let (($x47 (forall ((index_1 Int) )(let (($x39 (or (< (seq.nth input_1 index_1) 55296) (> (seq.nth input_1 index_1) 57343))))\n(let (($x42 (and (>= (seq.nth input_1 index_1) 0) (<= (seq.nth input_1 index_1) 1114111) $x39)))\n(=> (and (>= index_1 0) (< index_1 (seq.len input_1))) $x42))))\n))\n(let ((?x27 (seq.len input_1)))\n(let (($x30 (<= ?x27 256)))\n(let (($x28 (>= ?x27 0)))\n(let (($x16 (and (and (>= input_0 0) (<= input_0 999999999999999999)) (and $x28 $x30 $x47))))\n(let (($x17 (and $x9 (< observation_time 1000000000000000000) $x16)))\n(and $x17 (and $x22 $x56)))))))))))))))))\n(check-sat)\n",
+      "statistics": "(:added-eqs           7\n :arith-assert-lower  3\n :arith-assert-upper  3\n :final-checks        1\n :max-memory          35.06\n :memory              17.49\n :mk-bool-var         11\n :num-allocs          128606745\n :num-checks          2\n :rlimit-count        7989\n :seq-add-axiom       3\n :solve-eqs-elim-vars 1\n :solve-eqs-steps     10\n :time                0.00)",
+      "model": "(define-fun observation_time () Int\n  0)\n(define-fun input_0 () Int\n  1)\n(define-fun input_1 () (Seq Int)\n  (seq.++ (seq.unit 67) (seq.unit 78) (seq.unit 89)))\n(define-fun seq.nth_u ((x!0 (Seq Int)) (x!1 Int)) Int\n  89)",
+      "witness": {
+        "values": {
+          "amount": "1",
+          "currency": "CNY"
+        },
+        "time": "0",
+        "health": "hypothetical-declared-Healthy"
+      },
+      "replay": {
+        "events": [
+          {
+            "event": "prepare",
+            "ast_allowed": true,
+            "compiled": {
+              "event": "prepare",
+              "allowed": true,
+              "reports": [
+                {
+                  "clause_id": "baseline-refund",
+                  "requirement_ids": [
+                    "R09"
+                  ],
+                  "kind": "safety",
+                  "event": "prepare",
+                  "status": "RuntimeSatisfied",
+                  "passed": true,
+                  "reason": null,
+                  "contract_digest": "sha256:909c5ad26f107b28a5264a5bcfd0f2ed4e17452f96b1ed1eb0e1762398d72e7f"
+                }
+              ]
+            }
+          }
+        ],
+        "declared_assumptions_valid": true,
+        "ast_errors": [],
+        "ast_allowed": true,
+        "compiled_allowed": true
+      }
+    },
+    {
+      "id": "q3",
+      "label": "refund/dispatch/input-domain-inhabited",
+      "query_sha256": "89380807583b45682018b7d2648acb7013f3f243c972c11ea6af5ae9e96f0036",
+      "executed": true,
+      "solver_status": "Sat",
+      "reason": null,
+      "smt2": "(set-option :timeout 5000)\n(set-option :rlimit 1000000)\n(set-option :smt.random_seed 0)\n; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun input_1 () (Seq Int))\n(declare-fun input_0 () Int)\n(declare-fun observation_time () Int)\n(assert\n (let (($x47 (forall ((index_1 Int) )(let (($x39 (or (< (seq.nth input_1 index_1) 55296) (> (seq.nth input_1 index_1) 57343))))\n(let (($x42 (and (>= (seq.nth input_1 index_1) 0) (<= (seq.nth input_1 index_1) 1114111) $x39)))\n(=> (and (>= index_1 0) (< index_1 (seq.len input_1))) $x42))))\n))\n(let ((?x27 (seq.len input_1)))\n(let (($x30 (<= ?x27 256)))\n(let (($x28 (>= ?x27 0)))\n(let (($x16 (and (and (>= input_0 0) (<= input_0 999999999999999999)) (and $x28 $x30 $x47))))\n(let (($x9 (>= observation_time 0)))\n(and $x9 (< observation_time 1000000000000000000) $x16))))))))\n(check-sat)\n",
+      "statistics": "(:added-eqs            10\n :arith-assert-lower   3\n :arith-assert-upper   4\n :arith-eq-adapter     1\n :decisions            1\n :final-checks         3\n :interface-eqs        1\n :max-memory           35.06\n :memory               34.05\n :mk-bool-var          13\n :num-allocs           137190066\n :num-checks           2\n :rlimit-count         1785\n :seq-add-axiom        2\n :seq-fixed-length     1\n :seq-length-coherence 1\n :seq-num-reductions   1\n :time                 0.00)",
+      "model": "(define-fun observation_time () Int\n  0)\n(define-fun input_1 () (Seq Int)\n  (as seq.empty (Seq Int)))\n(define-fun input_0 () Int\n  0)\n(define-fun seq.nth_u ((x!0 (Seq Int)) (x!1 Int)) Int\n  0)",
+      "witness": {
+        "values": {
+          "amount": "0",
+          "currency": ""
+        },
+        "time": "0",
+        "health": "hypothetical-declared-Healthy"
+      }
+    },
+    {
+      "id": "q4",
+      "label": "refund/dispatch/contract-checks-equivalent",
+      "query_sha256": "7ca026239ad53b35ca5fb6e4760694760d7714b0e165bb40b01f95823fd39358",
+      "executed": true,
+      "solver_status": "Unsat",
+      "reason": null,
+      "smt2": "(set-option :timeout 5000)\n(set-option :rlimit 1000000)\n(set-option :smt.random_seed 0)\n; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun input_0 () Int)\n(declare-fun input_1 () (Seq Int))\n(declare-fun observation_time () Int)\n(assert\n (let (($x52 (= input_1 (seq.++ (seq.unit 67) (seq.++ (seq.unit 78) (seq.unit 89))))))\n(let (($x60 (<= input_0 0)))\n(let (($x61 (not $x60)))\n(let (($x57 (and $x61 $x52)))\n(let (($x59 (or $x57 (and $x60 (< 0 input_0)))))\n(let (($x9 (>= observation_time 0)))\n(let (($x22 (and $x9 (< observation_time 1000))))\n(let (($x63 (and $x22)))\n(let (($x65 (and $x63 $x59)))\n(let (($x71 (and $x63 (and $x65))))\n(let (($x69 (and $x63 (and (and $x63 (and (< 0 input_0) $x52))))))\n(let (($x24 (and true true)))\n(let (($x55 (and $x24 (=> (< 0 input_0) $x24))))\n(let (($x66 (=> $x63 $x55)))\n(let (($x75 (and (and $x66) (and (=> $x63 (or $x61 $x60))) (= $x69 $x71))))\n(let (($x47 (forall ((index_1 Int) )(let (($x39 (or (< (seq.nth input_1 index_1) 55296) (> (seq.nth input_1 index_1) 57343))))\n(let (($x42 (and (>= (seq.nth input_1 index_1) 0) (<= (seq.nth input_1 index_1) 1114111) $x39)))\n(=> (and (>= index_1 0) (< index_1 (seq.len input_1))) $x42))))\n))\n(let ((?x27 (seq.len input_1)))\n(let (($x30 (<= ?x27 256)))\n(let (($x28 (>= ?x27 0)))\n(let (($x16 (and (and (>= input_0 0) (<= input_0 999999999999999999)) (and $x28 $x30 $x47))))\n(let (($x17 (and $x9 (< observation_time 1000000000000000000) $x16)))\n(and $x17 (not $x75))))))))))))))))))))))))\n(check-sat)\n",
+      "statistics": "(:max-memory   35.06\n :memory       17.39\n :num-allocs   139998301\n :rlimit-count 2085)"
+    },
+    {
+      "id": "q5",
+      "label": "refund/dispatch/joint-allowed-input-exists",
+      "query_sha256": "07e3c99bde43867e87be6b1f4866f3ce43673634f5427d5dfa5f065cc980a88d",
+      "executed": true,
+      "solver_status": "Sat",
+      "reason": null,
+      "smt2": "(set-option :timeout 5000)\n(set-option :rlimit 1000000)\n(set-option :smt.random_seed 0)\n; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun input_1 () (Seq Int))\n(declare-fun input_0 () Int)\n(declare-fun observation_time () Int)\n(assert\n (let (($x52 (= input_1 (seq.++ (seq.unit 67) (seq.++ (seq.unit 78) (seq.unit 89))))))\n(let (($x25 (< 0 input_0)))\n(let (($x53 (and $x25 $x52)))\n(let (($x24 (and true true)))\n(let (($x55 (and $x24 (=> $x25 $x24))))\n(let (($x56 (and $x55 $x53)))\n(let (($x9 (>= observation_time 0)))\n(let (($x22 (and $x9 (< observation_time 1000))))\n(let (($x47 (forall ((index_1 Int) )(let (($x39 (or (< (seq.nth input_1 index_1) 55296) (> (seq.nth input_1 index_1) 57343))))\n(let (($x42 (and (>= (seq.nth input_1 index_1) 0) (<= (seq.nth input_1 index_1) 1114111) $x39)))\n(=> (and (>= index_1 0) (< index_1 (seq.len input_1))) $x42))))\n))\n(let ((?x27 (seq.len input_1)))\n(let (($x30 (<= ?x27 256)))\n(let (($x28 (>= ?x27 0)))\n(let (($x16 (and (and (>= input_0 0) (<= input_0 999999999999999999)) (and $x28 $x30 $x47))))\n(let (($x17 (and $x9 (< observation_time 1000000000000000000) $x16)))\n(and $x17 (and $x22 $x56)))))))))))))))))\n(check-sat)\n",
+      "statistics": "(:added-eqs           7\n :arith-assert-lower  3\n :arith-assert-upper  3\n :final-checks        1\n :max-memory          35.06\n :memory              17.49\n :mk-bool-var         11\n :num-allocs          147475752\n :num-checks          2\n :rlimit-count        7989\n :seq-add-axiom       3\n :solve-eqs-elim-vars 1\n :solve-eqs-steps     10\n :time                0.00)",
+      "model": "(define-fun observation_time () Int\n  0)\n(define-fun input_0 () Int\n  1)\n(define-fun input_1 () (Seq Int)\n  (seq.++ (seq.unit 67) (seq.unit 78) (seq.unit 89)))\n(define-fun seq.nth_u ((x!0 (Seq Int)) (x!1 Int)) Int\n  89)",
+      "witness": {
+        "values": {
+          "amount": "1",
+          "currency": "CNY"
+        },
+        "time": "0",
+        "health": "hypothetical-declared-Healthy"
+      },
+      "replay": {
+        "events": [
+          {
+            "event": "dispatch",
+            "ast_allowed": true,
+            "compiled": {
+              "event": "dispatch",
+              "allowed": true,
+              "reports": [
+                {
+                  "clause_id": "baseline-refund",
+                  "requirement_ids": [
+                    "R09"
+                  ],
+                  "kind": "safety",
+                  "event": "dispatch",
+                  "status": "RuntimeSatisfied",
+                  "passed": true,
+                  "reason": null,
+                  "contract_digest": "sha256:909c5ad26f107b28a5264a5bcfd0f2ed4e17452f96b1ed1eb0e1762398d72e7f"
+                }
+              ]
+            }
+          }
+        ],
+        "declared_assumptions_valid": true,
+        "ast_errors": [],
+        "ast_allowed": true,
+        "compiled_allowed": true
+      }
+    },
+    {
+      "id": "q6",
+      "label": "refund/publication/input-domain-inhabited",
+      "query_sha256": "b284ca1d43bb8444cfb98b8f410867d26b9a0f84be7546c001fe00c5e74fb89c",
+      "executed": true,
+      "solver_status": "Sat",
+      "reason": null,
+      "smt2": "(set-option :timeout 5000)\n(set-option :rlimit 1000000)\n(set-option :smt.random_seed 0)\n; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun input_1 () (Seq Int))\n(declare-fun input_0 () Int)\n(declare-fun observation_time () Int)\n(assert\n (let (($x46 (forall ((index_1 Int) )(let (($x38 (or (< (seq.nth input_1 index_1) 55296) (> (seq.nth input_1 index_1) 57343))))\n(let (($x41 (and (>= (seq.nth input_1 index_1) 0) (<= (seq.nth input_1 index_1) 1114111) $x38)))\n(=> (and (>= index_1 0) (< index_1 (seq.len input_1))) $x41))))\n))\n(let ((?x26 (seq.len input_1)))\n(let (($x29 (<= ?x26 256)))\n(let (($x27 (>= ?x26 0)))\n(let (($x15 (and (and (>= input_0 0) (<= input_0 999999999999999999)) (and $x27 $x29 $x46))))\n(let (($x9 (>= observation_time 0)))\n(and $x9 (< observation_time 999999999999999999) $x15))))))))\n(check-sat)\n",
+      "statistics": "(:added-eqs            10\n :arith-assert-lower   3\n :arith-assert-upper   4\n :arith-eq-adapter     1\n :decisions            1\n :final-checks         3\n :interface-eqs        1\n :max-memory           35.06\n :memory               34.05\n :mk-bool-var          13\n :num-allocs           156692512\n :num-checks           2\n :rlimit-count         1785\n :seq-add-axiom        2\n :seq-fixed-length     1\n :seq-length-coherence 1\n :seq-num-reductions   1\n :time                 0.00)",
+      "model": "(define-fun observation_time () Int\n  0)\n(define-fun input_1 () (Seq Int)\n  (as seq.empty (Seq Int)))\n(define-fun input_0 () Int\n  0)\n(define-fun seq.nth_u ((x!0 (Seq Int)) (x!1 Int)) Int\n  0)",
+      "witness": {
+        "values": {
+          "amount": "0",
+          "currency": ""
+        },
+        "time": "0",
+        "health": "hypothetical-declared-Healthy"
+      }
+    },
+    {
+      "id": "q7",
+      "label": "refund/publication/contract-checks-equivalent",
+      "query_sha256": "076dd9548050d53a4a48144f7dfd0197305427d23bcf3d1f00c5108937945e33",
+      "executed": true,
+      "solver_status": "Unsat",
+      "reason": null,
+      "smt2": "(set-option :timeout 5000)\n(set-option :rlimit 1000000)\n(set-option :smt.random_seed 0)\n; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun input_0 () Int)\n(declare-fun input_1 () (Seq Int))\n(declare-fun observation_time () Int)\n(assert\n (let (($x55 (= input_1 (seq.++ (seq.unit 67) (seq.++ (seq.unit 78) (seq.unit 89))))))\n(let (($x63 (<= input_0 0)))\n(let (($x64 (not $x63)))\n(let (($x60 (and $x64 $x55)))\n(let (($x62 (or $x60 (and $x63 (< 0 input_0)))))\n(let (($x9 (>= observation_time 0)))\n(let (($x31 (and $x9 (< observation_time 1000))))\n(let (($x66 (and $x31)))\n(let (($x68 (and $x66 $x62)))\n(let (($x19 (>= observation_time 1000)))\n(let (($x24 (and $x19 (< observation_time 2000))))\n(let (($x71 (and $x24 $x31)))\n(let (($x75 (and $x71 (and $x68))))\n(let (($x73 (and $x71 (and (and $x66 (and (< 0 input_0) $x55))))))\n(let (($x32 (and true true)))\n(let (($x58 (and $x32 (=> (< 0 input_0) $x32))))\n(let (($x69 (=> $x66 $x58)))\n(let (($x79 (and (and $x69) (and (=> $x66 (or $x64 $x63))) (= $x73 $x75))))\n(let (($x46 (forall ((index_1 Int) )(let (($x38 (or (< (seq.nth input_1 index_1) 55296) (> (seq.nth input_1 index_1) 57343))))\n(let (($x41 (and (>= (seq.nth input_1 index_1) 0) (<= (seq.nth input_1 index_1) 1114111) $x38)))\n(=> (and (>= index_1 0) (< index_1 (seq.len input_1))) $x41))))\n))\n(let ((?x26 (seq.len input_1)))\n(let (($x29 (<= ?x26 256)))\n(let (($x27 (>= ?x26 0)))\n(let (($x15 (and (and (>= input_0 0) (<= input_0 999999999999999999)) (and $x27 $x29 $x46))))\n(let (($x16 (and $x9 (< observation_time 999999999999999999) $x15)))\n(and $x16 (not $x79)))))))))))))))))))))))))))\n(check-sat)\n",
+      "statistics": "(:max-memory   35.06\n :memory       17.39\n :num-allocs   159705087\n :rlimit-count 2113)"
+    },
+    {
+      "id": "q8",
+      "label": "refund/publication/joint-allowed-input-exists",
+      "query_sha256": "8f94e18eee23e1c68e5a6c72d684edf6d7e0921327df165f7ebf66c05e99610f",
+      "executed": true,
+      "solver_status": "Unsat",
+      "reason": null,
+      "smt2": "(set-option :timeout 5000)\n(set-option :rlimit 1000000)\n(set-option :smt.random_seed 0)\n; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun input_1 () (Seq Int))\n(declare-fun input_0 () Int)\n(declare-fun observation_time () Int)\n(assert\n (let (($x55 (= input_1 (seq.++ (seq.unit 67) (seq.++ (seq.unit 78) (seq.unit 89))))))\n(let (($x33 (< 0 input_0)))\n(let (($x56 (and $x33 $x55)))\n(let (($x32 (and true true)))\n(let (($x58 (and $x32 (=> $x33 $x32))))\n(let (($x59 (and $x58 $x56)))\n(let (($x9 (>= observation_time 0)))\n(let (($x31 (and $x9 (< observation_time 1000))))\n(let (($x19 (>= observation_time 1000)))\n(let (($x24 (and $x19 (< observation_time 2000))))\n(let (($x46 (forall ((index_1 Int) )(let (($x38 (or (< (seq.nth input_1 index_1) 55296) (> (seq.nth input_1 index_1) 57343))))\n(let (($x41 (and (>= (seq.nth input_1 index_1) 0) (<= (seq.nth input_1 index_1) 1114111) $x38)))\n(=> (and (>= index_1 0) (< index_1 (seq.len input_1))) $x41))))\n))\n(let ((?x26 (seq.len input_1)))\n(let (($x29 (<= ?x26 256)))\n(let (($x27 (>= ?x26 0)))\n(let (($x15 (and (and (>= input_0 0) (<= input_0 999999999999999999)) (and $x27 $x29 $x46))))\n(let (($x16 (and $x9 (< observation_time 999999999999999999) $x15)))\n(and $x16 (and $x24 $x31 $x59)))))))))))))))))))\n(check-sat)\n",
+      "statistics": "(:max-memory          35.06\n :memory              17.48\n :mk-bool-var         1\n :num-allocs          163657844\n :num-checks          2\n :rlimit-count        3395\n :solve-eqs-elim-vars 1\n :solve-eqs-steps     10)"
+    },
+    {
+      "id": "q9",
+      "label": "refund/publication/remove/assumption/future-only",
+      "query_sha256": "b55a8a8ed367485d651ef33bc4d970de7e04ac19c17275d378ceb77a1f8eee38",
+      "executed": true,
+      "solver_status": "Sat",
+      "reason": null,
+      "smt2": "(set-option :timeout 5000)\n(set-option :rlimit 1000000)\n(set-option :smt.random_seed 0)\n; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun input_1 () (Seq Int))\n(declare-fun input_0 () Int)\n(declare-fun observation_time () Int)\n(assert\n (let (($x55 (= input_1 (seq.++ (seq.unit 67) (seq.++ (seq.unit 78) (seq.unit 89))))))\n(let (($x33 (< 0 input_0)))\n(let (($x56 (and $x33 $x55)))\n(let (($x32 (and true true)))\n(let (($x58 (and $x32 (=> $x33 $x32))))\n(let (($x59 (and $x58 $x56)))\n(let (($x9 (>= observation_time 0)))\n(let (($x31 (and $x9 (< observation_time 1000))))\n(let (($x46 (forall ((index_1 Int) )(let (($x38 (or (< (seq.nth input_1 index_1) 55296) (> (seq.nth input_1 index_1) 57343))))\n(let (($x41 (and (>= (seq.nth input_1 index_1) 0) (<= (seq.nth input_1 index_1) 1114111) $x38)))\n(=> (and (>= index_1 0) (< index_1 (seq.len input_1))) $x41))))\n))\n(let ((?x26 (seq.len input_1)))\n(let (($x29 (<= ?x26 256)))\n(let (($x27 (>= ?x26 0)))\n(let (($x15 (and (and (>= input_0 0) (<= input_0 999999999999999999)) (and $x27 $x29 $x46))))\n(let (($x16 (and $x9 (< observation_time 999999999999999999) $x15)))\n(and $x16 (and $x31 $x59)))))))))))))))))\n(check-sat)\n",
+      "statistics": "(:added-eqs           7\n :arith-assert-lower  3\n :arith-assert-upper  3\n :final-checks        1\n :max-memory          35.06\n :memory              17.49\n :mk-bool-var         11\n :num-allocs          171442813\n :num-checks          2\n :rlimit-count        9295\n :seq-add-axiom       3\n :solve-eqs-elim-vars 1\n :solve-eqs-steps     10\n :time                0.00)",
+      "model": "(define-fun observation_time () Int\n  0)\n(define-fun input_0 () Int\n  1)\n(define-fun input_1 () (Seq Int)\n  (seq.++ (seq.unit 67) (seq.unit 78) (seq.unit 89)))\n(define-fun seq.nth_u ((x!0 (Seq Int)) (x!1 Int)) Int\n  89)",
+      "constraint_ids": [
+        "assumption/remote-idempotency",
+        "clause/baseline-refund"
+      ],
+      "witness": {
+        "values": {
+          "amount": "1",
+          "currency": "CNY"
+        },
+        "time": "0",
+        "health": "hypothetical-declared-Healthy"
+      },
+      "subset_replay": {
+        "assumption/remote-idempotency": true,
+        "clause/baseline-refund": true
+      }
+    },
+    {
+      "id": "q10",
+      "label": "refund/publication/remove/assumption/remote-idempotency",
+      "query_sha256": "b47d9576c0fd91d9a96ebddb89803bc4dd421b366180085ae04ab20d401785ce",
+      "executed": true,
+      "solver_status": "Sat",
+      "reason": null,
+      "smt2": "(set-option :timeout 5000)\n(set-option :rlimit 1000000)\n(set-option :smt.random_seed 0)\n; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun input_1 () (Seq Int))\n(declare-fun input_0 () Int)\n(declare-fun observation_time () Int)\n(assert\n (let ((?x50 (seq.unit 67)))\n(let ((?x54 (seq.++ ?x50 (seq.++ (seq.unit 78) (seq.unit 89)))))\n(let (($x55 (= input_1 ?x54)))\n(let (($x33 (< 0 input_0)))\n(let (($x56 (and $x33 $x55)))\n(let (($x32 (and true true)))\n(let (($x58 (and $x32 (=> $x33 $x32))))\n(let (($x59 (and $x58 $x56)))\n(let (($x19 (>= observation_time 1000)))\n(let (($x24 (and $x19 (< observation_time 2000))))\n(let (($x46 (forall ((index_1 Int) )(let (($x38 (or (< (seq.nth input_1 index_1) 55296) (> (seq.nth input_1 index_1) 57343))))\n(let (($x41 (and (>= (seq.nth input_1 index_1) 0) (<= (seq.nth input_1 index_1) 1114111) $x38)))\n(=> (and (>= index_1 0) (< index_1 (seq.len input_1))) $x41))))\n))\n(let ((?x26 (seq.len input_1)))\n(let (($x29 (<= ?x26 256)))\n(let (($x27 (>= ?x26 0)))\n(let (($x15 (and (and (>= input_0 0) (<= input_0 999999999999999999)) (and $x27 $x29 $x46))))\n(let (($x9 (>= observation_time 0)))\n(let (($x16 (and $x9 (< observation_time 999999999999999999) $x15)))\n(and $x16 (and $x24 $x59))))))))))))))))))))\n(check-sat)\n",
+      "statistics": "(:added-eqs           7\n :arith-assert-lower  4\n :arith-assert-upper  3\n :final-checks        1\n :max-memory          35.06\n :memory              17.50\n :mk-bool-var         12\n :num-allocs          180467234\n :num-checks          2\n :rlimit-count        15304\n :seq-add-axiom       3\n :solve-eqs-elim-vars 1\n :solve-eqs-steps     10\n :time                0.00)",
+      "model": "(define-fun observation_time () Int\n  1000)\n(define-fun input_0 () Int\n  1)\n(define-fun input_1 () (Seq Int)\n  (seq.++ (seq.unit 67) (seq.unit 78) (seq.unit 89)))\n(define-fun seq.nth_u ((x!0 (Seq Int)) (x!1 Int)) Int\n  1000)",
+      "constraint_ids": [
+        "assumption/future-only",
+        "clause/baseline-refund"
+      ],
+      "witness": {
+        "values": {
+          "amount": "1",
+          "currency": "CNY"
+        },
+        "time": "1000",
+        "health": "hypothetical-declared-Healthy"
+      },
+      "subset_replay": {
+        "assumption/future-only": true,
+        "clause/baseline-refund": true
+      }
+    },
+    {
+      "id": "q11",
+      "label": "refund/publication/remove/clause/baseline-refund",
+      "query_sha256": "e71c079eec34fe967c0bb0bac31561488cdac7f22c34f93cd1e10f5eddbbd630",
+      "executed": true,
+      "solver_status": "Unsat",
+      "reason": null,
+      "smt2": "(set-option :timeout 5000)\n(set-option :rlimit 1000000)\n(set-option :smt.random_seed 0)\n; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun observation_time () Int)\n(declare-fun input_1 () (Seq Int))\n(declare-fun input_0 () Int)\n(assert\n (let (($x9 (>= observation_time 0)))\n(let (($x31 (and $x9 (< observation_time 1000))))\n(let (($x19 (>= observation_time 1000)))\n(let (($x24 (and $x19 (< observation_time 2000))))\n(let (($x71 (and $x24 $x31)))\n(let (($x46 (forall ((index_1 Int) )(let (($x38 (or (< (seq.nth input_1 index_1) 55296) (> (seq.nth input_1 index_1) 57343))))\n(let (($x41 (and (>= (seq.nth input_1 index_1) 0) (<= (seq.nth input_1 index_1) 1114111) $x38)))\n(=> (and (>= index_1 0) (< index_1 (seq.len input_1))) $x41))))\n))\n(let ((?x26 (seq.len input_1)))\n(let (($x29 (<= ?x26 256)))\n(let (($x27 (>= ?x26 0)))\n(let (($x15 (and (and (>= input_0 0) (<= input_0 999999999999999999)) (and $x27 $x29 $x46))))\n(let (($x16 (and $x9 (< observation_time 999999999999999999) $x15)))\n(and $x16 $x71)))))))))))))\n(check-sat)\n",
+      "statistics": "(:max-memory   35.06\n :memory       17.49\n :mk-bool-var  1\n :num-allocs   185074521\n :num-checks   2\n :rlimit-count 16162)",
+      "constraint_ids": [
+        "assumption/future-only",
+        "assumption/remote-idempotency"
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "id": "refund/prepare",
+      "constraint_catalog": {
+        "assumption/remote-idempotency": {
+          "kind": "assumption-validity",
+          "assumption_id": "remote-idempotency",
+          "valid_from": "0",
+          "expires": "1000",
+          "authority": "simulator",
+          "scope": "refund",
+          "monitor": "remote-effect-oracle",
+          "dependent_clause_ids": [
+            "baseline-refund"
+          ]
+        },
+        "clause/baseline-refund": {
+          "kind": "clause",
+          "clause_id": "baseline-refund",
+          "rule": "requires",
+          "requirement_ids": [
+            "R09"
+          ],
+          "semantic_digest": "sha256:cce8015ad89bd2cf68ab696aefe0a529c248f3069d95041bc3611f8af79efdf5",
+          "source_map": {
+            "n0": "<builder>",
+            "n0.0": "<builder>",
+            "n0.0.0": "<builder>",
+            "n0.0.1": "<builder>",
+            "n0.1": "<builder>",
+            "n0.1.0": "<builder>",
+            "n0.1.1": "<builder>"
+          }
+        }
+      }
+    },
+    {
+      "id": "refund/dispatch",
+      "constraint_catalog": {
+        "assumption/remote-idempotency": {
+          "kind": "assumption-validity",
+          "assumption_id": "remote-idempotency",
+          "valid_from": "0",
+          "expires": "1000",
+          "authority": "simulator",
+          "scope": "refund",
+          "monitor": "remote-effect-oracle",
+          "dependent_clause_ids": [
+            "baseline-refund"
+          ]
+        },
+        "clause/baseline-refund": {
+          "kind": "clause",
+          "clause_id": "baseline-refund",
+          "rule": "requires",
+          "requirement_ids": [
+            "R09"
+          ],
+          "semantic_digest": "sha256:cce8015ad89bd2cf68ab696aefe0a529c248f3069d95041bc3611f8af79efdf5",
+          "source_map": {
+            "n0": "<builder>",
+            "n0.0": "<builder>",
+            "n0.0.0": "<builder>",
+            "n0.0.1": "<builder>",
+            "n0.1": "<builder>",
+            "n0.1.0": "<builder>",
+            "n0.1.1": "<builder>"
+          }
+        }
+      }
+    },
+    {
+      "id": "refund/publication",
+      "constraint_catalog": {
+        "assumption/future-only": {
+          "kind": "assumption-validity",
+          "assumption_id": "future-only",
+          "valid_from": "1000",
+          "expires": "2000",
+          "authority": "simulator",
+          "scope": "refund",
+          "monitor": "oracle",
+          "dependent_clause_ids": []
+        },
+        "assumption/remote-idempotency": {
+          "kind": "assumption-validity",
+          "assumption_id": "remote-idempotency",
+          "valid_from": "0",
+          "expires": "1000",
+          "authority": "simulator",
+          "scope": "refund",
+          "monitor": "remote-effect-oracle",
+          "dependent_clause_ids": [
+            "baseline-refund"
+          ]
+        },
+        "clause/baseline-refund": {
+          "kind": "clause",
+          "clause_id": "baseline-refund",
+          "rule": "requires",
+          "requirement_ids": [
+            "R09"
+          ],
+          "semantic_digest": "sha256:cce8015ad89bd2cf68ab696aefe0a529c248f3069d95041bc3611f8af79efdf5",
+          "source_map": {
+            "n0": "<builder>",
+            "n0.0": "<builder>",
+            "n0.0.0": "<builder>",
+            "n0.0.1": "<builder>",
+            "n0.1": "<builder>",
+            "n0.1.0": "<builder>",
+            "n0.1.1": "<builder>"
+          }
+        }
+      }
+    }
+  ],
+  "solver_calls": "12",
+  "encoding_steps": "78"
+}

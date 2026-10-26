@@ -1,0 +1,72 @@
+{
+  "passed": true,
+  "scope": "real PostgreSQL snapshot; demonstration checkpoints from this same run, not an external trust service; no semantic replay proof",
+  "verification": {
+    "format": "avcl/audit-integrity/0.1",
+    "status": "VerifiedAgainstCheckpoint",
+    "tenant": "demo",
+    "after_sequence": "0",
+    "event_count": "4",
+    "checkpoint": {
+      "tenant": "demo",
+      "sequence": "4",
+      "digest": "sha256:37450394c7df6781bece62dafa5a2bf5274d7ac0bee9d0aa1d99d3ee177e5bbc"
+    },
+    "semantic_replay": "not_performed",
+    "event_truth": "not_verified"
+  },
+  "pages": [
+    {
+      "format": "avcl/audit-integrity/0.1",
+      "status": "InternallyConsistent",
+      "tenant": "demo",
+      "after_sequence": "0",
+      "event_count": "2",
+      "checkpoint": {
+        "tenant": "demo",
+        "sequence": "2",
+        "digest": "sha256:297ed42c5449c146c8f3438121fb2e421cbfeb4470c4a1398fb02cf2a3271239"
+      },
+      "semantic_replay": "not_performed",
+      "event_truth": "not_verified"
+    },
+    {
+      "format": "avcl/audit-integrity/0.1",
+      "status": "ContinuationConsistent",
+      "tenant": "demo",
+      "after_sequence": "2",
+      "event_count": "2",
+      "checkpoint": {
+        "tenant": "demo",
+        "sequence": "4",
+        "digest": "sha256:37450394c7df6781bece62dafa5a2bf5274d7ac0bee9d0aa1d99d3ee177e5bbc"
+      },
+      "semantic_replay": "not_performed",
+      "event_truth": "not_verified"
+    },
+    {
+      "format": "avcl/audit-integrity/0.1",
+      "status": "ContinuationConsistent",
+      "tenant": "demo",
+      "after_sequence": "4",
+      "event_count": "0",
+      "checkpoint": {
+        "tenant": "demo",
+        "sequence": "4",
+        "digest": "sha256:37450394c7df6781bece62dafa5a2bf5274d7ac0bee9d0aa1d99d3ee177e5bbc"
+      },
+      "semantic_replay": "not_performed",
+      "event_truth": "not_verified"
+    }
+  ],
+  "rewritten_without_anchor": "InternallyConsistent",
+  "rewritten_against_original_anchor": "AUDIT_CHECKPOINT_MISMATCH",
+  "database_events_unchanged": true,
+  "artifacts_sha256": {
+    "checkpoint.json": "0a0b10dd6ebf2ba5458419260236ec133ecb3b95b92aecd3065506e279563310",
+    "full.json": "7c502c2e740bc71ed7ac31b28589608c40c358551a723a56e42e8838444e3354",
+    "page-0.json": "00a5d3823cf92866eef81e703d5d8b3e60b26b32f2ba9282824a50e879dc8c51",
+    "page-1.json": "22a09261c899316eafc02871cee6bcfdb8b784afda46a7d081cc0d0587cf961c",
+    "page-2.json": "e0bfaef504c5e021d2145ac96516f21d896c311644d9988f1e49fbee4175f68c"
+  }
+}

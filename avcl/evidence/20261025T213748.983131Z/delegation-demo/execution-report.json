@@ -1,0 +1,421 @@
+{
+  "schema": "avcl/delegation-demo/0.2",
+  "passed": true,
+  "grants": {
+    "one": {
+      "child_cap_ref": "cap-52881fc758c59efe67819bcf3264c4f1bd7c81b15f99231844b5e819f51a0a77",
+      "child_subject": "one",
+      "command": "Delegate",
+      "node_id": "w0.0",
+      "operation_id": null,
+      "parent_ref": "root",
+      "result": "Delegated"
+    },
+    "two": {
+      "child_cap_ref": "cap-38486d02c6fdbe625a10294b4697789ed33595e25218afd1ddb0276ba91780f4",
+      "child_subject": "two",
+      "command": "Delegate",
+      "node_id": "w0.1",
+      "operation_id": null,
+      "parent_ref": "root",
+      "result": "Delegated"
+    }
+  },
+  "sibling_prepare_rejected": "BUDGET_EXCEEDED",
+  "pending_after_ancestor_revoke": 60,
+  "actual_cost": 60,
+  "effect_count": 1,
+  "parent_workflow": {
+    "workflow_digest": "sha256:062e3a3927ab849c173d76fbbd66c214926b882e6f7dad9850681f079b6d528a",
+    "run_id": "parent-run",
+    "status": "Finished",
+    "steps": [
+      {
+        "child_cap_ref": "cap-52881fc758c59efe67819bcf3264c4f1bd7c81b15f99231844b5e819f51a0a77",
+        "child_subject": "one",
+        "command": "Delegate",
+        "node_id": "w0.0",
+        "operation_id": null,
+        "parent_ref": "root",
+        "result": "Delegated"
+      },
+      {
+        "child_cap_ref": "cap-38486d02c6fdbe625a10294b4697789ed33595e25218afd1ddb0276ba91780f4",
+        "child_subject": "two",
+        "command": "Delegate",
+        "node_id": "w0.1",
+        "operation_id": null,
+        "parent_ref": "root",
+        "result": "Delegated"
+      }
+    ],
+    "failed_node": null,
+    "error": null,
+    "operations": [],
+    "scope": "Finished means the command program ended, not business completion or released budget"
+  },
+  "child_workflows": {
+    "one": {
+      "workflow_digest": "sha256:096a7c78af60d00f4bb7ac6780e139aca5656869425bd0fa4d9f70cda9af090a",
+      "run_id": "one-run",
+      "status": "Finished",
+      "steps": [
+        {
+          "command": "Prepare",
+          "node_id": "w0.0",
+          "operation_id": "op-e210c38ad0304e2388583ccbb939a619",
+          "result": "Prepared"
+        },
+        {
+          "command": "Dispatch",
+          "node_id": "w0.1",
+          "operation_id": "op-e210c38ad0304e2388583ccbb939a619",
+          "result": "Admitted"
+        },
+        {
+          "command": "Send",
+          "node_id": "w0.2",
+          "operation_id": "op-e210c38ad0304e2388583ccbb939a619",
+          "result": "NoAuthoritativeReceipt"
+        },
+        {
+          "command": "Reconcile",
+          "node_id": "w0.3",
+          "operation_id": "op-e210c38ad0304e2388583ccbb939a619",
+          "result": "ReceiptObserved"
+        }
+      ],
+      "failed_node": null,
+      "error": null,
+      "operations": [
+        {
+          "id": "op-e210c38ad0304e2388583ccbb939a619",
+          "execution": "Confirmed",
+          "settlement": "Final",
+          "remaining": [
+            {
+              "account": "delegation:08b195c0fbb2ae53a4293628a33a492c737a6425348eb49efbc55e83ba4d2955:CNY",
+              "amount": "0"
+            },
+            {
+              "account": "delegation:a2c3ab0396c81fc6dc2622a09eba970f7fe1cd6104c35218f9a3e7ff872ce5fd:CNY",
+              "amount": "0"
+            },
+            {
+              "account": "order:a:CNY",
+              "amount": "0"
+            },
+            {
+              "account": "tenant:CNY",
+              "amount": "0"
+            }
+          ]
+        }
+      ],
+      "scope": "Finished means the command program ended, not business completion or released budget"
+    },
+    "two": {
+      "workflow_digest": "sha256:096a7c78af60d00f4bb7ac6780e139aca5656869425bd0fa4d9f70cda9af090a",
+      "run_id": "two-run",
+      "status": "Halted",
+      "steps": [],
+      "failed_node": "w0.0",
+      "error": "BUDGET_EXCEEDED",
+      "operations": [],
+      "scope": "Finished means the command program ended, not business completion or released budget"
+    }
+  },
+  "final_reservations": [
+    {
+      "account": "delegation:08b195c0fbb2ae53a4293628a33a492c737a6425348eb49efbc55e83ba4d2955:CNY",
+      "upper": 60,
+      "charged": 60,
+      "remaining": 0
+    },
+    {
+      "account": "delegation:a2c3ab0396c81fc6dc2622a09eba970f7fe1cd6104c35218f9a3e7ff872ce5fd:CNY",
+      "upper": 60,
+      "charged": 60,
+      "remaining": 0
+    },
+    {
+      "account": "order:a:CNY",
+      "upper": 60,
+      "charged": 60,
+      "remaining": 0
+    },
+    {
+      "account": "tenant:CNY",
+      "upper": 60,
+      "charged": 60,
+      "remaining": 0
+    }
+  ],
+  "events": [
+    {
+      "sequence": 1,
+      "kind": "DelegationSubjectRegistered",
+      "operation_id": null,
+      "details": {
+        "requirement_id": "R11",
+        "subject": "parent"
+      }
+    },
+    {
+      "sequence": 2,
+      "kind": "DelegationSubjectRegistered",
+      "operation_id": null,
+      "details": {
+        "requirement_id": "R11",
+        "subject": "one"
+      }
+    },
+    {
+      "sequence": 3,
+      "kind": "DelegationSubjectRegistered",
+      "operation_id": null,
+      "details": {
+        "requirement_id": "R11",
+        "subject": "two"
+      }
+    },
+    {
+      "sequence": 4,
+      "kind": "DelegationRootRegistered",
+      "operation_id": null,
+      "details": {
+        "account": "delegation:08b195c0fbb2ae53a4293628a33a492c737a6425348eb49efbc55e83ba4d2955:CNY",
+        "capability_ref": "root",
+        "limit": "100",
+        "requirement_id": "R11"
+      }
+    },
+    {
+      "sequence": 5,
+      "kind": "WorkflowStarted",
+      "operation_id": null,
+      "details": {
+        "authenticated_receipts": "False",
+        "run_id": "parent-run",
+        "subject": "parent",
+        "workflow_digest": "sha256:062e3a3927ab849c173d76fbbd66c214926b882e6f7dad9850681f079b6d528a"
+      }
+    },
+    {
+      "sequence": 6,
+      "kind": "CapabilityDelegated",
+      "operation_id": null,
+      "details": {
+        "account": "delegation:a2c3ab0396c81fc6dc2622a09eba970f7fe1cd6104c35218f9a3e7ff872ce5fd:CNY",
+        "capability_ref": "cap-52881fc758c59efe67819bcf3264c4f1bd7c81b15f99231844b5e819f51a0a77",
+        "child_subject": "one",
+        "limit": "80",
+        "parent_ref": "root",
+        "request_id": "sha256:92a7cc24cbd7ccdeb1adeeca180d7ffdfa088cbf81d106bb94a61ec388d2791b",
+        "requirement_id": "R11",
+        "subject": "parent"
+      }
+    },
+    {
+      "sequence": 7,
+      "kind": "WorkflowStepCommitted",
+      "operation_id": null,
+      "details": {
+        "command": "Delegate",
+        "node_id": "w0.0",
+        "result": "Delegated",
+        "run_id": "parent-run"
+      }
+    },
+    {
+      "sequence": 8,
+      "kind": "CapabilityDelegated",
+      "operation_id": null,
+      "details": {
+        "account": "delegation:df33655b3c3f4373b1b9a6454edb9a1ec5a89f021b32fbc377122f799b12727d:CNY",
+        "capability_ref": "cap-38486d02c6fdbe625a10294b4697789ed33595e25218afd1ddb0276ba91780f4",
+        "child_subject": "two",
+        "limit": "80",
+        "parent_ref": "root",
+        "request_id": "sha256:4a4c77f958018726dafbd74ac5a5a1b20a33220a79a9ce57eee8ff56ef5656af",
+        "requirement_id": "R11",
+        "subject": "parent"
+      }
+    },
+    {
+      "sequence": 9,
+      "kind": "WorkflowStepCommitted",
+      "operation_id": null,
+      "details": {
+        "command": "Delegate",
+        "node_id": "w0.1",
+        "result": "Delegated",
+        "run_id": "parent-run"
+      }
+    },
+    {
+      "sequence": 10,
+      "kind": "WorkflowStarted",
+      "operation_id": null,
+      "details": {
+        "authenticated_receipts": "False",
+        "run_id": "one-run",
+        "subject": "one",
+        "workflow_digest": "sha256:096a7c78af60d00f4bb7ac6780e139aca5656869425bd0fa4d9f70cda9af090a"
+      }
+    },
+    {
+      "sequence": 11,
+      "kind": "Prepared",
+      "operation_id": "op-e210c38ad0304e2388583ccbb939a619",
+      "details": {
+        "binding": "sha256:c56680c3e537dee2f47b0c26482732acd7164e32d290fc9928251d79b486310b",
+        "contract_digest": "sha256:84a379229dd6e517a4f4fdd9819f02f624420af6974c2cee6fe7395b5e601a17",
+        "ir_digest": "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d",
+        "requirement_id": "R09"
+      }
+    },
+    {
+      "sequence": 12,
+      "kind": "WorkflowStepCommitted",
+      "operation_id": "op-e210c38ad0304e2388583ccbb939a619",
+      "details": {
+        "command": "Prepare",
+        "node_id": "w0.0",
+        "result": "Prepared",
+        "run_id": "one-run"
+      }
+    },
+    {
+      "sequence": 13,
+      "kind": "WorkflowStarted",
+      "operation_id": null,
+      "details": {
+        "authenticated_receipts": "False",
+        "run_id": "two-run",
+        "subject": "two",
+        "workflow_digest": "sha256:096a7c78af60d00f4bb7ac6780e139aca5656869425bd0fa4d9f70cda9af090a"
+      }
+    },
+    {
+      "sequence": 14,
+      "kind": "WorkflowHalted",
+      "operation_id": null,
+      "details": {
+        "node_id": "w0.0",
+        "reason": "BUDGET_EXCEEDED",
+        "run_id": "two-run"
+      }
+    },
+    {
+      "sequence": 15,
+      "kind": "DispatchAdmitted",
+      "operation_id": "op-e210c38ad0304e2388583ccbb939a619",
+      "details": {
+        "binding": "sha256:c56680c3e537dee2f47b0c26482732acd7164e32d290fc9928251d79b486310b",
+        "contract_digest": "sha256:84a379229dd6e517a4f4fdd9819f02f624420af6974c2cee6fe7395b5e601a17",
+        "epoch": "1",
+        "ir_digest": "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d",
+        "policy": "refund-policy/0.1",
+        "requirement_id": "R09"
+      }
+    },
+    {
+      "sequence": 16,
+      "kind": "WorkflowStepCommitted",
+      "operation_id": "op-e210c38ad0304e2388583ccbb939a619",
+      "details": {
+        "command": "Dispatch",
+        "node_id": "w0.1",
+        "result": "Admitted",
+        "run_id": "one-run"
+      }
+    },
+    {
+      "sequence": 17,
+      "kind": "SendAttemptAdmitted",
+      "operation_id": "op-e210c38ad0304e2388583ccbb939a619",
+      "details": {
+        "at": "0",
+        "attempt": "1",
+        "binding": "sha256:c56680c3e537dee2f47b0c26482732acd7164e32d290fc9928251d79b486310b",
+        "envelope_digest": "sha256:3c128baee7b074237784b0b67a018749aadb2aeb5bca136339b6621a6952383b",
+        "generation": "1",
+        "node_id": "w0.2",
+        "not_after": "60",
+        "profile": "refund-send/0.1",
+        "run_id": "one-run",
+        "send_owner": "workflow",
+        "subject": "one",
+        "worker": "worker",
+        "workflow_digest": "sha256:096a7c78af60d00f4bb7ac6780e139aca5656869425bd0fa4d9f70cda9af090a"
+      }
+    },
+    {
+      "sequence": 18,
+      "kind": "Unknown",
+      "operation_id": "op-e210c38ad0304e2388583ccbb939a619",
+      "details": {
+        "due": "86400"
+      }
+    },
+    {
+      "sequence": 19,
+      "kind": "WorkflowStepCommitted",
+      "operation_id": "op-e210c38ad0304e2388583ccbb939a619",
+      "details": {
+        "command": "Send",
+        "node_id": "w0.2",
+        "result": "NoAuthoritativeReceipt",
+        "run_id": "one-run"
+      }
+    },
+    {
+      "sequence": 20,
+      "kind": "CapabilityRevoked",
+      "operation_id": null,
+      "details": {
+        "capability_ref": "root",
+        "requirement_id": "R11"
+      }
+    },
+    {
+      "sequence": 21,
+      "kind": "ObservationRecorded",
+      "operation_id": "op-e210c38ad0304e2388583ccbb939a619",
+      "details": {
+        "content": "Observation(id='remote:op-e210c38ad0304e2388583ccbb939a619', operation_id='op-e210c38ad0304e2388583ccbb939a619', request_digest='sha256:36a59924ffe19f61c00617ae4a1ccfeaa63717419d50db4fb257c6afd6817fed', kind=<Execution.CONFIRMED: 'Confirmed'>, cumulative_costs=(('tenant:CNY', 60), ('order:a:CNY', 60)), final_cost=True, terminal_effect=True)",
+        "observation": "remote:op-e210c38ad0304e2388583ccbb939a619"
+      }
+    },
+    {
+      "sequence": 22,
+      "kind": "Settled",
+      "operation_id": "op-e210c38ad0304e2388583ccbb939a619",
+      "details": {
+        "observation": "remote:op-e210c38ad0304e2388583ccbb939a619"
+      }
+    },
+    {
+      "sequence": 23,
+      "kind": "ObligationResolved",
+      "operation_id": "op-e210c38ad0304e2388583ccbb939a619",
+      "details": {
+        "at": "0",
+        "requirement_id": "R10",
+        "resolution": "FinalEffect"
+      }
+    },
+    {
+      "sequence": 24,
+      "kind": "WorkflowStepCommitted",
+      "operation_id": "op-e210c38ad0304e2388583ccbb939a619",
+      "details": {
+        "command": "Reconcile",
+        "node_id": "w0.3",
+        "result": "ReceiptObserved",
+        "run_id": "one-run"
+      }
+    }
+  ]
+}

@@ -259,6 +259,10 @@ class TaskTests(unittest.TestCase):
 
     def test_v6_migration_keeps_existing_operation_without_inventing_task_scope(self):
         op=self.dispatched()
+        self.query("DROP TRIGGER audit_requires_allocation ON audit_event")
+        self.query("DROP FUNCTION require_audit_allocation()")
+        self.query("DROP TABLE audit_counter")
+        self.query("DROP TABLE rejection_audit_subject, rejection_audit_policy")
         self.assertEqual(self.query("SELECT * FROM delegation_grant"),[])
         self.query("DROP TABLE delegation_request, delegation_grant, delegation_subject")
         self.query("DROP FUNCTION freeze_delegation_grant()")

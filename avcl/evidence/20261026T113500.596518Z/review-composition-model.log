@@ -1,0 +1,77 @@
+{
+  "scope": "Two separate bounded compositions, not a whole-system refinement proof.\n\nReceipt model: one operation, actual cost 2, upper bound 3, two generated\nfacts with independent delivery and replay. Sender model: one workflow,\nboolean branch, shared queue consumer, one packet, and restart self-steps.\nNo cryptography, SQL scheduling, multiple sources or arbitrary costs modeled.\n",
+  "correct": [
+    {
+      "kind": "receipt",
+      "broken": false,
+      "states": 9,
+      "edges": 25,
+      "exploration_complete": true,
+      "violations": {}
+    },
+    {
+      "kind": "send",
+      "broken": false,
+      "states": 7,
+      "edges": 17,
+      "exploration_complete": true,
+      "violations": {}
+    }
+  ],
+  "mutation_oracles": [
+    {
+      "kind": "receipt",
+      "broken": true,
+      "states": 10,
+      "edges": 28,
+      "exploration_complete": true,
+      "violations": {
+        "terminal_knowledge_retracted": {
+          "trace": [
+            "RemoteEffect",
+            "GenerateOlderPartial",
+            "RemoteClose",
+            "GenerateNewerFinal",
+            "DeliverFinal",
+            "DeliverOlder"
+          ],
+          "state": {
+            "actual": 2,
+            "generated": 3,
+            "closed": true,
+            "spent": 2,
+            "pending": 1,
+            "final": false,
+            "final_seen": true
+          }
+        }
+      }
+    },
+    {
+      "kind": "send",
+      "broken": true,
+      "states": 13,
+      "edges": 34,
+      "exploration_complete": true,
+      "violations": {
+        "send_without_workflow_intent": {
+          "trace": [
+            "PrepareOwned",
+            "Dispatch",
+            "GenericClaim"
+          ],
+          "state": {
+            "pc": 2,
+            "selected": false,
+            "admitted": true,
+            "intent": false,
+            "claimed": true,
+            "packet": true,
+            "effect": false
+          }
+        }
+      }
+    }
+  ],
+  "passed": true
+}

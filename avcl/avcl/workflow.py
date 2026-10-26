@@ -9,6 +9,7 @@ from .contract import EFFECTS,Contract,load_contract,names
 from .ir import Predicate,load_predicate
 from .ir_types import FieldType,identifier,type_from_wire
 from . import delegation
+from .diagnostics import annotate,workflow_location
 
 FORMAT="avcl/workflow/0.7"
 VALIDATION_FORMAT="avcl/workflow/0.6"
@@ -22,8 +23,8 @@ REQUIREMENTS={"Prepare":("R01","R02","R04"),"Dispatch":("R08",),"Abort":("R07",)
 
 class WorkflowDiagnostic(Reject):
     def __init__(self,code,node_id,tag,detail=""):
-        super().__init__(code)
-        self.node_id=node_id;self.requirement_ids=REQUIREMENTS.get(tag,("R09",));self.detail=detail
+        super().__init__(code,requirement_ids=REQUIREMENTS.get(tag,("R09",)) if type(tag) is str else ("R09",))
+        self.node_id=node_id;self.detail=detail
 
 @dataclass(frozen=True)
 class RefType:
@@ -97,6 +98,11 @@ class Workflow:
                 "scope":"structured command typing only; no authorization, liveness or deployment proof"}
 
 def compile_workflow(workflow_id,refs,values,effects,body,contract,source="<workflow-builder>",format_version=FORMAT):
+    try:return _compile_workflow(workflow_id,refs,values,effects,body,contract,source,format_version)
+    except Reject as exc:raise annotate(exc,source_ref=source,location=workflow_location(getattr(exc,"node_id",None)) or "/",component="workflow")
+
+
+def _compile_workflow(workflow_id,refs,values,effects,body,contract,source,format_version):
     if type(format_version) is not str or format_version not in SUPPORTED_FORMATS:raise Reject("UNSUPPORTED_WORKFLOW_VERSION")
     if type(contract) is not Contract: raise Reject("INVALID_WORKFLOW_CONTRACT")
     contract=load_contract(contract.to_json());tools={t.id:t for t in contract.tools}
@@ -161,7 +167,9 @@ def compile_workflow(workflow_id,refs,values,effects,body,contract,source="<work
                 try:
                     _,spec,_=delegation.parse(canonical_bytes({"client_request_id":"compile","parent_ref":"parent",
                         "child_subject":item["child_subject"],"attenuations":item["attenuations"]}).decode("utf-8"))
-                except Reject as exc:fail(exc.code)
+                except Reject as exc:
+                    raise annotate(exc,requirement_ids=REQUIREMENTS[tag],node_id=node_id,
+                                   location=workflow_location(node_id),component="workflow")
                 if parent.tool!="refund" or set(spec["tools"])!={parent.tool} or not set(spec["effects"])<=delegation.EFFECTS:
                     fail("UNSUPPORTED_WORKFLOW_DELEGATION")
                 item={**item,"attenuations":canonical_bytes(spec).decode("utf-8")}
@@ -208,8 +216,22 @@ def compile_workflow(workflow_id,refs,values,effects,body,contract,source="<work
     result.to_json()
     return result
 
-def load_workflow(raw,contract):
-    obj=strict_loads(raw)
+def load_workflow(raw,contract,*,source="<workflow-input>"):
+    obj=None
+    try:
+        obj=strict_loads(raw)
+        return _load_workflow(obj,contract)
+    except Reject as exc:
+        node=getattr(exc,"node_id",None)
+        sm=obj.get("source_map") if type(obj) is dict else None
+        origins=sm.get("commands") if type(sm) is dict else None
+        origin=origins.get(node) if type(origins) is dict and node is not None else None
+        if getattr(exc,"source_ref",None)=="<workflow-builder>":exc.source_ref=None
+        raise annotate(exc,source_ref=origin if type(origin) is str else source,
+                       location=workflow_location(node) or "/",component="workflow")
+
+
+def _load_workflow(obj,contract):
     if type(obj) is not dict or set(obj)!={"format","id","contract_digest","refs","values","effects","body","source_map"}:
         raise Reject("INVALID_WORKFLOW_DOCUMENT")
     if type(obj["format"]) is not str or obj["format"] not in SUPPORTED_FORMATS: raise Reject("UNSUPPORTED_WORKFLOW_VERSION")
@@ -231,12 +253,14 @@ def load_workflow(raw,contract):
         result=[]
         for i,node in enumerate(body):
             count+=1;node_id=f"{path}.{i}"
-            if count>1000: raise Reject("WORKFLOW_LIMIT")
-            if type(node) is not dict or node.get("node_id")!=node_id: raise Reject("INVALID_WORKFLOW_NODE_ID")
+            tag=node.get("tag") if type(node) is dict else None
+            def fail(code):raise WorkflowDiagnostic(code,node_id,tag)
+            if count>1000: fail("WORKFLOW_LIMIT")
+            if type(node) is not dict or node.get("node_id")!=node_id: fail("INVALID_WORKFLOW_NODE_ID")
             out={k:v for k,v in node.items() if k!="node_id"}
             if out.get("tag")=="If":
                 if set(out)!={"tag","condition","then","otherwise","survivors"} or type(out["condition"]) is not dict or node_id not in source["conditions"]:
-                    raise Reject("INVALID_WORKFLOW_COMMAND")
+                    fail("INVALID_WORKFLOW_COMMAND")
                 out.pop("survivors")
                 out["condition"]=load_predicate(canonical_bytes({**out["condition"],"source_map":source["conditions"][node_id]}).decode("utf-8"))
                 out["then"]=decode(out["then"],node_id+".then",depth+1)

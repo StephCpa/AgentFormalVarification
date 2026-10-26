@@ -1,0 +1,255 @@
+[
+  {
+    "name": "compatible",
+    "statuses": {
+      "prepare": "ProvedUnder",
+      "dispatch": "ProvedUnder",
+      "publication": "ProvedUnder"
+    },
+    "expected": {
+      "prepare": "ProvedUnder",
+      "dispatch": "ProvedUnder",
+      "publication": "ProvedUnder"
+    },
+    "conflicts": {},
+    "solver_calls": "9",
+    "matched": true
+  },
+  {
+    "name": "contradictory",
+    "statuses": {
+      "prepare": "Violated",
+      "dispatch": "Violated",
+      "publication": "Violated"
+    },
+    "expected": {
+      "prepare": "Violated",
+      "dispatch": "Violated",
+      "publication": "Violated"
+    },
+    "conflicts": {
+      "prepare": {
+        "constraint_ids": [
+          "clause/high",
+          "clause/low"
+        ],
+        "unsat_query_id": "q4",
+        "minimality": "InclusionMinimal",
+        "minimum_cardinality_claimed": false,
+        "necessity_witnesses": {
+          "clause/high": {
+            "query_id": "q5",
+            "final_subset_replay": {
+              "clause/low": true
+            }
+          },
+          "clause/low": {
+            "query_id": "q6",
+            "final_subset_replay": {
+              "clause/high": true
+            }
+          }
+        },
+        "deletion_query_ids": [
+          "q3",
+          "q4",
+          "q5",
+          "q6"
+        ],
+        "fixed_background": "full declared input domain and legal time",
+        "budget_reason": null
+      },
+      "dispatch": {
+        "constraint_ids": [
+          "clause/high",
+          "clause/low"
+        ],
+        "unsat_query_id": "q11",
+        "minimality": "InclusionMinimal",
+        "minimum_cardinality_claimed": false,
+        "necessity_witnesses": {
+          "clause/high": {
+            "query_id": "q12",
+            "final_subset_replay": {
+              "clause/low": true
+            }
+          },
+          "clause/low": {
+            "query_id": "q13",
+            "final_subset_replay": {
+              "clause/high": true
+            }
+          }
+        },
+        "deletion_query_ids": [
+          "q10",
+          "q11",
+          "q12",
+          "q13"
+        ],
+        "fixed_background": "full declared input domain and legal time",
+        "budget_reason": null
+      },
+      "publication": {
+        "constraint_ids": [
+          "clause/high",
+          "clause/low"
+        ],
+        "unsat_query_id": "q18",
+        "minimality": "InclusionMinimal",
+        "minimum_cardinality_claimed": false,
+        "necessity_witnesses": {
+          "clause/high": {
+            "query_id": "q19",
+            "final_subset_replay": {
+              "clause/low": true
+            }
+          },
+          "clause/low": {
+            "query_id": "q20",
+            "final_subset_replay": {
+              "clause/high": true
+            }
+          }
+        },
+        "deletion_query_ids": [
+          "q17",
+          "q18",
+          "q19",
+          "q20"
+        ],
+        "fixed_background": "full declared input domain and legal time",
+        "budget_reason": null
+      }
+    },
+    "solver_calls": "21",
+    "matched": true
+  },
+  {
+    "name": "phase-only",
+    "statuses": {
+      "prepare": "ProvedUnder",
+      "dispatch": "ProvedUnder",
+      "publication": "Violated"
+    },
+    "expected": {
+      "prepare": "ProvedUnder",
+      "dispatch": "ProvedUnder",
+      "publication": "Violated"
+    },
+    "conflicts": {
+      "publication": {
+        "constraint_ids": [
+          "clause/high",
+          "clause/low"
+        ],
+        "unsat_query_id": "q10",
+        "minimality": "InclusionMinimal",
+        "minimum_cardinality_claimed": false,
+        "necessity_witnesses": {
+          "clause/high": {
+            "query_id": "q11",
+            "final_subset_replay": {
+              "clause/low": true
+            }
+          },
+          "clause/low": {
+            "query_id": "q12",
+            "final_subset_replay": {
+              "clause/high": true
+            }
+          }
+        },
+        "deletion_query_ids": [
+          "q9",
+          "q10",
+          "q11",
+          "q12"
+        ],
+        "fixed_background": "full declared input domain and legal time",
+        "budget_reason": null
+      }
+    },
+    "solver_calls": "13",
+    "matched": true
+  },
+  {
+    "name": "assumption-conflict",
+    "statuses": {
+      "prepare": "ProvedUnder",
+      "dispatch": "ProvedUnder",
+      "publication": "Violated"
+    },
+    "expected": {
+      "prepare": "ProvedUnder",
+      "dispatch": "ProvedUnder",
+      "publication": "Violated"
+    },
+    "conflicts": {
+      "publication": {
+        "constraint_ids": [
+          "assumption/future-only",
+          "assumption/remote-idempotency"
+        ],
+        "unsat_query_id": "q11",
+        "minimality": "InclusionMinimal",
+        "minimum_cardinality_claimed": false,
+        "necessity_witnesses": {
+          "assumption/future-only": {
+            "query_id": "q9",
+            "final_subset_replay": {
+              "assumption/remote-idempotency": true
+            }
+          },
+          "assumption/remote-idempotency": {
+            "query_id": "q10",
+            "final_subset_replay": {
+              "assumption/future-only": true
+            }
+          }
+        },
+        "deletion_query_ids": [
+          "q9",
+          "q10",
+          "q11"
+        ],
+        "fixed_background": "full declared input domain and legal time",
+        "budget_reason": null
+      }
+    },
+    "solver_calls": "12",
+    "matched": true
+  },
+  {
+    "name": "limited-core",
+    "statuses": {
+      "prepare": "Violated",
+      "dispatch": "Unknown",
+      "publication": "Unknown"
+    },
+    "expected": {
+      "prepare": "Violated",
+      "dispatch": "Unknown",
+      "publication": "Unknown"
+    },
+    "conflicts": {
+      "prepare": {
+        "constraint_ids": [
+          "assumption/remote-idempotency",
+          "clause/baseline-refund",
+          "clause/high",
+          "clause/low"
+        ],
+        "unsat_query_id": "q2",
+        "minimality": "Unconfirmed",
+        "minimum_cardinality_claimed": false,
+        "necessity_witnesses": {},
+        "deletion_query_ids": [],
+        "fixed_background": "full declared input domain and legal time",
+        "budget_reason": "solver_call_budget_exhausted"
+      }
+    },
+    "solver_calls": "3",
+    "matched": true
+  }
+]

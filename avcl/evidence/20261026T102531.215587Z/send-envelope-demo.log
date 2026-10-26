@@ -1,0 +1,80 @@
+{
+  "schema": "avcl/send-envelope-demo/0.2",
+  "scope": "local request and receipt shared-key authentication; logical clock; no production identity, TLS, or key isolation",
+  "packet_digest": "sha256:52fbfc78f2a262ea1d182d0d93ad7cf5a8f69d67987c51b9ffa5791c8b701561",
+  "trace": [
+    {
+      "action": "tampered_destination",
+      "decision": "INVALID_SEND_AUTHENTICATION",
+      "time": 0,
+      "actual": 0,
+      "spent": 0,
+      "pending": 20,
+      "effect_count": 0
+    },
+    {
+      "action": "valid_send_receipt_lost",
+      "decision": "Unknown",
+      "time": 0,
+      "actual": 20,
+      "spent": 0,
+      "pending": 20,
+      "effect_count": 1
+    },
+    {
+      "action": "tampered_receipt",
+      "decision": "INVALID_RECEIPT_AUTHENTICATION",
+      "time": 0,
+      "actual": 20,
+      "spent": 0,
+      "pending": 20,
+      "effect_count": 1
+    },
+    {
+      "action": "same_packet_replay",
+      "decision": "Deduplicated",
+      "time": 0,
+      "actual": 20,
+      "spent": 0,
+      "pending": 20,
+      "effect_count": 1
+    },
+    {
+      "action": "remote_record_expired",
+      "decision": "NoAuthoritativeReceipt",
+      "time": 5,
+      "actual": 20,
+      "spent": 0,
+      "pending": 20,
+      "effect_count": 1
+    },
+    {
+      "action": "expired_packet_replay",
+      "decision": "REMOTE_ACCEPTANCE_CLOSED",
+      "time": 5,
+      "actual": 20,
+      "spent": 0,
+      "pending": 20,
+      "effect_count": 1
+    },
+    {
+      "action": "forged_deadline_extension",
+      "decision": "INVALID_SEND_AUTHENTICATION",
+      "time": 5,
+      "actual": 20,
+      "spent": 0,
+      "pending": 20,
+      "effect_count": 1
+    },
+    {
+      "action": "independently_retained_receipt",
+      "decision": "Final",
+      "time": 5,
+      "actual": 20,
+      "spent": 20,
+      "pending": 0,
+      "effect_count": 1
+    }
+  ],
+  "passed": true
+}

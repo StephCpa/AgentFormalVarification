@@ -1,0 +1,1 @@
+{"compiler":"avcl/checks/0.2","instructions":[{"node_id":"n0","op":"PUSH","type":{"kind":"Bool"},"value":false}],"ir_digest":"sha256:22ff6ddcb193e05be909ac58eab849c76a66801051ceb56139a335270d5c6337","requirement_id":"R09"}

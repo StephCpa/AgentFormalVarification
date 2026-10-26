@@ -151,6 +151,10 @@ class CapacityTests(unittest.TestCase):
         executor.start(flow,"a","run",refs,{"flag":True});executor.advance("a","run","worker")
         before=executor.snapshot("a","run")
         # Reconstruct the v3 schema shape in this test-owned schema only.
+        self.query("DROP TRIGGER audit_requires_allocation ON audit_event")
+        self.query("DROP FUNCTION require_audit_allocation()")
+        self.query("DROP TABLE audit_counter")
+        self.query("DROP TABLE rejection_audit_subject, rejection_audit_policy")
         self.assertEqual(self.query("SELECT * FROM delegation_grant"),[])
         self.query("DROP TABLE delegation_request, delegation_grant, delegation_subject")
         self.query("DROP FUNCTION freeze_delegation_grant()")

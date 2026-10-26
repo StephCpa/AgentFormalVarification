@@ -1,0 +1,586 @@
+{
+  "scope": "real PostgreSQL; logical test time; free read-only simulator query; host-verified synthetic handoff ACK",
+  "scenarios": [
+    {
+      "scenario": "timely-reconciliation",
+      "outcome": {
+        "status": "Reconciled",
+        "operation_id": "op-554f34ec4e8e4e98a4d562575d8f42d9"
+      },
+      "logical_time": 0,
+      "obligation": {
+        "tenant_id": "demo",
+        "operation_id": "op-554f34ec4e8e4e98a4d562575d8f42d9",
+        "kind": "Reconcile",
+        "due": 86400,
+        "owner": "reconciler",
+        "status": "Satisfied",
+        "generation": 2,
+        "worker": null,
+        "lease_until": null,
+        "next_attempt": 0,
+        "trigger_event": 3,
+        "requirement_id": "R10",
+        "breached_at": null,
+        "resolved_at": 0,
+        "resolution": "FinalEffect",
+        "evidence_ref": "operation:op-554f34ec4e8e4e98a4d562575d8f42d9:3"
+      },
+      "account": {
+        "limit": 100,
+        "spent": 70,
+        "pending": 0,
+        "breached": false
+      },
+      "remote_real_cost": 70,
+      "operation_execution": "Confirmed",
+      "events": [
+        {
+          "sequence": 1,
+          "kind": "Prepared",
+          "operation_id": "op-554f34ec4e8e4e98a4d562575d8f42d9",
+          "details": [
+            [
+              "binding",
+              "sha256:93c39d3a5baf1d6928059819675092229330d1243d4c91768745bfbc3861b458"
+            ],
+            [
+              "contract_digest",
+              "sha256:84a379229dd6e517a4f4fdd9819f02f624420af6974c2cee6fe7395b5e601a17"
+            ],
+            [
+              "ir_digest",
+              "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d"
+            ],
+            [
+              "requirement_id",
+              "R09"
+            ],
+            [
+              "requirement_ids",
+              "[\"R01\",\"R02\",\"R04\",\"R06\",\"R08\",\"R09\",\"R14\"]"
+            ]
+          ]
+        },
+        {
+          "sequence": 2,
+          "kind": "DispatchAdmitted",
+          "operation_id": "op-554f34ec4e8e4e98a4d562575d8f42d9",
+          "details": [
+            [
+              "binding",
+              "sha256:93c39d3a5baf1d6928059819675092229330d1243d4c91768745bfbc3861b458"
+            ],
+            [
+              "contract_digest",
+              "sha256:84a379229dd6e517a4f4fdd9819f02f624420af6974c2cee6fe7395b5e601a17"
+            ],
+            [
+              "epoch",
+              "1"
+            ],
+            [
+              "ir_digest",
+              "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d"
+            ],
+            [
+              "policy",
+              "refund-policy/0.1"
+            ],
+            [
+              "requirement_id",
+              "R09"
+            ],
+            [
+              "requirement_ids",
+              "[\"R01\",\"R02\",\"R04\",\"R06\",\"R08\",\"R09\",\"R14\"]"
+            ]
+          ]
+        },
+        {
+          "sequence": 3,
+          "kind": "Unknown",
+          "operation_id": "op-554f34ec4e8e4e98a4d562575d8f42d9",
+          "details": [
+            [
+              "due",
+              "86400"
+            ]
+          ]
+        },
+        {
+          "sequence": 4,
+          "kind": "ObligationClaimed",
+          "operation_id": "op-554f34ec4e8e4e98a4d562575d8f42d9",
+          "details": [
+            [
+              "due",
+              "86400"
+            ],
+            [
+              "generation",
+              "1"
+            ],
+            [
+              "requirement_id",
+              "R10"
+            ],
+            [
+              "worker",
+              "worker"
+            ]
+          ]
+        },
+        {
+          "sequence": 5,
+          "kind": "ObservationRecorded",
+          "operation_id": "op-554f34ec4e8e4e98a4d562575d8f42d9",
+          "details": [
+            [
+              "content",
+              "Observation(id='remote:op-554f34ec4e8e4e98a4d562575d8f42d9', operation_id='op-554f34ec4e8e4e98a4d562575d8f42d9', request_digest='sha256:a730a44fb75a27c50d724866c0281182fe167e512ffcd1d764eb2924fa83953a', kind=<Execution.CONFIRMED: 'Confirmed'>, cumulative_costs=(('tenant:CNY', 70), ('order:order:CNY', 70)), final_cost=True, terminal_effect=True)"
+            ],
+            [
+              "observation",
+              "remote:op-554f34ec4e8e4e98a4d562575d8f42d9"
+            ]
+          ]
+        },
+        {
+          "sequence": 6,
+          "kind": "Settled",
+          "operation_id": "op-554f34ec4e8e4e98a4d562575d8f42d9",
+          "details": [
+            [
+              "observation",
+              "remote:op-554f34ec4e8e4e98a4d562575d8f42d9"
+            ]
+          ]
+        },
+        {
+          "sequence": 7,
+          "kind": "ObligationResolved",
+          "operation_id": "op-554f34ec4e8e4e98a4d562575d8f42d9",
+          "details": [
+            [
+              "at",
+              "0"
+            ],
+            [
+              "requirement_id",
+              "R10"
+            ],
+            [
+              "resolution",
+              "FinalEffect"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "accepted-handoff",
+      "outcome": {
+        "status": "Escalated"
+      },
+      "logical_time": 31,
+      "obligation": {
+        "tenant_id": "demo",
+        "operation_id": "op-7eb81dc0bfec4cc1a8915d257c05abbe",
+        "kind": "Reconcile",
+        "due": 86400,
+        "owner": "test-human-team",
+        "status": "Satisfied",
+        "generation": 4,
+        "worker": null,
+        "lease_until": null,
+        "next_attempt": 30,
+        "trigger_event": 3,
+        "requirement_id": "R10",
+        "breached_at": null,
+        "resolved_at": 31,
+        "resolution": "Escalated",
+        "evidence_ref": "test-receipt"
+      },
+      "account": {
+        "limit": 100,
+        "spent": 0,
+        "pending": 70,
+        "breached": false
+      },
+      "remote_real_cost": 0,
+      "operation_execution": "Unknown",
+      "events": [
+        {
+          "sequence": 1,
+          "kind": "Prepared",
+          "operation_id": "op-7eb81dc0bfec4cc1a8915d257c05abbe",
+          "details": [
+            [
+              "binding",
+              "sha256:09e5d008ed5dfb698c83197f9c9281169473e9ca88fd196525f7cb2c95cbb4e7"
+            ],
+            [
+              "contract_digest",
+              "sha256:84a379229dd6e517a4f4fdd9819f02f624420af6974c2cee6fe7395b5e601a17"
+            ],
+            [
+              "ir_digest",
+              "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d"
+            ],
+            [
+              "requirement_id",
+              "R09"
+            ],
+            [
+              "requirement_ids",
+              "[\"R01\",\"R02\",\"R04\",\"R06\",\"R08\",\"R09\",\"R14\"]"
+            ]
+          ]
+        },
+        {
+          "sequence": 2,
+          "kind": "DispatchAdmitted",
+          "operation_id": "op-7eb81dc0bfec4cc1a8915d257c05abbe",
+          "details": [
+            [
+              "binding",
+              "sha256:09e5d008ed5dfb698c83197f9c9281169473e9ca88fd196525f7cb2c95cbb4e7"
+            ],
+            [
+              "contract_digest",
+              "sha256:84a379229dd6e517a4f4fdd9819f02f624420af6974c2cee6fe7395b5e601a17"
+            ],
+            [
+              "epoch",
+              "1"
+            ],
+            [
+              "ir_digest",
+              "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d"
+            ],
+            [
+              "policy",
+              "refund-policy/0.1"
+            ],
+            [
+              "requirement_id",
+              "R09"
+            ],
+            [
+              "requirement_ids",
+              "[\"R01\",\"R02\",\"R04\",\"R06\",\"R08\",\"R09\",\"R14\"]"
+            ]
+          ]
+        },
+        {
+          "sequence": 3,
+          "kind": "Unknown",
+          "operation_id": "op-7eb81dc0bfec4cc1a8915d257c05abbe",
+          "details": [
+            [
+              "due",
+              "86400"
+            ]
+          ]
+        },
+        {
+          "sequence": 4,
+          "kind": "ObligationClaimed",
+          "operation_id": "op-7eb81dc0bfec4cc1a8915d257c05abbe",
+          "details": [
+            [
+              "due",
+              "86400"
+            ],
+            [
+              "generation",
+              "1"
+            ],
+            [
+              "requirement_id",
+              "R10"
+            ],
+            [
+              "worker",
+              "worker"
+            ]
+          ]
+        },
+        {
+          "sequence": 5,
+          "kind": "ReconciliationDeferred",
+          "operation_id": "op-7eb81dc0bfec4cc1a8915d257c05abbe",
+          "details": [
+            [
+              "reason",
+              "NoTerminalEvidence"
+            ],
+            [
+              "requirement_id",
+              "R10"
+            ]
+          ]
+        },
+        {
+          "sequence": 6,
+          "kind": "HandoffReceiverRegistered",
+          "operation_id": null,
+          "details": [
+            [
+              "expires",
+              "1000"
+            ],
+            [
+              "receiver",
+              "test-human-team"
+            ]
+          ]
+        },
+        {
+          "sequence": 7,
+          "kind": "ObligationClaimed",
+          "operation_id": "op-7eb81dc0bfec4cc1a8915d257c05abbe",
+          "details": [
+            [
+              "due",
+              "86400"
+            ],
+            [
+              "generation",
+              "3"
+            ],
+            [
+              "requirement_id",
+              "R10"
+            ],
+            [
+              "worker",
+              "worker"
+            ]
+          ]
+        },
+        {
+          "sequence": 8,
+          "kind": "HandoffAccepted",
+          "operation_id": "op-7eb81dc0bfec4cc1a8915d257c05abbe",
+          "details": [
+            [
+              "at",
+              "31"
+            ],
+            [
+              "receipt",
+              "test-receipt"
+            ],
+            [
+              "receiver",
+              "test-human-team"
+            ],
+            [
+              "requirement_id",
+              "R10"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "late-reconciliation",
+      "outcome": {
+        "status": "Reconciled",
+        "operation_id": "op-f7429afe6a6d4b43b4e3a1e952029703"
+      },
+      "logical_time": 86410,
+      "obligation": {
+        "tenant_id": "demo",
+        "operation_id": "op-f7429afe6a6d4b43b4e3a1e952029703",
+        "kind": "Reconcile",
+        "due": 86400,
+        "owner": "reconciler",
+        "status": "Breached",
+        "generation": 2,
+        "worker": null,
+        "lease_until": null,
+        "next_attempt": 0,
+        "trigger_event": 3,
+        "requirement_id": "R10",
+        "breached_at": 86410,
+        "resolved_at": 86410,
+        "resolution": "FinalEffect",
+        "evidence_ref": "operation:op-f7429afe6a6d4b43b4e3a1e952029703:3"
+      },
+      "account": {
+        "limit": 100,
+        "spent": 70,
+        "pending": 0,
+        "breached": false
+      },
+      "remote_real_cost": 70,
+      "operation_execution": "Confirmed",
+      "events": [
+        {
+          "sequence": 1,
+          "kind": "Prepared",
+          "operation_id": "op-f7429afe6a6d4b43b4e3a1e952029703",
+          "details": [
+            [
+              "binding",
+              "sha256:c12789071b107e2e2c6a600fecf660d5fb9164fa2e4d4a836f7a9a41fd4f5884"
+            ],
+            [
+              "contract_digest",
+              "sha256:84a379229dd6e517a4f4fdd9819f02f624420af6974c2cee6fe7395b5e601a17"
+            ],
+            [
+              "ir_digest",
+              "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d"
+            ],
+            [
+              "requirement_id",
+              "R09"
+            ],
+            [
+              "requirement_ids",
+              "[\"R01\",\"R02\",\"R04\",\"R06\",\"R08\",\"R09\",\"R14\"]"
+            ]
+          ]
+        },
+        {
+          "sequence": 2,
+          "kind": "DispatchAdmitted",
+          "operation_id": "op-f7429afe6a6d4b43b4e3a1e952029703",
+          "details": [
+            [
+              "binding",
+              "sha256:c12789071b107e2e2c6a600fecf660d5fb9164fa2e4d4a836f7a9a41fd4f5884"
+            ],
+            [
+              "contract_digest",
+              "sha256:84a379229dd6e517a4f4fdd9819f02f624420af6974c2cee6fe7395b5e601a17"
+            ],
+            [
+              "epoch",
+              "1"
+            ],
+            [
+              "ir_digest",
+              "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d"
+            ],
+            [
+              "policy",
+              "refund-policy/0.1"
+            ],
+            [
+              "requirement_id",
+              "R09"
+            ],
+            [
+              "requirement_ids",
+              "[\"R01\",\"R02\",\"R04\",\"R06\",\"R08\",\"R09\",\"R14\"]"
+            ]
+          ]
+        },
+        {
+          "sequence": 3,
+          "kind": "Unknown",
+          "operation_id": "op-f7429afe6a6d4b43b4e3a1e952029703",
+          "details": [
+            [
+              "due",
+              "86400"
+            ]
+          ]
+        },
+        {
+          "sequence": 4,
+          "kind": "ObligationBreached",
+          "operation_id": "op-f7429afe6a6d4b43b4e3a1e952029703",
+          "details": [
+            [
+              "discovered_at",
+              "86410"
+            ],
+            [
+              "due",
+              "86400"
+            ],
+            [
+              "requirement_id",
+              "R10"
+            ]
+          ]
+        },
+        {
+          "sequence": 5,
+          "kind": "ObligationClaimed",
+          "operation_id": "op-f7429afe6a6d4b43b4e3a1e952029703",
+          "details": [
+            [
+              "due",
+              "86400"
+            ],
+            [
+              "generation",
+              "1"
+            ],
+            [
+              "requirement_id",
+              "R10"
+            ],
+            [
+              "worker",
+              "worker"
+            ]
+          ]
+        },
+        {
+          "sequence": 6,
+          "kind": "ObservationRecorded",
+          "operation_id": "op-f7429afe6a6d4b43b4e3a1e952029703",
+          "details": [
+            [
+              "content",
+              "Observation(id='remote:op-f7429afe6a6d4b43b4e3a1e952029703', operation_id='op-f7429afe6a6d4b43b4e3a1e952029703', request_digest='sha256:a730a44fb75a27c50d724866c0281182fe167e512ffcd1d764eb2924fa83953a', kind=<Execution.CONFIRMED: 'Confirmed'>, cumulative_costs=(('tenant:CNY', 70), ('order:order:CNY', 70)), final_cost=True, terminal_effect=True)"
+            ],
+            [
+              "observation",
+              "remote:op-f7429afe6a6d4b43b4e3a1e952029703"
+            ]
+          ]
+        },
+        {
+          "sequence": 7,
+          "kind": "Settled",
+          "operation_id": "op-f7429afe6a6d4b43b4e3a1e952029703",
+          "details": [
+            [
+              "observation",
+              "remote:op-f7429afe6a6d4b43b4e3a1e952029703"
+            ]
+          ]
+        },
+        {
+          "sequence": 8,
+          "kind": "ObligationResolved",
+          "operation_id": "op-f7429afe6a6d4b43b4e3a1e952029703",
+          "details": [
+            [
+              "at",
+              "86410"
+            ],
+            [
+              "requirement_id",
+              "R10"
+            ],
+            [
+              "resolution",
+              "FinalEffect"
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "passed": true
+}

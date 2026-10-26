@@ -7,6 +7,8 @@ publishers remains a separate, unimplemented deployment requirement.
 from dataclasses import dataclass
 from .canonical import Reject,canonical_bytes,strict_loads
 from .ir import Predicate,Diagnostic,load_predicate
+from .evaluation import use_budget, EvaluationLimit, binary, record_get
+from .diagnostics import annotate
 
 COMPILER="avcl/checks/0.2"
 
@@ -32,13 +34,24 @@ class Checks:
         return canonical_bytes({"compiler":COMPILER,"ir_digest":self.predicate.semantic_digest,
             "requirement_id":self.predicate.requirement_id,"instructions":[i.wire() for i in self.instructions]}).decode("utf-8")
 
-    def evaluate(self,values):
-        env=self.predicate.values(values);stack=[];pc=0
+    def evaluate(self,values,*,budget=None):
+        budget=use_budget(budget)
+        try:return self._evaluate(values,budget)
+        except EvaluationLimit as exc:
+            raise exc.locate(self.predicate.requirement_id,self.predicate.root.node_id)
+
+    def _evaluate(self,values,budget):
+        env=self.predicate.values(values,budget=budget);stack=[];pc=0
         while pc<len(self.instructions):
             inst=self.instructions[pc];pc+=1;op=inst.op
+            # Every instruction consumes fuel, including a malformed jump cycle.
+            try:budget.charge()
+            except EvaluationLimit as exc:raise exc.locate(self.predicate.requirement_id,inst.node_id)
             if op=="PUSH": stack.append(inst.arg)
             elif op=="LOAD": stack.append(env[inst.arg])
-            elif op=="GET": stack.append(stack.pop().get(inst.arg))
+            elif op=="GET":
+                try:stack.append(record_get(stack.pop(),inst.arg,budget))
+                except EvaluationLimit as exc:raise exc.locate(self.predicate.requirement_id,inst.node_id)
             elif op=="NOT": stack.append(not stack.pop())
             elif op=="IS_SOME": stack.append(stack.pop() is not None)
             elif op=="UNWRAP": stack.append(stack.pop().value)
@@ -50,13 +63,8 @@ class Checks:
             elif op=="JUMP": pc=inst.arg
             elif op in {"EQ","LE","LT","ADD","SUB","MUL","IN"}:
                 b=stack.pop();a=stack.pop()
-                if op=="EQ": result=a==b
-                elif op=="LE": result=a<=b
-                elif op=="LT": result=a<b
-                elif op=="ADD": result=a+b
-                elif op=="SUB": result=a-b
-                elif op=="MUL": result=a*b
-                else: result=a in b
+                try:result=binary(op,a,b,budget)
+                except EvaluationLimit as exc:raise exc.locate(self.predicate.requirement_id,inst.node_id)
                 stack.append(result)
             else: raise Diagnostic("INVALID_CHECK_INSTRUCTION",self.predicate.requirement_id,inst.node_id)
         if len(stack)!=1 or type(stack[0]) is not bool:
@@ -90,7 +98,13 @@ def compile_checks(predicate):
     return Checks(predicate,tuple(code))
 
 def load_checks(raw,predicate):
-    supplied=strict_loads(raw)
-    expected=compile_checks(predicate)
-    if supplied!=strict_loads(expected.to_json()): raise Reject("CHECK_ARTIFACT_MISMATCH")
-    return expected
+    location="/"
+    try:
+        supplied=strict_loads(raw)
+        expected=compile_checks(predicate)
+        location="/instructions"
+        if supplied!=strict_loads(expected.to_json()): raise Reject("CHECK_ARTIFACT_MISMATCH")
+        return expected
+    except Reject as exc:
+        raise annotate(exc,requirement_ids=(predicate.requirement_id,),node_id=predicate.root.node_id,
+                       source_ref=dict(predicate.source_map).get(predicate.root.node_id),location=location,component="checks")

@@ -14,6 +14,7 @@ import test_postgres
 from avcl.gateway import GatewayAuthority,RuntimeGateway,SCOPES,token_hash
 from avcl.http_gateway import LocalRuntimeServer
 from tests.support import authorize,prepare
+from integration.process_ready import wait_ready
 
 ROOT=Path(__file__).resolve().parents[1]
 
@@ -25,6 +26,7 @@ class GatewayTests(unittest.TestCase):
 
     def setUp(self):
         test_postgres.PersistenceTests.setUp(self)
+        self.addCleanup(test_postgres.PersistenceTests.tearDown,self)
         self.authority=GatewayAuthority(self.k);self.credential=self.authority.issue("a",SCOPES,900)
         self.auth=authorize(self.k,self.s);self.checked=self.authority.register_checked(self.auth[0],self.auth[2],800)
         self.payload={"client_request_id":"prepare1","checked_ref":self.checked,"capability_ref":self.auth[1],"approval_refs":[self.auth[3]],"business_action_key":self.auth[0].business_key}
@@ -34,32 +36,26 @@ class GatewayTests(unittest.TestCase):
         self.clock_file.write_text('{"now":0}',encoding="utf-8")
         self.config.write_text(json.dumps({"dsn":self.dsn,"schema":self.schema,"clock_file":str(self.clock_file)}),encoding="utf-8")
         self.log_handle=self.log.open("wb")
-        self.launch_server()
         self.addCleanup(self.cleanup_server)
+        self.launch_server()
 
     def launch_server(self):
         environment=os.environ.copy();environment["PYTHONPATH"]=sysconfig.get_paths()["purelib"]
         self.process=subprocess.Popen([sys._base_executable,"-X","utf8",str(ROOT/"scripts"/"runtime_api.py"),"--config",str(self.config),"--ready-file",str(self.ready)],
             env=environment,stdout=self.log_handle,stderr=subprocess.STDOUT,creationflags=getattr(subprocess,"CREATE_NO_WINDOW",0))
-        deadline=time.monotonic()+15
-        while not self.ready.exists():
-            if self.process.poll() is not None:raise AssertionError("Local API process exited before readiness")
-            if time.monotonic()>deadline:raise AssertionError("Local API readiness timed out")
-            time.sleep(0.05)
-        ready=json.loads(self.ready.read_text(encoding="utf-8"));self.port=ready["port"]
+        ready=wait_ready(self.process,self.ready);self.port=ready["port"]
         self.assertEqual(ready["pid"],self.process.pid)
 
     def cleanup_server(self):
-        if self.process.poll() is None:
+        if getattr(self,"process",None) is not None and self.process.poll() is None:
             self.process.terminate()
             try:self.process.wait(timeout=5)
             except subprocess.TimeoutExpired:self.process.kill();self.process.wait(timeout=5)
         self.log_handle.close()
-        for path in (self.config,self.ready,self.clock_file,self.log):path.unlink(missing_ok=True)
+        for path in (self.config,self.ready,self.ready.with_suffix(".pending"),self.clock_file,self.log):path.unlink(missing_ok=True)
 
     def tearDown(self):
-        try:self.cleanup_server()
-        finally:test_postgres.PersistenceTests.tearDown(self)
+        self.cleanup_server()
 
     def call(self,method,path,body=None,token="default",headers=None,raw=None):
         if token=="default":token=self.credential.token
@@ -76,6 +72,56 @@ class GatewayTests(unittest.TestCase):
     def prepared(self):
         status,result=self.call("POST","/v1/operations/prepare",self.payload)
         self.assertEqual(status,200,result);return result["data"]
+
+    def test_requirement_ids_survive_http_and_preserve_transaction_rollback(self):
+        # First reserve 70 on b; a's otherwise valid 70 cannot fit the tenant's 100.
+        prepare(self.k,authorize(self.k,self.s,"b"),"other-subject")
+        status,result=self.call("POST","/v1/operations/prepare",self.payload)
+        self.assertEqual((status,result["error"]["code"],result["error"]["requirement_ids"]),
+                         (409,"BUDGET_EXCEEDED",["R04"]))
+        self.assertEqual(self.k.accounts()["tenant:CNY"].pending,70)
+        self.assertEqual(self.query("SELECT * FROM api_request"),[])
+        # A forged opaque reference retains the authority gate after public code masking.
+        status,result=self.call("POST","/v1/operations/prepare",{**self.payload,"capability_ref":"forged"})
+        self.assertEqual((status,result["error"]["code"],result["error"]["requirement_ids"]),
+                         (403,"AUTH_DENIED",["R01"]))
+
+    def test_contract_failure_exports_only_failed_requirement_ids(self):
+        from dataclasses import replace
+        from avcl.contract import default_contract
+        from avcl.types import Capability
+        from tests.test_contract_policy import amended,ceiling_clause,seal
+        passing=replace(ceiling_clause(100),id="passes",requirement_ids=("R04","PASSING_ONLY"))
+        failing=replace(ceiling_clause(60),requirement_ids=("R04","LIMIT_RULE"))
+        self.k.trusted.activate_policy(seal(self.k,amended(default_contract(),extra=(passing,failing))))
+        self.k.trusted.register_capability(Capability("renewed","demo","a",frozenset({"a"}),100,900,self.k.status()["epoch"]))
+        status,result=self.call("POST","/v1/operations/prepare",{**self.payload,"capability_ref":"renewed"})
+        self.assertEqual((status,result["error"]["code"],result["error"]["requirement_ids"]),
+                         (409,"CONTRACT_DENIED",["LIMIT_RULE","R04","R09"]))
+        self.assertEqual(set(result["error"]),{"code","request_id","operation_ref","retry_advice","requirement_ids","detail_ref"})
+        self.assertEqual(self.query("SELECT * FROM operation"),[])
+        self.assertEqual(self.k.accounts()["tenant:CNY"].pending,0)
+
+    def test_admission_requirement_metadata_survives_database_reload(self):
+        op=self.prepared()
+        self.call("POST","/v1/operations/"+op["operation_id"]+"/dispatch",{"client_request_id":"dispatch1","permit_ref":op["permit_ref"]})
+        events=[e for e in self.fresh().events() if e.kind in {"Prepared","DispatchAdmitted"}]
+        self.assertEqual(len(events),2)
+        for event in events:
+            details=dict(event.details)
+            self.assertEqual(json.loads(details["requirement_ids"]),["R01","R02","R04","R06","R08","R09","R14"])
+            self.assertEqual(details["contract_digest"],op["contract_digest"])
+
+    def test_failed_readiness_cleans_its_owned_process_files_and_schema(self):
+        nested=GatewayTests("test_authenticated_prepare_dispatch_and_query_use_durable_core")
+        result=unittest.TestResult()
+        with patch("test_gateway.wait_ready",side_effect=PermissionError("injected readiness denial")):
+            nested.run(result)
+        self.assertEqual(len(result.errors),1)
+        self.assertIn("injected readiness denial",result.errors[0][1])
+        self.assertIsNotNone(nested.process.poll())
+        self.assertFalse(any(p.exists() for p in (nested.config,nested.ready,nested.clock_file,nested.log)))
+        self.assertIsNone(self.query("SELECT to_regnamespace(%s) AS name",(nested.schema,))[0]["name"])
 
     def test_authenticated_prepare_dispatch_and_query_use_durable_core(self):
         op=self.prepared();route="/v1/operations/"+op["operation_id"]

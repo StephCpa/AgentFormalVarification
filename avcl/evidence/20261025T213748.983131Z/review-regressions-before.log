@@ -1,0 +1,74 @@
+test_final_does_not_hide_new_cost_or_contradictory_effect (tests.test_review_regressions.ReviewRegressions.test_final_does_not_hide_new_cost_or_contradictory_effect) ... ok
+test_final_knowledge_survives_late_weaker_authenticated_facts (tests.test_review_regressions.ReviewRegressions.test_final_knowledge_survives_late_weaker_authenticated_facts) ... 
+  test_final_knowledge_survives_late_weaker_authenticated_facts (tests.test_review_regressions.ReviewRegressions.test_final_knowledge_survives_late_weaker_authenticated_facts) (fee=0, final_first=True) ... FAIL
+  test_final_knowledge_survives_late_weaker_authenticated_facts (tests.test_review_regressions.ReviewRegressions.test_final_knowledge_survives_late_weaker_authenticated_facts) (fee=10, final_first=True) ... FAIL
+test_legal_aggregate_receipts_cover_full_request_domain (tests.test_review_regressions.ReviewRegressions.test_legal_aggregate_receipts_cover_full_request_domain) ... ERROR
+test_memory_replay_uses_history_but_preserves_conflict_checks (tests.test_review_regressions.ReviewRegressions.test_memory_replay_uses_history_but_preserves_conflict_checks) ... ERROR
+test_workflow_owner_blocks_generic_sender_after_unselected_send (tests.test_review_regressions.ReviewRegressions.test_workflow_owner_blocks_generic_sender_after_unselected_send) ... FAIL
+
+======================================================================
+ERROR: test_legal_aggregate_receipts_cover_full_request_domain (tests.test_review_regressions.ReviewRegressions.test_legal_aggregate_receipts_cover_full_request_domain)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\KM\Agent Formal Verification\avcl\tests\test_review_regressions.py", line 82, in test_legal_aggregate_receipts_cover_full_request_domain
+    self.assertEqual(k.trusted.observe(raw, op.id).settlement, Settlement.FINAL)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\KM\Agent Formal Verification\avcl\avcl\runtime.py", line 405, in observe
+    if authenticated:observation=receipt_envelope.verify(self.k,observation,expected_operation_id)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\KM\Agent Formal Verification\avcl\avcl\receipt_envelope.py", line 85, in verify
+    tuple((account,amount(value)) for account,value in sorted(costs.items())),obj["final_cost"],obj["terminal_effect"])
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\KM\Agent Formal Verification\avcl\avcl\receipt_envelope.py", line 85, in <genexpr>
+    tuple((account,amount(value)) for account,value in sorted(costs.items())),obj["final_cost"],obj["terminal_effect"])
+                   ^^^^^^^^^^^^^
+  File "E:\KM\Agent Formal Verification\avcl\avcl\canonical.py", line 19, in amount
+    raise Reject("INVALID_AMOUNT")
+avcl.canonical.Reject: INVALID_AMOUNT
+
+======================================================================
+ERROR: test_memory_replay_uses_history_but_preserves_conflict_checks (tests.test_review_regressions.ReviewRegressions.test_memory_replay_uses_history_but_preserves_conflict_checks)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\KM\Agent Formal Verification\avcl\tests\test_review_regressions.py", line 94, in test_memory_replay_uses_history_but_preserves_conflict_checks
+    self.assertEqual(executor.run(flow, 'a', 'history', refs, {'flag': True}), first)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\KM\Agent Formal Verification\avcl\avcl\workflow_runtime.py", line 59, in run
+    program=load_workflow(program.to_json(),contract)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\KM\Agent Formal Verification\avcl\avcl\workflow.py", line 216, in load_workflow
+    if obj["contract_digest"]!=contract.semantic_digest: raise Reject("WORKFLOW_CONTRACT_MISMATCH")
+                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+avcl.canonical.Reject: WORKFLOW_CONTRACT_MISMATCH
+
+======================================================================
+FAIL: test_final_knowledge_survives_late_weaker_authenticated_facts (tests.test_review_regressions.ReviewRegressions.test_final_knowledge_survives_late_weaker_authenticated_facts) (fee=0, final_first=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\KM\Agent Formal Verification\avcl\tests\test_review_regressions.py", line 41, in test_final_knowledge_survives_late_weaker_authenticated_facts
+    self.assertEqual(k.get('a', op.id).settlement, Settlement.FINAL)
+AssertionError: <Settlement.PARTIAL: 'Partial'> != <Settlement.FINAL: 'Final'>
+
+======================================================================
+FAIL: test_final_knowledge_survives_late_weaker_authenticated_facts (tests.test_review_regressions.ReviewRegressions.test_final_knowledge_survives_late_weaker_authenticated_facts) (fee=10, final_first=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\KM\Agent Formal Verification\avcl\tests\test_review_regressions.py", line 41, in test_final_knowledge_survives_late_weaker_authenticated_facts
+    self.assertEqual(k.get('a', op.id).settlement, Settlement.FINAL)
+AssertionError: <Settlement.DISPUTED: 'Disputed'> != <Settlement.FINAL: 'Final'>
+
+======================================================================
+FAIL: test_workflow_owner_blocks_generic_sender_after_unselected_send (tests.test_review_regressions.ReviewRegressions.test_workflow_owner_blocks_generic_sender_after_unselected_send)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\KM\Agent Formal Verification\avcl\tests\test_review_regressions.py", line 65, in test_workflow_owner_blocks_generic_sender_after_unselected_send
+    self.assertCode('WORKFLOW_SEND_NOT_AUTHORIZED', lambda: admit_attempt(k, op))
+  File "E:\KM\Agent Formal Verification\avcl\tests\test_review_regressions.py", line 17, in assertCode
+    with self.assertRaises(Reject) as caught: fn()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Reject not raised
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.103s
+
+FAILED (failures=3, errors=2)

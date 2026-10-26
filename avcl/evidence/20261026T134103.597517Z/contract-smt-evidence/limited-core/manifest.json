@@ -1,0 +1,13 @@
+{
+  "schema": "avcl/contract-smt-evidence/0.1",
+  "status": "unsigned-offline-evidence",
+  "contract_digest": "sha256:fbf9d4f46d6567106fd65530e316d6bb63b734739d15b89281645d557491b613",
+  "files": {
+    "contract.ir.json": "43e7beb49388fe5700f7e6ac51ddc0e8af172bc8ccdd03714d564eee04ec8399",
+    "checks.json": "29a64d6ec5daad689938c4486861de767e951bfb553ac01a4b392dac98302a63",
+    "verification-report.json": "6cc346ae00396cde3bc4ed6697a33a6ec4ace2b24390c64dccc728952acf6275",
+    "q0.smt2": "89380807583b45682018b7d2648acb7013f3f243c972c11ea6af5ae9e96f0036",
+    "q1.smt2": "b8a4b1f83205066a4283da691c0e13bb5a08540ff3fe6250088cc72fb178f18b",
+    "q2.smt2": "ca0cffdfaa8e951ee7a4280b34a92518822480e38ccee8a4b582c5368da36a2e"
+  }
+}

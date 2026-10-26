@@ -1,0 +1,76 @@
+{
+  "baseline-refund": {
+    "compiler": "avcl/checks/0.2",
+    "instructions": [
+      {
+        "node_id": "n0.0.0",
+        "op": "PUSH",
+        "type": {
+          "kind": "Int",
+          "lower": "0",
+          "upper": "0"
+        },
+        "value": "0"
+      },
+      {
+        "arg": "amount",
+        "node_id": "n0.0.1",
+        "op": "LOAD"
+      },
+      {
+        "node_id": "n0.0",
+        "op": "LT"
+      },
+      {
+        "arg": "7",
+        "node_id": "n0",
+        "op": "JF_KEEP"
+      },
+      {
+        "arg": "currency",
+        "node_id": "n0.1.0",
+        "op": "LOAD"
+      },
+      {
+        "node_id": "n0.1.1",
+        "op": "PUSH",
+        "type": {
+          "kind": "String"
+        },
+        "value": "CNY"
+      },
+      {
+        "node_id": "n0.1",
+        "op": "EQ"
+      }
+    ],
+    "ir_digest": "sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d",
+    "requirement_id": "R09"
+  },
+  "low": {
+    "compiler": "avcl/checks/0.2",
+    "instructions": [
+      {
+        "arg": "amount",
+        "node_id": "n0.0",
+        "op": "LOAD"
+      },
+      {
+        "node_id": "n0.1",
+        "op": "PUSH",
+        "type": {
+          "kind": "Int",
+          "lower": "3",
+          "upper": "3"
+        },
+        "value": "3"
+      },
+      {
+        "node_id": "n0",
+        "op": "LE"
+      }
+    ],
+    "ir_digest": "sha256:215c204de1943ad48443523792a0d84e8832ce8d5fc79733d7f7ea338c861216",
+    "requirement_id": "R15"
+  }
+}

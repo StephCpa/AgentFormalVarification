@@ -13,7 +13,7 @@ from .workflow_runtime import WorkflowResult,FaultPlan
 from .capacity import check_new_workflow
 from . import tasks
 from . import validation
-from .sending import admit_attempt, REMOTE_WINDOW_REJECTIONS
+from .sending import admit_attempt, REMOTE_WINDOW_REJECTIONS, bind_workflow, workflow_send_context
 from . import receipt_envelope
 
 def wire(value):return canonical_bytes(value).decode("utf-8")
@@ -171,6 +171,7 @@ class DurableWorkflowExecutor:
                     owner=c.execute("SELECT subject,run_id FROM workflow_operation WHERE tenant_id=%s AND operation_id=%s",(self.db.tenant,op.id)).fetchone()
                     if owner is not None:raise Reject("WORKFLOW_PERMIT_NOT_FRESH")
                     c.execute("INSERT INTO workflow_operation VALUES(%s,%s,%s,%s)",(self.db.tenant,op.id,subject,run_id))
+                    bind_workflow(k,op,subject,run_id,flow.semantic_digest)
                     allocated.add(op.id);operations.append(op.id);env[args["out"]]=(op.id,op.permit_ref);op_id=op.id;outcome="Prepared"
                 elif tag=="Dispatch":
                     op_id,permit=consume(args["permit"]);k.dispatch(subject,op_id,permit);env[args["out"]]=op_id;outcome="Admitted"
@@ -208,7 +209,8 @@ class DurableWorkflowExecutor:
                                 if op.state==Execution.DISPATCHED:k.trusted.unknown(op.id)
                                 return self._complete(k,c,key,row,node_id,tag,"RequiresReconciliation",frame,op.id,len(plan))
                             generation=outbox["generation"]+1
-                            envelope=admit_attempt(k,op,workflow_digest=flow.semantic_digest,node_id=node_id,worker=worker,generation=generation)
+                            with workflow_send_context(k,op,subject,run_id,flow.semantic_digest,node_id):
+                                envelope=admit_attempt(k,op,worker=worker,generation=generation)
                             if not envelope:
                                 return self._complete(k,c,key,row,node_id,tag,"RequiresReconciliation",frame,op.id,len(plan))
                             c.execute("UPDATE outbox SET status='InFlight',worker=%s,lease_until=%s,generation=%s,attempts=attempts+1 WHERE tenant_id=%s AND operation_id=%s AND kind='Send'",(worker,k._clock()+lease_seconds,generation,self.db.tenant,op.id))

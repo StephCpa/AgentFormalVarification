@@ -46,6 +46,8 @@ HMAC 密钥由每个 ReferenceKernel 随机生成，只保存在宿主内存。�
 
 ## 验证入口
 
+新增离线 [合约联合 SMT 与冲突诊断](contract-smt-profile.md)：同组条款共享输入，publication 同时检查 prepare/dispatch 共同见证与所有假设声明有效期；联合不可满足时返回带来源和必要性见证的冲突集。该工具不签发/激活政策、不更改健康记录，不以诊断子集替代完整安全条款。运行门禁和发布仍执行本页所列宿主检查。
+
 `tests/test_contract_policy.py` 覆盖合约解析、签名/产物篡改、需求与动态门禁缺失、矛盾条款、效果少报、预算更新回滚、历史快照、冻结条款、过期/未知假设、旧许可和激活/派发并发。
 
 `examples/policy_lifecycle.py` 留下真实运行的 contract.ir.json、signed-release.json、activation-report.json：70 的旧准备在政策更新后无法准入；显式取消后按新版本完成 60 的退款；随后把预算降到 59 的更新失败且不改变任何状态。密钥不导出，因此保存的封套是本轮验签/激活证据，不能在新进程直接当作可恢复生产发布。

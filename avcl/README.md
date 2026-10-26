@@ -4,6 +4,12 @@
 
 **阶段：M1 实现中，尚未达到 M1 发布门槛。** 这是可验证的语义原型，不是已部署的生产安全网关。数据库事务、持久工作流/监督、容量背压及本机认证 API 已落地；生产身份、密钥隔离、出口控制、通用收费核对、备份恢复限制与完整 IR 仍有缺口，见 [实施状态](spec/implementation-status.md)。
 
+[3e5c63f 审阅修复](spec/review-fixes-profile.md) 覆盖 F1—F4：冗余旧回执保留 Final；工作流发送权不随共享 outbox 暴露；累计费用域覆盖合法本金与手续费之和；历史运行按历史合约核对。新增组合模型、乱序/并发/崩溃回归，验证结果以对应源码摘要的最新报告为准。
+
+[可选 SMT 后端](spec/smt-profile.md) 从同一纯谓词 IR 和生成指令产生输入域非空、一致性与允许动作存在性查询，固定 Z3 4.15.4 并保留模型回放和查询摘要。它提供显式依赖下的局部 ProvedUnder，不调用运行门禁，不替代系统状态转移与部署验证。
+
+[合约联合 SMT](spec/contract-smt-profile.md) 进一步检查条款共享输入、prepare/dispatch 共同见证及假设有效期。联合不可满足时输出带来源和必要性见证的冲突集；它不会删除条款、替换健康事实或发布政策。入口为 `scripts/verify_smt.py --contract INPUT_CONTRACT NEW_OUTPUT_DIRECTORY`，并由 `verify.cmd --smt` 一并验证。
+
 ## 运行
 
 Windows 进入本目录执行：
@@ -23,6 +29,10 @@ Windows 进入本目录执行：
 ```
 
 从空环境安装、数据库范围及故障点见 [持久层规格](spec/postgres-profile.md)。`--postgres` 缺少数据库或驱动时失败；不会以跳过测试充当数据库验证通过。
+
+可选 SMT 验证：在 `.venv` 中按 `requirements-smt.txt` 安装锁定依赖，执行 `.\verify.cmd --smt`；可与 `--postgres` 合用。缺少 Z3 或版本不匹配时本项验证失败。默认验证不包含 SMT；单独文件入口为 `scripts/verify_smt.py INPUT_IR NEW_OUTPUT_DIRECTORY`，见 [SMT 规格](spec/smt-profile.md)。
+
+[M1 门槛审计](spec/m1-acceptance-audit.md) 区分已验证内容与剩余缺口。`.\verify.cmd --m1` 要求私有 PostgreSQL 实例运行，执行 24 项命名检查并记录双进程锁等待及预算拒绝等现场证据；这是定向检查，不等于 M1 发布或全套数据库验证。[核心需求诊断](spec/requirement-diagnostics.md)与[运行求值预算](spec/evaluation-budget-profile.md)已实现；全系统持久拒绝日志及剩余需求覆盖仍需完善。
 
 也可分别运行：
 
@@ -112,3 +122,13 @@ v0.6 增加 Validate：从候选与宿主 Context 产生 Evidence，并与节点
 政策 HMAC 密钥在内存后端随机生成，在数据库后端保存于测试数据库的 authority 行，不写入证据目录；它验证本地 authority 域，不能替代用户身份、公钥发布者身份或真实人工审阅。宿主 `seal_policy` 是明确的受信入口，不能暴露给 Agent。默认合约与假设使用逻辑测试时钟；密钥隔离、轮换及生产有效期管理未实现。
 
 模型与模拟器分别维护真实效果，不从本地成功标记推导现实成本。费用超出承诺时仍记录实际费用，冻结新支出并保持 `Disputed`；普通后续回执不能自动消除争议。事故处理、解除隔离和人工核对接口尚未实现。
+
+schema v9 的[认证网关拒绝记录](spec/durable-rejection-profile.md)在业务回滚后、同一租户 guard 内保存事件，并限制租户总量与主体窗口速率。审计不可用返回 503，旧历史不补写；完整系统覆盖和归档仍待完成。
+
+schema v10 的[事务审计序号](spec/audit-counter-profile.md)使用每租户计数行分配，计数与事件随事务回滚；检查历史前缀、表与载荷投影，并拒绝损坏历史升级。
+
+[审计快照与离线校验](spec/audit-export-profile.md)提供宿主只读分页、原始 payload 哈希链及外部检查点比对；内部一致性不代表真实性或业务语义重放已通过。
+
+离线校验可增加 `--check-payloads`，按[当前 53 种事件载荷配置](spec/audit-payload-profile.md)检查精确字段与格式；旧记录不改写。`verify.cmd --audit --smt --m1` 冻结定向审计集成、快照演示与既有门槛检查，报告明确其并非全量数据库测试。
+
+新观察日志使用[结构化事实](spec/observation-fact-profile.md)，记录原始观察、有效费用向量和冲突时的原事实摘要。旧 repr 日志仍保留，离线报告分别计数新结构化与旧不透明观察；尚未完成跨事件语义重放。

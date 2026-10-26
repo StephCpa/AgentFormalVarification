@@ -1,0 +1,15 @@
+{
+  "schema": "avcl/test-fixture-failure/0.1",
+  "verification_passed": false,
+  "failed_test": "test_tasks.TaskTests.test_breach_survives_late_success",
+  "phase": "setUp -> GatewayTests.launch_server -> ready.read_text",
+  "exception": "PermissionError: [Errno 13] Permission denied",
+  "business_assertions_executed": false,
+  "isolated_test_rerun_passed": true,
+  "fix": "Bounded readiness read retry only for FileNotFoundError and PermissionError while the owned process remains alive; register process and schema cleanup before launch.",
+  "preserved_failure_log": "postgres-integration.log",
+  "owned_failed_test_process_stopped_after_pid_and_config_path_check": true,
+  "owned_failed_test_schema_and_named_files_removed": true,
+  "replacement_full_verification": "../20261026T115016.527975Z/verification.json",
+  "replacement_result": "Read the replacement verification report; this historical run remains failed."
+}

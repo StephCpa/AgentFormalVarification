@@ -1,0 +1,35 @@
+{
+  "schema": "avcl/requirement-diagnostics-audit/0.1",
+  "verification_passed": true,
+  "source_files_checked": 149,
+  "source_hash_mismatches": [],
+  "design_baselines_unchanged": true,
+  "stages": 26,
+  "test_counts": {
+    "tests": 230,
+    "smt-tests": 36,
+    "m1-targeted-checks": 19,
+    "postgres-integration": 213
+  },
+  "error_response_probes": {
+    "BUDGET_EXCEEDED": [
+      "R04"
+    ],
+    "POLICY_DENIED": [
+      "R09"
+    ],
+    "ASSUMPTION_BROKEN": [
+      "R14"
+    ],
+    "UNREVIEWED_EXTENSION": []
+  },
+  "probes_match_expected": true,
+  "reviewed_error_codes": 105,
+  "postgres_full_suite_requested": true,
+  "m1_release_ready": false,
+  "remaining": [
+    "runtime evaluation work budget and Unknown propagation",
+    "durable denial log and review of remaining language-extension diagnostics",
+    "full-design completion and requirement-by-requirement release audit"
+  ]
+}

@@ -7,7 +7,9 @@ from dataclasses import replace
 from threading import RLock
 from uuid import uuid4
 import secrets
-from .canonical import Reject, amount, digest
+from .canonical import Reject, amount, digest, canonical_bytes
+from .requirements import merge_requirements
+from .evaluation import WorkBudget, DEFAULT_WORK_LIMIT
 from .types import (Request, Capability, Evidence, Approval, Account, Reservation,
                     Operation, Execution, Settlement, Observation, Event)
 from .ir import refund_predicate,FieldType
@@ -18,7 +20,8 @@ from . import delegation
 
 
 class ReferenceKernel:
-    def __init__(self, tenant="demo", policy="refund-policy/0.1", clock=None):
+    def __init__(self, tenant="demo", policy="refund-policy/0.1", clock=None, *, evaluation_limit=DEFAULT_WORK_LIMIT):
+        self._evaluation_limit=WorkBudget(evaluation_limit).limit
         self.tenant, self.policy, self.epoch = tenant, policy, 1
         self._clock = clock or (lambda: 0)  # Explicit deterministic test clock.
         self._lock = RLock()
@@ -28,6 +31,9 @@ class ReferenceKernel:
         self._operations, self._permits, self._business = {}, {}, {}
         self._dedup, self._observations = {}, {}
         self._events = []
+        self._event_sequence_allocator = None  # Host-local transactional allocator.
+        self._send_owners = {}  # operation -> (subject, run_id, workflow_digest)
+        self._workflow_send_context = None  # Host-local, never durable authority by itself.
         self._next_id = 0
         self._quarantined = False
         self._before_prepare = None  # Optional host admission guard, inside the same transaction.
@@ -48,8 +54,18 @@ class ReferenceKernel:
         return TrustedPlane(self)
 
     def _event(self, kind, operation_id=None, **details):
-        self._events.append(Event(len(self._events) + 1, kind, operation_id,
+        if "requirement_ids" in details:
+            details["requirement_ids"] = canonical_bytes(list(merge_requirements(details["requirement_ids"]))).decode("utf-8")
+        sequence=self._event_sequence_allocator() if self._event_sequence_allocator is not None else len(self._events)+1
+        self._events.append(Event(sequence, kind, operation_id,
                                   tuple(sorted((k, str(v)) for k, v in details.items()))))
+
+    def _admission_requirements(self, event, request, capability_ref):
+        clauses = self._release.compiled.contract.clauses
+        return merge_requirements(
+            ("R01", "R02", "R04", "R06", "R08", "R09", "R14"),
+            (r for c in clauses if c.tool == request.tool and event in c.events for r in c.requirement_ids),
+            ("R11",) if capability_ref in self._grants else ())
 
     def events(self):
         with self._lock:
@@ -78,9 +94,10 @@ class ReferenceKernel:
         with self._lock:return delegation.delegate(self,subject,raw)
 
     def _authorize(self, request, cap_ref, evidence_ref, approval_ref, now, event="prepare"):
+        budget=WorkBudget(self._evaluation_limit)
         if self._quarantined:
             raise Reject("ASSUMPTION_BROKEN")
-        if not self._checks.evaluate({"amount": amount(request.amount_minor), "currency": request.currency}):
+        if not self._checks.evaluate({"amount": amount(request.amount_minor), "currency": request.currency},budget=budget):
             raise Reject("POLICY_DENIED")
         cap = self._lookup(self._caps, cap_ref)
         ev = self._lookup(self._evidence, evidence_ref)
@@ -100,12 +117,14 @@ class ReferenceKernel:
         if not self._release.issued_at <= now < self._release.expires:
             raise Reject("POLICY_EXPIRED_OR_NOT_YET_VALID")
         report=self._release.compiled.evaluate(event,request.tool,
-            {"amount":amount(request.amount_minor),"max_fee":amount(request.max_fee_minor),"currency":request.currency},self._health,now)
+            {"amount":amount(request.amount_minor),"max_fee":amount(request.max_fee_minor),"currency":request.currency},self._health,now,budget=budget)
         if not report["allowed"]:
             failed=[r for r in report["reports"] if not r["passed"]]
-            raise PolicyDenied(report, "ASSUMPTION_BROKEN" if any(r["status"]=="AssumptionBroken" for r in failed) else "CONTRACT_DENIED")
+            code=("ASSUMPTION_BROKEN" if any(r["status"]=="AssumptionBroken" for r in failed) else
+                  "UNKNOWN_EVALUATION" if any(r["reason"]=="UNKNOWN_EVALUATION" for r in failed) else "CONTRACT_DENIED")
+            raise PolicyDenied(report,code)
         if getattr(self,"_check_task",None) is not None:self._check_task(request)
-        return cap, ev, approval
+        return cap, ev, approval, budget.report()
 
     def _binding(self, op):
         return digest({"request": op.request.payload(), "operation_id": op.id,
@@ -141,7 +160,7 @@ class ReferenceKernel:
                     raise Reject("IDEMPOTENCY_CONFLICT")
                 return self._owned(subject, operation_id)
             now = self._clock()
-            cap, ev, approval = self._authorize(request, capability_ref, evidence_ref, approval_ref, now)
+            cap, ev, approval, evaluation_work = self._authorize(request, capability_ref, evidence_ref, approval_ref, now)
             if request.business_key in self._business:
                 existing = self._operations[self._business[request.business_key]]
                 if existing.request.request_digest == request.request_digest:
@@ -158,7 +177,7 @@ class ReferenceKernel:
             for account_id, upper in bounds.items():
                 account = self._lookup(self._accounts, account_id)
                 if account.breached or account.spent + account.pending + upper > account.limit:
-                    raise Reject("BUDGET_EXCEEDED")
+                    raise Reject("BUDGET_EXCEEDED", requirement_ids=("R11",) if account_id.startswith("delegation:") else ())
                 updated[account_id] = replace(account, pending=account.pending + upper)
             # Commit all state only after every check has succeeded.
             number = self._next_id + 1
@@ -178,7 +197,9 @@ class ReferenceKernel:
             self._approvals[approval_ref] = replace(approval, operation_id=op.id)
             self._dedup[key] = (submission, op.id)
             self._event("Prepared", op.id, binding=op.binding, ir_digest=op.ir_digest, requirement_id="R09",
-                        contract_digest=op.contract_digest)
+                        contract_digest=op.contract_digest,
+                        evaluation_work=canonical_bytes(evaluation_work).decode("utf-8"),
+                        requirement_ids=self._admission_requirements("prepare", request, capability_ref))
             return op
 
     def dispatch(self, subject, operation_id, permit_ref):
@@ -195,7 +216,7 @@ class ReferenceKernel:
                     op.ir_digest != self._predicate.semantic_digest or
                     op.contract_digest != self._release.compiled.contract.semantic_digest):
                 raise Reject("STALE_PERMIT")
-            self._authorize(op.request, op.capability_ref, op.evidence_ref, op.approval_ref, now,"dispatch")
+            _,_,_,evaluation_work=self._authorize(op.request, op.capability_ref, op.evidence_ref, op.approval_ref, now,"dispatch")
             if self._binding(op) != op.binding:
                 raise Reject("BINDING_MISMATCH")
             if any(self._accounts[r.account].breached for r in op.reservations):
@@ -203,7 +224,9 @@ class ReferenceKernel:
             op = replace(op, admitted=True, state=Execution.DISPATCHED, revision=op.revision + 1)
             self._operations[op.id] = op
             self._event("DispatchAdmitted", op.id, epoch=self.epoch, policy=self.policy, binding=op.binding,
-                        ir_digest=op.ir_digest, requirement_id="R09",contract_digest=op.contract_digest)
+                        ir_digest=op.ir_digest, requirement_id="R09",contract_digest=op.contract_digest,
+                        evaluation_work=canonical_bytes(evaluation_work).decode("utf-8"),
+                        requirement_ids=self._admission_requirements("dispatch", op.request, op.capability_ref))
             return op
 
     def abort_prepared(self, subject, operation_id):
@@ -253,7 +276,8 @@ class ReferenceKernel:
 
 class PolicyDenied(Reject):
     def __init__(self,report,code="CONTRACT_DENIED"):
-        super().__init__(code)
+        super().__init__(code, requirement_ids=(r for row in report["reports"] if not row["passed"]
+                                               for r in row["requirement_ids"]))
         self.report=report
 
 
@@ -412,6 +436,7 @@ class TrustedPlane:
                 raise
 
     def _observe_trusted(self,observation):
+        from .observation_fact import encode_fact, fact_digest, encode_effective_costs
         if (type(observation) is not Observation or
                 not all(self._text(v) for v in (observation.id,observation.operation_id,observation.request_digest)) or
                 type(observation.kind) is not Execution or
@@ -429,7 +454,8 @@ class TrustedPlane:
                 if replace(prior,cumulative_costs=tuple(sorted(prior.cumulative_costs))) == replace(
                         observation,cumulative_costs=tuple(sorted(observation.cumulative_costs))):
                     return op
-                self.k._event("ConflictingObservation", op.id, observation=repr(observation))
+                self.k._event("ConflictingObservation", op.id, observation=observation.id,
+                              fact=encode_fact(observation), prior_fact_digest=fact_digest(encode_fact(prior)))
                 return self._incident(op, observation, "same_id_different_content")
             if (not op.admitted or observation.request_digest != op.request.request_digest or
                     observation.kind not in (Execution.CONFIRMED, Execution.REJECTED, Execution.PARTIAL)):
@@ -442,15 +468,25 @@ class TrustedPlane:
                 raise Reject("INVALID_COST_VECTOR")
             if observation.kind in (Execution.REJECTED, Execution.CONFIRMED) and not observation.terminal_effect:
                 raise Reject("TERMINAL_EFFECT_NOT_ESTABLISHED")
+            # Serialize evidence before changing the reference state. Raw costs
+            # retain submission order; effective costs include derived quotas.
+            fact=encode_fact(observation);effective_costs=encode_effective_costs(costs)
             self.k._observations[observation.id] = observation
             self.k._event("ObservationRecorded", op.id, observation=observation.id,
-                          content=repr(observation))
+                          fact=fact,effective_costs=effective_costs)
             if (op.state in (Execution.CONFIRMED, Execution.REJECTED) and op.state != observation.kind):
                 return self._incident(op, observation, "contradictory_terminal_effect")
             if op.state == Execution.PARTIAL and observation.kind == Execution.REJECTED:
                 return self._incident(op, observation, "partial_effect_cannot_be_erased")
             if any(costs[r.account] < r.charged for r in op.reservations):
                 return self._incident(op, observation, "decreasing_cumulative_cost")
+            if (op.settlement == Settlement.FINAL and op.state == observation.kind and
+                    all(costs[r.account] == r.charged for r in op.reservations)):
+                # This new evidence is subsumed by the established final fact.
+                # Retain the raw observation and audit event, not renewed exposure.
+                self.k._event("ObservationSubsumed", op.id, observation=observation.id,
+                              reason="same_final_effect_and_cost")
+                return op
             # A terminal business rejection can still carry invocation fees.
             # Terminal fees alone cannot free exposure to a possible late effect.
             finalize = observation.final_cost and observation.terminal_effect

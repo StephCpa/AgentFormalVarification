@@ -1,0 +1,39 @@
+{
+  "format": "avcl/observation-audit-view/0.1",
+  "tenant": "demo",
+  "facts": [
+    {
+      "sequence": "3",
+      "fact": {
+        "cumulative_costs": [
+          {
+            "account": "tenant:CNY",
+            "cumulative_cost": "70"
+          },
+          {
+            "account": "order:order:CNY",
+            "cumulative_cost": "70"
+          }
+        ],
+        "final_cost": true,
+        "format": "avcl/observation-fact/0.1",
+        "kind": "Confirmed",
+        "observation_id": "remote:op-daf50379383b4393b407f73d567c3709",
+        "operation_id": "op-daf50379383b4393b407f73d567c3709",
+        "request_digest": "sha256:a730a44fb75a27c50d724866c0281182fe167e512ffcd1d764eb2924fa83953a",
+        "terminal_effect": true
+      },
+      "effective_costs": [
+        {
+          "account": "order:order:CNY",
+          "cumulative_cost": "70"
+        },
+        {
+          "account": "tenant:CNY",
+          "cumulative_cost": "70"
+        }
+      ]
+    }
+  ],
+  "event_truth": "not_verified"
+}

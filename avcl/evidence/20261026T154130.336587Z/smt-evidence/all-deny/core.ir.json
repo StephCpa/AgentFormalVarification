@@ -1,0 +1,1 @@
+{"fields":{"b":{"kind":"Bool"}},"ir_version":"avcl/predicate/0.2","requirement_id":"R09","root":{"node_id":"n0","tag":"Const","type":{"kind":"Bool"},"value":false},"semantic_version":"avcl/pure/0.2","source_map":{"n0":"<builder>"}}

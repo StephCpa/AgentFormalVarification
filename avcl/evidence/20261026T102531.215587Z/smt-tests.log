@@ -1,0 +1,24 @@
+test_all_deny_is_not_vacuous_success (test_smt.SmtTests.test_all_deny_is_not_vacuous_success) ... ok
+test_bad_compiler_mutants_have_replayed_counterexamples (test_smt.SmtTests.test_bad_compiler_mutants_have_replayed_counterexamples) ... ok
+test_input_domains_reject_surrogates_empty_id_and_overlong_strings (test_smt.SmtTests.test_input_domains_reject_surrogates_empty_id_and_overlong_strings) ... ok
+test_integer_arithmetic_and_if_join_do_not_wrap_or_narrow (test_smt.SmtTests.test_integer_arithmetic_and_if_join_do_not_wrap_or_narrow) ... ok
+test_invalid_bounds_version_and_forged_ir_fail_closed (test_smt.SmtTests.test_invalid_bounds_version_and_forged_ir_fail_closed) ... ok
+test_large_real_refund_domain_and_witness (test_smt.SmtTests.test_large_real_refund_domain_and_witness) ... ok
+test_limit_unknown_and_solver_timeout_error_are_not_proofs (test_smt.SmtTests.test_limit_unknown_and_solver_timeout_error_are_not_proofs) ... ok
+test_model_decode_failure_is_not_promoted_from_sat (test_smt.SmtTests.test_model_decode_failure_is_not_promoted_from_sat) ... ok
+test_nested_option_record_set_membership (test_smt.SmtTests.test_nested_option_record_set_membership) ... ok
+test_option_short_circuit_and_nested_guards (test_smt.SmtTests.test_option_short_circuit_and_nested_guards) ... ok
+test_query_export_hashes_and_independent_query_replay (test_smt.SmtTests.test_query_export_hashes_and_independent_query_replay) ... ok
+test_set_equality_is_extensional_including_nested_records (test_smt.SmtTests.test_set_equality_is_extensional_including_nested_records) ... ok
+test_set_refinements_and_conditional_capacity_joins (test_smt.SmtTests.test_set_refinements_and_conditional_capacity_joins) ... ok
+test_structured_domain_matches_enumeration (test_smt.SmtTests.test_structured_domain_matches_enumeration) ... ok
+test_timeout_classification_preserves_unknown_reason (test_smt.SmtTests.test_timeout_classification_preserves_unknown_reason) ... ok
+test_translation_matches_concrete_small_domain_each_input (test_smt.SmtTests.test_translation_matches_concrete_small_domain_each_input) ... ok
+test_unconfirmed_domain_blocks_vacuous_equivalence (test_smt.SmtTests.test_unconfirmed_domain_blocks_vacuous_equivalence) ... ok
+test_unicode_above_native_string_alphabet_and_nominal_id (test_smt.SmtTests.test_unicode_above_native_string_alphabet_and_nominal_id) ... ok
+test_wrong_forward_jump_and_partial_final_stack_find_errors (test_smt.SmtTests.test_wrong_forward_jump_and_partial_final_stack_find_errors) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.620s
+
+OK

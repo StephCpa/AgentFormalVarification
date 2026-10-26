@@ -2,7 +2,7 @@
 import hashlib
 import hmac
 import re
-from .canonical import Reject,canonical_bytes,strict_loads,amount,digest
+from .canonical import Reject,canonical_bytes,strict_loads,amount,cumulative_cost,digest
 from .contract import moment
 from .types import Observation,Execution
 from .send_envelope import RECEIVER
@@ -47,6 +47,8 @@ class ReceiptSigner:
         if type(observation) is not Observation or not moment(observed_at):raise Reject("INVALID_RECEIPT_SOURCE")
         costs=dict(observation.cumulative_costs)
         if len(costs)!=len(observation.cumulative_costs):raise Reject("INVALID_COST_VECTOR")
+        if any(type(v) is not int for v in costs.values()):raise Reject("INVALID_CUMULATIVE_COST")
+        for value in costs.values():cumulative_cost(str(value))
         body={"format":FORMAT,"key_id":KEY_ID,"tenant":self.tenant,"issuer":self.issuer,
               "operation_id":observation.operation_id,"request_digest":observation.request_digest,
               "binding":binding,"observed_at":str(observed_at),"observation_id":observation.id,
@@ -82,7 +84,7 @@ def verify(kernel,raw,expected_operation_id=None):
     costs=obj["cumulative_costs"]
     if type(costs) is not dict or set(costs)!={"tenant:CNY","order:"+op.request.order+":CNY"}:raise Reject("INVALID_COST_VECTOR")
     observation=Observation(obj["observation_id"],op.id,op.request.request_digest,kind,
-        tuple((account,amount(value)) for account,value in sorted(costs.items())),obj["final_cost"],obj["terminal_effect"])
+        tuple((account,cumulative_cost(value)) for account,value in sorted(costs.items())),obj["final_cost"],obj["terminal_effect"])
     require(kernel,op.id)
     kernel._event("ReceiptAuthenticated",op.id,envelope_digest=digest(obj,"avcl/receipt-envelope-digest/0.1"),
                   observation=observation.id,observed_at=observed,requirement_id="R02")

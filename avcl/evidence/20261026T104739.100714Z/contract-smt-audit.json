@@ -1,0 +1,421 @@
+{
+  "schema": "avcl/contract-smt-audit/0.1",
+  "passed": true,
+  "unit_tests": 217,
+  "smt_tests": 36,
+  "verification_stages": 19,
+  "source_files": 137,
+  "source_hash_mismatches": [],
+  "package_hash_mismatches": [],
+  "replayed_queries": [
+    {
+      "example": "assumption-conflict",
+      "query": "q0",
+      "expected": "sat",
+      "actual": "sat",
+      "hash_matches": true
+    },
+    {
+      "example": "assumption-conflict",
+      "query": "q1",
+      "expected": "unsat",
+      "actual": "unsat",
+      "hash_matches": true
+    },
+    {
+      "example": "assumption-conflict",
+      "query": "q2",
+      "expected": "sat",
+      "actual": "sat",
+      "hash_matches": true
+    },
+    {
+      "example": "assumption-conflict",
+      "query": "q3",
+      "expected": "sat",
+      "actual": "sat",
+      "hash_matches": true
+    },
+    {
+      "example": "assumption-conflict",
+      "query": "q4",
+      "expected": "unsat",
+      "actual": "unsat",
+      "hash_matches": true
+    },
+    {
+      "example": "assumption-conflict",
+      "query": "q5",
+      "expected": "sat",
+      "actual": "sat",
+      "hash_matches": true
+    },
+    {
+      "example": "assumption-conflict",
+      "query": "q6",
+      "expected": "sat",
+      "actual": "sat",
+      "hash_matches": true
+    },
+    {
+      "example": "assumption-conflict",
+      "query": "q7",
+      "expected": "unsat",
+      "actual": "unsat",
+      "hash_matches": true
+    },
+    {
+      "example": "assumption-conflict",
+      "query": "q8",
+      "expected": "unsat",
+      "actual": "unsat",
+      "hash_matches": true
+    },
+    {
+      "example": "assumption-conflict",
+      "query": "q9",
+      "expected": "sat",
+      "actual": "sat",
+      "hash_matches": true
+    },
+    {
+      "example": "assumption-conflict",
+      "query": "q10",
+      "expected": "sat",
+      "actual": "sat",
+      "hash_matches": true
+    },
+    {
+      "example": "assumption-conflict",
+      "query": "q11",
+      "expected": "unsat",
+      "actual": "unsat",
+      "hash_matches": true
+    },
+    {
+      "example": "compatible",
+      "query": "q0",
+      "expected": "sat",
+      "actual": "sat",
+      "hash_matches": true
+    },
+    {
+      "example": "compatible",
+      "query": "q1",
+      "expected": "unsat",
+      "actual": "unsat",
+      "hash_matches": true
+    },
+    {
+      "example": "compatible",
+      "query": "q2",
+      "expected": "sat",
+      "actual": "sat",
+      "hash_matches": true
+    },
+    {
+      "example": "compatible",
+      "query": "q3",
+      "expected": "sat",
+      "actual": "sat",
+      "hash_matches": true
+    },
+    {
+      "example": "compatible",
+      "query": "q4",
+      "expected": "unsat",
+      "actual": "unsat",
+      "hash_matches": true
+    },
+    {
+      "example": "compatible",
+      "query": "q5",
+      "expected": "sat",
+      "actual": "sat",
+      "hash_matches": true
+    },
+    {
+      "example": "compatible",
+      "query": "q6",
+      "expected": "sat",
+      "actual": "sat",
+      "hash_matches": true
+    },
+    {
+      "example": "compatible",
+      "query": "q7",
+      "expected": "unsat",
+      "actual": "unsat",
+      "hash_matches": true
+    },
+    {
+      "example": "compatible",
+      "query": "q8",
+      "expected": "sat",
+      "actual": "sat",
+      "hash_matches": true
+    },
+    {
+      "example": "contradictory",
+      "query": "q0",
+      "expected": "sat",
+      "actual": "sat",
+      "hash_matches": true
+    },
+    {
+      "example": "contradictory",
+      "query": "q1",
+      "expected": "unsat",
+      "actual": "unsat",
+      "hash_matches": true
+    },
+    {
+      "example": "contradictory",
+      "query": "q2",
+      "expected": "unsat",
+      "actual": "unsat",
+      "hash_matches": true
+    },
+    {
+      "example": "contradictory",
+      "query": "q3",
+      "expected": "unsat",
+      "actual": "unsat",
+      "hash_matches": true
+    },
+    {
+      "example": "contradictory",
+      "query": "q4",
+      "expected": "unsat",
+      "actual": "unsat",
+      "hash_matches": true
+    },
+    {
+      "example": "contradictory",
+      "query": "q5",
+      "expected": "sat",
+      "actual": "sat",
+      "hash_matches": true
+    },
+    {
+      "example": "contradictory",
+      "query": "q6",
+      "expected": "sat",
+      "actual": "sat",
+      "hash_matches": true
+    },
+    {
+      "example": "contradictory",
+      "query": "q7",
+      "expected": "sat",
+      "actual": "sat",
+      "hash_matches": true
+    },
+    {
+      "example": "contradictory",
+      "query": "q8",
+      "expected": "unsat",
+      "actual": "unsat",
+      "hash_matches": true
+    },
+    {
+      "example": "contradictory",
+      "query": "q9",
+      "expected": "unsat",
+      "actual": "unsat",
+      "hash_matches": true
+    },
+    {
+      "example": "contradictory",
+      "query": "q10",
+      "expected": "unsat",
+      "actual": "unsat",
+      "hash_matches": true
+    },
+    {
+      "example": "contradictory",
+      "query": "q11",
+      "expected": "unsat",
+      "actual": "unsat",
+      "hash_matches": true
+    },
+    {
+      "example": "contradictory",
+      "query": "q12",
+      "expected": "sat",
+      "actual": "sat",
+      "hash_matches": true
+    },
+    {
+      "example": "contradictory",
+      "query": "q13",
+      "expected": "sat",
+      "actual": "sat",
+      "hash_matches": true
+    },
+    {
+      "example": "contradictory",
+      "query": "q14",
+      "expected": "sat",
+      "actual": "sat",
+      "hash_matches": true
+    },
+    {
+      "example": "contradictory",
+      "query": "q15",
+      "expected": "unsat",
+      "actual": "unsat",
+      "hash_matches": true
+    },
+    {
+      "example": "contradictory",
+      "query": "q16",
+      "expected": "unsat",
+      "actual": "unsat",
+      "hash_matches": true
+    },
+    {
+      "example": "contradictory",
+      "query": "q17",
+      "expected": "unsat",
+      "actual": "unsat",
+      "hash_matches": true
+    },
+    {
+      "example": "contradictory",
+      "query": "q18",
+      "expected": "unsat",
+      "actual": "unsat",
+      "hash_matches": true
+    },
+    {
+      "example": "contradictory",
+      "query": "q19",
+      "expected": "sat",
+      "actual": "sat",
+      "hash_matches": true
+    },
+    {
+      "example": "contradictory",
+      "query": "q20",
+      "expected": "sat",
+      "actual": "sat",
+      "hash_matches": true
+    },
+    {
+      "example": "limited-core",
+      "query": "q0",
+      "expected": "sat",
+      "actual": "sat",
+      "hash_matches": true
+    },
+    {
+      "example": "limited-core",
+      "query": "q1",
+      "expected": "unsat",
+      "actual": "unsat",
+      "hash_matches": true
+    },
+    {
+      "example": "limited-core",
+      "query": "q2",
+      "expected": "unsat",
+      "actual": "unsat",
+      "hash_matches": true
+    },
+    {
+      "example": "phase-only",
+      "query": "q0",
+      "expected": "sat",
+      "actual": "sat",
+      "hash_matches": true
+    },
+    {
+      "example": "phase-only",
+      "query": "q1",
+      "expected": "unsat",
+      "actual": "unsat",
+      "hash_matches": true
+    },
+    {
+      "example": "phase-only",
+      "query": "q2",
+      "expected": "sat",
+      "actual": "sat",
+      "hash_matches": true
+    },
+    {
+      "example": "phase-only",
+      "query": "q3",
+      "expected": "sat",
+      "actual": "sat",
+      "hash_matches": true
+    },
+    {
+      "example": "phase-only",
+      "query": "q4",
+      "expected": "unsat",
+      "actual": "unsat",
+      "hash_matches": true
+    },
+    {
+      "example": "phase-only",
+      "query": "q5",
+      "expected": "sat",
+      "actual": "sat",
+      "hash_matches": true
+    },
+    {
+      "example": "phase-only",
+      "query": "q6",
+      "expected": "sat",
+      "actual": "sat",
+      "hash_matches": true
+    },
+    {
+      "example": "phase-only",
+      "query": "q7",
+      "expected": "unsat",
+      "actual": "unsat",
+      "hash_matches": true
+    },
+    {
+      "example": "phase-only",
+      "query": "q8",
+      "expected": "unsat",
+      "actual": "unsat",
+      "hash_matches": true
+    },
+    {
+      "example": "phase-only",
+      "query": "q9",
+      "expected": "unsat",
+      "actual": "unsat",
+      "hash_matches": true
+    },
+    {
+      "example": "phase-only",
+      "query": "q10",
+      "expected": "unsat",
+      "actual": "unsat",
+      "hash_matches": true
+    },
+    {
+      "example": "phase-only",
+      "query": "q11",
+      "expected": "sat",
+      "actual": "sat",
+      "hash_matches": true
+    },
+    {
+      "example": "phase-only",
+      "query": "q12",
+      "expected": "sat",
+      "actual": "sat",
+      "hash_matches": true
+    }
+  ],
+  "prior_postgres_runtime_module_changes": [],
+  "postgres_tested_this_run": false,
+  "m1_release_gate": "open"
+}

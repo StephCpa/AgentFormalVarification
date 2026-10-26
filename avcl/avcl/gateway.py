@@ -14,6 +14,8 @@ from .canonical import Reject,canonical_bytes,strict_loads,digest
 from .storage_codec import dumps,loads
 from .types import Request,Execution
 from .postgres import PostgresKernel
+from .requirements import merge_requirements, requirements_for
+from .rejection_audit import AuthenticatedContext
 
 SCOPES=frozenset({"validate","prepare","dispatch","get","reconcile","cancel","close","delegate"})
 TOKEN=re.compile(r"avcl_[A-Za-z0-9_-]{43}\Z")
@@ -131,6 +133,10 @@ class RuntimeGateway:
                 request_id=body["client_request_id"]
             db=PostgresKernel(self.template.dsn,tenant,self.template.schema,self.template.clock)
             submitted=digest({"method":method,"path":path,"body":body},"avcl/api-request/0.1")
+            def authenticate(k,c):
+                auth=c.execute("SELECT subject,expires,revoked FROM api_credential WHERE tenant_id=%s AND token_hash=%s",(tenant,hashed)).fetchone()
+                if auth is None or auth["revoked"] or auth["expires"]<=k._clock():raise Reject("INVALID_CREDENTIAL")
+                return AuthenticatedContext(auth["subject"],action,submitted,trace,operation)
             def execute(k,c):
                 # Recheck after taking the same authority guard as revocation.
                 auth=c.execute("SELECT subject,scopes,expires,revoked FROM api_credential WHERE tenant_id=%s AND token_hash=%s",(tenant,hashed)).fetchone()
@@ -175,19 +181,23 @@ class RuntimeGateway:
                 c.execute("INSERT INTO api_request VALUES(%s,%s,%s,%s,%s,%s)",(tenant,subject,path,request_id,submitted,op.id))
                 k._event("ApiRequestAccepted",op.id,subject=subject,action=action,request_id=request_id,trace_id=trace,requirement_id="R01")
                 return self.project(op,action=="prepare")
-            result=db._transaction("api-"+action,execute,action!="get")
+            result=db._transaction("api-"+action,execute,action!="get",authenticate=authenticate)
             return (202 if action in {"dispatch","reconcile"} else 200),{"trace_id":trace,"request_id":request_id,"data":result}
         except Reject as exc:
             code="AUTH_DENIED" if exc.code=="UNTRUSTED_REFERENCE" else exc.code
-            if code=="INVALID_CREDENTIAL":status=401
+            if code in {"AUDIT_UNAVAILABLE","AUDIT_CAPACITY_EXCEEDED","AUDIT_RECORD_TOO_LARGE",
+                        "AUDIT_SEQUENCE_UNAVAILABLE","CORRUPT_AUDIT_COUNTER","CORRUPT_AUDIT_SEQUENCE","AUDIT_HISTORY_MUTATION","INVALID_AUDIT_EVENT"}:status=503
+            elif code=="INVALID_CREDENTIAL":status=401
             elif code in {"AUTH_DENIED","API_SCOPE_DENIED","SCOPE_DENIED"}:status=403
             elif code in {"ENDPOINT_NOT_FOUND","OPERATION_NOT_FOUND","TASK_NOT_FOUND"}:status=404
             elif code=="UNSUPPORTED_GUARANTEE":status=422
             elif code.startswith("INVALID") or code in {"DUPLICATE_KEY","JSON_NUMBERS_UNSUPPORTED","REQUEST_TOO_LARGE","REQUEST_TOO_DEEP"}:status=400
             else:status=409
-            return status,self.error(code,trace,request_id,"do_not_retry" if status in {401,403,404,422} else "correct_request" if status==400 else "inspect_state_before_retry")
+            return status,self.error(code,trace,request_id,"query_before_retry" if status==503 else "do_not_retry" if status in {401,403,404,422} else "correct_request" if status==400 else "inspect_state_before_retry",requirement_ids=exc.requirement_ids)
         except (psycopg.Error,OSError):return 503,self.error("DEPENDENCY_UNAVAILABLE",trace,request_id,"query_before_retry")
 
     @staticmethod
-    def error(code,trace,request_id=None,advice="do_not_retry"):
-        return {"trace_id":trace,"error":{"code":code,"request_id":request_id,"operation_ref":None,"retry_advice":advice,"requirement_ids":["R01","R02","R16"],"detail_ref":None}}
+    def error(code,trace,request_id=None,advice="do_not_retry",*,requirement_ids=None):
+        # Explicit exception metadata preserves clause IDs and masked-code scope.
+        ids = requirements_for(code) if requirement_ids is None else requirement_ids
+        return {"trace_id":trace,"error":{"code":code,"request_id":request_id,"operation_ref":None,"retry_advice":advice,"requirement_ids":list(merge_requirements(ids)),"detail_ref":None}}

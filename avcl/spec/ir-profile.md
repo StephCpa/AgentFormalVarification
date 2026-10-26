@@ -45,6 +45,12 @@ AST 最多 1000 节点、深度 64。所有分支先静态检查，短路不可�
 
 离线枚举对 Bool、小范围 Int、Enum、Record、Option、有界 Set 的声明域计算完整笛卡尔积，默认最多 10000 实例。String/Id 或过大的域不抽样冒充完整验证，结果为 Unknown。报告包含 property_id、requirement_ids、IR/来源摘要、checker_build、假设、域与数量、时间、见证。
 
-`checks-equivalent` 比较树解释器与生成门禁；`allowed-action-exists` 检查至少一个允许输入，并保留允许/拒绝见证。成功仅为 BoundedChecked；全部拒绝时后者为 Violated。这里没有 SMT 求解，`solver_status` 为 null，也不产生 ProvedUnder。运行检查另给 RuntimeSatisfied/Violated/Unknown；错误或未知均不允许当前输入。
+`checks-equivalent` 比较树解释器与生成门禁；`allowed-action-exists` 检查至少一个允许输入，并保留允许/拒绝见证。枚举成功仅为 BoundedChecked；全部拒绝时后者为 Violated。该枚举后端不调用 SMT，`solver_status` 为 null，也不产生 ProvedUnder。运行检查另给 RuntimeSatisfied/Violated/Unknown；错误或未知均不允许当前输入。
+
+可选的 [SMT 后端](smt-profile.md) 使用同一 IR 和生成指令，另行输出输入域非空、一致性与允许动作存在性查询。其 ProvedUnder 显式依赖 Z3 和编码器；不改写上述枚举结果，也不改变运行门禁或未签名候选包。
 
 `examples/ir_pipeline.py` 的结构化退款示例覆盖 120 个完整输入：金额 0—3、两种币种、None/0—3 的批准额、最多一种允许币种。该域不是生产业务边界；实际退款谓词仍按真实字段范围生成，其离线枚举报告为 Unknown。两份包并列保留，不能只展示有界示例的通过报告。
+
+## 有界求值补充
+
+纯 AST 和生成检查现在默认启用[运行工作量预算](evaluation-budget-profile.md)，超限为 UNKNOWN_EVALUATION，而非 false 或 Violated。它覆盖输入规范化及结构操作，并在授权调用中跨条款共享。数学纯语义与 IR 摘要保持不变，工作模型另用 avcl/evaluation-work/0.1 标识；验证报告必须保留资源条件。

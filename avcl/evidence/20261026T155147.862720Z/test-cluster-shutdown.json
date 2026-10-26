@@ -1,0 +1,14 @@
+{
+  "format": "avcl/test-cluster-shutdown/0.1",
+  "initial_stop_command_timed_out": true,
+  "normal_shutdown_observed": true,
+  "forced_termination": false,
+  "status": "Workspace PostgreSQL stopped",
+  "log_excerpt": [
+    "2026-10-27 00:07:24.358 CST [38484] LOG:  received fast shutdown request",
+    "2026-10-27 00:08:37.906 CST [44168] LOG:  checkpoint complete: wrote 2854 buffers (17.4%), wrote 5 SLRU buffers; 0 WAL file(s) added, 7 removed, 0 recycled; write=269.334 s, sync=529.280 s, total=803.321 s; sync files=30912, longest=0.223 s, average=0.018 s; distance=121665 kB, estimate=121665 kB; lsn=1/D186C2F8, redo lsn=1/BC839148",
+    "2026-10-27 00:09:03.389 CST [44168] LOG:  checkpoint complete: wrote 1552 buffers (9.5%), wrote 4 SLRU buffers; 0 WAL file(s) added, 0 removed, 21 recycled; write=0.054 s, sync=9.655 s, total=25.479 s; sync files=17908, longest=0.142 s, average=0.001 s; distance=344268 kB, estimate=344268 kB; lsn=1/D186C370, redo lsn=1/D186C370",
+    "2026-10-27 00:09:03.841 CST [38484] LOG:  database system is shut down"
+  ],
+  "note": "pg_ctl waiting timed out while checkpoint I/O was in progress; subsequent PostgreSQL log and status confirm clean shutdown. No restart or forced termination was performed."
+}

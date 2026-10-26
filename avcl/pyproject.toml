@@ -9,5 +9,8 @@ description = "AVCL executable reference semantics and independent fault simulat
 requires-python = ">=3.12"
 dependencies = []
 
+[project.optional-dependencies]
+smt = ["z3-solver==4.15.4.0"]
+
 [tool.setuptools]
 packages = ["avcl"]

@@ -1,0 +1,621 @@
+{
+  "schema": "avcl/verification/0.1",
+  "started_utc": "20261026T115016.527975Z",
+  "passed": true,
+  "scope": "reference semantics; bounded models; abstract Lean admission/budget, conditional cost bridge and delegation cores; full PostgreSQL integration suite; pinned Z3 pure-predicate and joint-contract local VCs; no production guarantee",
+  "postgres_requested": true,
+  "postgres_full_suite_requested": true,
+  "m1_checks_requested": true,
+  "smt_requested": true,
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "stages": [
+    {
+      "name": "tests",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-v"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 7.969,
+      "log": "tests.log"
+    },
+    {
+      "name": "bounded-model",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "models.budget_model"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.125,
+      "log": "bounded-model.log"
+    },
+    {
+      "name": "capacity-model",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "models.capacity_model"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.078,
+      "log": "capacity-model.log"
+    },
+    {
+      "name": "delegation-model",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "models.delegation_model"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.094,
+      "log": "delegation-model.log"
+    },
+    {
+      "name": "cost-bridge-model",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "models.cost_bridge_model"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.093,
+      "log": "cost-bridge-model.log"
+    },
+    {
+      "name": "send-window-model",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "models.send_window_model"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.094,
+      "log": "send-window-model.log"
+    },
+    {
+      "name": "review-composition-model",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "models.review_composition_model"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.109,
+      "log": "review-composition-model.log"
+    },
+    {
+      "name": "lean-version",
+      "command": [
+        "lean",
+        "--version"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.141,
+      "log": "lean-version.log"
+    },
+    {
+      "name": "lean-core",
+      "command": [
+        "lean",
+        "Core.lean"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 1.562,
+      "log": "lean-core.log",
+      "proof_gate": {
+        "passed": true,
+        "theorems": {
+          "AVCL.P3_budget_preserved": [
+            "propext",
+            "Quot.sound"
+          ],
+          "AVCL.P1_P2_admission": [
+            "propext"
+          ]
+        },
+        "missing": [],
+        "duplicate": [],
+        "unexpected_axioms": {},
+        "contains_sorry": false
+      }
+    },
+    {
+      "name": "lean-delegation",
+      "command": [
+        "lean",
+        "Delegation.lean"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 1.797,
+      "log": "lean-delegation.log",
+      "proof_gate": {
+        "passed": true,
+        "theorems": {
+          "AVCL.Delegation.P7_scope_transitive": [
+            "propext"
+          ],
+          "AVCL.Delegation.P7_ancestor_revocation": [],
+          "AVCL.Delegation.P7_shared_budget": [
+            "propext",
+            "Quot.sound"
+          ],
+          "AVCL.Delegation.P7_composition": [
+            "propext",
+            "Quot.sound"
+          ],
+          "AVCL.Delegation.example_nonempty_run": [
+            "propext",
+            "Quot.sound"
+          ],
+          "AVCL.Delegation.example_rejects_second_reservation": [
+            "propext",
+            "Quot.sound"
+          ],
+          "AVCL.Delegation.example_partial_then_final": [
+            "propext",
+            "Quot.sound"
+          ],
+          "AVCL.Delegation.example_can_admit": [
+            "propext",
+            "Quot.sound"
+          ],
+          "AVCL.Delegation.example_root_revoked_leaf_not_revoked": [
+            "propext"
+          ]
+        },
+        "missing": [],
+        "duplicate": [],
+        "unexpected_axioms": {},
+        "contains_sorry": false
+      }
+    },
+    {
+      "name": "lean-cost-bridge",
+      "command": [
+        "lean",
+        "CostBridge.lean"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 2.047,
+      "log": "lean-cost-bridge.log",
+      "proof_gate": {
+        "passed": true,
+        "theorems": {
+          "AVCL.CostBridge.P4_cost_bridge": [
+            "propext",
+            "Quot.sound"
+          ],
+          "AVCL.CostBridge.P4_actual_within_budget": [
+            "propext",
+            "Quot.sound"
+          ],
+          "AVCL.CostBridge.step_valid": [
+            "propext",
+            "Quot.sound"
+          ],
+          "AVCL.CostBridge.example_partial_then_final": [
+            "propext"
+          ],
+          "AVCL.CostBridge.example_local_budget_insufficient": [],
+          "AVCL.CostBridge.example_closed_blocks_charge": []
+        },
+        "missing": [],
+        "duplicate": [],
+        "unexpected_axioms": {},
+        "contains_sorry": false
+      }
+    },
+    {
+      "name": "refund-demo",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "examples/refund_demo.py"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.172,
+      "log": "refund-demo.log"
+    },
+    {
+      "name": "send-envelope-demo",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "examples/send_envelope_demo.py",
+        "E:\\KM\\Agent Formal Verification\\avcl\\evidence\\20261026T115016.527975Z\\send-envelope-demo"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.203,
+      "log": "send-envelope-demo.log"
+    },
+    {
+      "name": "ir-pipeline",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "examples/ir_pipeline.py",
+        "E:\\KM\\Agent Formal Verification\\avcl\\evidence\\20261026T115016.527975Z\\ir-candidates"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.219,
+      "log": "ir-pipeline.log"
+    },
+    {
+      "name": "policy-lifecycle",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "examples/policy_lifecycle.py",
+        "E:\\KM\\Agent Formal Verification\\avcl\\evidence\\20261026T115016.527975Z\\policy-lifecycle"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.203,
+      "log": "policy-lifecycle.log"
+    },
+    {
+      "name": "workflow-demo",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "examples/workflow_demo.py",
+        "E:\\KM\\Agent Formal Verification\\avcl\\evidence\\20261026T115016.527975Z\\workflow-demo"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.234,
+      "log": "workflow-demo.log"
+    },
+    {
+      "name": "smt-tests",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "smt_tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 7.235,
+      "log": "smt-tests.log"
+    },
+    {
+      "name": "smt-pipeline",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "examples/smt_pipeline.py",
+        "E:\\KM\\Agent Formal Verification\\avcl\\evidence\\20261026T115016.527975Z\\smt-evidence"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.343,
+      "log": "smt-pipeline.log"
+    },
+    {
+      "name": "contract-smt-pipeline",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "examples/contract_smt_pipeline.py",
+        "E:\\KM\\Agent Formal Verification\\avcl\\evidence\\20261026T115016.527975Z\\contract-smt-evidence"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.688,
+      "log": "contract-smt-pipeline.log"
+    },
+    {
+      "name": "postgres-environment",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "scripts/postgres_environment.py"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.922,
+      "log": "postgres-environment.log"
+    },
+    {
+      "name": "m1-targeted-checks",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "scripts/m1_checks.py",
+        "E:\\KM\\Agent Formal Verification\\avcl\\evidence\\20261026T115016.527975Z\\m1-targeted"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 10.297,
+      "log": "m1-targeted-checks.log"
+    },
+    {
+      "name": "postgres-integration",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "integration",
+        "-v"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 605.265,
+      "log": "postgres-integration.log"
+    },
+    {
+      "name": "supervision-demo",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "examples/supervision_demo.py",
+        "E:\\KM\\Agent Formal Verification\\avcl\\evidence\\20261026T115016.527975Z\\supervision-demo"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 7.703,
+      "log": "supervision-demo.log"
+    },
+    {
+      "name": "durable-workflow-demo",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "examples/durable_workflow_demo.py",
+        "E:\\KM\\Agent Formal Verification\\avcl\\evidence\\20261026T115016.527975Z\\durable-workflow-demo"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 8.766,
+      "log": "durable-workflow-demo.log"
+    },
+    {
+      "name": "close-workflow-demo",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "examples/close_workflow_demo.py",
+        "E:\\KM\\Agent Formal Verification\\avcl\\evidence\\20261026T115016.527975Z\\close-workflow-demo"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 11.031,
+      "log": "close-workflow-demo.log"
+    },
+    {
+      "name": "delegation-demo",
+      "command": [
+        "E:\\KM\\Agent Formal Verification\\avcl\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "examples/delegation_demo.py",
+        "E:\\KM\\Agent Formal Verification\\avcl\\evidence\\20261026T115016.527975Z\\delegation-demo"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 5.86,
+      "log": "delegation-demo.log"
+    }
+  ],
+  "design_baselines": [
+    {
+      "path": "Agent形式化验证语言研究与设计.docx",
+      "sha256": "0543471efc21c36a0cbfcf210a1c0fe9be9c111bb894152d32cac00722b8e00a",
+      "expected_sha256": "0543471efc21c36a0cbfcf210a1c0fe9be9c111bb894152d32cac00722b8e00a",
+      "unchanged": true
+    },
+    {
+      "path": "AVCL形式化验证语言与执行系统详细设计_v0.1.docx",
+      "sha256": "8fa7491cb6c428ccab6158e95dce23ec222e9250e3ca518f90b7bc1227dc34fc",
+      "expected_sha256": "8fa7491cb6c428ccab6158e95dce23ec222e9250e3ca518f90b7bc1227dc34fc",
+      "unchanged": true
+    }
+  ],
+  "source_sha256": {
+    ".gitignore": "031dc29e2b3e4d64eaaa20a7dae90baedea18d7e9710d3c35d804b401ff612ad",
+    "README.md": "645cf1f600c6b3dff3d6af0ca7bacc12bb157f3608e1bb7e5279311d0d929079",
+    "pyproject.toml": "819b0e0e07d9f80941feeabf46f827daa02ae482640ca7a3b055eb0a2f9ce319",
+    "requirements-postgres.txt": "0daf3b8e85377838c5a732a37e3ddcb11a4d7c0eafd2dd3913d48eeaa0300f21",
+    "requirements-smt.txt": "ac6d798063dc1d9eeb7f66a8e854a73fdc2a7caf22cc0d4dc5370d5fe494498f",
+    "verify.cmd": "8528e3d30e32052a17331c7b69daa373e2c289b656eb75569ce5fe1a076c1da1",
+    "avcl/__init__.py": "f407872bd5382e051bb4ff52df1c7de71f77857be4df8e77a3bc2b2a462e0f73",
+    "avcl/canonical.py": "23994b6a461c26da44bd3abc781b7882e74f6f7ccaea6c2595e16c256b4a0552",
+    "avcl/capacity.py": "144f2e92b3d0fa4a2474c099cf5729699e71563948303d5f35575c1a3b49ff7f",
+    "avcl/checks.py": "671a29e596b7e1235103cbb986d97fa0973bedd7c53ef8c1255a5f326f08ca9a",
+    "avcl/contract.py": "11020dc7cab4ba1a83cb5cc2bd82a746c8ed36403c5a9e88e3edc691047d02f9",
+    "avcl/contract_smt.py": "a630c87d4a63e159adc8b2f4ed03691cb84d224a630083a59aa1b574f2867455",
+    "avcl/contract_smt_package.py": "87cce0e7e27669e8545f2049e235bcd080dcbcd26a69529cb650e9332ce152f7",
+    "avcl/delegation.py": "04007383e40d20b81364315fbbda1a3396e9b46b9d0a42a584b9f407e4bc6679",
+    "avcl/gateway.py": "8343720f0df7aa9c7db489147988218095965914d91f763af2f3c2e154c14b80",
+    "avcl/http_gateway.py": "58c89e723e44c5696f9bf7a38afa29ae9eca2ea51dada4f56cad6de5b868ee32",
+    "avcl/ir.py": "cdf1f67a9dac627ce61f31f5628209610ffb4bebafba9483640de41aad39dbb6",
+    "avcl/ir_types.py": "404be4104339d626fb6080d3b2e8b3bad4e109bdbeb5cb1846715d2cdde4204a",
+    "avcl/package.py": "34f248138635b26fec65b341ca49c39ab9f5255f86b035801069c7f8165ee1b2",
+    "avcl/policy.py": "50918f0898b250a3e5f1a2f9278ef9509deb346fb76f483bc36a0c791924ae7b",
+    "avcl/postgres.py": "050661fbceaa098dd3bd28ceb9c9fa1c299c7dd1d5c407d8288f092dee993818",
+    "avcl/receipt_envelope.py": "c1a84a83c25758f8d24458e0a1b90602f82210c35b1205c536395328a1e23ea4",
+    "avcl/requirements.py": "6529f0ed51b5af9eb91b271fd4d6860a635d1c3cf29d5cc4d1a7b9cfd3cd7496",
+    "avcl/runtime.py": "d48426fc91b364b8b738efe824ecb1b1ecd30cf062f4c09be272bb08cffdc0e5",
+    "avcl/send_envelope.py": "0657b06b8134fac10e4f87a16147022f1badbb72bc41e735d6098790dff96d1e",
+    "avcl/sending.py": "978c78074f77ad7e197a721f8af3d437f226a962bf53431fef1faf7f92a8a8a1",
+    "avcl/simulator.py": "4a0920e4711375b538a2a4c8d866c52e65aeda18f65f490e3e69cd4073ebf356",
+    "avcl/smt.py": "b2d6e8131abfe01c964a82845940687301106345c1a9dff7c0bd2c53a87d6877",
+    "avcl/smt_package.py": "d66287299ddc64382eb213ed0c9132eaed425a5ed137192ec3973e23a7d5b4d5",
+    "avcl/storage_codec.py": "44205576f66ed68f87971f4e56758779929d35c3bb61269cc0523e37f7c1a839",
+    "avcl/supervision.py": "b8855eaf918ec3d783dd217852da44c47229e88c16505c8ad58979534785912f",
+    "avcl/tasks.py": "3b8e7263ee4316c4023c34c433ef8d07f05dc7de18dccdf65f7dc8696d0d9102",
+    "avcl/types.py": "a7ea9a8abee14c7612090c6aa7e7e787386428e4d66609f9c0980bca1e4d5583",
+    "avcl/validation.py": "d6f8be952975e105385ec23e4c43d7d7a02700df02ba67944eedb63dea1dafaa",
+    "avcl/verification.py": "ee5a7367c639379271744d725db67edbf76af455c15233b484a591ab5c1463d8",
+    "avcl/workflow.py": "44213ea397175b79d641f759a3fe47ee9cc4ad92f47676840d6e4630b03f58b6",
+    "avcl/workflow_postgres.py": "5f9c2d9c704ce85f8c99a8fea2f7baa384a22edbd89c74e8a6df1c077b34de78",
+    "avcl/workflow_runtime.py": "ab054acffbbe3a7249447f35d16685d151e204bcca601c901b34c28a94b87ebe",
+    "examples/close_workflow_demo.py": "d3e50311a3f7d6513a19d0f87c40f9c8eddef9eb7c161de3c03be8df1ddd0a75",
+    "examples/contract_smt_pipeline.py": "13c76e9d94e36eeefb071a808f41fdbadcd64a23722cae74e3d5becfc0a4dfd1",
+    "examples/delegation_demo.py": "a1f7f8b155834529c2bd2839e988e503f8c635ed215ca91eedfa26ab1529f81d",
+    "examples/durable_workflow_demo.py": "66672520a6962329facab51c3c0334777e271ba35bf4b0fd4e408ffbba17a941",
+    "examples/ir_pipeline.py": "cd2dc7931c8b8504c5b53a9ebcb876c08a966825ddb4d8240f65b8f7b72b51a7",
+    "examples/policy_lifecycle.py": "d27c8936d893fab19b0c5c91639fb597ceb64e4dd54bbb3acf307dcc94b1ce72",
+    "examples/refund_demo.py": "c79af4360066b5132cfeae7d6e5030fbe0aa74b331c56ebeb82dfb3a9e46d658",
+    "examples/send_envelope_demo.py": "3c65c5be153354b23b5baca523760b1f893bec4d97664694b74208fd40e28233",
+    "examples/smt_pipeline.py": "30ae8fd17983b1e946998433454028b84d60677832cdc0aa8f9c8d60f3f24428",
+    "examples/supervision_demo.py": "2a9eb22da841a00665567f4885d40eb833ee7070727dea6c6e14d2cf59c408c4",
+    "examples/workflow_demo.py": "04d6a5b63f16c05e7ec82830d85562861d546c387b32948fb2bcecfd53dc6cf1",
+    "formal/lean/Core.lean": "dc4b5918d2f2c51a5c2562d2b8f17af7f67c961836b826f126441f123979c98a",
+    "formal/lean/CostBridge.lean": "b24b0490073ed18be762a148475ceea254fedb26fb159301ac9874c8e74c785f",
+    "formal/lean/Delegation.lean": "2900fb32390c52af24b3c39e6f36ff20961bbfd833841e10b820b50291583ec1",
+    "formal/lean/lean-toolchain": "b8861a22d770ed6ea042401cbbb74f38d435659a4be3d6faae561c0fe563a645",
+    "integration/concurrent_worker.py": "4299ae8eee395e16ad1b26d80b482c14fe34aea82667eaf33c3fad3a6d897b31",
+    "integration/crash_worker.py": "64c85ccee76c165c311064b02e118d6320d031aad5b59d3f2576d3fd9f1bef60",
+    "integration/process_ready.py": "b1d79baa80da5ed260e3a616cb5ee500310cbb8a31169d955a68d56d2423cc72",
+    "integration/test_capacity.py": "af185d00085b34256ada5483c893dc9e7f0b6ea44ca23452f9c195c9aead587c",
+    "integration/test_delegation.py": "5d7451d3604af7b9d81b17fb0353ad9152d2eaed444ac0e9a7071b9d387036b3",
+    "integration/test_gateway.py": "664f716f8dcbbe783d75143bd2d1733e3bfe35e766e4a528d26eb31a7706ca56",
+    "integration/test_m1_processes.py": "778f1b2cc052a5bc601029073490d893ab84c7fff25ddef577405de4a62aad3a",
+    "integration/test_postgres.py": "af39e736a9701312c9a56264b29a89a9e6220f70106c3f2cba1b35a72cb14d51",
+    "integration/test_receipt_envelope_postgres.py": "f117a54952a1dff6cb4d365eaa90a9b12c736eb7e782a6d864cf62d08b552765",
+    "integration/test_review_regressions.py": "84208e30a0c6f044c76a7d470fa64d577d60d2cd0098441c38ce5e459fbb4297",
+    "integration/test_send_envelope_postgres.py": "6fe5327c5993bdfe33406463bc605fb4fb20eba6209de8f880b5a2a6798b4a2f",
+    "integration/test_send_window_postgres.py": "6f4f1134802a0855ecbb3f41445847f4d9f4fb8a7b69a8bc99602402d47177a9",
+    "integration/test_tasks.py": "171fb8193de2dfa9609489cbafdf85bceb9d7d48017fc0f425aeb64f96665c2b",
+    "integration/test_validation.py": "76341f7b2176c59cc35994e985afdc654498c79152a507213ab41d9096e9d09b",
+    "integration/test_workflow_close.py": "bc5517a7287ae84a3b9101206dc877cdb420b7ff46eb8905868e0866bde66aa4",
+    "integration/test_workflow_delegate.py": "3f6669d3095923a3b1ae1c48484a7cadb8b0092f062074e04b17dfe5283fd203",
+    "integration/test_workflow_postgres.py": "91704711e9fc24754872a3e89bf55db974c0b1a338d3f60c6726bfbcb1b99475",
+    "integration/test_workflow_validate.py": "1180b5f8186b807608c18b8b0ee2ce8e004609fefadcd35eff644261deeed34c",
+    "migrations/001_core.sql": "2507e2d601095935e1d25574c3f08a6f08226ba9dbf8335235d8bd94b6003d0b",
+    "migrations/002_supervision.sql": "6a39f57548cb3610c4aa8d4c9201915f9ac3711793a00b2bca012c6d4692fb34",
+    "migrations/003_workflow.sql": "2b60a8fda726d83d103c3f6f116bdfa3e2d172b9fc65c4071ef76cf53220359f",
+    "migrations/004_capacity.sql": "483a3f4bf75f8f3c5396fa384742ab2538b852a0b6f28e2022feb5cea9f35390",
+    "migrations/005_gateway.sql": "c4115651cb8ae35d477dd7d2b98a282ed395e9498a837f7914365dcf583509a3",
+    "migrations/006_validation.sql": "38490b93424623cf6bd881d9d29217fbe1da2bdbb1d013347d8ef21d9810b93f",
+    "migrations/007_task_close.sql": "2bdea9dad65bd3799c3539afeab2e592bc25a95ed7b18862cd5160113e6fbfe3",
+    "migrations/008_delegation.sql": "049ab32e11e59e777f7da6e62fabcd0826deecefe365f107a774add663d9d559",
+    "models/__init__.py": "cec31c95db21711d73f44ccaea48e578fb1280e342a089ca1bffacfc0d8d3e4a",
+    "models/budget_model.py": "718853c57b17f6048c85afb4f28fe6d2310e1791020093f74697d7b5a9c1c4b9",
+    "models/capacity_model.py": "3f92524f0bd8bd14d0ba07aa48ab4880cc0d8e0c46b7fcdd71478fb8050ed673",
+    "models/cost_bridge_model.py": "c0959ea5865ce13bd238398e8a581a286fc5da636b126726345eef095bf47a03",
+    "models/delegation_model.py": "001434268fd18352c2fc7df1532fc07545c28b52c48ae6a2028ba1f09ea7c833",
+    "models/review_composition_model.py": "cf940e80bc51cb7706665f2b79032fd6356f007550f35b43037974f68511bd75",
+    "models/send_window_model.py": "5430a4ef848128869a857132a25e15803429dfae6e068abe99300d7a78e74e6f",
+    "scripts/bootstrap_postgres.py": "689183a0da319e7abc03a77ea94044ea9e0af16a583c0ca1ff2e30acb3827c35",
+    "scripts/local_postgres.py": "57bc30faedbd98f8f8b94eb8aa40b2298116a1f74470731f5cec3ccf2b6e3498",
+    "scripts/m1_checks.py": "3c128c0c5c4739dd2311ed96e3f1fdba8933fba6ab216394c9d63ecfd37958be",
+    "scripts/postgres_environment.py": "f2607f6ca39bf97ed3e33352660ea6c4910dfb3140fc71fc2ac9957fc7386450",
+    "scripts/runtime_api.py": "793ebad3f5ef93b1b69bb00dfbe4c3340aa395b67021732a316b5ea47ac08cc8",
+    "scripts/verify.py": "a3528735db33818c97156388a2fd9676ad0f2b7983be34c00776fad8948e0528",
+    "scripts/verify_smt.py": "386fd3e2838376af83fc2d59baf4b967bf1c1ed9ea30f72d05d45ef97280aaff",
+    "smt_tests/test_contract_smt.py": "8b230ca5b58269aed1637fdd25e25d22f71975b7a79fd28fe8ea63670fc77c0d",
+    "smt_tests/test_smt.py": "1f9a4cfe2f822c09fbf7cf89f107929340a3f4d565c579c247caf178b44cd2ff",
+    "spec/candidate-validation-profile.md": "6f33d771bd9c46733f11b126eed3d9b55f9d52c529f773f6039a38ac9922361f",
+    "spec/capacity-profile.md": "6fbc30932b5ccb139090333dc61dde1130dbfbf39a546daa5ee5f70aae0ce24c",
+    "spec/contract-policy.md": "b2f19b3e59b2767630c3d74e5b73ebcc46617ffe76de8b9976277828665a66e0",
+    "spec/contract-smt-profile.md": "52a9549d41707ae10799f04ff4be10b540cc454d1d0111af936031e147167002",
+    "spec/delegation-profile.md": "6190b0c57912c6d7c1a1cf7626258166a1ddbb950d82c13d0dc544baf0b737ac",
+    "spec/durable-workflow-profile.md": "c564811b13a81d25e30e3fd15f6d1fb8b177e99d8749c0f0574cabaf157b33d8",
+    "spec/evaluation-budget-plan.md": "4c1f51bfd75c41532330e34c25fd33b7e6586e309fa40bfcb20899f57b2103d1",
+    "spec/formal-cost-bridge-profile.md": "1239d315ea4b25b46d829eff43ee073334a6377eace1fc48614f65e9273a23c6",
+    "spec/formal-delegation-profile.md": "5779e2ca862c54028f8e8d902094536c105ba0d65b678a14093178409e7e7588",
+    "spec/gateway-profile.md": "3a9aa93e01553ee6509ed46d20e6aded448aaf00b7b9339bffe4d5f2f9088ebf",
+    "spec/implementation-status.md": "366c8c98d470f32409860cafa6ab7a30179501d831dd91a0d031ae6d770ee6f5",
+    "spec/ir-profile.md": "2c2a33f89274337e09e277673fd2fc54c544dfbcdec6d3a80b5b1def1df0c746",
+    "spec/m1-acceptance-audit.md": "0cf9ad1d345318c29a4cd2117dfa0c72fc5d484fe4f109a7614df5d1a16869cc",
+    "spec/postgres-profile.md": "beb2cccbb8e4171ec303c17e267e2a2b401f6ecddbfa08fd5492567054220f69",
+    "spec/receipt-envelope-profile.md": "75faaef2e797f46e261cea3d27789960225526130a7b67c22f6b16a726eaf415",
+    "spec/reference-decisions.md": "ac58f3dcf8f0cb11c4141e66190025ba5ed3112a821f91611d16d297c594ecaa",
+    "spec/requirement-diagnostics.md": "9c67107bcf9245907569235e3c819fa132771257e052e404133077686996b5d9",
+    "spec/review-fixes-profile.md": "ca172c785daa66989e2920394766f4525e3a684e3a410a09f79a687952cd9cdb",
+    "spec/send-envelope-profile.md": "05a6c5fcbdc6673ece464d389cdad74dbd37fec6b1808605d9db1ca518a841ba",
+    "spec/send-window-profile.md": "4071c773e47efcd1edf67f18bb6fdb298ceb8bd76dff50b906b4db94ed94f432",
+    "spec/smt-profile.md": "db54e66387c13cf98e92fd4d03f0d7565b7495b302b4e8db6d91bc600958f238",
+    "spec/supervision-profile.md": "29e93b46275335b4ffd2ddb9ed8918dc36433d5ec1c5c10eed37384a302624c2",
+    "spec/task-close-profile.md": "cdc0ed9a9f4db7892a82670b2ef009fbf2e0e18f2a2c618a1598fbf3d47de505",
+    "spec/workflow-profile.md": "d99d081a34e9abbadcfdea1021e2ebe6a3581b981860b413b345ee685a8902ca",
+    "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tests/support.py": "12109865ce2d50f004c0b4733f8fe7946feaf8c4e834242421e6e5c38c693c5e",
+    "tests/test_contract_policy.py": "0e45d0bd392682caba286df2785366136148aaf1544a19e8c91705b36bd368c8",
+    "tests/test_cost_bridge.py": "6fb19f8e9ffb92bf761f1c5a7f6f160c3533476bca7c4d8acb5e73d3953d7aa0",
+    "tests/test_delegation.py": "b1ef63d1ebbaab7ff2bba49bcbec288097cc8e4eb4b0fb42124c20a2856abb5f",
+    "tests/test_encoding_ir.py": "09a5c9b91e18296102fc3b0edb12bd9e12d6cc658fcd14e7d3e2a937a1a1beaa",
+    "tests/test_ir_pipeline.py": "eaf09d4a92ac45a1c6dbd504cd04af05ffacca281a42f77b03671749fc2367fe",
+    "tests/test_m1_boundaries.py": "a08c062358786529e68f999acfd265aba89850fad91ce3c1acd1a95a9aadbdf6",
+    "tests/test_m1_recorder.py": "b9a729bc113d490d679b75e09fec40af2364e7ff0161f69ffcbd4a1bd25d9c19",
+    "tests/test_model.py": "a7fc9b3868dc27b23ba21c5a839964920f734b809c540eb8a35d2ccd12e72777",
+    "tests/test_package.py": "1f913c30fa9f90e9ec6599c9cf27adbb5430865d5ed16c77f06a1e9c09199d2b",
+    "tests/test_process_ready.py": "3273871eba9bd34330847015dd9993847a2bb82fcbdd9c91a6c36efbbbc502ac",
+    "tests/test_proof_gate.py": "916c540eebb9188a8a8c2cefee74ea22542da290f645d302a88608bb103017f1",
+    "tests/test_receipt_envelope.py": "32914d2e748534b479482d1902fe2ed3ae668895efed05cd6a4b279a80eaf1b5",
+    "tests/test_requirement_trace.py": "bbbc01b72602e6e364b8ea40de8edbff0fbafd814ea352947f6e83dadb6bb2c1",
+    "tests/test_review_models.py": "1b8f9b1e84c099ae5df4578f02b2e61fb73174ceec229638e962dfee29cf0a01",
+    "tests/test_review_regressions.py": "d38fd974f2122a6aa625bc3f4cd28b7d9d5a50206757166a09023459dc724ed7",
+    "tests/test_runtime.py": "f515958519e6605d746713cc519902901444fa9a01b314545c4cdd80cccb7ddd",
+    "tests/test_send_envelope.py": "8a2ba6b3b44296206aa8dde2a6c7efb5aa2e439c430497dc3693ebdf84e1c0e5",
+    "tests/test_send_window.py": "92538324755bd955251bef117becde894deb8d40058b893f442d3cafcd633910",
+    "tests/test_storage_codec.py": "eaa473ce70c2544213e10859f42d568d1faea5d6a3e76e02359cbb5c3f25e621",
+    "tests/test_verification_logging.py": "13d1eeb716dae43d5588b4e9dbaccd0673771a393ab955614f83d9ed12c27887",
+    "tests/test_workflow.py": "61d4a64e766d42883802dba57cb115b9284be65068b8aabf44cbd61e4b3a46be",
+    "tests/test_workflow_close.py": "60335ca72327497b27a9be8e5a62e296484778b50d918cee401815350a81b2e1",
+    "tests/test_workflow_delegate.py": "174db9b04f18e5878e0c931409df838dea2e8518720187700c31253c47ccd1c9",
+    "tests/test_workflow_validate.py": "078f32ab1e5ae995651429c5be6757c23c7d1cc3024e34fbd444a592e8774f8f",
+    "tests/fixtures/README.md": "4b02b38ba0d8aed30e4350330204e2f5ab76d02ec3848240347c580e18b18c08",
+    "tests/fixtures/workflow-v04.ir.json": "c2649562d969f609cd3ded49797877474a977dae3db0cf8ba68b0a07618f1c7e",
+    "tests/fixtures/workflow-v05.ir.json": "039d4756b2ccc49a22c25940680b30f41e183affb5f36b795cc0d3de99bb2628",
+    "tests/fixtures/workflow-v06.ir.json": "5d9fa87daf5918457ab13bfb0c510348d560e83cf3fa4e28c14d027d765d6e17"
+  }
+}

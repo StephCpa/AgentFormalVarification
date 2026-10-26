@@ -1,0 +1,101 @@
+{
+  "passed": true,
+  "scope": "real PostgreSQL snapshot; demonstration checkpoints from this same run, not an external trust service; no semantic replay proof",
+  "verification": {
+    "format": "avcl/audit-integrity/0.1",
+    "status": "VerifiedAgainstCheckpoint",
+    "tenant": "demo",
+    "after_sequence": "0",
+    "event_count": "4",
+    "checkpoint": {
+      "tenant": "demo",
+      "sequence": "4",
+      "digest": "sha256:01fffada11d665a18224d6e4614dae7ee0ae6c9d742bf9fdeb5f164c5796be65"
+    },
+    "semantic_replay": "not_performed",
+    "event_truth": "not_verified",
+    "payload_schema": {
+      "profile": "avcl/legacy-event-payload/0.2",
+      "status": "Conforms",
+      "checked_events": "4",
+      "structured_observation_events": "1",
+      "opaque_observation_events": "0"
+    }
+  },
+  "pages": [
+    {
+      "format": "avcl/audit-integrity/0.1",
+      "status": "InternallyConsistent",
+      "tenant": "demo",
+      "after_sequence": "0",
+      "event_count": "2",
+      "checkpoint": {
+        "tenant": "demo",
+        "sequence": "2",
+        "digest": "sha256:d0b6d0b915af461b1cac876df760e8a17605023729469d0c8ab3a59bc6650362"
+      },
+      "semantic_replay": "not_performed",
+      "event_truth": "not_verified",
+      "payload_schema": {
+        "profile": "avcl/legacy-event-payload/0.2",
+        "status": "Conforms",
+        "checked_events": "2",
+        "structured_observation_events": "0",
+        "opaque_observation_events": "0"
+      }
+    },
+    {
+      "format": "avcl/audit-integrity/0.1",
+      "status": "ContinuationConsistent",
+      "tenant": "demo",
+      "after_sequence": "2",
+      "event_count": "2",
+      "checkpoint": {
+        "tenant": "demo",
+        "sequence": "4",
+        "digest": "sha256:01fffada11d665a18224d6e4614dae7ee0ae6c9d742bf9fdeb5f164c5796be65"
+      },
+      "semantic_replay": "not_performed",
+      "event_truth": "not_verified",
+      "payload_schema": {
+        "profile": "avcl/legacy-event-payload/0.2",
+        "status": "Conforms",
+        "checked_events": "2",
+        "structured_observation_events": "1",
+        "opaque_observation_events": "0"
+      }
+    },
+    {
+      "format": "avcl/audit-integrity/0.1",
+      "status": "ContinuationConsistent",
+      "tenant": "demo",
+      "after_sequence": "4",
+      "event_count": "0",
+      "checkpoint": {
+        "tenant": "demo",
+        "sequence": "4",
+        "digest": "sha256:01fffada11d665a18224d6e4614dae7ee0ae6c9d742bf9fdeb5f164c5796be65"
+      },
+      "semantic_replay": "not_performed",
+      "event_truth": "not_verified",
+      "payload_schema": {
+        "profile": "avcl/legacy-event-payload/0.2",
+        "status": "Conforms",
+        "checked_events": "0",
+        "structured_observation_events": "0",
+        "opaque_observation_events": "0"
+      }
+    }
+  ],
+  "rewritten_without_anchor": "InternallyConsistent",
+  "rewritten_against_original_anchor": "AUDIT_CHECKPOINT_MISMATCH",
+  "database_events_unchanged": true,
+  "artifacts_sha256": {
+    "checkpoint.json": "c0a1ce361ada4aca2eca724a7e288c3b5963fc25e341f6f0974dd762ee0326eb",
+    "full.json": "9aba662601e7d4ac7ceff4f96c58c7eae9dcaa5080e47ca39ed72f33cd6333bd",
+    "observation-facts.json": "d391bda678da0bca42c1aa2762c52d11fe7b4805fc71166ede1122106e16737f",
+    "page-0.json": "78eebb59eff5f2d6d89a7bfba9f1087bb1b7ae7fad4dba77b4fe605ac0e6bf2e",
+    "page-1.json": "121af64faeee5434fd1768e28df96703d58ec117a912b4d582fc298772af6c3a",
+    "page-2.json": "a7daa8cf12159d136af83697fb515cd80f8c29e195c953c6fc18df1c07c7c15c"
+  }
+}

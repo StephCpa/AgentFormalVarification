@@ -54,13 +54,17 @@ def domain(t):
                 for values in product(*(domain(field) for _,field in t.fields))]
     raise DomainTooLarge()
 
-def verify_finite(predicate,max_cases=10000):
+def verify_finite(predicate,max_cases=10000,*,evaluation_limit=None):
+    from .evaluation import WorkBudget, DEFAULT_WORK_LIMIT, WORK_MODEL
+    limit=DEFAULT_WORK_LIMIT if evaluation_limit is None else evaluation_limit
+    WorkBudget(limit)
     if type(max_cases) is not int or not 1<=max_cases<=100000: raise Reject("INVALID_VERIFICATION_BOUND")
     checks=compile_checks(predicate);predicate=checks.predicate
     base={"requirement_ids":[predicate.requirement_id],"ir_digest":predicate.semantic_digest,
           "source_digest":predicate.source_digest,"checker_build":COMPILER,
           "assumption_ids":["pure-ir-typing","python-runtime"],"solver_status":None,
-          "bounds":{"fields":{k:t.wire() for k,t in predicate.fields},"max_cases":str(max_cases)},
+          "bounds":{"fields":{k:t.wire() for k,t in predicate.fields},"max_cases":str(max_cases),
+                    "evaluation_work_model":WORK_MODEL,"evaluation_work_limit":str(limit)},
           "checked_at":datetime.now(timezone.utc).isoformat()}
     def result(prop,status,**kwargs): return {**base,"property_id":prop,"status":str(status),**kwargs}
     try:
@@ -74,7 +78,11 @@ def verify_finite(predicate,max_cases=10000):
     accepted=None;rejected=None;checked=0
     for values in product(*(domain(t) for _,t in predicate.fields)):
         env={k:v for (k,_),v in zip(predicate.fields,values)};checked+=1
-        a=predicate.evaluate(env);b=checks.evaluate(env)
+        try:
+            a=predicate.evaluate(env,budget=WorkBudget(limit));b=checks.evaluate(env,budget=WorkBudget(limit))
+        except Reject as exc:
+            return [result(prop,PropertyStatus.UNKNOWN,checked_cases=str(checked),reason=exc.code,
+                           complete_declared_domain=False) for prop in ("checks-equivalent","allowed-action-exists")]
         witness={k:t.value_wire(v) for (k,t),v in zip(predicate.fields,values)}
         if a!=b:
             return [result("checks-equivalent",PropertyStatus.VIOLATED,checked_cases=str(checked),witness=witness),
@@ -85,13 +93,16 @@ def verify_finite(predicate,max_cases=10000):
             result("allowed-action-exists",PropertyStatus.BOUNDED_CHECKED if accepted is not None else PropertyStatus.VIOLATED,
                    checked_cases=str(checked),complete_declared_domain=True,witness=accepted,rejected_witness=rejected)]
 
-def runtime_report(predicate,values):
+def runtime_report(predicate,values,*,budget=None):
+    from .evaluation import use_budget
+    budget=use_budget(budget)
     try:
-        allowed=compile_checks(predicate).evaluate(values)
+        allowed=compile_checks(predicate).evaluate(values,budget=budget)
         status=PropertyStatus.RUNTIME_SATISFIED if allowed else PropertyStatus.VIOLATED
         reason=None
     except Reject as exc:
         allowed=False;status=PropertyStatus.UNKNOWN;reason=exc.code
     return {"property_id":"current-input-satisfies-predicate","requirement_ids":[predicate.requirement_id],
             "ir_digest":predicate.semantic_digest,"status":str(status),"allow":allowed,"reason":reason,
+            "evaluation_work":budget.report(),
             "scope":"this evaluated input only; no authorization or future-state guarantee"}

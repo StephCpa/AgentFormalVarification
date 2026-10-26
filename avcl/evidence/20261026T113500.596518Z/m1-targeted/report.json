@@ -1,0 +1,480 @@
+{
+  "schema": "avcl/m1-targeted-evidence/0.1",
+  "suite_passed": true,
+  "release_decision": "not_issued",
+  "checked_at": "2026-10-26T11:35:37.330348+00:00",
+  "scope": "named authority, binding, budget, Unknown, affine and pure-IR checks; targeted real PostgreSQL",
+  "case_count": 19,
+  "cases": [
+    {
+      "test_id": "tests.test_m1_boundaries.M1BoundaryTests.test_T01_objects_and_unregistered_refs_cannot_create_authority",
+      "status": "Passed",
+      "seconds": 0.0,
+      "observations": {
+        "requirements": [
+          "R01"
+        ],
+        "attempts": [
+          {
+            "role": "capability",
+            "input_kind": "unknown-ref",
+            "rejection": "UNTRUSTED_REFERENCE"
+          },
+          {
+            "role": "capability",
+            "input_kind": "object",
+            "rejection": "UNSUPPORTED_CANONICAL_VALUE"
+          },
+          {
+            "role": "capability",
+            "input_kind": "candidate-json",
+            "rejection": "UNTRUSTED_REFERENCE"
+          },
+          {
+            "role": "evidence",
+            "input_kind": "unknown-ref",
+            "rejection": "UNTRUSTED_REFERENCE"
+          },
+          {
+            "role": "evidence",
+            "input_kind": "object",
+            "rejection": "UNSUPPORTED_CANONICAL_VALUE"
+          },
+          {
+            "role": "evidence",
+            "input_kind": "candidate-json",
+            "rejection": "UNTRUSTED_REFERENCE"
+          },
+          {
+            "role": "approval",
+            "input_kind": "unknown-ref",
+            "rejection": "UNTRUSTED_REFERENCE"
+          },
+          {
+            "role": "approval",
+            "input_kind": "object",
+            "rejection": "UNSUPPORTED_CANONICAL_VALUE"
+          },
+          {
+            "role": "approval",
+            "input_kind": "candidate-json",
+            "rejection": "UNTRUSTED_REFERENCE"
+          }
+        ],
+        "positive_control": {
+          "actual_cost": 70,
+          "effects": 1
+        }
+      },
+      "requirement_ids": [
+        "R01"
+      ]
+    },
+    {
+      "test_id": "tests.test_workflow.WorkflowTests.test_candidate_and_operation_cannot_be_authority_or_permit",
+      "status": "Passed",
+      "seconds": 0.015,
+      "requirement_ids": [
+        "R01",
+        "R08"
+      ]
+    },
+    {
+      "test_id": "tests.test_m1_boundaries.M1BoundaryTests.test_T02_fresh_evidence_does_not_rebind_an_old_approval",
+      "status": "Passed",
+      "seconds": 0.0,
+      "observations": {
+        "requirements": [
+          "R02"
+        ],
+        "approved_amount": 5000,
+        "attempts": [
+          {
+            "field": "amount_minor",
+            "fresh_evidence_matches": true,
+            "rejection": "APPROVAL_MISMATCH"
+          },
+          {
+            "field": "max_fee_minor",
+            "fresh_evidence_matches": true,
+            "rejection": "APPROVAL_MISMATCH"
+          },
+          {
+            "field": "destination",
+            "fresh_evidence_matches": true,
+            "rejection": "APPROVAL_MISMATCH"
+          },
+          {
+            "field": "order_version",
+            "fresh_evidence_matches": true,
+            "rejection": "APPROVAL_MISMATCH"
+          },
+          {
+            "field": "task",
+            "fresh_evidence_matches": true,
+            "rejection": "APPROVAL_MISMATCH"
+          },
+          {
+            "field": "business_key",
+            "fresh_evidence_matches": true,
+            "rejection": "APPROVAL_MISMATCH"
+          }
+        ],
+        "positive_control": {
+          "actual_cost": 5000,
+          "effects": 1
+        }
+      },
+      "requirement_ids": [
+        "R02"
+      ]
+    },
+    {
+      "test_id": "tests.test_runtime.ProtocolTests.test_wrong_permit_or_subject_rejected",
+      "status": "Passed",
+      "seconds": 0.016,
+      "requirement_ids": [
+        "R01",
+        "R02"
+      ]
+    },
+    {
+      "test_id": "test_m1_processes.M1ProcessTests.test_T04_two_processes_contend_for_70_and_60_of_100",
+      "status": "Passed",
+      "seconds": 2.234,
+      "observations": {
+        "requirements": [
+          "R04"
+        ],
+        "method": "prepare",
+        "schedule": "parent holds authority_guard; both children wait; parent commits",
+        "children": [
+          {
+            "pid": 55780,
+            "application_name": "avcl_m1_47ca57a1491842ea9f356a864bbcbc03"
+          },
+          {
+            "pid": 52948,
+            "application_name": "avcl_m1_52029311a4d240e3824b0ab6e43d269f"
+          }
+        ],
+        "observed_waiters": [
+          {
+            "pid": 74968,
+            "application_name": "avcl_m1_47ca57a1491842ea9f356a864bbcbc03",
+            "state": "active",
+            "wait_event_type": "Lock",
+            "wait_event": "transactionid",
+            "blocking_pids": [
+              6884
+            ],
+            "query": "SELECT * FROM authority_guard WHERE tenant_id=$1 FOR UPDATE"
+          },
+          {
+            "pid": 43568,
+            "application_name": "avcl_m1_52029311a4d240e3824b0ab6e43d269f",
+            "state": "active",
+            "wait_event_type": "Lock",
+            "wait_event": "tuple",
+            "blocking_pids": [
+              74968
+            ],
+            "query": "SELECT * FROM authority_guard WHERE tenant_id=$1 FOR UPDATE"
+          }
+        ],
+        "results": [
+          {
+            "pid": 55780,
+            "application_name": "avcl_m1_47ca57a1491842ea9f356a864bbcbc03",
+            "status": "accepted",
+            "operation": "{\"$record\":\"Operation\",\"fields\":{\"admitted\":false,\"approval_ref\":\"ap-case-a\",\"binding\":\"sha256:e29125d01ffbaf29d69d95272267d44911bc9ad6b6e7a2aa1c48769a342dcddb\",\"capability_ref\":\"cap-a\",\"contract_digest\":\"sha256:84a379229dd6e517a4f4fdd9819f02f624420af6974c2cee6fe7395b5e601a17\",\"epoch\":{\"$int\":\"1\"},\"evidence_ref\":\"ev-case-a\",\"expires\":{\"$int\":\"60\"},\"id\":\"op-fcf5b1cd8ac84d8d8606e0ab9580f91e\",\"ir_digest\":\"sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d\",\"obligation_due\":null,\"permit_ref\":\"permit-80503aee2dee5e4773fd728e6602c9a1947fb81403c675050e467fbb8503727c\",\"policy\":\"refund-policy/0.1\",\"request\":{\"$record\":\"Request\",\"fields\":{\"adapter_version\":\"sim/0.1\",\"amount_minor\":\"70\",\"business_key\":\"case-a\",\"currency\":\"CNY\",\"destination\":\"original-a\",\"max_fee_minor\":\"0\",\"order\":\"a\",\"order_version\":\"v1\",\"schema_version\":\"refund/0.1\",\"subject\":\"a\",\"task\":\"task-a\",\"tenant\":\"demo\",\"tool\":\"refund\"}},\"reservations\":{\"$tuple\":[{\"$record\":\"Reservation\",\"fields\":{\"account\":\"order:a:CNY\",\"charged\":{\"$int\":\"0\"},\"remaining\":{\"$int\":\"70\"},\"upper\":{\"$int\":\"70\"}}},{\"$record\":\"Reservation\",\"fields\":{\"account\":\"tenant:CNY\",\"charged\":{\"$int\":\"0\"},\"remaining\":{\"$int\":\"70\"},\"upper\":{\"$int\":\"70\"}}}]},\"revision\":{\"$int\":\"0\"},\"settlement\":{\"$enum\":\"Settlement\",\"value\":\"Unsettled\"},\"state\":{\"$enum\":\"Execution\",\"value\":\"Prepared\"}}}"
+          },
+          {
+            "pid": 52948,
+            "application_name": "avcl_m1_52029311a4d240e3824b0ab6e43d269f",
+            "status": "rejected",
+            "code": "BUDGET_EXCEEDED"
+          }
+        ],
+        "gate_backend_pid": 6884,
+        "overlap_confirmed": true,
+        "postconditions": {
+          "operations": 1,
+          "pending": 70,
+          "limit": 100
+        }
+      },
+      "requirement_ids": [
+        "R04"
+      ]
+    },
+    {
+      "test_id": "tests.test_runtime.ProtocolTests.test_T19_second_account_failure_is_atomic",
+      "status": "Passed",
+      "seconds": 0.016,
+      "requirement_ids": [
+        "R04"
+      ]
+    },
+    {
+      "test_id": "test_postgres.PersistenceTests.test_second_account_rejection_rolls_back_every_row",
+      "status": "Passed",
+      "seconds": 1.922,
+      "requirement_ids": [
+        "R04"
+      ]
+    },
+    {
+      "test_id": "tests.test_runtime.ProtocolTests.test_T05_lost_receipt_preserves_exposure_and_replay_is_idempotent",
+      "status": "Passed",
+      "seconds": 0.015,
+      "requirement_ids": [
+        "R05"
+      ]
+    },
+    {
+      "test_id": "tests.test_runtime.ProtocolTests.test_timeout_before_effect_retains_bound",
+      "status": "Passed",
+      "seconds": 0.0,
+      "requirement_ids": [
+        "R05"
+      ]
+    },
+    {
+      "test_id": "tests.test_review_regressions.ReviewRegressions.test_final_knowledge_survives_late_weaker_authenticated_facts",
+      "status": "Passed",
+      "seconds": 0.047,
+      "requirement_ids": [
+        "R05"
+      ]
+    },
+    {
+      "test_id": "test_m1_processes.M1ProcessTests.test_T08_two_processes_consume_one_permit_once",
+      "status": "Passed",
+      "seconds": 2.907,
+      "observations": {
+        "requirements": [
+          "R08"
+        ],
+        "method": "dispatch",
+        "schedule": "parent holds authority_guard; both children wait; parent commits",
+        "children": [
+          {
+            "pid": 44220,
+            "application_name": "avcl_m1_4bea68564a9f4452ada3bb9e32bf5d08"
+          },
+          {
+            "pid": 26540,
+            "application_name": "avcl_m1_620d490882874019b0684ab9994cdece"
+          }
+        ],
+        "observed_waiters": [
+          {
+            "pid": 37236,
+            "application_name": "avcl_m1_4bea68564a9f4452ada3bb9e32bf5d08",
+            "state": "active",
+            "wait_event_type": "Lock",
+            "wait_event": "transactionid",
+            "blocking_pids": [
+              1872
+            ],
+            "query": "SELECT * FROM authority_guard WHERE tenant_id=$1 FOR UPDATE"
+          },
+          {
+            "pid": 69840,
+            "application_name": "avcl_m1_620d490882874019b0684ab9994cdece",
+            "state": "active",
+            "wait_event_type": "Lock",
+            "wait_event": "tuple",
+            "blocking_pids": [
+              37236
+            ],
+            "query": "SELECT * FROM authority_guard WHERE tenant_id=$1 FOR UPDATE"
+          }
+        ],
+        "results": [
+          {
+            "pid": 44220,
+            "application_name": "avcl_m1_4bea68564a9f4452ada3bb9e32bf5d08",
+            "status": "accepted",
+            "operation": "{\"$record\":\"Operation\",\"fields\":{\"admitted\":true,\"approval_ref\":\"ap-case-a\",\"binding\":\"sha256:6f0f301b4d60b1330806591f9de0d8e639985153e1254d59f7b25f7474d40d53\",\"capability_ref\":\"cap-a\",\"contract_digest\":\"sha256:84a379229dd6e517a4f4fdd9819f02f624420af6974c2cee6fe7395b5e601a17\",\"epoch\":{\"$int\":\"1\"},\"evidence_ref\":\"ev-case-a\",\"expires\":{\"$int\":\"60\"},\"id\":\"op-bc78db7e169840fcaa41233f7e13783d\",\"ir_digest\":\"sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d\",\"obligation_due\":null,\"permit_ref\":\"permit-d7a303eaf7b31ac5785176efaf7ee0510172bb0504a5ecf462ef0379f6ab85a9\",\"policy\":\"refund-policy/0.1\",\"request\":{\"$record\":\"Request\",\"fields\":{\"adapter_version\":\"sim/0.1\",\"amount_minor\":\"70\",\"business_key\":\"case-a\",\"currency\":\"CNY\",\"destination\":\"original-a\",\"max_fee_minor\":\"0\",\"order\":\"a\",\"order_version\":\"v1\",\"schema_version\":\"refund/0.1\",\"subject\":\"a\",\"task\":\"task-a\",\"tenant\":\"demo\",\"tool\":\"refund\"}},\"reservations\":{\"$tuple\":[{\"$record\":\"Reservation\",\"fields\":{\"account\":\"order:a:CNY\",\"charged\":{\"$int\":\"0\"},\"remaining\":{\"$int\":\"70\"},\"upper\":{\"$int\":\"70\"}}},{\"$record\":\"Reservation\",\"fields\":{\"account\":\"tenant:CNY\",\"charged\":{\"$int\":\"0\"},\"remaining\":{\"$int\":\"70\"},\"upper\":{\"$int\":\"70\"}}}]},\"revision\":{\"$int\":\"1\"},\"settlement\":{\"$enum\":\"Settlement\",\"value\":\"Unsettled\"},\"state\":{\"$enum\":\"Execution\",\"value\":\"Dispatched\"}}}"
+          },
+          {
+            "pid": 26540,
+            "application_name": "avcl_m1_620d490882874019b0684ab9994cdece",
+            "status": "accepted",
+            "operation": "{\"$record\":\"Operation\",\"fields\":{\"admitted\":true,\"approval_ref\":\"ap-case-a\",\"binding\":\"sha256:6f0f301b4d60b1330806591f9de0d8e639985153e1254d59f7b25f7474d40d53\",\"capability_ref\":\"cap-a\",\"contract_digest\":\"sha256:84a379229dd6e517a4f4fdd9819f02f624420af6974c2cee6fe7395b5e601a17\",\"epoch\":{\"$int\":\"1\"},\"evidence_ref\":\"ev-case-a\",\"expires\":{\"$int\":\"60\"},\"id\":\"op-bc78db7e169840fcaa41233f7e13783d\",\"ir_digest\":\"sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d\",\"obligation_due\":null,\"permit_ref\":\"permit-d7a303eaf7b31ac5785176efaf7ee0510172bb0504a5ecf462ef0379f6ab85a9\",\"policy\":\"refund-policy/0.1\",\"request\":{\"$record\":\"Request\",\"fields\":{\"adapter_version\":\"sim/0.1\",\"amount_minor\":\"70\",\"business_key\":\"case-a\",\"currency\":\"CNY\",\"destination\":\"original-a\",\"max_fee_minor\":\"0\",\"order\":\"a\",\"order_version\":\"v1\",\"schema_version\":\"refund/0.1\",\"subject\":\"a\",\"task\":\"task-a\",\"tenant\":\"demo\",\"tool\":\"refund\"}},\"reservations\":{\"$tuple\":[{\"$record\":\"Reservation\",\"fields\":{\"account\":\"order:a:CNY\",\"charged\":{\"$int\":\"0\"},\"remaining\":{\"$int\":\"70\"},\"upper\":{\"$int\":\"70\"}}},{\"$record\":\"Reservation\",\"fields\":{\"account\":\"tenant:CNY\",\"charged\":{\"$int\":\"0\"},\"remaining\":{\"$int\":\"70\"},\"upper\":{\"$int\":\"70\"}}}]},\"revision\":{\"$int\":\"1\"},\"settlement\":{\"$enum\":\"Settlement\",\"value\":\"Unsettled\"},\"state\":{\"$enum\":\"Execution\",\"value\":\"Dispatched\"}}}"
+          }
+        ],
+        "gate_backend_pid": 1872,
+        "overlap_confirmed": true,
+        "postconditions": {
+          "admissions": 1,
+          "outbox": 1,
+          "pending": 70
+        },
+        "oracle": {
+          "effects": 1,
+          "actual_cost": 70,
+          "spent": 70,
+          "pending": 0
+        }
+      },
+      "requirement_ids": [
+        "R08"
+      ]
+    },
+    {
+      "test_id": "test_m1_processes.M1ProcessTests.test_two_processes_retry_same_prepare_without_duplicate_reservation",
+      "status": "Passed",
+      "seconds": 2.515,
+      "observations": {
+        "requirements": [
+          "R02",
+          "R04",
+          "R08"
+        ],
+        "method": "prepare",
+        "schedule": "parent holds authority_guard; both children wait; parent commits",
+        "children": [
+          {
+            "pid": 48100,
+            "application_name": "avcl_m1_4ff5e5e7739249eba66babe0056da7f6"
+          },
+          {
+            "pid": 49940,
+            "application_name": "avcl_m1_03732aadace545c3b2b1f4e1f23017f2"
+          }
+        ],
+        "observed_waiters": [
+          {
+            "pid": 3492,
+            "application_name": "avcl_m1_4ff5e5e7739249eba66babe0056da7f6",
+            "state": "active",
+            "wait_event_type": "Lock",
+            "wait_event": "transactionid",
+            "blocking_pids": [
+              14080
+            ],
+            "query": "SELECT * FROM authority_guard WHERE tenant_id=$1 FOR UPDATE"
+          },
+          {
+            "pid": 75264,
+            "application_name": "avcl_m1_03732aadace545c3b2b1f4e1f23017f2",
+            "state": "active",
+            "wait_event_type": "Lock",
+            "wait_event": "tuple",
+            "blocking_pids": [
+              3492
+            ],
+            "query": "SELECT * FROM authority_guard WHERE tenant_id=$1 FOR UPDATE"
+          }
+        ],
+        "results": [
+          {
+            "pid": 48100,
+            "application_name": "avcl_m1_4ff5e5e7739249eba66babe0056da7f6",
+            "status": "accepted",
+            "operation": "{\"$record\":\"Operation\",\"fields\":{\"admitted\":false,\"approval_ref\":\"ap-case-a\",\"binding\":\"sha256:bdebb2076e184074d9fcdfd12e1838f30485b8b482a50c12a9486ffae8062c05\",\"capability_ref\":\"cap-a\",\"contract_digest\":\"sha256:84a379229dd6e517a4f4fdd9819f02f624420af6974c2cee6fe7395b5e601a17\",\"epoch\":{\"$int\":\"1\"},\"evidence_ref\":\"ev-case-a\",\"expires\":{\"$int\":\"60\"},\"id\":\"op-3df6bb7fa5a3420997d5e34187715a44\",\"ir_digest\":\"sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d\",\"obligation_due\":null,\"permit_ref\":\"permit-a082462ea10181f058b7c2937529a12db6aa2c97f652c993f93ef7e891a0481a\",\"policy\":\"refund-policy/0.1\",\"request\":{\"$record\":\"Request\",\"fields\":{\"adapter_version\":\"sim/0.1\",\"amount_minor\":\"70\",\"business_key\":\"case-a\",\"currency\":\"CNY\",\"destination\":\"original-a\",\"max_fee_minor\":\"0\",\"order\":\"a\",\"order_version\":\"v1\",\"schema_version\":\"refund/0.1\",\"subject\":\"a\",\"task\":\"task-a\",\"tenant\":\"demo\",\"tool\":\"refund\"}},\"reservations\":{\"$tuple\":[{\"$record\":\"Reservation\",\"fields\":{\"account\":\"order:a:CNY\",\"charged\":{\"$int\":\"0\"},\"remaining\":{\"$int\":\"70\"},\"upper\":{\"$int\":\"70\"}}},{\"$record\":\"Reservation\",\"fields\":{\"account\":\"tenant:CNY\",\"charged\":{\"$int\":\"0\"},\"remaining\":{\"$int\":\"70\"},\"upper\":{\"$int\":\"70\"}}}]},\"revision\":{\"$int\":\"0\"},\"settlement\":{\"$enum\":\"Settlement\",\"value\":\"Unsettled\"},\"state\":{\"$enum\":\"Execution\",\"value\":\"Prepared\"}}}"
+          },
+          {
+            "pid": 49940,
+            "application_name": "avcl_m1_03732aadace545c3b2b1f4e1f23017f2",
+            "status": "accepted",
+            "operation": "{\"$record\":\"Operation\",\"fields\":{\"admitted\":false,\"approval_ref\":\"ap-case-a\",\"binding\":\"sha256:bdebb2076e184074d9fcdfd12e1838f30485b8b482a50c12a9486ffae8062c05\",\"capability_ref\":\"cap-a\",\"contract_digest\":\"sha256:84a379229dd6e517a4f4fdd9819f02f624420af6974c2cee6fe7395b5e601a17\",\"epoch\":{\"$int\":\"1\"},\"evidence_ref\":\"ev-case-a\",\"expires\":{\"$int\":\"60\"},\"id\":\"op-3df6bb7fa5a3420997d5e34187715a44\",\"ir_digest\":\"sha256:e49162419a26e7ab3f70c23f1675d3ee99ab288cba801fcb19798b57c3d6867d\",\"obligation_due\":null,\"permit_ref\":\"permit-a082462ea10181f058b7c2937529a12db6aa2c97f652c993f93ef7e891a0481a\",\"policy\":\"refund-policy/0.1\",\"request\":{\"$record\":\"Request\",\"fields\":{\"adapter_version\":\"sim/0.1\",\"amount_minor\":\"70\",\"business_key\":\"case-a\",\"currency\":\"CNY\",\"destination\":\"original-a\",\"max_fee_minor\":\"0\",\"order\":\"a\",\"order_version\":\"v1\",\"schema_version\":\"refund/0.1\",\"subject\":\"a\",\"task\":\"task-a\",\"tenant\":\"demo\",\"tool\":\"refund\"}},\"reservations\":{\"$tuple\":[{\"$record\":\"Reservation\",\"fields\":{\"account\":\"order:a:CNY\",\"charged\":{\"$int\":\"0\"},\"remaining\":{\"$int\":\"70\"},\"upper\":{\"$int\":\"70\"}}},{\"$record\":\"Reservation\",\"fields\":{\"account\":\"tenant:CNY\",\"charged\":{\"$int\":\"0\"},\"remaining\":{\"$int\":\"70\"},\"upper\":{\"$int\":\"70\"}}}]},\"revision\":{\"$int\":\"0\"},\"settlement\":{\"$enum\":\"Settlement\",\"value\":\"Unsettled\"},\"state\":{\"$enum\":\"Execution\",\"value\":\"Prepared\"}}}"
+          }
+        ],
+        "gate_backend_pid": 14080,
+        "overlap_confirmed": true,
+        "postconditions": {
+          "rows": {
+            "operation": 1,
+            "permit": 1,
+            "business_action": 1,
+            "request_dedup": 1
+          },
+          "pending": 70
+        }
+      },
+      "requirement_ids": [
+        "R02",
+        "R04",
+        "R08"
+      ]
+    },
+    {
+      "test_id": "tests.test_workflow.WorkflowTests.test_join_does_not_resurrect_resource_consumed_in_one_branch",
+      "status": "Passed",
+      "seconds": 0.016,
+      "requirement_ids": [
+        "R08"
+      ]
+    },
+    {
+      "test_id": "tests.test_encoding_ir.PredicateTests.test_T09_effectful_and_nonlinear_nodes_rejected",
+      "status": "Passed",
+      "seconds": 0.0,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "test_id": "tests.test_encoding_ir.PredicateTests.test_invalid_dead_branch_is_checked_before_evaluation",
+      "status": "Passed",
+      "seconds": 0.0,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "test_id": "tests.test_ir_pipeline.IRPipelineTests.test_enum_and_id_are_nominal_not_untyped_strings",
+      "status": "Passed",
+      "seconds": 0.0,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "test_id": "tests.test_ir_pipeline.IRPipelineTests.test_option_guards_and_short_circuit_on_both_backends",
+      "status": "Passed",
+      "seconds": 0.016,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "test_id": "tests.test_ir_pipeline.IRPipelineTests.test_runtime_results_do_not_imply_static_proof",
+      "status": "Passed",
+      "seconds": 0.0,
+      "requirement_ids": [
+        "R09"
+      ]
+    },
+    {
+      "test_id": "tests.test_ir_pipeline.IRPipelineTests.test_unenumerable_domain_is_unknown_without_sampling_promotion",
+      "status": "Passed",
+      "seconds": 0.0,
+      "requirement_ids": [
+        "R09"
+      ]
+    }
+  ],
+  "missing_test_ids": [],
+  "unexpected_test_ids": [],
+  "test_source_sha256": {
+    "integration/test_m1_processes.py": "778f1b2cc052a5bc601029073490d893ab84c7fff25ddef577405de4a62aad3a",
+    "integration/test_postgres.py": "af39e736a9701312c9a56264b29a89a9e6220f70106c3f2cba1b35a72cb14d51",
+    "tests/test_encoding_ir.py": "09a5c9b91e18296102fc3b0edb12bd9e12d6cc658fcd14e7d3e2a937a1a1beaa",
+    "tests/test_ir_pipeline.py": "eaf09d4a92ac45a1c6dbd504cd04af05ffacca281a42f77b03671749fc2367fe",
+    "tests/test_m1_boundaries.py": "a08c062358786529e68f999acfd265aba89850fad91ce3c1acd1a95a9aadbdf6",
+    "tests/test_review_regressions.py": "d38fd974f2122a6aa625bc3f4cd28b7d9d5a50206757166a09023459dc724ed7",
+    "tests/test_runtime.py": "f515958519e6605d746713cc519902901444fa9a01b314545c4cdd80cccb7ddd",
+    "tests/test_workflow.py": "61d4a64e766d42883802dba57cb115b9284be65068b8aabf44cbd61e4b3a46be"
+  },
+  "limits": [
+    "not a full M1 requirement audit",
+    "not a full PostgreSQL integration run",
+    "no mechanical Python/SQL refinement",
+    "no production identity or egress-isolation claim"
+  ]
+}

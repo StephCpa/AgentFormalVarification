@@ -1,0 +1,6 @@
+'AVCL.CostBridge.P4_cost_bridge' depends on axioms: [propext, Quot.sound]
+'AVCL.CostBridge.P4_actual_within_budget' depends on axioms: [propext, Quot.sound]
+'AVCL.CostBridge.step_valid' depends on axioms: [propext, Quot.sound]
+'AVCL.CostBridge.example_partial_then_final' depends on axioms: [propext]
+'AVCL.CostBridge.example_local_budget_insufficient' does not depend on any axioms
+'AVCL.CostBridge.example_closed_blocks_charge' does not depend on any axioms

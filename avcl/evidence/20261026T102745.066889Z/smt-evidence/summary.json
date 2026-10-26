@@ -1,0 +1,58 @@
+[
+  {
+    "name": "runtime-refund",
+    "statuses": [
+      "ProvedUnder",
+      "ProvedUnder",
+      "ProvedUnder"
+    ],
+    "expected": [
+      "ProvedUnder",
+      "ProvedUnder",
+      "ProvedUnder"
+    ],
+    "matched": true
+  },
+  {
+    "name": "bounded-refund",
+    "statuses": [
+      "ProvedUnder",
+      "ProvedUnder",
+      "ProvedUnder"
+    ],
+    "expected": [
+      "ProvedUnder",
+      "ProvedUnder",
+      "ProvedUnder"
+    ],
+    "matched": true
+  },
+  {
+    "name": "all-deny",
+    "statuses": [
+      "ProvedUnder",
+      "ProvedUnder",
+      "Violated"
+    ],
+    "expected": [
+      "ProvedUnder",
+      "ProvedUnder",
+      "Violated"
+    ],
+    "matched": true
+  },
+  {
+    "name": "encoding-limited",
+    "statuses": [
+      "Unknown",
+      "Unknown",
+      "Unknown"
+    ],
+    "expected": [
+      "Unknown",
+      "Unknown",
+      "Unknown"
+    ],
+    "matched": true
+  }
+]
